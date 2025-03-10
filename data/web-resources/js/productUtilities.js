@@ -32,15 +32,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const addToCartCTA = featuredProductEle.querySelector('.addToCart');
         addToCartCTA.addEventListener('click', () => {
-            const productEle = e.target.closest('.product-listing__product');
-            const sku = JSON.parse(productEle.dataset.productDetails).sku;
-            console.log("CTA clicked", productSKU);
-            console.log("CTA parent find", sku);
+            console.log("CTA on click", productSKU);
     
             addProductToCart(productSKU, 1)
         });
     });    
 });
+
+export function addToCartClickHandler(sku, quantity=1){
+    const productEle = e.target.closest('.product-listing__product');
+    const sku = JSON.parse(productEle.dataset.productDetails).sku;
+    console.log("addToCartClickHandler sku", sku);
+    addProductToCart(sku, 1)
+}
 
 
 
