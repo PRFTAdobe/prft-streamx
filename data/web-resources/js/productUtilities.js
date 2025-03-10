@@ -2,8 +2,7 @@ import { utilities } from "./graphQLMutations/utility.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 
-
-export const addProductToCart = async (sku, quantity) => {
+export const addProductToCart = async (sku, quantity=1) => {
     let cartID = utilities.getCartIDFromLS();
     if (!cartID) {
         cartID = await cartMutations.generateCartID();
@@ -24,23 +23,14 @@ export const addProductToCart = async (sku, quantity) => {
 }
 
 //for featured products add to cart fucntion
-window.addEventListener('DOMContentLoaded', () => {
-    const featuredProductsList = document.querySelectorAll('.product-listing__product');
-    featuredProductsList?.forEach(featuredProductEle => {
-        const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
-        console.log("ProductSku");
-        console.log(productSKU);
-    
-        const addToCartCTA = featuredProductEle.querySelector('.addToCart');
-        addToCartCTA.addEventListener('click', () => {
-            console.log("CTA clicked");
-    
-            addProductToCart(productSKU, 1)
-        });
-    });    
+const featuredProductsList = document.querySelectorAll('.product-listing__product');
+featuredProductsList?.forEach(featuredProductEle => {
+    const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
+    const addToCartCTA = featuredProductEle.querySelector('.addToCart');
+    addToCartCTA.addEventListener('click', () => {
+        addProductToCart(productSKU, 1)
+    });
 });
-
-
 
 export const removeItemFromCart = async(cartID, uid) => {
     const response = await cartMutations.removeItemFromCart(cartID, uid);

@@ -1,4 +1,6 @@
 // eslint-disable-next-line func-names,no-unused-expressions
+import { addProductToCart } from './productUtilities.js'; 
+
 !(function () {
   const FILTER_CONTAINER_ID = 'category-list';
   const PCP_CONTAINER_ID = 'product-category-component';
@@ -166,13 +168,9 @@
           <div class="flex items-center mb-2">
             ${renderRatings()}
           </div>
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between addToCartWrapper">
             <span class="text-lg font-bold">$${item.price}</span
-            ><button
-              class="addToCart inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white"
             >
-              Add to Cart
-            </button>
           </div>
         </div>
       </a>
@@ -254,6 +252,41 @@
       div.innerHTML = getItemTemplate(product).trim();
       div.setAttribute("data-product-details",JSON.stringify(product));
       resultsContainer.appendChild(div);
+
+      const sku = product.sku;
+      const btnWrapper = div.querySelector('.addToCartWrapper');
+      const btn = document.createElement('button');
+      btn.classList.add(
+        'addToCart',
+        'inline-flex',
+        'items-center',
+        'justify-center',
+        'gap-2',
+        'whitespace-nowrap',
+        'rounded-md',
+        'text-sm',
+        'font-medium',
+        'ring-offset-background',
+        'transition-colors',
+        'focus-visible:outline-hidden',
+        'focus-visible:ring-2',
+        'focus-visible:ring-ring',
+        'focus-visible:ring-offset-2',
+        'disabled:pointer-events-none',
+        'disabled:opacity-50',
+        '[&_svg]:pointer-events-none',
+        '[&_svg]:size-4',
+        '[&_svg]:shrink-0',
+        'h-10',
+        'px-4',
+        'py-2',
+        'bg-dsg-red',
+        'hover:bg-dsg-red/90',
+        'text-white'
+      );
+      btn.innerHTML = 'Add to Cart';
+      btnWrapper.appendChild(btn);
+      btn.addEventListener('click', () => addProductToCart(sku, 1))
     });
 
     if (initFilters) {
@@ -329,4 +362,5 @@
   };
 
   init();
+
 })();
