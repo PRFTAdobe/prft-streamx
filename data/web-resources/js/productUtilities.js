@@ -25,7 +25,7 @@ export const addProductToCart = async (sku, quantity=1) => {
 //for featured products add to cart fucntion
 const featuredProductsList = document.querySelectorAll('.product-listing__product');
 featuredProductsList?.forEach(featuredProductEle => {
-    const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
+    const productSKU = featuredProductEle.dataset.firstVariantSku;
     const addToCartCTA = featuredProductEle.querySelector('.addToCart');
     addToCartCTA.addEventListener('click', () => {
         addProductToCart(productSKU, 1)
