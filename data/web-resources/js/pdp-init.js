@@ -1,5 +1,5 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js'; 
+import { addProductToCart } from './productUtilities.js';
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -173,31 +173,27 @@ import { addProductToCart } from './productUtilities.js';
   const addToCart = () => {
     let quantity = 0;
     let skuSelected;
-  
-    const quantitySpan =
-      document.querySelector('.quantity');
-    const productDetailSection = document.querySelector(
-      '.product-details-section',
-    );
-    const addToCartButton =
-      document.querySelector('.addToCart');
-  
+
+    const quantitySpan = document.querySelector('.quantity');
+
+    const addToCartButton = document.querySelector('.addToCart');
+
     const handleAddToCartClick = () => {
+
       if (quantitySpan) {
         quantity = parseInt(quantitySpan?.innerText, 10);
       }
-      if (productDetailSection) {
-        skuSelected = productDetailSection?.dataset.skuSelected;
-      }
+
+      skuSelected = document.body.dataset.sku;
+
       if (quantity && skuSelected) {
         addProductToCart(skuSelected, quantity);
       }
     };
-  
+
     addToCartButton?.addEventListener('click', handleAddToCartClick);
   };
-  
-  
+
   init();
   addToCart();
 })();
