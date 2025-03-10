@@ -333,4 +333,6 @@
   };
 
   init();
+  importProductUtilities();
+
 })();
