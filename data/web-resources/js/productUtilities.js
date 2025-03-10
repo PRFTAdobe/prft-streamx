@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });    
 });
 
-const addToCartClickHandler = (sku, quantity=1) => {
+export const addToCartClickHandler = (sku, quantity=1) => {
     console.log("incoming sku......", sku);
     const productEle = e.target.closest('.product-listing__product');
     sku = sku? sku : skuJSON.parse(productEle.dataset.productDetails).sku;
@@ -91,8 +91,4 @@ export const fetchCartByID = async(cartID) => {
         utilities.updateCartCountOnUI();
         return response;
     }
-}
-
-export const productUtilities = {
-    addToCartClickHandler
 }
