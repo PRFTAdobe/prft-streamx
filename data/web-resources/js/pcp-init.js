@@ -1,6 +1,7 @@
 // eslint-disable-next-line func-names,no-unused-expressions
 import { addProductToCart } from './productUtilities.js'; 
 
+!(function () {
   const FILTER_CONTAINER_ID = 'category-list';
   const PCP_CONTAINER_ID = 'product-category-component';
   const RESULTS_CONTAINER_ID = 'product-list';
@@ -362,3 +363,4 @@ import { addProductToCart } from './productUtilities.js';
 
   init();
 
+})();
