@@ -28,12 +28,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const featuredProductsList = document.querySelectorAll('.product-listing__product');
     featuredProductsList?.forEach(featuredProductEle => {
         const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
-        console.log("ProductSku");
-        console.log(productSKU);
-    
+        console.log("ProductSku......", productSKU);
+
         const addToCartCTA = featuredProductEle.querySelector('.addToCart');
         addToCartCTA.addEventListener('click', () => {
-            console.log("CTA clicked");
+            const productEle = e.target.closest('.product-listing__product');
+            const sku = JSON.parse(productEle.dataset.productDetails).sku;
+            console.log("CTA clicked", productSKU);
+            console.log("CTA parent find", sku);
     
             addProductToCart(productSKU, 1)
         });

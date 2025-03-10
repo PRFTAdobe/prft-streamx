@@ -288,8 +288,6 @@
     response.hits.total.value > PER_PAGE * currentPage
       ? loadMoreButton.classList.remove('hidden')
       : loadMoreButton.classList.add('hidden');
-
-    importProductUtilities();
   };
 
   const fetchProductData = () => {
@@ -335,4 +333,5 @@
   };
 
   init();
+  importProductUtilities();
 })();
