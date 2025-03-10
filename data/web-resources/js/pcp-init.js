@@ -255,7 +255,6 @@ import { addProductToCart } from './productUtilities.js';
       resultsContainer.appendChild(div);
 
       const sku = product.firstVariantSku? product.firstVariantSku : product.sku;
-      console.log("pcp product", product);
       const btnWrapper = div.querySelector('.addToCartWrapper');
       const btn = document.createElement('button');
       btn.classList.add(
