@@ -2,7 +2,7 @@ import { utilities } from "./graphQLMutations/utility.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 
-export const addProductToCart = async (sku, quantity) => {
+export const addProductToCart = async (sku, quantity=1) => {
     let cartID = utilities.getCartIDFromLS();
     if (!cartID) {
         cartID = await cartMutations.generateCartID();
@@ -37,14 +37,6 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });    
 });
-
-export const addToCartClickHandler = (e, sku, quantity=1) => {
-    console.log("incoming sku......", sku);
-    const productEle = e.target.closest('.product-listing__product');
-    sku = sku? sku : skuJSON.parse(productEle.dataset.productDetails).sku;
-    console.log("addToCartClickHandler sku......", sku);
-    addProductToCart(sku, 1)
-}
 
 export const removeItemFromCart = async(cartID, uid) => {
     const response = await cartMutations.removeItemFromCart(cartID, uid);
