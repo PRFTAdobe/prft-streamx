@@ -253,7 +253,7 @@ import { addProductToCart } from './productUtilities.js';
       div.setAttribute("data-product-details",JSON.stringify(product));
       resultsContainer.appendChild(div);
 
-      const sku = product.sku;
+      const sku = product.variants[0]? product.variants[0].sku : product.sku;
       const btnWrapper = div.querySelector('.addToCartWrapper');
       const btn = document.createElement('button');
       btn.classList.add(
