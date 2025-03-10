@@ -315,6 +315,10 @@
       });
   };
 
+  function importProductUtilities() {
+    import('./productUtilities.js');
+}
+
   const init = () => {
     const pageIsPCP = document.getElementById(PCP_CONTAINER_ID);
     if (!pageIsPCP) {
@@ -326,6 +330,7 @@
     });
 
     fetchProductData();
+    importProductUtilities();
   };
 
   init();
