@@ -23,19 +23,13 @@ export const addProductToCart = async (sku, quantity=1) => {
 }
 
 //for featured products add to cart fucntion
-window.addEventListener('DOMContentLoaded', () => {
-    const featuredProductsList = document.querySelectorAll('.product-listing__product');
-    featuredProductsList?.forEach(featuredProductEle => {
-        const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
-        console.log("ProductSku......", productSKU);
-
-        const addToCartCTA = featuredProductEle.querySelector('.addToCart');
-        addToCartCTA.addEventListener('click', () => {
-            console.log("CTA on click", productSKU);
-    
-            addProductToCart(productSKU, 1)
-        });
-    });    
+const featuredProductsList = document.querySelectorAll('.product-listing__product');
+featuredProductsList?.forEach(featuredProductEle => {
+    const productSKU = JSON.parse(featuredProductEle.dataset.productDetails).sku;
+    const addToCartCTA = featuredProductEle.querySelector('.addToCart');
+    addToCartCTA.addEventListener('click', () => {
+        addProductToCart(productSKU, 1)
+    });
 });
 
 export const removeItemFromCart = async(cartID, uid) => {
