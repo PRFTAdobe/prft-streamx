@@ -1,4 +1,5 @@
 // eslint-disable-next-line func-names,no-unused-expressions
+import { addToCartClickHandler } from './productUtilities.js'; 
 !(function () {
   const FILTER_CONTAINER_ID = 'category-list';
   const PCP_CONTAINER_ID = 'product-category-component';
