@@ -238,7 +238,6 @@
       resultsContainer.innerHTML = '';
     }
 
-    const { addToCartClickHandler } = require('productUtilities');
     products.forEach((product) => {
       product.category = category;
       const div = document.createElement('div');
