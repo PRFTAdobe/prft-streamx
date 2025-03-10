@@ -225,10 +225,6 @@ import { addToCartClickHandler } from './productUtilities.js';
     }
   };
 
-  function importProductUtilities() {
-    import('./productUtilities.js');
-  }
-
   const handleResponse = (response, availableFacets) => {
     const resultsContainer = document.getElementById(RESULTS_CONTAINER_ID);
     const products = mapToPagesResponse(response.hits);
@@ -365,6 +361,5 @@ import { addToCartClickHandler } from './productUtilities.js';
   };
 
   init();
-  importProductUtilities();
 
 })();

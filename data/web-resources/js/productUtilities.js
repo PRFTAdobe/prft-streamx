@@ -2,7 +2,6 @@ import { utilities } from "./graphQLMutations/utility.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 
-
 export const addProductToCart = async (sku, quantity) => {
     let cartID = utilities.getCartIDFromLS();
     if (!cartID) {
@@ -39,15 +38,13 @@ window.addEventListener('DOMContentLoaded', () => {
     });    
 });
 
-export function addToCartClickHandler(sku, quantity=1){
+function addToCartClickHandler(sku, quantity=1){
     console.log("incoming sku......", sku);
     const productEle = e.target.closest('.product-listing__product');
     sku = sku? sku : skuJSON.parse(productEle.dataset.productDetails).sku;
     console.log("addToCartClickHandler sku......", sku);
     addProductToCart(sku, 1)
 }
-
-
 
 export const removeItemFromCart = async(cartID, uid) => {
     const response = await cartMutations.removeItemFromCart(cartID, uid);
@@ -94,4 +91,8 @@ export const fetchCartByID = async(cartID) => {
         utilities.updateCartCountOnUI();
         return response;
     }
+}
+
+export const productUtilities = {
+    addToCartClickHandler
 }
