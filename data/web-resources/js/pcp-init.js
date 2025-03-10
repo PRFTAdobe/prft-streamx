@@ -1,5 +1,5 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js'; 
+import { addToCartClickHandler } from './productUtilities.js'; 
 
   const FILTER_CONTAINER_ID = 'category-list';
   const PCP_CONTAINER_ID = 'product-category-component';
@@ -285,7 +285,7 @@ import { addProductToCart } from './productUtilities.js';
       );
       btn.innerHTML = 'Add to Cart';
       btnWrapper.appendChild(btn);
-      btn.addEventListener('click', () => addProductToCart(sku, 1))
+      btn.addEventListener('click', (e) => addToCartClickHandler(e, sku, 1))
     });
 
     if (initFilters) {
