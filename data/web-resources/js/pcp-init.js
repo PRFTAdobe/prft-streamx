@@ -228,6 +228,10 @@
     }
   };
 
+  function importProductUtilities() {
+    import('./productUtilities.js');
+  }
+
   const handleResponse = (response, availableFacets) => {
     const resultsContainer = document.getElementById(RESULTS_CONTAINER_ID);
     const products = mapToPagesResponse(response.hits);
@@ -284,6 +288,8 @@
     response.hits.total.value > PER_PAGE * currentPage
       ? loadMoreButton.classList.remove('hidden')
       : loadMoreButton.classList.add('hidden');
+
+    importProductUtilities();
   };
 
   const fetchProductData = () => {
@@ -315,10 +321,6 @@
       });
   };
 
-  function importProductUtilities() {
-    import('./productUtilities.js');
-}
-
   const init = () => {
     const pageIsPCP = document.getElementById(PCP_CONTAINER_ID);
     if (!pageIsPCP) {
@@ -330,7 +332,6 @@
     });
 
     fetchProductData();
-    importProductUtilities();
   };
 
   init();
