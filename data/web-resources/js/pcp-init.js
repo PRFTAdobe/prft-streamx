@@ -39,6 +39,7 @@ import { addProductToCart } from './productUtilities.js';
         price: tmpItem?.price?.value || '', // not sure if value or discountedValue
         slug: tmpItem?.slug || '',
         sku: tmpItem?.sku || '',
+        firstVariantSku: tmpItem?.variants[0].sku || '',
         brand: "LumaX",
         salesOrg: "Perficient"        
       };
@@ -253,7 +254,7 @@ import { addProductToCart } from './productUtilities.js';
       div.setAttribute("data-product-details",JSON.stringify(product));
       resultsContainer.appendChild(div);
 
-      const sku = product.variants? product.variants[0].sku : product.sku;
+      const sku = product.firstVariantSku? product.firstVariantSku : product.sku;
       console.log("pcp product", product);
       const btnWrapper = div.querySelector('.addToCartWrapper');
       const btn = document.createElement('button');
