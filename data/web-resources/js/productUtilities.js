@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });    
 });
 
-export const addToCartClickHandler = (sku, quantity=1) => {
+export const addToCartClickHandler = (e, sku, quantity=1) => {
     console.log("incoming sku......", sku);
     const productEle = e.target.closest('.product-listing__product');
     sku = sku? sku : skuJSON.parse(productEle.dataset.productDetails).sku;
