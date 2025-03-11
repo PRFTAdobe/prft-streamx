@@ -32,14 +32,10 @@ spec:
           allow_headers: "*"   # Allow all headers
           expose_headers: "*"  # Expose all headers
           max_age: 3600
-      - name: gzip
+      plugins:
+        - name: gzip
           enable: true
           config:
             buffers:
               number: 8
             types: "*"
-      - name: response-rewrite
-          enable: true
-          config:
-            headers:
-              Cache-Control: "max-age=3600"
