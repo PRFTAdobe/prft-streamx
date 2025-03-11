@@ -3,8 +3,9 @@
   const SEARCH_URL = '/search/query';
 
   const searchClick = (event) => {
+    event.preventDefault();
     adobeDataLayer = window.adobeDataLayer || {};
-    searchObj = adobeDataLayer.getState("_perficientincpartnersandbox.search") || {};
+    var searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
     searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
     searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value;
     searchObj.searchResultClicked = event.target?.innerText
@@ -15,6 +16,7 @@
       }
     });
     document.dispatchEvent(new CustomEvent("searchClick"));
+    window.location.href = event.currentTarget.href;
   }
 
   const buildUrl = (query, limit) => {
