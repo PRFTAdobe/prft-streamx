@@ -260,7 +260,9 @@ import { addProductToCart } from './productUtilities.js';
       const sku = product.firstVariantSku? product.firstVariantSku : product.sku;
       const btnWrapper = div.querySelector('.addToCartWrapper');
       const btn = product.price ? document.createElement('button') : document.createElement('a');
-      const buttonClassList = ['inline-flex',
+      const buttonClassList = ['addToCart',
+      'cursor-pointer',
+      'inline-flex',
       'items-center',
       'justify-center',
       'gap-2',
@@ -285,15 +287,15 @@ import { addProductToCart } from './productUtilities.js';
       'bg-dsg-red',
       'hover:bg-dsg-red/90',
       'text-white'];
+      
+      btn.classList.add(...buttonClassList);
 
       if(product.price){
-        btn.classList.add(...buttonClassList, ...['addToCart']);
         btn.innerHTML = 'Add to Cart';
         btn.addEventListener('click', () => addProductToCart(sku, 1));
       }else{
         btnWrapper.classList.remove('justify-between');
         btnWrapper.classList.add('justify-end');
-        btn.classList.add(...buttonClassList);
         btn.innerHTML = 'View Details';
         btn.href = `/products/${product.slug}.html`;
       }
