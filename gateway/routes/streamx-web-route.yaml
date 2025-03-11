@@ -39,3 +39,11 @@ spec:
             buffers:
               number: 8
             types: "*"
+      plugins:
+        - name: response-rewrite
+          enable: true
+          config:
+            headers:
+              Cache-Control: "max-age=3600"
+            vars:
+              - [ "sent_http_content_type", "~~", "text/html" ]
