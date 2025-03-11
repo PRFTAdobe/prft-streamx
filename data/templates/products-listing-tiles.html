@@ -59,7 +59,7 @@
             {{ values[i].description | raw}}
           </div>
         </div>
-        {% if values[i].price.value &&  values[i].price.value > 0 %}
+        {% if values[i].price.value > 0 %}
         <div class="flex items-center justify-between">
           <span class="product-listing__product-price">
             ${{ values[i].price.value }}
