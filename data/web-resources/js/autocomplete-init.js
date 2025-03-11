@@ -4,11 +4,13 @@
 
   const searchClick = (event) => {
     event.preventDefault();
+    var newLocation = event.currentTarget.href;
     adobeDataLayer = window.adobeDataLayer || {};
     var searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
     searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
-    searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value;
-    searchObj.searchResultClicked = event.target?.innerText
+    searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value || "";
+    searchObj.searchResultClicked = event.target?.innerText;
+    searchObj.searchResultURL = newLocation;
     adobeDataLayer.push({
     "event":"searchClick",
     "_perficientincpartnersandbox" : {
@@ -16,7 +18,8 @@
       }
     });
     document.dispatchEvent(new CustomEvent("searchClick"));
-    window.location.href = event.currentTarget.href;
+    //updating next page to include a hash with searched term within for tracking purposes
+    window.location.href = searchObj.searchTerm === ''  ? newLocation:newLocation+'#searchTerm="'+searchObj.searchTerm+'"';
   }
 
   const buildUrl = (query, limit) => {
