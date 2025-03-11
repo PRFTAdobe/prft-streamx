@@ -61,7 +61,7 @@ let shippingMethodObj = {
   "method_code": "flatrate"
 }
   const query = JSON.stringify({
-    query: `mutation { setShippingMethodsOnCart(input: { cart_id: "${cartID}" shipping_methods: [ { carrier_code: ${shippingMethodObj.carrier_code} method_code: ${shippingMethodObj.method_code} } } ] }) { cart { shipping_addresses { selected_shipping_method { carrier_code method_code carrier_title method_title } } } } }`,
+    query: `mutation { setShippingMethodsOnCart(input: { cart_id: "${cartID}" shipping_methods: [ { carrier_code: "${shippingMethodObj.carrier_code}" method_code: "${shippingMethodObj.method_code}" } ] }) { cart { shipping_addresses { selected_shipping_method { carrier_code method_code carrier_title method_title } } } } }`,
   });
 
   const header = utilities.getActiveUserFromLS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromLS()}`} : utilities.HEADERS;

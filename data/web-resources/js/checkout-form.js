@@ -97,6 +97,19 @@ const showStep2 = async () => {
                     element.classList.remove('hidden');
                     element.classList.add('block');
                 });
+                const shipping = document.querySelector('.shipping-information');
+                const payment = document.querySelector('.payment-method');
+
+                shipping.classList.remove('text-dsg-red');
+                shipping.classList.add('text-gray-500');
+
+                payment.classList.remove('text-gray-500');
+                payment.classList.add('text-dsg-red');
+
+                shipping.querySelector('div').classList.remove('border-dsg-red');
+                shipping.querySelector('div').classList.add('border-gray-200');
+                payment.querySelector('div').classList.remove('border-gray-200');
+                payment.querySelector('div').classList.add('border-dsg-red');
             }
         }
     }
@@ -132,11 +145,17 @@ const showStep3 = async () => {
         const shippingMethod = await checkoutMutations.setShippingMethod(cartID);
         const placeOrder = !shippingMethod.errors ? await checkoutMutations.placeOrder(cartID) : '';
 
-        if(!shippingMethod.errors && !placeOrder.errors) {
+        if (!shippingMethod.errors && !placeOrder.errors) {
             Array.from(step3).forEach((element) => {
                 element.classList.remove('hidden');
                 element.classList.add('block');
             });
+            const shipping = document.querySelector('.shipping-information');
+            const payment = document.querySelector('.payment-method');
+
+            shipping.classList.add('hidden');
+            payment.classList.add('hidden');
+
             replaceUserData();
         }
     }
