@@ -100,11 +100,25 @@ const setPaymentMethodandPlaceOrder = async (cartID, paymentCode="checkmo") => {
   return cartResponse.errors ? cartResponse : cartResponse.data.setPaymentMethodAndPlaceOrder.order.order_number;
 }
 
+
+//get regions
+const getRegionsByCountry = async (countryId="US") => {
+  const query = JSON.stringify({
+    query: `query { country(id: "${countryId}") { id full_name_english available_regions { id code name } } }`,
+    variables: {},
+  });
+
+  const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
+
+  return response.data.country.available_regions;
+}
+
 export const checkoutMutations = {
   setShippingAddress,
   setBillingAddress,
   setShippingMethod,
   setPaymentMethod,
   placeOrder,
-  setPaymentMethodandPlaceOrder
+  setPaymentMethodandPlaceOrder,
+  getRegionsByCountry
 };
