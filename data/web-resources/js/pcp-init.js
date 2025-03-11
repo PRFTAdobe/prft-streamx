@@ -170,8 +170,11 @@ import { addProductToCart } from './productUtilities.js';
             ${renderRatings()}
           </div>
           <div class="flex items-center justify-between addToCartWrapper">
-            <span class="text-lg font-bold">$${item.price}</span
-            >
+          ${item.price ?
+            `<span class="text-lg font-bold">$${item.price}</span
+            >`
+            : ``
+          }
           </div>
         </div>
       </a>
@@ -256,38 +259,46 @@ import { addProductToCart } from './productUtilities.js';
 
       const sku = product.firstVariantSku? product.firstVariantSku : product.sku;
       const btnWrapper = div.querySelector('.addToCartWrapper');
-      const btn = document.createElement('button');
-      btn.classList.add(
-        'addToCart',
-        'inline-flex',
-        'items-center',
-        'justify-center',
-        'gap-2',
-        'whitespace-nowrap',
-        'rounded-md',
-        'text-sm',
-        'font-medium',
-        'ring-offset-background',
-        'transition-colors',
-        'focus-visible:outline-hidden',
-        'focus-visible:ring-2',
-        'focus-visible:ring-ring',
-        'focus-visible:ring-offset-2',
-        'disabled:pointer-events-none',
-        'disabled:opacity-50',
-        '[&_svg]:pointer-events-none',
-        '[&_svg]:size-4',
-        '[&_svg]:shrink-0',
-        'h-10',
-        'px-4',
-        'py-2',
-        'bg-dsg-red',
-        'hover:bg-dsg-red/90',
-        'text-white'
-      );
-      btn.innerHTML = 'Add to Cart';
+      const btn = product.price ? document.createElement('button') : document.createElement('a');
+      const buttonClassList = ['inline-flex',
+      'items-center',
+      'justify-center',
+      'gap-2',
+      'whitespace-nowrap',
+      'rounded-md',
+      'text-sm',
+      'font-medium',
+      'ring-offset-background',
+      'transition-colors',
+      'focus-visible:outline-hidden',
+      'focus-visible:ring-2',
+      'focus-visible:ring-ring',
+      'focus-visible:ring-offset-2',
+      'disabled:pointer-events-none',
+      'disabled:opacity-50',
+      '[&_svg]:pointer-events-none',
+      '[&_svg]:size-4',
+      '[&_svg]:shrink-0',
+      'h-10',
+      'px-4',
+      'py-2',
+      'bg-dsg-red',
+      'hover:bg-dsg-red/90',
+      'text-white'];
+
+      if(product.price){
+        btn.classList.add(...buttonClassList, ...['addToCart']);
+        btn.innerHTML = 'Add to Cart';
+        btn.addEventListener('click', () => addProductToCart(sku, 1));
+      }else{
+        btnWrapper.classList.remove('justify-between');
+        btnWrapper.classList.add('justify-end');
+        btn.classList.add(...buttonClassList);
+        btn.innerHTML = 'View Details';
+        btn.href = `/products/${product.slug}.html`;
+      }
+
       btnWrapper.appendChild(btn);
-      btn.addEventListener('click', () => addProductToCart(sku, 1))
     });
 
     if (initFilters) {
