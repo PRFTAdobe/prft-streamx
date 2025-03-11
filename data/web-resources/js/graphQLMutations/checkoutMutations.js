@@ -17,7 +17,7 @@ const setShippingAddress = async (cartID, address) => {
           } 
   */
   const query = JSON.stringify({
-    query: `mutation { setShippingAddressesOnCart( input: { cart_id: "${cartID}" shipping_addresses: [ { address: {firstname: ${address.firstname} lastname: ${address.lastname} company: "Magento" street: ${address.street} city: ${address.city} region: ${address.region} postcode: ${address.postcode} country_code: "US" telephone: ${address.telephone} save_in_address_book: ${address.save_in_address_book} } } ] } ) { cart { shipping_addresses { firstname lastname company street city region { code label } postcode telephone country { code label } pickup_location_code } } } }`,
+    query: `mutation { setShippingAddressesOnCart( input: { cart_id: "${cartID}" shipping_addresses: [ { address: {firstname: "${address.firstname}" lastname: "${address.lastname}" company: "Magento" street: "${address.street}" city: "${address.city}" region: "${address.region}" postcode: "${address.postcode}" country_code: "US" telephone: "${address.telephone}" save_in_address_book: ${address.save_in_address_book} } } ] } ) { cart { shipping_addresses { firstname lastname company street city region { code label } postcode telephone country { code label } pickup_location_code } } } }`,
   });
 
   const header = utilities.getActiveUserFromLS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromLS()}`} : utilities.HEADERS;
@@ -42,7 +42,7 @@ const setBillingAddress = async (cartID, address, sameAsShipping) => {
           } 
   */
   const query = JSON.stringify({
-    query: `mutation { setBillingAddressOnCart( input: { cart_id: "${cartID}" billing_address: { address: { firstname: ${address.firstname} lastname: ${address.lastname} company: "Magento" street: ${address.street} city: ${address.city} region: ${address.region} postcode: ${address.postcode} country_code: "US" telephone: ${address.telephone} save_in_address_book: ${address.save_in_address_book} } same_as_shipping:${sameAsShipping} } } ) { cart { billing_address { firstname lastname company street city region{ code label } postcode telephone country{ code label } } } } }`,
+    query: `mutation { setBillingAddressOnCart( input: { cart_id: "${cartID}" billing_address: { address: { firstname: "${address.firstname}" lastname: "${address.lastname}" company: "Magento" street: "${address.street}" city: "${address.city}" region: "${address.region}" postcode: "${address.postcode}" country_code: "US" telephone: "${address.telephone}" save_in_address_book: ${address.save_in_address_book} } same_as_shipping:${sameAsShipping} } } ) { cart { billing_address { firstname lastname company street city region{ code label } postcode telephone country{ code label } } } } }`,
   });
 
   const header = utilities.getActiveUserFromLS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromLS()}`} : utilities.HEADERS;
@@ -72,7 +72,7 @@ let shippingMethodObj = {
 //set payment method
 const setPaymentMethod = async (cartID, paymentCode="checkmo") => {
   const query = JSON.stringify({
-    query: `mutation { setPaymentMethodOnCart(input: { cart_id: "${cartID}" payment_method: { code: ${paymentCode} } }) { cart { selected_payment_method { code title } } } }`,
+    query: `mutation { setPaymentMethodOnCart(input: { cart_id: "${cartID}" payment_method: { code: "${paymentCode}" } }) { cart { selected_payment_method { code title } } } }`,
   });
 
   const header = utilities.getActiveUserFromLS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromLS()}`} : utilities.HEADERS;

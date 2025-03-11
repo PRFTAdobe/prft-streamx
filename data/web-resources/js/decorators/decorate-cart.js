@@ -23,7 +23,7 @@ const updatePrice = async (el, price, quantity) => {
                 total += parseInt(value);
             }
         });
-        document.querySelector('.subtotal').innerHTML = document.querySelector('.total').innerHTML = total;
+        document.querySelector('.subtotal').innerHTML = document.querySelector('.total').innerHTML = document.querySelectorAll('.shipping-information-content .total').innerHTML = total;
     }
 }
 
@@ -182,8 +182,11 @@ export async function updateCartPage() {
 
             document.querySelector('.subtotal').innerText = cart.prices.subtotal_excluding_tax.value;
             document.querySelector('.tax').innerText = cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value;
-            document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods.amount.value : 0;
-            document.querySelector('.total').innerText = cart.prices.subtotal_including_tax.value;
+            console.log(cart);
+
+            document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
+            document.querySelector('.total').innerText = parseFloat(cart.prices.subtotal_including_tax.value) + parseFloat(document.querySelector('.shipping').innerText);
+            document.querySelectorAll('.shipping-information-content .total').innerHTML = document.querySelector('.total').innerText;
 
             removeItem(cartID);
         }
