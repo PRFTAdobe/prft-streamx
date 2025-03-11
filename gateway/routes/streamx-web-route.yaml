@@ -20,7 +20,6 @@ spec:
           - /products/*
           - /categories/*
           - /content/dam/*
-          - /search/query/*
       priority: 20
       backends:
         - serviceName: sx-del-blueprint-web
