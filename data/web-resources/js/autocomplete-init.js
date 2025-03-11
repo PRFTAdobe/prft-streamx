@@ -4,9 +4,9 @@
 
   const searchClick = (event) => {
     event.preventDefault();
-    var newLocation = event.currentTarget.href;
-    adobeDataLayer = window.adobeDataLayer || {};
-    var searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
+    let newLocation = event.currentTarget.href;
+    let adobeDataLayer = window.adobeDataLayer || {};
+    let searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
     searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
     searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value || "";
     searchObj.searchResultClicked = event.target?.innerText;
@@ -19,7 +19,7 @@
     });
     document.dispatchEvent(new CustomEvent("searchClick"));
     //updating next page to include a hash with searched term within for tracking purposes
-    window.location.href = searchObj.searchTerm === ''  ? newLocation:newLocation+'#searchTerm="'+searchObj.searchTerm+'"';
+    window.location.href = searchObj.searchTerm === ''  ? newLocation:`${newLocation}#searchTerm="${searchObj.searchTerm}"`;
   }
 
   const buildUrl = (query, limit) => {
