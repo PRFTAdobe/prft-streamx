@@ -291,6 +291,8 @@ import { addProductToCart } from './productUtilities.js';
         btn.innerHTML = 'Add to Cart';
         btn.addEventListener('click', () => addProductToCart(sku, 1));
       }else{
+        btnWrapper.classList.remove('justify-between');
+        btnWrapper.classList.add('justify-end');
         btn.classList.add(...buttonClassList);
         btn.innerHTML = 'View Details';
         btn.href = `/products/${product.slug}.html`;
