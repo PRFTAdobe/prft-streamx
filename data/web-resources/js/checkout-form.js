@@ -136,16 +136,16 @@ const showStep3 = async () => {
     const response = await updateStep2State();
 
     if (!response.errors && response != null) {
-        Array.from(step2).forEach((element) => {
-            element.classList.remove('block');
-            element.classList.add('hidden');
-        });
-
         const cartID = utilities.getCartIDFromLS();
         const shippingMethod = await checkoutMutations.setShippingMethod(cartID);
         const placeOrder = !shippingMethod.errors ? await checkoutMutations.placeOrder(cartID) : '';
 
         if (!shippingMethod.errors && !placeOrder.errors) {
+            Array.from(step2).forEach((element) => {
+                element.classList.remove('block');
+                element.classList.add('hidden');
+            });
+    
             Array.from(step3).forEach((element) => {
                 element.classList.remove('hidden');
                 element.classList.add('block');

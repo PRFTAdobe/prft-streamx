@@ -154,7 +154,6 @@ export async function updateCartPage() {
     if (cartID == null) {
         document.querySelector('.no-products') && document.querySelector('.no-products').classList.remove('hidden');
         document.querySelector('.shopping-cart-content') && document.querySelector('.shopping-cart-content').classList.add('hidden');
-        document.querySelector('.shipping-information-content') && document.querySelector('.shipping-information-content').classList.add('hidden');
         document.querySelector('.cart-items-container .item') && document.querySelector('.cart-items-container .item').remove();
     } else {
         document.querySelector('.no-products').classList.add('hidden');
@@ -166,7 +165,6 @@ export async function updateCartPage() {
             document.querySelector('.loading-message').classList.add('hidden');
         } else if (cart) {
             document.querySelector('.shopping-cart-content').classList.remove('hidden');
-            document.querySelector('.shipping-information-content').classList.remove('hidden');
             document.querySelector('.loading-message').classList.add('hidden');
             document.querySelector('.no-products').classList.add('hidden');
 
@@ -189,6 +187,11 @@ export async function updateCartPage() {
 
             document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
             document.querySelector('.total').innerText = parseFloat(cart.prices.subtotal_including_tax.value) + parseFloat(document.querySelector('.shipping').innerText);
+
+            document.querySelector('.checkout-button').addEventListener('click', () => {
+                document.querySelector('.shipping-information-content').classList.remove('hidden');
+                document.querySelector('.shopping-cart-content').classList.add('hidden');
+            });
 
             document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
                 el.innerHTML = document.querySelector('.total').innerText;
