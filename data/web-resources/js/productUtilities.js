@@ -2,7 +2,8 @@ import { utilities } from "./graphQLMutations/utility.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 
-export const addProductToCart = async (sku, quantity=1) => {
+export const addProductToCart = async (sku, quantity = 1) => {
+    let isError = false;
     let cartID = utilities.getCartIDFromLS();
     if (!cartID) {
         cartID = await cartMutations.generateCartID();
@@ -11,12 +12,15 @@ export const addProductToCart = async (sku, quantity=1) => {
     let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
 
     if (cart.errors) {
+        isError = true;
         if (cart.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
             cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
+            isError = false;
         }
-        console.log(cart.errors[0].message);
-    } else {
+        console.log(cart.errors);
+    }
+    if (!isError) {
         utilities.setCartQuantityToLS(cart.total_quantity);
         utilities.updateCartCountOnUI();
     }
@@ -32,7 +36,7 @@ featuredProductsList?.forEach(featuredProductEle => {
     });
 });
 
-export const removeItemFromCart = async(cartID, uid) => {
+export const removeItemFromCart = async (cartID, uid) => {
     const response = await cartMutations.removeItemFromCart(cartID, uid);
 
     if (response.errors) {
@@ -40,14 +44,14 @@ export const removeItemFromCart = async(cartID, uid) => {
             await userMutations.regenerateUserToken();
             cart = await cartMutations.removeItemFromCart(cartID, uid);
         }
-        console.log(cart.errors[0].message);
+        console.log(cart.errors);
     } else {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
 
-export const updateItemQuantityInCart = async(cartID, uid, quantity) => {
+export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
     const response = await cartMutations.updateProductInCart(cartID, uid, quantity);
 
     if (response.errors) {
@@ -55,23 +59,22 @@ export const updateItemQuantityInCart = async(cartID, uid, quantity) => {
             await userMutations.regenerateUserToken();
             cart = await cartMutations.updateProductInCart(cartID, uid, quantity);
         }
-        console.log(cart.errors[0].message);
+        console.log(response.errors);
     } else {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
 
-export const fetchCartByID = async(cartID) => {
+export const fetchCartByID = async (cartID) => {
     const response = await cartMutations.getCartByID(cartID);
 
     if (response.errors) {
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
-            response = await cartMutations.getCartByID(cartID);;
+            return await cartMutations.getCartByID(cartID);;
         }
-        console.log(cart.errors[0].message);
-        return response;
+        console.log(cart.errors);
     } else {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
