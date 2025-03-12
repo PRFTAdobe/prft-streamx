@@ -93,11 +93,20 @@ const placeOrder = async (cartID) => {
 //set payment and place order
 const setPaymentMethodandPlaceOrder = async (cartID, paymentCode="checkmo") => {
   const query = JSON.stringify({
-    query: `mutation { setPaymentMethodAndPlaceOrder( input: { cart_id: "${cartID}" payment_method: { code: ${paymentCode} } } ) { order { order_id } } }`,
+    query: `mutation { setPaymentMethodAndPlaceOrder( input: { cart_id: "${cartID}" payment_method: { code: "${paymentCode}" } } ) { order { order_id } } }`,
   });
   const header = utilities.getActiveUserFromLS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromLS()}`} : utilities.HEADERS;
   const cartResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
   return cartResponse.errors ? cartResponse : cartResponse.data.setPaymentMethodAndPlaceOrder.order.order_number;
+}
+
+//set guest email on cart
+const setGuestEmailOnCart = async (cartID, email) => {
+  const query = JSON.stringify({
+    query: `mutation { setGuestEmailOnCart( input: { cart_id: "${cartID}" email: "${email}" } ) { cart { email } } }`,
+  });
+  const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
+  return response.errors ? response : response.data.setGuestEmailOnCart.cart;
 }
 
 
@@ -120,5 +129,6 @@ export const checkoutMutations = {
   setPaymentMethod,
   placeOrder,
   setPaymentMethodandPlaceOrder,
-  getRegionsByCountry
+  getRegionsByCountry,
+  setGuestEmailOnCart
 };
