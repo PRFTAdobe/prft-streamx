@@ -55,13 +55,12 @@ const removeItem = (cartID) => {
 };
 
 const itemTemplate = (item) => `
-<div class="flex items-center space-x-4" data-uid="${item.uid}"><a class="shrink-0"
-        href="/products/${item.product.sku}" data-discover="true"><img
+<div class="flex items-center space-x-4" data-uid="${item.uid}"><div class="shrink-0" data-discover="true"><img
             src="${item.product.thumbnail.url}" alt="${item.product.name}"
-            class="w-24 h-24 object-cover rounded-sm"></a>
-    <div class="flex-1"><a href="/products/${item.product.sku}" data-discover="true">
+            class="w-24 h-24 object-cover rounded-sm"></div>
+        <div class="flex-1"><div data-discover="true">
             <h3 class="font-semibold text-lg mb-1">${item.product.name}</h3>
-        </a>
+        </div>
         <p class="text-gray-600 mb-2 price"><span>$</span><span class="value">${item.prices.price.value}</span>
         </p>
         <div class="flex items-center space-x-4 actions-container">
