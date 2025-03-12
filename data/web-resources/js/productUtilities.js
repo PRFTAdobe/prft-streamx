@@ -37,45 +37,57 @@ featuredProductsList?.forEach(featuredProductEle => {
 });
 
 export const removeItemFromCart = async (cartID, uid) => {
-    const response = await cartMutations.removeItemFromCart(cartID, uid);
+    let isError = false;
+    let response = await cartMutations.removeItemFromCart(cartID, uid);
 
     if (response.errors) {
+        isError = true;
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
-            cart = await cartMutations.removeItemFromCart(cartID, uid);
+            response = await cartMutations.removeItemFromCart(cartID, uid);
+            isError = false;
         }
         console.log(cart.errors);
-    } else {
+    }
+    if (!isError) {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
 
 export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
-    const response = await cartMutations.updateProductInCart(cartID, uid, quantity);
+    let isError = false;
+    let response = await cartMutations.updateProductInCart(cartID, uid, quantity);
 
     if (response.errors) {
+        isError = true;
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
-            cart = await cartMutations.updateProductInCart(cartID, uid, quantity);
+            response = await cartMutations.updateProductInCart(cartID, uid, quantity);
+            isError = false;
         }
         console.log(response.errors);
-    } else {
+    }
+    if (!isError) {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
 
 export const fetchCartByID = async (cartID) => {
+    let isError = false;
     const response = await cartMutations.getCartByID(cartID);
 
     if (response.errors) {
+        isError = true;
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
-            return await cartMutations.getCartByID(cartID);;
+            response = await cartMutations.getCartByID(cartID);
+            isError = false;
         }
-        console.log(cart.errors);
-    } else {
+        console.log(response.errors);
+    }
+    if (!isError) {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();
         return response;
