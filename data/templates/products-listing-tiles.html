@@ -1,6 +1,7 @@
 <div class="product-listing product-listing--horizontal">
   {% for i in range(0, values|length - 1) %}
     {% set isFeatured = "false" %}
+    {% set productDescription = values[i].description|replace({'\n':"",'"':'\"'}) %}
     {% set categoryName = values[i].categories[0].name %}
     {% for category in values[i].categories %}
       {% if category.name == "Featured" %}
@@ -9,7 +10,7 @@
         {% set categoryName = category.name %}
       {% endif %}
     {% endfor %}
-  <div class="product-listing__product" data-first-variant-sku = '{{values[i].variants[0].sku}}' data-product-details='{"sku":"{{ values[i].sku }}","name": "{{ values[i].name }}","rating":"3","description":"{{ values[i].description }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ values[i].price.value }}"}'>
+  <div class="product-listing__product" data-first-variant-sku = '{{values[i].variants[0].sku}}' data-product-details='{"sku":"{{ values[i].sku }}","name": "{{ values[i].name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ values[i].price.value }}"}'>
     <div class="product-listing__product-container mx-[5px]">
       <a
         class="product-listing__product-asset m-auto"
