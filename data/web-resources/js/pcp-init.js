@@ -161,8 +161,8 @@ import { addProductToCart } from './productUtilities.js';
           <img
             src="${(item.imgSrc).replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud", "lumax.streamx.com")}"
             alt="${item.name}"
-            width = "300px"
-            height = "300px"
+            width = "100%"
+            height = "100%"
             class="object-cover"
           />
         </div>
