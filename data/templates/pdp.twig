@@ -43,7 +43,7 @@
             {% else %}
               {% set colors = colors ~ ',' ~ attribute.values[0].label %}
               {% set swatches = swatches ~ ',' ~ attribute.values[0].swatch.value %}
-              {% set thumbnails = thumbnails ~ ',' ~ variant.primaryImage.url|replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
+              {% set thumbnails = thumbnails ~ ',' ~ variant.primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
             {% endif %}
           {% endif %}
           {% if attribute.name == 'size' and attribute.values|length > 0 %}
@@ -59,7 +59,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
           <div class="w-full aspect-square rounded-lg overflow-hidden">
-            {% set primaryImageUrl = primaryImage.url|replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
+            {% set primaryImageUrl = primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
             <picture>
               <img src="{{ primaryImageUrl }}" alt="{{ primaryImage.alt }}"
                    class="w-full h-full object-cover main-image" loading="eager" />
@@ -69,13 +69,13 @@
             {% set thumbnailsAsArray = thumbnails|split(',') %}
             {% for image in gallery %}
               {% if loop.index != 0 or thumbnailsAsArray|length == 1 %}
-                {% set imageUrl = image.url|replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
+                {% set imageUrl = image.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
                 <div
                   class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:border-dsg-red transition-colors">
                   <picture>
                     <img class="w-full h-full object-cover image-list-item" src="{{ imageUrl }}" alt="{{ image.alt }}"
                          loading="eager">
-                  </picture>
+                  </picture
                 </div>
               {% endif %}
             {% endfor %}
