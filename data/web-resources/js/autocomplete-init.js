@@ -7,7 +7,8 @@
     let newLocation = event.currentTarget.href;
     let adobeDataLayer = window.adobeDataLayer || {};
     let searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
-    searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
+    //searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
+    searchObj.allSearches = 1;
     searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value || "";
     searchObj.searchResultClicked = event.target?.innerText;
     searchObj.searchResultURL = newLocation;
