@@ -163,7 +163,7 @@ import { addProductToCart } from './productUtilities.js';
             alt="${item.name}"
             width = "300px"
             height = "300px"
-            class="h-full w-full object-cover"
+            class="object-cover"
           />
         </div>
         <div class="p-4">
