@@ -184,7 +184,6 @@ export async function updateCartPage() {
 
             document.querySelector('.subtotal').innerText = cart.prices.subtotal_excluding_tax.value;
             document.querySelector('.tax').innerText = cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value;
-            console.log(cart);
 
             document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
             document.querySelector('.total').innerText = parseFloat(cart.prices.subtotal_including_tax.value) + parseFloat(document.querySelector('.shipping').innerText);

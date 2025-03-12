@@ -47,7 +47,7 @@ export const removeItemFromCart = async (cartID, uid) => {
             response = await cartMutations.removeItemFromCart(cartID, uid);
             isError = false;
         }
-        console.log(cart.errors);
+        console.log(response.errors);
     }
     if (!isError) {
         utilities.setCartQuantityToLS(response.total_quantity);
@@ -76,7 +76,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
 
 export const fetchCartByID = async (cartID) => {
     let isError = false;
-    const response = await cartMutations.getCartByID(cartID);
+    let response = await cartMutations.getCartByID(cartID);
 
     if (response.errors) {
         isError = true;
