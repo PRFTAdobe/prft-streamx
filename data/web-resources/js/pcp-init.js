@@ -158,7 +158,6 @@ import { addProductToCart } from './productUtilities.js';
           <img
             src="${item.imgSrc}"
             alt="${item.name}"
-            class="h-100 w-100"
           />
         </div>
         <div class="p-4">
