@@ -25,7 +25,7 @@ const regenerateUserToken = async () => {
 
 const getCustomerOrders = async (token) => {
     const query = JSON.stringify({
-      query: `{ customerOrders { items { order_number id created_at grand_total status } } }`
+      query: `{ customerOrders { items { order_number id created_at grand_total status items { id product_sku product_name quantity_ordered } } } }`
     });
   
     const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', {...utilities.HEADERS, 'Authorization': `Bearer ${token}`}, query);
