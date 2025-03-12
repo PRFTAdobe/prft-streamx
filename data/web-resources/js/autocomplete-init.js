@@ -3,11 +3,14 @@
   const SEARCH_URL = '/search/query';
 
   const searchClick = (event) => {
-    adobeDataLayer = window.adobeDataLayer || {};
-    searchObj = adobeDataLayer.getState("_perficientincpartnersandbox.search") || {};
+    event.preventDefault();
+    let newLocation = event.currentTarget.href;
+    let adobeDataLayer = window.adobeDataLayer || {};
+    let searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
     searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
-    searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value;
-    searchObj.searchResultClicked = event.target?.innerText
+    searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value || "";
+    searchObj.searchResultClicked = event.target?.innerText;
+    searchObj.searchResultURL = newLocation;
     adobeDataLayer.push({
     "event":"searchClick",
     "_perficientincpartnersandbox" : {
@@ -15,6 +18,8 @@
       }
     });
     document.dispatchEvent(new CustomEvent("searchClick"));
+    //updating next page to include a hash with searched term within for tracking purposes
+    window.location.href = searchObj.searchTerm === ''  ? newLocation:`${newLocation}#searchTerm="${searchObj.searchTerm}"`;
   }
 
   const buildUrl = (query, limit) => {
