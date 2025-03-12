@@ -62,7 +62,7 @@
             {% set primaryImageUrl = primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
             <picture>
               <img src="{{ primaryImageUrl }}" alt="{{ primaryImage.alt }}"
-                   class="w-full h-full object-cover main-image" loading="eager" />
+                   class="object-cover main-image" loading="eager" width="100%" height="100%"/>
             </picture>
           </div>
           <div class="grid grid-cols-4 gap-2 image-list-container">
@@ -73,8 +73,8 @@
                 <div
                   class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:border-dsg-red transition-colors">
                   <picture>
-                    <img class="w-full h-full object-cover image-list-item" src="{{ imageUrl }}" alt="{{ image.alt }}"
-                         loading="eager">
+                    <img class="object-cover image-list-item" src="{{ imageUrl }}" alt="{{ image.alt }}"
+                         loading="eager" width="100%" height="100%">
                   </picture>
                 </div>
               {% endif %}
@@ -87,8 +87,8 @@
                   class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:border-dsg-red transition-colors"
                   data-color="{{ colorsAsArray[loop.index] }}">
                   <picture>
-                    <img class="w-full h-full object-cover image-list-item" src="{{ thumbnailUrl }}"
-                         loading="eager">
+                    <img class="object-cover image-list-item" src="{{ thumbnailUrl }}"
+                         loading="eager" width="100%" height="100%">
                   </picture>
                 </div>
               {% endif %}

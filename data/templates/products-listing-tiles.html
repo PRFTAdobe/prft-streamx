@@ -18,8 +18,8 @@
         href="/products/{{ values[i].slug }}.html"
       >
       {% set imageUrl = values[i].primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
-        <img alt="{{ values[i].name }}" class="w-full h-full object-contain" loading="lazy"
-          src="{{ imageUrl }}" />
+        <img alt="{{ values[i].name }}" class="object-contain" loading="lazy"
+          src="{{ imageUrl }}" width="100%" height="100%"/>
       </a>
       <div class="product-listing__product-copy">
         <div>
