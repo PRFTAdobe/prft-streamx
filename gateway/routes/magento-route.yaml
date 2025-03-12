@@ -8,21 +8,53 @@ spec:
   externalNodes:
     - type: Domain
       name: master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud
-
 ---
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: magento-route
+  name: magento-grapql-route
 spec:
   http:
-    - name: magento-route
+    - name: magento-grapql-route
       match:
         hosts:
           - lumax.streamx.com
         paths:
           - /graphql
-          - /media/*
       priority: 15
       upstreams:
         - name: magento-upstream
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: magento-images-route
+spec:
+  http:
+    - name: magento-images-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /media/*
+      priority: 16
+      upstreams:
+        - name: magento-upstream
+      plugins:
+        - name: proxy-cache
+          enable: true
+          config:
+            cache_strategy: "disk"
+            cache_zone: "disk_cache_one"
+            cache_key:
+              - "$request_uri"
+            cache_bypass:
+              - "$arg_nocache"
+            cache_method:
+              - GET
+              - HEAD
+            cache_http_status:
+              - 200
+              - 301
+              - 302
+            hide_cache_headers: false
