@@ -44,10 +44,10 @@ spec:
   ingressClassName: apisix
   tls:
     - hosts:
-        - export.${streamx.accelerator.web.host}
+        - export.lumax.streamx.com
       secretName: blueprint-exporter.crt
   rules:
-    - host: export.${streamx.accelerator.web.host}
+    - host: export.lumax.streamx.com
       http:
         paths:
           - path: /*
