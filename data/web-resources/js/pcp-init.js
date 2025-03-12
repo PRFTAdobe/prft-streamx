@@ -381,5 +381,5 @@ import { addProductToCart } from './productUtilities.js';
   };
 
   init();
-  document.querySelector('footer').classList.remove('hidden');
+  document.querySelector('footer').removeAttribute('style');
 })();

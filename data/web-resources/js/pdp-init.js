@@ -196,5 +196,5 @@ import { addProductToCart } from './productUtilities.js';
 
   init();
   addToCart();
-  document.querySelector('footer').classList.remove('hidden');
+  document.querySelector('footer').removeAttribute('style');
 })();
