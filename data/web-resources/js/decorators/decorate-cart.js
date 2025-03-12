@@ -154,6 +154,7 @@ export async function updateCartPage() {
     if (cartID == null) {
         document.querySelector('.no-products') && document.querySelector('.no-products').classList.remove('hidden');
         document.querySelector('.shopping-cart-content') && document.querySelector('.shopping-cart-content').classList.add('hidden');
+        document.querySelector('.shopping-cart-content') && document.querySelector('.shipping-information-content').classList.add('hidden');
         document.querySelector('.cart-items-container .item') && document.querySelector('.cart-items-container .item').remove();
     } else {
         document.querySelector('.no-products').classList.add('hidden');

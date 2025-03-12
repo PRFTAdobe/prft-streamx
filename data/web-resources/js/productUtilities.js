@@ -68,10 +68,10 @@ export const fetchCartByID = async(cartID) => {
     if (response.errors) {
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
-            cart = await cartMutations.getCartByID(cartID);;
+            response = await cartMutations.getCartByID(cartID);;
         }
         console.log(cart.errors[0].message);
-        return false;
+        return response;
     } else {
         utilities.setCartQuantityToLS(response.total_quantity);
         utilities.updateCartCountOnUI();

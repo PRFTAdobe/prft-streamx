@@ -57,7 +57,7 @@
         <div class="lg:col-span-2">
             <div class="container mx-auto px-4 py-8">
                 <div class="max-w-3xl mx-auto">
-                    <div class="flex justify-between mb-8">
+                    <div class="tabs flex justify-between mb-8">
                         <div class="shipping-information flex-1 text-center text-dsg-red">
                             <div class="border-b-2 pb-2 border-dsg-red">Shipping Information</div>
                         </div>
@@ -141,6 +141,9 @@
                                         Billing address same as Shipping address
                                     </label>
                                 </div>
+                                <div class="form-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                    <p>All inputs are required</p>
+                                </div>
                             </div>
                             <div class="block mt-8 border-t pt-6 step-1">
                                 <div class="flex justify-between mb-4">
@@ -180,6 +183,9 @@
                                             </svg>
                                             Check / Money order
                                         </label>
+                                    </div>
+                                    <div class="payment-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                        <p>Please select a payment method</p>
                                     </div>
                                 </div>
                             </div>
@@ -234,6 +240,10 @@
                                                 <h2 class="font-semibold text-xl mb-4">Order Summary</h2>
                                                 <div class="space-y-4">
                                                     <div class="border-t pt-4">
+                                                        <div class="flex justify-between mb-4">
+                                                            <span class="font-semibold">Order number</span>
+                                                            <span class="font-semibold order-number"></span>
+                                                        </div>
                                                         <div class="flex justify-between">
                                                             <span class="font-semibold">Total</span>
                                                             <span class="font-semibold">
