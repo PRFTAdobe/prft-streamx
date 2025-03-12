@@ -43,4 +43,7 @@ spec:
         enable: true
         config:
           headers:
-            Cache-Control: "max-age=7200"
+            Cache-Control: max-age=7200
+          vars:
+            - [ "sent_http_content_type", "!", "~~", "text/html" ]
+            - [ "sent_http_content_type", "!", "~~", "text/xml" ]
