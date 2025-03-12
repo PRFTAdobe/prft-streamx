@@ -43,7 +43,7 @@ import { addProductToCart } from './productUtilities.js';
         salesOrg: "Perficient"
       };
 
-      if (tmpItem?.variants) {
+      if (tmpItem?.variants.length) {
         item.firstVariantSku = tmpItem?.variants[0].sku || '';
       }
 
