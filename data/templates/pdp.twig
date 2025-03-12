@@ -59,8 +59,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-4">
           <div class="w-full aspect-square rounded-lg overflow-hidden">
+            {% set primaryImageUrl = primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
             <picture>
-              <img src="{{ primaryImage.url }}" alt="{{ primaryImage.alt }}"
+              <img src="{{ primaryImageUrl }}" alt="{{ primaryImage.alt }}"
                    class="w-full h-full object-cover main-image" loading="eager" />
             </picture>
           </div>
@@ -68,10 +69,11 @@
             {% set thumbnailsAsArray = thumbnails|split(',') %}
             {% for image in gallery %}
               {% if loop.index != 0 or thumbnailsAsArray|length == 1 %}
+                {% set imageUrl = image.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
                 <div
                   class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:border-dsg-red transition-colors">
                   <picture>
-                    <img class="w-full h-full object-cover image-list-item" src="{{ image.url }}" alt="{{ image.alt }}"
+                    <img class="w-full h-full object-cover image-list-item" src="{{ imageUrl }}" alt="{{ image.alt }}"
                          loading="eager">
                   </picture>
                 </div>
@@ -80,11 +82,12 @@
             {% set colorsAsArray = colors|split(',') %}
             {% for thumbnail in thumbnailsAsArray %}
               {% if thumbnail %}
+                {% set thumbnailUrl = thumbnail.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
                 <div
                   class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:border-dsg-red transition-colors"
                   data-color="{{ colorsAsArray[loop.index] }}">
                   <picture>
-                    <img class="w-full h-full object-cover image-list-item" src="{{ thumbnail }}"
+                    <img class="w-full h-full object-cover image-list-item" src="{{ thumbnailUrl }}"
                          loading="eager">
                   </picture>
                 </div>

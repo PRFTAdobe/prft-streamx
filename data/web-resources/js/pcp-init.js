@@ -1,5 +1,5 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js'; 
+import { addProductToCart } from './productUtilities.js';
 
 !(function () {
   const FILTER_CONTAINER_ID = 'category-list';
@@ -39,10 +39,13 @@ import { addProductToCart } from './productUtilities.js';
         price: tmpItem?.price?.value || '', // not sure if value or discountedValue
         slug: tmpItem?.slug || '',
         sku: tmpItem?.sku || '',
-        firstVariantSku: tmpItem?.variants[0].sku || '',
         brand: "LumaX",
-        salesOrg: "Perficient"        
+        salesOrg: "Perficient"
       };
+
+      if (tmpItem?.variants.length) {
+        item.firstVariantSku = tmpItem?.variants[0].sku || '';
+      }
 
       items.push(item);
     }
@@ -156,7 +159,7 @@ import { addProductToCart } from './productUtilities.js';
     `<a href="/products/${item.slug}.html">
         <div class="aspect-square relative">
           <img
-            src="${item.imgSrc}"
+            src="${(item.imgSrc).replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud", "lumax.streamx.com")}"
             alt="${item.name}"
             class="h-full w-full object-cover"
           />
@@ -254,46 +257,46 @@ import { addProductToCart } from './productUtilities.js';
         'mx-[5px]'
       );
       div.innerHTML = getItemTemplate(product).trim();
-      div.setAttribute("data-product-details",JSON.stringify(product));
+      div.setAttribute("data-product-details", JSON.stringify(product));
       resultsContainer.appendChild(div);
 
-      const sku = product.firstVariantSku? product.firstVariantSku : product.sku;
+      const sku = product.firstVariantSku ? product.firstVariantSku : product.sku;
       const btnWrapper = div.querySelector('.addToCartWrapper');
       const btn = product.price ? document.createElement('button') : document.createElement('a');
       const buttonClassList = ['addToCart',
-      'cursor-pointer',
-      'inline-flex',
-      'items-center',
-      'justify-center',
-      'gap-2',
-      'whitespace-nowrap',
-      'rounded-md',
-      'text-sm',
-      'font-medium',
-      'ring-offset-background',
-      'transition-colors',
-      'focus-visible:outline-hidden',
-      'focus-visible:ring-2',
-      'focus-visible:ring-ring',
-      'focus-visible:ring-offset-2',
-      'disabled:pointer-events-none',
-      'disabled:opacity-50',
-      '[&_svg]:pointer-events-none',
-      '[&_svg]:size-4',
-      '[&_svg]:shrink-0',
-      'h-10',
-      'px-4',
-      'py-2',
-      'bg-dsg-red',
-      'hover:bg-dsg-red/90',
-      'text-white'];
-      
+        'cursor-pointer',
+        'inline-flex',
+        'items-center',
+        'justify-center',
+        'gap-2',
+        'whitespace-nowrap',
+        'rounded-md',
+        'text-sm',
+        'font-medium',
+        'ring-offset-background',
+        'transition-colors',
+        'focus-visible:outline-hidden',
+        'focus-visible:ring-2',
+        'focus-visible:ring-ring',
+        'focus-visible:ring-offset-2',
+        'disabled:pointer-events-none',
+        'disabled:opacity-50',
+        '[&_svg]:pointer-events-none',
+        '[&_svg]:size-4',
+        '[&_svg]:shrink-0',
+        'h-10',
+        'px-4',
+        'py-2',
+        'bg-dsg-red',
+        'hover:bg-dsg-red/90',
+        'text-white'];
+
       btn.classList.add(...buttonClassList);
 
-      if(product.price){
+      if (product.price) {
         btn.innerHTML = 'Add to Cart';
         btn.addEventListener('click', () => addProductToCart(sku, 1));
-      }else{
+      } else {
         btnWrapper.classList.remove('justify-between');
         btnWrapper.classList.add('justify-end');
         btn.innerHTML = 'View Details';
@@ -356,7 +359,7 @@ import { addProductToCart } from './productUtilities.js';
       .then((response) => response.json())
       .then((response) => {
         handleResponse(response, availableFacets);
-      }).then(()=> {
+      }).then(() => {
         //TODO: Event is probably fine, but need to add actual DM JS function eventually to codebase.
         document.dispatchEvent(new CustomEvent("resultsLoaded"));
       });
@@ -376,5 +379,5 @@ import { addProductToCart } from './productUtilities.js';
   };
 
   init();
-
+  document.querySelector('footer').classList.remove('hidden');
 })();

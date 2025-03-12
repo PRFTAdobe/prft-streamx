@@ -130,6 +130,7 @@ const showStep3 = async () => {
         document.querySelector('.order-number').innerHTML = placeOrderNumber;
         utilities.removeCartIDFromLS();
         utilities.removeCartQuantityFromLS();
+        utilities.updateCartCountOnUI();
 
         Array.from(step2).forEach((element) => {
             element.classList.remove('block');
