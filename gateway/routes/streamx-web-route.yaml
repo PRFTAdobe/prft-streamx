@@ -37,7 +37,7 @@ spec:
         enable: true
         config:
           buffers:
-          number: 8
+            number: 8
           types: "*"
       - name: response-rewrite
         enable: true
@@ -47,5 +47,3 @@ spec:
           vars:
             - [ "sent_http_content_type", "!", "~~", "text/html" ]
             - [ "sent_http_content_type", "!", "~~", "text/xml" ]
-            - [ "sent_http_content_type", "!", "~~", "text/css" ]
-            - [ "sent_http_content_type", "!", "~~", "application/javascript" ]
