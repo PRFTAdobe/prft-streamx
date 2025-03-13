@@ -1,5 +1,6 @@
 // eslint-disable-next-line func-names,no-unused-expressions
 import { addProductToCart } from './productUtilities.js';
+import { addIncreaseDecreaseQuantityAction } from './add-increase-decrease-quantity-action.js';
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -197,4 +198,5 @@ import { addProductToCart } from './productUtilities.js';
   init();
   addToCart();
   document.querySelector('footer').removeAttribute('style');
+  addIncreaseDecreaseQuantityAction();
 })();

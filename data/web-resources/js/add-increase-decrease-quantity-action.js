@@ -1,4 +1,4 @@
-const addIncreaseDecreaseQuantityAction = () => {
+export const addIncreaseDecreaseQuantityAction = () => {
   const quantityContainer = document.querySelector('.quantity-container');
   if (quantityContainer) {
     let quantity = parseInt(
@@ -29,4 +29,3 @@ const addIncreaseDecreaseQuantityAction = () => {
     });
   }
 };
-addIncreaseDecreaseQuantityAction();
