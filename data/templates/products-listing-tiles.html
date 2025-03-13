@@ -10,7 +10,8 @@
         {% set categoryName = category.name %}
       {% endif %}
     {% endfor %}
-  <div class="product-listing__product" data-first-variant-sku = '{{values[i].variants[0].sku}}' data-product-details='{"sku":"{{ values[i].sku }}","name": "{{ values[i].name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ values[i].price.value }}"}'>
+    {% set productSKU = values[i].variants[0].sku.length ? values[i].variants[0].sku : values[i].sku %}
+  <div class="product-listing__product" data-first-variant-sku = '{{ productSKU }}' data-product-details='{"sku":"{{ values[i].sku }}","name": "{{ values[i].name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ values[i].price.value }}"}'>
     <div class="product-listing__product-container mx-[5px]">
       <a
         class="product-listing__product-asset m-auto"
