@@ -32,7 +32,7 @@ const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
             utilities.setCartIDtoSS(cart.id);
             if (cartID && cart && cart.id !== cartID) {
                 const newCart = await cartMutations.mergeCarts(cartID, cart.id)
-                cartQuantity = newCart.itemsV2.total_count;
+                cartQuantity = newCart.total_quantity;
             } else if (cart.total_quantity) {
                 cartQuantity = cart.total_quantity;
             }

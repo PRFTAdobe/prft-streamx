@@ -68,11 +68,13 @@ const removeItemFromCart = async (cartID, uid) => {
 // Query for Logged in users
 const mergeCarts = async (guestCartID, loggedinUserCartID) => {
   const query = JSON.stringify({
-    query: `mutation { mergeCarts( source_cart_id: "${guestCartID}", destination_cart_id: "${loggedinUserCartID}" ) { itemsV2 { items { id product { name sku } quantity } total_count } } }`,
-    variables: {}
+    query: `mutation mergeCarts( $source: String!, $destination: String ) { mergeCarts( source_cart_id: $source, destination_cart_id: $destination ) { items { id product { name sku } quantity } total_quantity } }`,
+    variables: {
+      "source": guestCartID,
+      "destination": loggedinUserCartID
+    }
   });
-
-  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
+  const header = {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} ;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.mergeCarts;
