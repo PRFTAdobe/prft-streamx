@@ -333,9 +333,11 @@ import { addProductToCart } from './productUtilities.js';
     currentPage += 1;
     const loadMoreButton = document.getElementById(LOAD_MORE_BUTTON_ID);
     // eslint-disable-next-line no-unused-expressions
-    response.hits.total.value > PER_PAGE * currentPage
-      ? loadMoreButton.classList.remove('hidden')
-      : loadMoreButton.classList.add('hidden');
+    if (loadMoreButton) {
+        response.hits.total.value > PER_PAGE * currentPage
+          ? loadMoreButton.classList.remove('hidden')
+          : loadMoreButton.classList.add('hidden');
+    }
   };
 
   const fetchProductData = () => {
