@@ -258,6 +258,7 @@ function initHeader() {
     const accountButton = document.createElement('button');
     accountButton.classList.add(...buttonClassList, ...['relative']);
     accountButton.setAttribute('type', 'button');
+    accountButton.setAttribute('aria-label', 'accountbutton');
 
     const accountIcon = document.createElementNS(
         'http://www.w3.org/2000/svg',
@@ -302,6 +303,7 @@ function initHeader() {
 
     cartButton.classList.add(...buttonClassList, ...['relative']);
     cartButton.setAttribute('type', 'button');
+    cartButton.setAttribute('aria-label', 'carbutton');
 
     const cartIcon = document.createElementNS(
         'http://www.w3.org/2000/svg',
@@ -366,6 +368,7 @@ function initHeader() {
 
     hamburgerBtn.classList.add(...buttonClassList, ...['md:hidden']);
     hamburgerBtn.setAttribute('type', 'button');
+    hamburgerBtn.setAttribute('aria-label', 'hamburgerbutton');
 
     const hamburgerIcon = document.createElementNS(
         'http://www.w3.org/2000/svg',

@@ -156,7 +156,7 @@ import { addProductToCart } from './productUtilities.js';
     // <source media="(min-width: 1024px) and (max-width: 1279px)" srcset="../assets/220x294.webp">
     // <source media="(min-width: 1280px) and (max-width: 1535px)" srcset="../assets/278x372.webp">
     // <source media="(min-width: 1536px)" srcset="../assets/342x457.webp">
-    `<a href="/products/${item.slug}.html">
+    `<a href="/products/${item.slug}.html" aria-label="click to open ${item.name}">
         <div class="aspect-square relative">
           <img
             src="${(item.imgSrc).replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud", "lumax.streamx.com")}"
@@ -167,7 +167,7 @@ import { addProductToCart } from './productUtilities.js';
           />
         </div>
         <div class="p-4">
-          <a href="/products/${item.slug}.html" data-discover="true"
+          <a href="/products/${item.slug}.html" data-discover="true" aria-label="click to open ${item.name}"
             ><h3 class="font-semibold text-lg mb-2">${truncateString(decode(item.name), 35)}</h3></a
           >
           
