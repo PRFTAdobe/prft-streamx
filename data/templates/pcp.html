@@ -1,58 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>{{name}}</title>
-    {{ '{{#include src="/fragments/headContent.html"}}' }}
-  </head>
+
+<head>
+  <title>{{name}}</title>
+  {{ '{{#include src="/fragments/headContent.html"}}' }}
+</head>
 
 <!-- <script
 src="https://assets.adobedtm.com/6851bdae8e57/0d020289eb2a/launch-a6ca4b843978-development.min.js"
 async>
 </script> -->
 
-  <body class="overflow-scroll" data-page-type="Category Landing" data-product-category="{{ name }}"> 
-    <div class="nav">{{ '{{#include src="/content/psg-demo-ue/nav.html"}}' }}</div>
-    <div class="container mx-auto px-4 pt-8">
-      <h1 class="text-3xl font-bold mb-8 capitalize">{{name }} | {{ parent.slug }}</h1>
-    </div>
-    <div class="container mx-auto px-4 pb-12">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        data-category="{{slug}}"
-        data-filters='[{"ft_activity":"Activity"},{"ft_material":"Material"},{"ft_style_bags":"Style Bags"}]'
-        id="product-category-component"
-      >
-        <aside>
-          <!-- <h2 class="hidden">Filters</h2>
+<body class="overflow-scroll" data-page-type="Category Landing" data-product-category="{{ name }}">
+  <div class="nav">{{ '{{#include src="/content/psg-demo-ue/nav.html"}}' }}</div>
+  <div class="container mx-auto px-4 pt-8">
+    <h1 class="text-3xl font-bold mb-8 capitalize">{{name }} | {{ parent.slug }}</h1>
+  </div>
+  <div class="container mx-auto px-4 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-category="{{slug}}"
+      data-filters='[{"ft_activity":"Activity"},{"ft_material":"Material"},{"ft_style_bags":"Style Bags"}]'
+      id="product-category-component">
+      <aside>
+        <!-- <h2 class="hidden">Filters</h2>
         <button type="button" class="hidden">
           <span class="">Filters</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="ke om ww bar">
             <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
           </svg>
         </button> -->
-          
-          <ul class="hidden lg:block" id="category-list"></ul>
-        </aside>
-        <div
-          class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 md:col-span-2 lg:col-span-3"
-          id="product-list"
-        > 
+        <ul class="hidden lg:block" id="category-list"></ul>
+      </aside>
+      <div
+        class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 md:col-span-2 lg:col-span-3"
+        id="product-list">
         <div> </div>
-        <div
-          class="hidden flex justify-center mt-8 mb-12 md:col-span-2 lg:col-span-3"
-          id="load-more-button"
-        >
-          <button
-            aria-label="Load more"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white"
-          >
+        <div class="hidden flex justify-center mt-8 mb-12 md:col-span-2 lg:col-span-3" id="load-more-button">
+          <button aria-label="Load more"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">
             <span class="">Show More Products</span>
           </button>
         </div>
       </div>
     </div>
-
-    <script src="../web-resources/js/pcp-init.js" type="module"></script>
-    {{ '{{#include src="/fragments/footer.html"}}' }}
-  </body>
+  </div>
+  <script src="../web-resources/js/pcp-init.js" type="module"></script>
+  {{ '{{#include src="/fragments/footer.html"}}' }}
+</body>
 </html>

@@ -14,16 +14,20 @@ const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
     if (isLoggedIn) {
         let cartQuantity = 0;
         const cartID = utilities.getCartIDFromLS();
-        
+        let isError = false;
+
         let cart = await cartMutations.getCustomerCart();
 
         if (cart.errors) {
+            isError = true;
             if (cart.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken();
                 cart = await cartMutations.getCustomerCart();
+                isError = false;
             }
-            console.log(cart.errors[0].message);
-        } else {
+            console.log(cart.errors);
+        }
+        if (!isError) {
             utilities.setCartIDtoLS(cart.id);
             if (cartID && cart && cart.id !== cartID) {
                 const newCart = await cartMutations.mergeCarts(cartID, cart.id)
@@ -43,26 +47,26 @@ const onLoginHandler = async (activeUser, activeUserCreds) => {
     await updateToken(activeUserCreds);
     await updateCartDetailsOnLoad(true);
 
-    if(location.href.includes('cart')){
+    if (location.href.includes('cart')) {
         await updateCartPage();
     }
 }
 
-const onLogoutHandler = async() => {
+const onLogoutHandler = async () => {
     utilities.removeCartQuantityFromLS();
     utilities.removeActiveUserFromLS();
     utilities.removeCartIDFromLS();
     updateCartDetailsOnLoad();
 
-    if(location.href.includes('cart')){
-       await updateCartPage();
+    if (location.href.includes('cart')) {
+        await updateCartPage();
     }
 }
 
 async function signIn(user) {
     const activeUserCreds = user == 'user01' ? utilities.user01 : utilities.user02;
     await onLoginHandler(user, activeUserCreds);
-    
+
     const userToken = utilities.getTokenFromLS();
     const firstname = activeUserCreds.firstname;
 
@@ -81,7 +85,7 @@ async function signIn(user) {
     }
 }
 
-function  createSignIn() {
+function createSignIn() {
     const activeUser = utilities.getActiveUserFromLS();
 
     let activeUserCreds, userName;
@@ -118,7 +122,7 @@ function  createSignIn() {
         <div class="logged-user ${activeUser ? '' : 'hidden'}"">
           <span class="welcome-message">${activeUser ? `Welcome, ${userName}!` : ''}</span>
           <br/>
-          <a href="/my-orders" >My orders</a>
+          <a href="/my-orders.html" >My orders</a>
         </div>
         <div class="sign-in-buttons flex items-center flex-col flex-wrap">
           <button type="submit" id="log-out" class="${activeUser ? '' : 'hidden'} text-dsg-red">Log Out</button>

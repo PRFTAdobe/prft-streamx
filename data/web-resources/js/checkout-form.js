@@ -10,7 +10,8 @@ let address = {
     region: '',
     postcode: '',
     telephone: '',
-    save_in_address_book: true
+    save_in_address_book: true,
+    email: ''
 };
 
 const step1 = document.querySelectorAll('.step-1');
@@ -90,61 +91,75 @@ const updateStep2State = async () => {
     address = { ...address, ...value };
 
     const cartID = utilities.getCartIDFromLS();
+    let isError = false;
 
-    const response = await checkoutMutations.setPaymentMethod(cartID);
+    // Set payment method
+    let response = await checkoutMutations.setPaymentMethod(cartID);
+
     if (response.errors) {
+        isError = true;
         if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken();
             response = await checkoutMutations.setPaymentMethod(cartID);
+            isError = false;
         }
-        console.log(response.errors[0].message);
+        console.log(response.errors);
     }
 
-    return response;
+    return isError;
 };
 
 const showStep3 = async () => {
-    const response = await updateStep2State();
+    let isError = await updateStep2State();
 
-    if (response != null) {
+    if (isError != null && !isError) {
         const cartID = utilities.getCartIDFromLS();
 
+        // Set shipping method
         const shippingMethod = await checkoutMutations.setShippingMethod(cartID);
         if (shippingMethod.errors) {
+            isError = true;
             if (shippingMethod.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken();
                 response = await checkoutMutations.setShippingMethod(cartID);
+                isError = false;
             }
-            console.log(shippingMethod.errors[0].message);
+            console.log(shippingMethod.errors);
         }
 
-        const placeOrderNumber = await checkoutMutations.placeOrder(cartID);
-        if (placeOrderNumber.errors) {
-            console.log(placeOrderNumber.errors[0].message);
-            if (placeOrderNumber.errors[0].extensions?.category == 'graphql-authorization') {
-                await userMutations.regenerateUserToken();
-                response = await checkoutMutations.placeOrderNumber(cartID);
+        if (!isError) {
+            const placeOrderNumber = await checkoutMutations.placeOrder(cartID);
+            if (placeOrderNumber.errors) {
+                isError = true;
+                if (placeOrderNumber.errors[0].extensions?.category == 'graphql-authorization') {
+                    await userMutations.regenerateUserToken();
+                    response = await checkoutMutations.placeOrderNumber(cartID);
+                    isError = false;
+                }
+                console.log(placeOrderNumber.errors);
+            }
+
+            if (!isError) {
+                document.querySelector('.order-number').innerHTML = placeOrderNumber;
+                utilities.removeCartIDFromLS();
+                utilities.removeCartQuantityFromLS();
+                utilities.updateCartCountOnUI();
+
+                Array.from(step2).forEach((element) => {
+                    element.classList.remove('block');
+                    element.classList.add('hidden');
+                });
+
+                Array.from(step3).forEach((element) => {
+                    element.classList.remove('hidden');
+                    element.classList.add('block');
+                });
+                const tabs = document.querySelector('.tabs');
+                tabs.classList.add('hidden');
+
+                replaceUserData();
             }
         }
-
-        document.querySelector('.order-number').innerHTML = placeOrderNumber;
-        utilities.removeCartIDFromLS();
-        utilities.removeCartQuantityFromLS();
-        utilities.updateCartCountOnUI();
-
-        Array.from(step2).forEach((element) => {
-            element.classList.remove('block');
-            element.classList.add('hidden');
-        });
-
-        Array.from(step3).forEach((element) => {
-            element.classList.remove('hidden');
-            element.classList.add('block');
-        });
-        const tabs = document.querySelector('.tabs');
-        tabs.classList.add('hidden');
-
-        replaceUserData();
     }
 };
 
@@ -156,6 +171,7 @@ const placeOrderButton = () => {
 };
 
 const updateStep1State = async () => {
+    let isError = false;
     const inputList = Array.from(
         document.querySelectorAll('.checkout-form input:not([type="radio"])'),
     );
@@ -174,18 +190,38 @@ const updateStep1State = async () => {
     address = { ...address, ...value };
 
     const cartID = utilities.getCartIDFromLS();
+    const activeUser = utilities.getActiveUserFromLS();
+    let response;
 
-    let response = await checkoutMutations.setShippingAddress(cartID, address);
-    if (response.errors) {
-        if (response.errors[0].extensions?.category == 'graphql-authorization') {
-            await userMutations.regenerateUserToken();
-            response = await checkoutMutations.setShippingAddress(cartID, address);
+    // Set Guest Email on Cart when user is not logged in
+    if (activeUser == null) {
+        response = await checkoutMutations.setGuestEmailOnCart(cartID, address.email);
+        if (response.errors) {
+            isError = true;
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken();
+                response = await checkoutMutations.setGuestEmailOnCart(cartID, address.email);
+                isError = false;
+            }
+            console.log(response.errors);
         }
-        console.log(response.errors[0].message);
     }
 
-    return response;
+    if (!isError) {
+        // Set shipping address
+        response = await checkoutMutations.setShippingAddress(cartID, address);
+        if (response.errors) {
+            isError = true;
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken();
+                response = await checkoutMutations.setShippingAddress(cartID, address);
+                isError = false;
+            }
+            console.log(response.errors);
+        }
+    }
 
+    return isError;
 };
 
 const empty = (value) =>
@@ -193,7 +229,7 @@ const empty = (value) =>
 
 const isEmptyValueStep1 = () => {
     const inputList = Array.from(
-        document.querySelectorAll('.checkout-form .shipping-info'),
+        document.querySelectorAll('.checkout-form div:not(.hidden) .shipping-info'),
     );
 
     return inputList.some((element) =>
@@ -204,43 +240,49 @@ const isEmptyValueStep1 = () => {
 const showStep2 = async () => {
     document.querySelector('.form-error-message').classList.add('hidden');
     if (!isEmptyValueStep1()) {
-        await updateStep1State();
+        let isError = await updateStep1State();
 
-        const billingAddress = document.querySelector('.billing-address');
-        const cartID = utilities.getCartIDFromLS();
+        if (!isError) {
+            const billingAddress = document.querySelector('.billing-address');
+            const cartID = utilities.getCartIDFromLS();
 
-        const billignAddressResponse = billingAddress.value ? await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value) : '';
+            // Set billing address
+            let billignAddressResponse = billingAddress.value ? await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value) : '';
 
-        if (billignAddressResponse.errors) {
-            if (billignAddressResponse.errors[0].extensions?.category == 'graphql-authorization') {
-                await userMutations.regenerateUserToken();
-                billignAddressResponse = await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value);
+            if (billignAddressResponse.errors) {
+                isError = true;
+                if (billignAddressResponse.errors[0].extensions?.category == 'graphql-authorization') {
+                    await userMutations.regenerateUserToken();
+                    billignAddressResponse = await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value);
+                    isError = false;
+                }
+                console.log(billignAddressResponse.errors);
             }
-            console.log(billignAddressResponse.errors[0].message);
+
+            if (!isError) {
+                Array.from(step1).forEach((element) => {
+                    element.classList.remove('block');
+                    element.classList.add('hidden');
+                });
+                Array.from(step2).forEach((element) => {
+                    element.classList.remove('hidden');
+                    element.classList.add('block');
+                });
+                const shipping = document.querySelector('.shipping-information');
+                const payment = document.querySelector('.payment-method');
+
+                shipping.classList.remove('text-dsg-red');
+                shipping.classList.add('text-gray-500');
+
+                payment.classList.remove('text-gray-500');
+                payment.classList.add('text-dsg-red');
+
+                shipping.querySelector('div').classList.remove('border-dsg-red');
+                shipping.querySelector('div').classList.add('border-gray-200');
+                payment.querySelector('div').classList.remove('border-gray-200');
+                payment.querySelector('div').classList.add('border-dsg-red');
+            }
         }
-
-        Array.from(step1).forEach((element) => {
-            element.classList.remove('block');
-            element.classList.add('hidden');
-        });
-        Array.from(step2).forEach((element) => {
-            element.classList.remove('hidden');
-            element.classList.add('block');
-        });
-        const shipping = document.querySelector('.shipping-information');
-        const payment = document.querySelector('.payment-method');
-
-        shipping.classList.remove('text-dsg-red');
-        shipping.classList.add('text-gray-500');
-
-        payment.classList.remove('text-gray-500');
-        payment.classList.add('text-dsg-red');
-
-        shipping.querySelector('div').classList.remove('border-dsg-red');
-        shipping.querySelector('div').classList.add('border-gray-200');
-        payment.querySelector('div').classList.remove('border-gray-200');
-        payment.querySelector('div').classList.add('border-dsg-red');
-
     } else {
         document.querySelector('.form-error-message').classList.remove('hidden');
     }
@@ -269,6 +311,10 @@ async function filterByCountry() {
 
 if (location.href.includes('cart')) {
     await filterByCountry();
+    const activeUser = utilities.getActiveUserFromLS();
+    if (activeUser == null) {
+        document.querySelector('.email-input').classList.remove('hidden');
+    }
     continuePaymentButton();
     placeOrderButton();
     updatePaymentoptions();
