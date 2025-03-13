@@ -7,7 +7,7 @@ const updateSubtotalPriceItem = (quantity, price) => {
 }
 
 const updatePrice = async (el, price, quantity) => {
-    const cartID = utilities.getCartIDFromLS();
+    const cartID = utilities.getCartIDFromSS();
 
     const uid = el.closest(".item > div").dataset.uid;
     await updateItemQuantityInCart(cartID, uid, quantity);
@@ -43,7 +43,7 @@ const removeItem = (cartID) => {
 
                 await removeItemFromCart(cartID, uid);
 
-                if (utilities.getCartQuantityFromLS() == 0) {
+                if (utilities.getCartQuantityFromSS() == 0) {
                     document.querySelector('.no-products').classList.remove('hidden');
                     document.querySelector('.shopping-cart-content').classList.add('hidden');
                     document.querySelector('.shipping-information-content').classList.add('hidden');
@@ -148,7 +148,7 @@ const addIncreaseDecreaseQuantityAction = () => {
 };
 
 export async function updateCartPage() {
-    const cartID = utilities.getCartIDFromLS();
+    const cartID = utilities.getCartIDFromSS();
 
     if (cartID == null) {
         document.querySelector('.no-products') && document.querySelector('.no-products').classList.remove('hidden');
