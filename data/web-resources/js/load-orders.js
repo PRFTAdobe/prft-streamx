@@ -139,4 +139,6 @@ export const updateOnLogOut = async () => {
     document.querySelector('.log-out-user')?.classList.remove('hidden');
 }
 
-loadMyOrders();
+if (location.href.includes('my-orders')) {
+    loadMyOrders();
+}
