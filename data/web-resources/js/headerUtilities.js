@@ -357,7 +357,7 @@ function initHeader() {
 
     cartButton.append(cartIcon);
 
-    const cartQuantity = utilities.getCartQuantityFromSS;
+    const cartQuantity = utilities.getCartQuantityFromSS();
     const cartQuantityBadge = document.createElement('label');
     cartQuantityBadge.classList.add('cart-quantity', 'w-4', 'h-4', 'rounded-full', 'bg-red-600', 'text-white', 'text-[10px]', 'absolute', 'right-0.5', 'top-1', 'text-center');
     cartQuantityBadge.innerText = cartQuantity ? cartQuantity : 0;
