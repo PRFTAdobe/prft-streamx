@@ -5,53 +5,49 @@
 
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-8">My Orders</h1>
-    <div class="my-orders-content">
+    <div class="my-orders-content h-auto min-h-[25em]">
         <div class="lg:col-span-2">
-            <div class="cart-items-container bg-white rounded-lg shadow-sm divide-y">
+            <div class="cart-items-container bg-white rounded-lg shadow-sm divide-y"></div>
+        </div>
+        <div class="lg:col-span-1 hidden order-list-empty h-[25em]">
+            <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
+                <div class="mb-8">Please place an order to view the order history</div>
+                <a href="/homepage.html"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md mb-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Continue
+                    Shopping</a>
             </div>
         </div>
-        <div class="lg:col-span-1">
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-                <table class="w-full caption-bottom text-sm">
-                    <thead class="[&amp;_tr]:border-b">
-                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Order ID</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Date</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Items</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Total</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Status</th>
-                            <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="[&amp;_tr:last-child]:border-0">
-                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">ORD-001</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">3/14/2024</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><div class="space-y-2"><div class="text-sm">1x Men's Running Shoes</div><div class="text-sm">2x Performance Socks</div></div></td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">$115.97</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Delivered</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Reorder</button></td>
-                        </tr>
-                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">ORD-002</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">12/19/2023</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><div class="space-y-2"><div class="text-sm">1x Women's Training Shorts</div></div></td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">$34.99</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">Delivered</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Reorder</button></td>
-                        </tr>
-                        <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">ORD-003</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">3/31/2024</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><div class="space-y-2"><div class="text-sm">1x Sports Water Bottle</div></div></td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">$24.99</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">In Transit</td>
-                            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Reorder</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="bg-white h-auto hidden rounded-lg order-list-with-items min-h-[25em] overflow-x-auto p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+            <table class="w-full caption-bottom text-sm">
+                <thead class="[&_tr]:border-b">
+                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Order Number</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Date</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Items</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Total</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Status</th>
+                    </tr>
+                </thead>
+                <tbody class="[&_tr:last-child]:border-0">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="lg:col-span-1 hidden log-out-user h-[25em]">
+        <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
+            <div class="mb-8">Please sign in.</div>
         </div>
     </div>
 </div>
+<script src="../web-resources/js/load-orders.js" type="module"></script>

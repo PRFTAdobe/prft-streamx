@@ -2,6 +2,7 @@ import { utilities } from './graphQLMutations/utility.js';
 import { cartMutations } from './graphQLMutations/cartMutations.js';
 import { userMutations } from './graphQLMutations/userMutations.js';
 import { updateCartPage } from './decorators/decorate-cart.js';
+import { loadMyOrders, updateOnLogOut } from './load-orders.js';
 
 const updateToken = async (activeUserCreds) => {
     if (!utilities.getTokenFromSS()) {
@@ -50,6 +51,9 @@ const onLoginHandler = async (activeUser, activeUserCreds) => {
     if (location.href.includes('cart')) {
         await updateCartPage();
     }
+    if (location.href.includes('my-orders')) {
+        await loadMyOrders();
+    }
 }
 
 const onLogoutHandler = async () => {
@@ -60,6 +64,9 @@ const onLogoutHandler = async () => {
 
     if (location.href.includes('cart')) {
         await updateCartPage();
+    }
+    if (location.href.includes('my-orders')) {
+        updateOnLogOut();
     }
 }
 
