@@ -47,7 +47,7 @@ const removeItem = (cartID) => {
                     document.querySelector('.no-products').classList.remove('hidden');
                     document.querySelector('.shopping-cart-content').classList.add('hidden');
                     document.querySelector('.shipping-information-content').classList.add('hidden');
-                    document.querySelector('.loading-message').classList.remove('hidden');
+                    document.querySelector('.loading-message').classList.add('hidden');
                 }
             });
         });

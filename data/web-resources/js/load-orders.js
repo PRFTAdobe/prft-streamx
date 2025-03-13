@@ -135,8 +135,8 @@ export const loadMyOrders = async () => {
 };
 
 export const updateOnLogOut = async () => {
-    document.querySelector('.my-orders-content').classList.add('hidden');
-    document.querySelector('.log-out-user').classList.remove('hidden');
+    document.querySelector('.my-orders-content')?.classList.add('hidden');
+    document.querySelector('.log-out-user')?.classList.remove('hidden');
 }
 
 loadMyOrders();
