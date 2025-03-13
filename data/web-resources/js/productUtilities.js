@@ -4,10 +4,10 @@ import { userMutations } from "./graphQLMutations/userMutations.js";
 
 export const addProductToCart = async (sku, quantity = 1) => {
     let isError = false;
-    let cartID = utilities.getCartIDFromLS();
+    let cartID = utilities.getCartIDFromSS();
     if (!cartID) {
         cartID = await cartMutations.generateCartID();
-        utilities.setCartIDtoLS(cartID);
+        utilities.setCartIDtoSS(cartID);
     }
     let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
 
@@ -21,7 +21,7 @@ export const addProductToCart = async (sku, quantity = 1) => {
         console.log(cart.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToLS(cart.total_quantity);
+        utilities.setCartQuantityToSS(cart.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
@@ -50,7 +50,7 @@ export const removeItemFromCart = async (cartID, uid) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToLS(response.total_quantity);
+        utilities.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
@@ -69,7 +69,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToLS(response.total_quantity);
+        utilities.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
@@ -88,7 +88,7 @@ export const fetchCartByID = async (cartID) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToLS(response.total_quantity);
+        utilities.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
         return response;
     }

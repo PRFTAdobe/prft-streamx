@@ -4,16 +4,16 @@ import { userMutations } from './graphQLMutations/userMutations.js';
 import { updateCartPage } from './decorators/decorate-cart.js';
 
 const updateToken = async (activeUserCreds) => {
-    if (!utilities.getTokenFromLS()) {
+    if (!utilities.getTokenFromSS()) {
         const token = await userMutations.getUserToken(activeUserCreds.email, activeUserCreds.password);
-        utilities.setTokentoLS(token.token)
+        utilities.setTokentoSS(token.token)
     }
 }
 
 const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
     if (isLoggedIn) {
         let cartQuantity = 0;
-        const cartID = utilities.getCartIDFromLS();
+        const cartID = utilities.getCartIDFromSS();
         let isError = false;
 
         let cart = await cartMutations.getCustomerCart();
@@ -28,21 +28,21 @@ const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
             console.log(cart.errors);
         }
         if (!isError) {
-            utilities.setCartIDtoLS(cart.id);
+            utilities.setCartIDtoSS(cart.id);
             if (cartID && cart && cart.id !== cartID) {
                 const newCart = await cartMutations.mergeCarts(cartID, cart.id)
                 cartQuantity = newCart.itemsV2.total_count;
             } else if (cart.total_quantity) {
                 cartQuantity = cart.total_quantity;
             }
-            utilities.setCartQuantityToLS(cartQuantity);
+            utilities.setCartQuantityToSS(cartQuantity);
         }
     }
     utilities.updateCartCountOnUI();
 }
 
 const onLoginHandler = async (activeUser, activeUserCreds) => {
-    utilities.setActiveUsertoLS(activeUser);
+    utilities.setActiveUsertoSS(activeUser);
 
     await updateToken(activeUserCreds);
     await updateCartDetailsOnLoad(true);
@@ -53,9 +53,9 @@ const onLoginHandler = async (activeUser, activeUserCreds) => {
 }
 
 const onLogoutHandler = async () => {
-    utilities.removeCartQuantityFromLS();
-    utilities.removeActiveUserFromLS();
-    utilities.removeCartIDFromLS();
+    utilities.removeCartQuantityFromSS();
+    utilities.removeActiveUserFromSS();
+    utilities.removeCartIDFromSS();
     updateCartDetailsOnLoad();
 
     if (location.href.includes('cart')) {
@@ -67,7 +67,7 @@ async function signIn(user) {
     const activeUserCreds = user == 'user01' ? utilities.user01 : utilities.user02;
     await onLoginHandler(user, activeUserCreds);
 
-    const userToken = utilities.getTokenFromLS();
+    const userToken = utilities.getTokenFromSS();
     const firstname = activeUserCreds.firstname;
 
     if (userToken !== null) {
@@ -86,7 +86,7 @@ async function signIn(user) {
 }
 
 function createSignIn() {
-    const activeUser = utilities.getActiveUserFromLS();
+    const activeUser = utilities.getActiveUserFromSS();
 
     let activeUserCreds, userName;
 
@@ -357,7 +357,7 @@ function initHeader() {
 
     cartButton.append(cartIcon);
 
-    const cartQuantity = localStorage.getItem("shoppingCartQuantity");
+    const cartQuantity = utilities.getCartQuantityFromSS;
     const cartQuantityBadge = document.createElement('label');
     cartQuantityBadge.classList.add('cart-quantity', 'w-4', 'h-4', 'rounded-full', 'bg-red-600', 'text-white', 'text-[10px]', 'absolute', 'right-0.5', 'top-1', 'text-center');
     cartQuantityBadge.innerText = cartQuantity ? cartQuantity : 0;

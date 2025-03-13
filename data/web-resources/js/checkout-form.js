@@ -90,7 +90,7 @@ const updateStep2State = async () => {
 
     address = { ...address, ...value };
 
-    const cartID = utilities.getCartIDFromLS();
+    const cartID = utilities.getCartIDFromSS();
     let isError = false;
 
     // Set payment method
@@ -113,7 +113,7 @@ const showStep3 = async () => {
     let isError = await updateStep2State();
 
     if (isError != null && !isError) {
-        const cartID = utilities.getCartIDFromLS();
+        const cartID = utilities.getCartIDFromSS();
 
         // Set shipping method
         const shippingMethod = await checkoutMutations.setShippingMethod(cartID);
@@ -141,8 +141,8 @@ const showStep3 = async () => {
 
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
-                utilities.removeCartIDFromLS();
-                utilities.removeCartQuantityFromLS();
+                utilities.removeCartIDFromSS();
+                utilities.removeCartQuantityFromSS();
                 utilities.updateCartCountOnUI();
 
                 Array.from(step2).forEach((element) => {
@@ -189,8 +189,8 @@ const updateStep1State = async () => {
 
     address = { ...address, ...value };
 
-    const cartID = utilities.getCartIDFromLS();
-    const activeUser = utilities.getActiveUserFromLS();
+    const cartID = utilities.getCartIDFromSS();
+    const activeUser = utilities.getActiveUserFromSS();
     let response;
 
     // Set Guest Email on Cart when user is not logged in
@@ -244,7 +244,7 @@ const showStep2 = async () => {
 
         if (!isError) {
             const billingAddress = document.querySelector('.billing-address');
-            const cartID = utilities.getCartIDFromLS();
+            const cartID = utilities.getCartIDFromSS();
 
             // Set billing address
             let billignAddressResponse = billingAddress.value ? await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value) : '';
@@ -311,7 +311,7 @@ async function filterByCountry() {
 
 if (location.href.includes('cart')) {
     await filterByCountry();
-    const activeUser = utilities.getActiveUserFromLS();
+    const activeUser = utilities.getActiveUserFromSS();
     if (activeUser == null) {
         document.querySelector('.email-input').classList.remove('hidden');
     }
