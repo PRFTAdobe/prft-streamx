@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: exporter-detached-service
-          image: ghcr.io/streamx-dev/streamx-blueprints/exporter-detached-service:2.0.2-jvm
+          image: ghcr.io/streamx-dev/streamx-blueprints/exporter-detached-service:2.0.3-jvm
           ports:
             - containerPort: 8080
           env:

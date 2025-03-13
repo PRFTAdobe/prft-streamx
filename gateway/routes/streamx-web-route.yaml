@@ -48,4 +48,4 @@ spec:
             - [ "sent_http_content_type", "!", "~~", "text/html" ]
             - [ "sent_http_content_type", "!", "~~", "text/xml" ]
             - [ "sent_http_content_type", "!", "~~", "text/css" ]
-            - [ "sent_http_content_type", "!", "~~", "text/js" ]
+            - [ "sent_http_content_type", "!", "~~", "application/javascript" ]
