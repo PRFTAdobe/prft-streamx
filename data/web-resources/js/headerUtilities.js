@@ -50,6 +50,8 @@ const onLoginHandler = async (activeUser, activeUserCreds) => {
 
     if (location.href.includes('cart')) {
         await updateCartPage();
+        document.querySelector('.shipping-information-content').classList.add('hidden');
+        document.querySelector('.email-input').classList.add('hidden');
     }
     if (location.href.includes('my-orders')) {
         await loadMyOrders();
