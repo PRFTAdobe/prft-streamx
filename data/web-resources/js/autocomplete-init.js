@@ -1,89 +1,4 @@
-!(function () {
-  const SEARCH_RESULTS_COUNT = 40;
-  const SEARCH_URL = '/search/query';
-
-  const searchClick = (event) => {
-    event.preventDefault();
-    let newLocation = event.currentTarget.href;
-    let adobeDataLayer = window.adobeDataLayer || {};
-    let searchObj = adobeDataLayer?.getState("_perficientincpartnersandbox.search") || {};
-    //searchObj.allSearches = searchObj.allSearches ? searchObj.allSearches+1 : 1;
-    searchObj.allSearches = 1;
-    searchObj.searchTerm = document.getElementById("autocomplete-0-input")?.value || "";
-    searchObj.searchResultClicked = event.target?.innerText;
-    searchObj.searchResultURL = newLocation;
-    adobeDataLayer.push({
-    "event":"searchClick",
-    "_perficientincpartnersandbox" : {
-      "search": searchObj
-      }
-    });
-    document.dispatchEvent(new CustomEvent("searchClick"));
-    //updating next page to include a hash with searched term within for tracking purposes
-    window.location.href = searchObj.searchTerm === ''  ? newLocation:`${newLocation}#searchTerm="${searchObj.searchTerm}"`;
-  }
-
-  const buildUrl = (query, limit) => {
-    return `${SEARCH_URL}?size=${limit}&query=${query}`;
-  };
-
-  const mapToPagesResponse = async (response) => {
-    const jsonResponse = await response.json();
-    const items = jsonResponse.hits.hits
-      ? jsonResponse.hits.hits.map(mapToPage)
-      : [];
-    return {
-      items: items,
-      executionTimeMs: jsonResponse.took,
-    };
-  };
-
-  const mapToPage = (hit) => {
-    const path = hit._id;
-    const score = hit._score;
-    const title =
-      hit.highlight?.['payload.title']?.[0] || hit._source.payload.title;
-    const bestFragment = hit.highlight?.['payload.content']?.[0] || title || '';
-
-    return {
-      path,
-      title,
-      bestFragment,
-      score,
-    };
-  };
-
-  const getPages = async (query) => {
-    const response = await fetch(buildUrl(query, SEARCH_RESULTS_COUNT));
-    return mapToPagesResponse(response);
-  };
-
-  const getAutocompleteItemUrl = (item) => {
-    return item && item.path ? item.path : '';
-  };
-
-  const replaceEmWithMark = (value) => {
-    if (typeof value !== 'string') return value;
-    return value.replace(/<em>/g, '<mark>').replace(/<\/em>/g, '</mark>');
-  };
-
-  const getPantsResults = async () => {
-    const response = await fetch(buildUrl('pants', 2));
-    return mapToPagesResponse(response);
-  };
-
-  const getTeesResults = async () => {
-    const response = await fetch(buildUrl('tees', 2));
-    return mapToPagesResponse(response);
-  };
-
-  const getHoodiesResults = async () => {
-    const response = await fetch(buildUrl('hoodies', 2));
-    return mapToPagesResponse(response);
-  };
-
-  const getItemTemplate = (html, item) => {
-    return html`<a class="searchResult aa-ItemLink" href=${getAutocompleteItemUrl(item)} onClick="${(event) => { searchClick(event) }}">
+!function(){let e=e=>{e.preventDefault();let t=e.currentTarget.href,a=window.adobeDataLayer||{},s=a?.getState("_perficientincpartnersandbox.search")||{};s.allSearches=1,s.searchTerm=document.getElementById("autocomplete-0-input")?.value||"",s.searchResultClicked=e.target?.innerText,s.searchResultURL=t,a.push({event:"searchClick",_perficientincpartnersandbox:{search:s}}),document.dispatchEvent(new CustomEvent("searchClick")),window.location.href=""===s.searchTerm?t:`${t}#searchTerm="${s.searchTerm}"`},t=(e,t)=>`/search/query?size=${t}&query=${e}`,a=async e=>{let t=await e.json(),a=t.hits.hits?t.hits.hits.map(s):[];return{items:a,executionTimeMs:t.took}},s=e=>{let t=e._id,a=e._score,s=e.highlight?.["payload.title"]?.[0]||e._source.payload.title,r=e.highlight?.["payload.content"]?.[0]||s||"";return{path:t,title:s,bestFragment:r,score:a}},r=async e=>{let s=await fetch(t(e,40));return a(s)},i=e=>e&&e.path?e.path:"",l=e=>"string"!=typeof e?e:e.replace(/<em>/g,"<mark>").replace(/<\/em>/g,"</mark>"),n=async()=>{let e=await fetch(t("pants",2));return a(e)},o=async()=>{let e=await fetch(t("tees",2));return a(e)},c=async()=>{let e=await fetch(t("hoodies",2));return a(e)},u=(t,a)=>t`<a class="searchResult aa-ItemLink" href=${i(a)} onClick="${t=>{e(t)}}">
       <div class="aa-ItemContent">
         <div class="aa-ItemIcon aa-ItemIcon--alignTop">
           <svg
@@ -107,13 +22,11 @@
         <div class="aa-ItemContentBody">
           <div
             class="aa-ItemContentTitle"
-            dangerouslySetInnerHTML=${{ __html: replaceEmWithMark(item.title) }}
+            dangerouslySetInnerHTML=${{__html:l(a.title)}}
           ></div>
           <div
             class="aa-ItemContentDescription"
-            dangerouslySetInnerHTML=${{
-              __html: replaceEmWithMark(item.bestFragment),
-            }}
+            dangerouslySetInnerHTML=${{__html:l(a.bestFragment)}}
           ></div>
         </div>
         <div class="aa-ItemActions">
@@ -132,197 +45,13 @@
           </button>
         </div>
       </div>
-    </a>`;
-  };
-
-  function init() {
-    const { autocomplete } = window['@algolia/autocomplete-js'];
-    autocomplete({
-      classNames: {
-        root: 'autocomplete__container',
-        detachedSearchButton: [
-          '[&_svg]:pointer-events-none',
-          '[&_svg]:shrink-0',
-          '[&_svg]:size-4',
-          'autocomplete__search-button',
-        ].join(' '),
-      },
-      container: '.autocomplete',
-      placeholder: 'Search...',
-      detachedMediaQuery: '',
-      openOnFocus: true,
-      getSources({ query }) {
-        return [
-          {
-            sourceId: 'pages',
-            async getItems({ query }) {
-              if (query === '') {
-                return [];
-              }
-              const pages = await getPages(query);
-              return pages.items;
-            },
-            getItemUrl({ item }) {
-              return getAutocompleteItemUrl(item);
-            },
-            templates: {
-              item({ item, html }) {
-                return getItemTemplate(html, item);
-              },
-              noResults:
-                query === ''
-                  ? undefined
-                  : () => {
-                      return 'No results';
-                    },
-            },
-          },
-          {
-            sourceId: 'hoddiesResults',
-            async getItems({ query }) {
-              if (query) {
-                return [];
-              }
-              const response = await getHoodiesResults();
-              return response.items;
-            },
-            getItemUrl({ item }) {
-              return getAutocompleteItemUrl(item);
-            },
-            templates: {
-              header({ html }) {
-                if (query === '') {
-                  return html`<span class="aa-SourceHeaderTitle"
+    </a>`,d=e=>{for(let t of e)"childList"===t.type&&Array.from(t.addedNodes).forEach(e=>{if(e.classList.contains("autocomplete__container")){let t=e.querySelector(".autocomplete__search-button");if(t){let a=document.createElementNS("http://www.w3.org/2000/svg","svg");a.setAttribute("height","24"),a.setAttribute("width","24"),a.setAttribute("viewBox","0 0 24 24"),a.setAttribute("fill","none"),a.setAttribute("stroke","currentColor"),a.setAttribute("stroke-linecap","round"),a.setAttribute("stroke-linejoin","round"),a.setAttribute("stroke-width","2"),a.classList.add(...["lucide","lucide-search","h-5","w-5"]);let s=document.createElementNS("http://www.w3.org/2000/svg","circle");s.setAttribute("cx","11"),s.setAttribute("cy","11"),s.setAttribute("r","8");let r=document.createElementNS("http://www.w3.org/2000/svg","path");r.setAttribute("d","m21 21-4.3-4.3"),a.append(s),a.append(r),t.appendChild(a)}}})},h=new MutationObserver(d),p=document.querySelector(".autocomplete");if(p){for(;p.firstChild;)p.removeChild(p.firstChild);h.observe(p,{childList:!0})}!function e(){let{autocomplete:t}=window["@algolia/autocomplete-js"];t({classNames:{root:"autocomplete__container",detachedSearchButton:"[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4 autocomplete__search-button"},container:".autocomplete",placeholder:"Search...",detachedMediaQuery:"",openOnFocus:!0,getSources:({query:e})=>[{sourceId:"pages",async getItems({query:e}){if(""===e)return[];let t=await r(e);return t.items},getItemUrl:({item:e})=>i(e),templates:{item:({item:e,html:t})=>u(t,e),noResults:""===e?void 0:()=>"No results"}},{sourceId:"hoddiesResults",async getItems({query:e}){if(e)return[];let t=await c();return t.items},getItemUrl:({item:e})=>i(e),templates:{header:({html:t})=>""===e?t`<span class="aa-SourceHeaderTitle"
                       >Hoodies</span
                     >
-                    <div class="aa-SourceHeaderLine" />`;
-                }
-                return null;
-              },
-              item({ item, html }) {
-                return getItemTemplate(html, item);
-              },
-            },
-          },
-          {
-            sourceId: 'pantsResults',
-            async getItems({ query }) {
-              if (query) {
-                return [];
-              }
-              const response = await getPantsResults();
-              return response.items;
-            },
-            getItemUrl({ item }) {
-              return getAutocompleteItemUrl(item);
-            },
-            templates: {
-              header({ html }) {
-                if (query === '') {
-                  return html`<span class="aa-SourceHeaderTitle"
+                    <div class="aa-SourceHeaderLine" />`:null,item:({item:e,html:t})=>u(t,e)}},{sourceId:"pantsResults",async getItems({query:e}){if(e)return[];let t=await n();return t.items},getItemUrl:({item:e})=>i(e),templates:{header:({html:t})=>""===e?t`<span class="aa-SourceHeaderTitle"
                       >Pants</span
                     >
-                    <div class="aa-SourceHeaderLine" />`;
-                }
-                return null;
-              },
-              item({ item, html }) {
-                return getItemTemplate(html, item);
-              },
-            },
-          },
-          {
-            sourceId: 'teesResults',
-            async getItems({ query }) {
-              if (query) {
-                return [];
-              }
-              const response = await getTeesResults();
-              return response.items;
-            },
-            getItemUrl({ item }) {
-              return getAutocompleteItemUrl(item);
-            },
-            templates: {
-              header({ html }) {
-                if (query === '') {
-                  return html`<span class="aa-SourceHeaderTitle"
+                    <div class="aa-SourceHeaderLine" />`:null,item:({item:e,html:t})=>u(t,e)}},{sourceId:"teesResults",async getItems({query:e}){if(e)return[];let t=await o();return t.items},getItemUrl:({item:e})=>i(e),templates:{header:({html:t})=>""===e?t`<span class="aa-SourceHeaderTitle"
                       >Tees</span
                     >
-                    <div class="aa-SourceHeaderLine" />`;
-                }
-                return null;
-              },
-              item({ item, html }) {
-                return getItemTemplate(html, item);
-              },
-            },
-          },
-        ];
-      },
-    });
-  }
-
-  const addTailwindIconToAutocomplete = (records) => {
-    for (const record of records) {
-      if (record.type === 'childList') {
-        Array.from(record.addedNodes).forEach((node) => {
-          if (node.classList.contains('autocomplete__container')) {
-            const searchButton = node.querySelector(
-              '.autocomplete__search-button',
-            );
-            if (searchButton) {
-              const searchIcon = document.createElementNS(
-                'http://www.w3.org/2000/svg',
-                'svg',
-              );
-              searchIcon.setAttribute('height', '24');
-              searchIcon.setAttribute('width', '24');
-              searchIcon.setAttribute('viewBox', '0 0 24 24');
-              searchIcon.setAttribute('fill', 'none');
-              searchIcon.setAttribute('stroke', 'currentColor');
-              searchIcon.setAttribute('stroke-linecap', 'round');
-              searchIcon.setAttribute('stroke-linejoin', 'round');
-              searchIcon.setAttribute('stroke-width', '2');
-              searchIcon.classList.add(
-                ...['lucide', 'lucide-search', 'h-5', 'w-5'],
-              );
-
-              const searchCircle = document.createElementNS(
-                'http://www.w3.org/2000/svg',
-                'circle',
-              );
-              searchCircle.setAttribute('cx', '11');
-              searchCircle.setAttribute('cy', '11');
-              searchCircle.setAttribute('r', '8');
-
-              const searchPath = document.createElementNS(
-                'http://www.w3.org/2000/svg',
-                'path',
-              );
-              searchPath.setAttribute('d', 'm21 21-4.3-4.3');
-
-              searchIcon.append(searchCircle);
-              searchIcon.append(searchPath);
-              searchButton.appendChild(searchIcon);
-            }
-          }
-        });
-      }
-    }
-  };
-
-  const observer = new MutationObserver(addTailwindIconToAutocomplete);
-  const autocompleteContainer = document.querySelector('.autocomplete');
-
-  if (autocompleteContainer) {
-    while (autocompleteContainer.firstChild) {
-      autocompleteContainer.removeChild(autocompleteContainer.firstChild);
-    }
-    observer.observe(autocompleteContainer, {
-      childList: true,
-    });
-  }
-
-  init();
-})();
+                    <div class="aa-SourceHeaderLine" />`:null,item:({item:e,html:t})=>u(t,e)}},]})}()}();
