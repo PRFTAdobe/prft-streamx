@@ -54,6 +54,22 @@ export const addToCartEvent = async (event) => {
   }
 }
 
+export const purchaseOrderEvent = async (orderId, orderTotal) => {
+  var purchaseInfo = {
+    "purchaseID": orderId,
+    "orderTotal": orderTotal,
+    "purchaseEvent": {
+      "value": 1
+    }
+  };
+  window.adobeDataLayer.push({
+    "event":"eCommerce",
+    "_perficientincpartnersandbox": {
+      "purchase": purchaseInfo
+    }
+  });
+}
+
 const pageLoaded = async () =>{
   let pagePath = window.location.pathname;
   let pageType = document.body.hasAttribute("data-page-type") ? document.body.getAttribute("data-page-type") : "Content Page";

@@ -1,6 +1,7 @@
 import { checkoutMutations } from "./graphQLMutations/checkoutMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 import { utilities } from "./graphQLMutations/utility.js";
+import { purchaseOrderEvent } from "./analytics-functions.js"
 
 let address = {
     firstname: '',
@@ -141,9 +142,12 @@ const showStep3 = async () => {
 
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
+                var totalCost = document.querySelector(".total").innerHTML;
+                placeOrderEvent(placeOrderNumber, totalCost)
                 utilities.removeCartIDFromSS();
                 utilities.setCartQuantityToSS(0);
                 utilities.updateCartCountOnUI();
+
 
                 Array.from(step2).forEach((element) => {
                     element.classList.remove('block');
