@@ -301,7 +301,7 @@ import { addProductToCart } from './productUtilities.js';
 
       if (product.price) {
         btn.innerHTML = 'Add to Cart';
-        btn.addEventListener('click', () => addProductToCart(sku, 1));
+        btn.addEventListener('click', (event) => addProductToCart(sku, 1,event));
       } else {
         btnWrapper.classList.remove('justify-between');
         btnWrapper.classList.add('justify-end');
