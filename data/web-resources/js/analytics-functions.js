@@ -1,5 +1,5 @@
-function sendECommerceEvent(product){
-  let products = window.adobeDataLayer.getState("_perficientincpartnersandbox.product");
+const sendECommerceEvent = async (product) => {
+  let products = window.adobeDataLayer.getState ? window.adobeDataLayer.getState("_perficientincpartnersandbox.product") : [];
   if( !products ) products = [];
   
   let exists = false;
@@ -30,7 +30,7 @@ function sendECommerceEvent(product){
   return products;
 }
 
-function getProductDetails(event){
+const getProductDetails = async (event) => {
   let productDetailsJSON = null;
   if( document.body.getAttribute("data-page-type") === "Product Detail" ){
     //Detail Page
@@ -45,8 +45,8 @@ function getProductDetails(event){
   return productDetailsJSON ? JSON.parse(productDetailsJSON.replaceAll("\n","")):null;
 }
 
-function addToCart(event){
-  let productDetails = getProductDetails(event);
+export const addToCartEvent = async (event) => {
+  let productDetails = await getProductDetails(event);
   if (productDetails){
     let quantity = parseInt(document.querySelector("span.quantity")?.innerHTML || 1 );
     productDetails.cartAdd = {"value": 1,"quantity":quantity};//todo, update to not use innerHTML...
@@ -54,7 +54,7 @@ function addToCart(event){
   }
 }
 
-function pageLoaded(){
+const pageLoaded = async () =>{
   let pagePath = window.location.pathname;
   let pageType = document.body.hasAttribute("data-page-type") ? document.body.getAttribute("data-page-type") : "Content Page";
   if( pagePath === "/"){
@@ -90,22 +90,12 @@ function pageLoaded(){
     }
   });
   
-  let productDetails = getProductDetails();  
+  let productDetails = await getProductDetails();  
   if( productDetails ){
     productDetails.productImpression = {"value":1};
     sendECommerceEvent(productDetails);
   }
 }
 
-//add to cart logic
-function initAddToCartClick(){
-  const elements = document.getElementsByClassName("addToCart");
-  Array.from(elements).forEach(function(element) {
-    element.addEventListener('click', addToCart);
-  });
-}
-
 window.adobeDataLayer = window.adobeDataLayer || [];
-document.addEventListener("resultsLoaded", initAddToCartClick )
-initAddToCartClick();
 pageLoaded();

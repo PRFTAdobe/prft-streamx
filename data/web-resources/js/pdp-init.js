@@ -179,7 +179,7 @@ import { addIncreaseDecreaseQuantityAction } from './add-increase-decrease-quant
 
     const addToCartButton = document.querySelector('.addToCart');
 
-    const handleAddToCartClick = () => {
+    const handleAddToCartClick = (event) => {
 
       if (quantitySpan) {
         quantity = parseInt(quantitySpan?.innerText, 10);
@@ -188,7 +188,7 @@ import { addIncreaseDecreaseQuantityAction } from './add-increase-decrease-quant
       skuSelected = document.body.dataset.sku;
 
       if (quantity && skuSelected) {
-        addProductToCart(skuSelected, quantity);
+        addProductToCart(skuSelected, quantity, event);
       }
     };
 
