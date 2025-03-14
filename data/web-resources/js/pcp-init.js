@@ -385,7 +385,10 @@ import { addProductToCart } from './productUtilities.js';
 
     if(window.innerWidth < 600){
       const resultsContainer = document.getElementById('product-category-component');
-      resultsContainer.innerHTML = PLACEHOLDER_LCP_IMAGE;
+      resultsContainer.insertAdjacentHTML(
+        'afterbegin',
+        PLACEHOLDER_LCP_IMAGE,
+       ); 
     }
     
     fetchProductData();
