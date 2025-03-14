@@ -92,7 +92,8 @@ const addSpinnerSVG = (button) => {
   button.appendChild(wrapper);
 }
 const removeSpinnerSVG = (button) => {
-  button.removeChild(wrapper);
+  const spinner = button.querySelector(".spinner");
+  button.removeChild(spinner);
 }
 
 export const utilities = {
