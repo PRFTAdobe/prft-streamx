@@ -66,6 +66,16 @@ const updateCartCountOnUI = () => {
   document.querySelector('.cart-quantity').innerText = cartQuantity ? cartQuantity : 0;
 }
 
+const addCheckmarkSVG = (button) => {
+  let wrapper = document.createElement("div");
+  wrapper.class = "checkmark";
+  wrapper.innerHTML = `<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                      </svg>`
+  button.appendChild(wrapper);
+  setTimeout(()=>{button.removeChild(wrapper);},500);
+}
+
 export const utilities = {
   GRAPHQL_ENDPOINT,
   HEADERS,
@@ -84,5 +94,6 @@ export const utilities = {
   getActiveUserFromSS,
   setActiveUsertoSS,
   removeActiveUserFromSS,
-  updateCartCountOnUI
+  updateCartCountOnUI,
+  addCheckmarkSVG
 } 

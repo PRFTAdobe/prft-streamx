@@ -25,6 +25,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
         addToCartEvent(event);
         utilities.setCartQuantityToSS(cart.total_quantity);
         utilities.updateCartCountOnUI();
+        utilities.addCheckmarkSVG(event.currentTarget);
     }
 }
 
