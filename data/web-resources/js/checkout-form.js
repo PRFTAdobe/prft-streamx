@@ -142,7 +142,7 @@ const showStep3 = async () => {
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 utilities.removeCartIDFromSS();
-                utilities.removeCartQuantityFromSS();
+                utilities.setCartQuantityToSS(0);
                 utilities.updateCartCountOnUI();
 
                 Array.from(step2).forEach((element) => {
