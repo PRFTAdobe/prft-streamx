@@ -229,7 +229,7 @@ const empty = (value) =>
 
 const isEmptyValueStep1 = () => {
     const inputList = Array.from(
-        document.querySelectorAll('.checkout-form div:not(.hidden) .shipping-info'),
+        document.querySelectorAll('.checkout-form div>div:not(.hidden) .shipping-info'),
     );
 
     return inputList.some((element) =>
