@@ -7,7 +7,12 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
     let isError = false;
     let cartID = utilities.getCartIDFromSS();
     if (!cartID) {
-        cartID = await cartMutations.generateCartID();
+        if (utilities.getActiveUserFromSS()) {
+            cartID = await cartMutations.getCustomerCart();
+            cartID = cartID.id;
+        } else {
+            cartID = await cartMutations.generateCartID();
+        }
         utilities.setCartIDtoSS(cartID);
     }
     let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });

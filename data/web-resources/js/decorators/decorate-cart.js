@@ -170,6 +170,8 @@ export async function updateCartPage() {
 
             const items = cart.items;
             const itemsContainer = document.querySelector('.cart-items-container');
+            itemsContainer.innerHTML = '';
+
             items.forEach((item) => {
                 const div = document.createElement('div');
                 div.classList.add(
