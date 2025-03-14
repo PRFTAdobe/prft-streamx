@@ -4,7 +4,7 @@ import { userMutations } from "./graphQLMutations/userMutations.js";
 import { addToCartEvent } from "./analytics-functions.js"
 
 export const addProductToCart = async (sku, quantity = 1, event) => {
-    utilities.addSpinnerSVG(event.currentTarget);
+    utilities.addSpinnerSVG(event.target);
     let isError = false;
     let cartID = utilities.getCartIDFromSS();
     if (!cartID) {
@@ -31,7 +31,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
         addToCartEvent(event);
         utilities.setCartQuantityToSS(cart.total_quantity);
         utilities.updateCartCountOnUI();
-        utilities.addCheckmarkSVG(event.currentTarget);
+        utilities.addCheckmarkSVG(event.target);
     }
 }
 

@@ -67,7 +67,7 @@ const updateCartCountOnUI = () => {
 }
 
 const addCheckmarkSVG = (button) => {
-  removeSpinnerSVG();
+  removeSpinnerSVG(button);
   let wrapper = document.createElement("div");
   wrapper.class = "checkmark";
   wrapper.innerHTML = `<svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
@@ -78,7 +78,7 @@ const addCheckmarkSVG = (button) => {
 }
 const addSpinnerSVG = (button) => {
   let wrapper = document.createElement("div");
-  wrapper.class = "spinner";
+  wrapper.classList.add("spinner");
   wrapper.innerHTML = `<svg class="text-gray-300 animate-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
   width="24" height="24">
   <path
