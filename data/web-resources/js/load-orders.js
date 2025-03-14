@@ -28,8 +28,8 @@ export const loadMyOrders = async () => {
         }
         
         if (!isError) {
-            document.querySelector('.my-orders-content').classList.remove('hidden');
-            document.querySelector('.log-out-user').classList.add('hidden');
+            document.querySelector('.my-orders-content')?.classList.remove('hidden');
+            document.querySelector('.log-out-user')?.classList.add('hidden');
 
             const itemListEmptyElement = document.querySelector('.order-list-empty');
             const itemListElement = document.querySelector('.order-list-with-items');
