@@ -4,6 +4,7 @@ import { userMutations } from "./graphQLMutations/userMutations.js";
 import { addToCartEvent } from "./analytics-functions.js"
 
 export const addProductToCart = async (sku, quantity = 1, event) => {
+    utilities.addSpinnerSVG(event.currentTarget);
     let isError = false;
     let cartID = utilities.getCartIDFromSS();
     if (!cartID) {
@@ -39,8 +40,8 @@ const featuredProductsList = document.querySelectorAll('.product-listing__produc
 featuredProductsList?.forEach(featuredProductEle => {
     const productSKU = featuredProductEle.dataset.firstVariantSku;
     const addToCartCTA = featuredProductEle.querySelector('.addToCart');
-    addToCartCTA.addEventListener('click', () => {
-        addProductToCart(productSKU, 1)
+    addToCartCTA.addEventListener('click', (e) => {
+        addProductToCart(productSKU, 1, e)
     });
 });
 
