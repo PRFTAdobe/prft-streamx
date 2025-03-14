@@ -1,7 +1,7 @@
 import { utilities } from "./graphQLMutations/utility.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
-import { addToCartEvent } from "./analytics-functions.js"
+// import { addToCartEvent } from "./analytics-functions.js"
 
 export const addProductToCart = async (sku, quantity = 1, event) => {
     let isError = false;
@@ -22,7 +22,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
         console.log(cart.errors);
     }
     if (!isError) {
-        addToCartEvent(event);
+        // addToCartEvent(event);
         utilities.setCartQuantityToSS(cart.total_quantity);
         utilities.updateCartCountOnUI();
     }
