@@ -77,7 +77,7 @@ import { addProductToCart } from './productUtilities.js';
           fields: [category],
         },
         from: PER_PAGE * currentPage,
-        // size: PER_PAGE,
+        size: PER_PAGE,
       },
     };
 
