@@ -30,15 +30,16 @@ async>
         </button> -->
         <ul class="hidden lg:block" id="category-list"></ul>
       </aside>
-      <div
-        class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 md:col-span-2 lg:col-span-3"
-        id="product-list">
-        <div> </div>
+      <div class="grid md:col-span-2 lg:col-span-3">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
+          id="product-list">
+          <div> </div>
+        </div>
         <div class="hidden flex justify-center mt-8 mb-12 md:col-span-2 lg:col-span-3" id="load-more-button">
-          <button aria-label="Load more"
-            class="transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">
-            <span class="">Show More Products</span>
-          </button>
+            <button aria-label="Load more"
+              class="transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">
+              <span class="">Show More Products</span>
+            </button>
         </div>
       </div>
     </div>
