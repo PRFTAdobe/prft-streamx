@@ -162,7 +162,7 @@ const promoBannerTemplate = (content) => {
             d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z">
           </path>
           <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
-        </svg><span class="font-semibold" class="cf--promo-banner--pretilte">Special Offer - powered by AEM</span></div>
+        </svg><span class="font-semibold" class="cf--promo-banner--pretilte">Special Offer</span></div>
       <h2 class="text-2xl font-bold mb-2 cf--promo-banner--title">${content.bannerTitle}</h2>
       <p class="mb-4 cf--promo-banner--text">${content.bannerDescription.plaintext}</p>
       <div class="flex items-center gap-4">
