@@ -1,5 +1,7 @@
 //global vars
 const GRAPHQL_ENDPOINT = `/graphql`;
+const AEM_GRAPHQL_ENDPOINT = `/aemgraphql`;
+const CF_PROMO_PATH = `/content/dam/LumaX/shopping-cart/test-banner`;
 
 const HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -98,6 +100,8 @@ const removeSpinnerSVG = (button) => {
 
 export const utilities = {
   GRAPHQL_ENDPOINT,
+  AEM_GRAPHQL_ENDPOINT,
+  CF_PROMO_PATH,
   HEADERS,
   user01,
   user02,
