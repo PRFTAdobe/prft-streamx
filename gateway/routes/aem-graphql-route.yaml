@@ -21,9 +21,6 @@ spec:
           - lumax.streamx.com
         paths:
           - /aemgraphql
-      priority: 15
-      plugins:
-        redirect: 
-          uri: /graphql/execute.json      
+      priority: 15  
       upstreams:
         - name: aem-upstream
