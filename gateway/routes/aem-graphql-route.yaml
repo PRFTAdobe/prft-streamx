@@ -7,7 +7,7 @@ spec:
   passHost: node
   externalNodes:
     - type: Domain
-      name: https://publish-p7752-e729659.adobeaemcloud.com
+      name: publish-p7752-e729659.adobeaemcloud.com
 ---
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
