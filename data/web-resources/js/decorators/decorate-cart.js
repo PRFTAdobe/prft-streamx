@@ -176,7 +176,7 @@ const promoBannerTemplate = (content) => {
 };
 
 const enablePromoUI = (content) => {
-    const promoDiv = document.querySelector("cf--promo-banner--container");
+    const promoDiv = document.querySelector(".cf--promo-banner--container");
     promoDiv.innerHTML = promoBannerTemplate(content);
     promoDiv.classList.remove('hidden');
 }
