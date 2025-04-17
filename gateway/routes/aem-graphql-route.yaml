@@ -8,7 +8,9 @@ spec:
   externalNodes:
     - type: Domain
       name: https://publish-p7752-e729659.adobeaemcloud.com
-
+plugins:
+  redirect: 
+    uri: /graphql/execute.json
 ---
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
@@ -23,6 +25,5 @@ spec:
         paths:
           - /aemgraphql
       priority: 15
-      uri: /graphql/execute.json
       upstreams:
         - name: aem-upstream
