@@ -24,9 +24,3 @@ spec:
       priority: 15  
       upstreams:
         - name: aem-upstream
-      plugins:
-        - name: redirect
-          enable: true
-          uri: /graphql
-          ret_code: 302
-          append_query_string: true
