@@ -7,6 +7,6 @@ const fetchPromoContentFromCF = async () => {
     return promotionContent.data.shoppingCartBannerModelByPath.item;
   }
 
-  export const fragmentMutations = {
+  export const aemFragmentsMutations = {
     fetchPromoContentFromCF
   };

@@ -1,5 +1,5 @@
 import { updateItemQuantityInCart, removeItemFromCart, fetchCartByID } from "../productUtilities.js";
-import { fragmentMutations } from "../graphQLMutations/fragmentMutations.js";
+import { aemFragmentsMutations } from "../graphQLMutations/aemFragmentsMutations.js";
 import { utilities } from "../graphQLMutations/utility.js";
 
 
@@ -182,7 +182,7 @@ const enablePromoUI = (content) => {
 }
 
 const updatePromoUI = async () =>{
-    let promoData = await fragmentMutations.fetchPromoContentFromCF();
+    let promoData = await aemFragmentsMutations.fetchPromoContentFromCF();
     if(promoData){
         enablePromoUI(promoData);
     }
