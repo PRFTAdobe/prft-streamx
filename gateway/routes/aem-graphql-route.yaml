@@ -21,7 +21,8 @@ spec:
         hosts:
           - lumax.streamx.com
         paths:
-          - /graphql/execute
+          - /aemgraphql
       priority: 15
+      uri: /graphql/execute.json
       upstreams:
         - name: aem-upstream
