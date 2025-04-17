@@ -27,5 +27,5 @@ spec:
       plugins:
         - name: redirect
           enable: true
-          uri:
-          -  /graphql
+          uri: /graphql
+          ret_code: 302
