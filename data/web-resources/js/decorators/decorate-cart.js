@@ -149,9 +149,10 @@ const addIncreaseDecreaseQuantityAction = () => {
 };
 
 const promoBannerTemplate = (content) => {
+    const imageAlt = content.imagePath.title ? content.imagePath.title :  content.imagePath._path;
     return` <div class="flex flex-col md:flex-row items-center p-6">
     <div class="w-full md:w-1/4 mb-4 md:mb-0">
-      <img src="${content.asset.url}" alt="${content.asset.alttext}" class="cf--promo-banner--image w-full h-48 object-cover rounded-lg"></div>
+      <img src="${content.imagePath._publishUrl}" alt="${imageAlt}" class="cf--promo-banner--image w-full h-48 object-cover rounded-lg"></div>
     <div class="w-full md:w-3/4 md:pl-8 text-white">
       <div class="flex items-center gap-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -160,13 +161,13 @@ const promoBannerTemplate = (content) => {
             d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z">
           </path>
           <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
-        </svg><span class="font-semibold" class="cf--promo-banner--pretilte">${content.pretitle}</span></div>
-      <h2 class="text-2xl font-bold mb-2 cf--promo-banner--title">${content.title}</h2>
-      <p class="mb-4 cf--promo-banner--text">${content.text}</p>
+        </svg><span class="font-semibold" class="cf--promo-banner--pretilte">Special Offer - powered by AEM</span></div>
+      <h2 class="text-2xl font-bold mb-2 cf--promo-banner--title">${content.bannerTitle}</h2>
+      <p class="mb-4 cf--promo-banner--text">${content.bannerDescription.plaintext}</p>
       <div class="flex items-center gap-4">
-          <a class="cf--promo-banner--link" href="${content.cta.url}" data-discover="true">
+          <a class="cf--promo-banner--link" href="${content.ctaUrl}" data-discover="true">
               <button class="cf--promo-banner--CTA inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 bg-white text-dsg-red hover:bg-gray-100">
-                ${content.cta.text}
+                ${content.ctaText}
               </button>
           </a>
       </div>
@@ -183,7 +184,7 @@ const enablePromoUI = (content) => {
 const updatePromoUI = async () =>{
     let promoData = await fragmentMutations.fetchPromoContentFromCF();
     if(promoData){
-        enablePromoUI(promoData.content);
+        enablePromoUI(promoData);
     }
 }
 
