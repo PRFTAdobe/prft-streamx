@@ -20,7 +20,14 @@ spec:
         hosts:
           - lumax.streamx.com
         paths:
-          - /aemgraphql
-      priority: 15  
+          - /aemgraphql/*
+      priority: 15
+      plugins:
+        - name: proxy-rewrite
+          enable: true
+          config:
+            regex_uri:
+              - "^/aemgraphql/(.*)"
+              - "/graphql/$1"
       upstreams:
         - name: aem-upstream
