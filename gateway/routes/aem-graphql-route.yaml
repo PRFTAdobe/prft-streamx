@@ -29,5 +29,12 @@ spec:
             regex_uri:
               - "^/aemgraphql/(.*)"
               - "/graphql/$1"
+        - name: response-rewrite
+          enable: true
+          config:
+            headers:
+              Cache-Control: "no-store, no-cache, must-revalidate"
+              Pragma: "no-cache"
+              Expires: "0"
       upstreams:
         - name: aem-upstream
