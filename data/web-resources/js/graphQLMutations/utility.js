@@ -1,7 +1,7 @@
 //global vars
 const GRAPHQL_ENDPOINT = `/graphql`;
-const AEM_GRAPHQL_ENDPOINT = `/aemgraphql`;
-//const AEM_GRAPHQL_ENDPOINT = `https://publish-p7752-e729659.adobeaemcloud.com/graphql`;
+//const AEM_GRAPHQL_ENDPOINT = `/aemgraphql`;
+const AEM_GRAPHQL_ENDPOINT = `https://publish-p7752-e729659.adobeaemcloud.com/graphql`;
 const CF_PROMO_PATH = `/content/dam/LumaX/shopping-cart/test-banner`;
 
 const HEADERS = {
