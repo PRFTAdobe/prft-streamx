@@ -23,13 +23,15 @@ spec:
           - /aemgraphql/*
       priority: 15
       plugins:
-      - name: cors
-        enable: true
-        config:
-          allow_origins: "*"  # Change this to specific origins if needed
-          allow_methods: "*"   # Allow all HTTP methods
-          allow_headers: "*"   # Allow all headers
-          expose_headers: "*"  # Expose all headers
-          max_age: 3600
+        - name: proxy-rewrite
+          enable: true
+          headers:
+            set:
+              - "Cache-Control: no-cache, must-revalidate"
+              - "Pragma: no-cache"
+          config:
+            regex_uri:
+              - "^/aemgraphql/(.*)"
+              - "/graphql/$1"      
       upstreams:
         - name: aem-upstream
