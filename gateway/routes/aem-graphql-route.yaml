@@ -23,11 +23,13 @@ spec:
           - /aemgraphql/*
       priority: 15
       plugins:
+        - name: proxy-cache
+          nocache: true
         - name: proxy-rewrite
           enable: true
           headers:
             set:
-              - "Cache-Control: no-cache, must-revalidate"
+              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
               - "Pragma: no-cache"
           config:
             regex_uri:
