@@ -1,0 +1,39 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: aem-upstream
+spec:
+  scheme: https
+  passHost: node
+  externalNodes:
+    - type: Domain
+      name: publish-p7752-e729659.adobeaemcloud.com
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: aem-graphql-route
+spec:
+  http:
+    - name: aem-graphql-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /aemgraphql/*
+      priority: 15
+      plugins:
+        - name: proxy-cache
+          nocache: true
+        - name: proxy-rewrite
+          enable: true
+          headers:
+            set:
+              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
+              - "Pragma: no-cache"
+          config:
+            regex_uri:
+              - "^/aemgraphql/(.*)"
+              - "/graphql/$1"      
+      upstreams:
+        - name: aem-upstream
