@@ -37,7 +37,7 @@ spec:
             regex_uri:
               - "^/aemgraphql/(.*)"
               - "/graphql/$1" 
-              - "/etc.clientlibs/(.*)"
-              - "/content/experience-fragments/(.*)"
+              - "^/etc.clientlibs/(.*)"
+              - "^/content/experience-fragments/(.*)"
       upstreams:
         - name: aem-upstream
