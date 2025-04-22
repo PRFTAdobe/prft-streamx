@@ -35,9 +35,8 @@ spec:
               - "Pragma: no-cache"
           config:
             regex_uri:
-              - "^/aemgraphql/(.*)"
               - "/graphql/$1" 
-              - "^/etc.clientlibs/(.*)"
-              - "^/content/experience-fragments/(.*)"
+              - "/etc.clientlibs/$1"
+              - "/content/experience-fragments/$1"
       upstreams:
         - name: aem-upstream
