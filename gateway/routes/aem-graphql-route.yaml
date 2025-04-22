@@ -21,6 +21,8 @@ spec:
           - lumax.streamx.com
         paths:
           - /aemgraphql/*
+          - /etc.clientlibs/*
+          - /content/experience-fragments/*
       priority: 15
       plugins:
         - name: proxy-cache
@@ -33,7 +35,8 @@ spec:
               - "Pragma: no-cache"
           config:
             regex_uri:
-              - "^/aemgraphql/(.*)"
-              - "/graphql/$1"      
+              - "/graphql/$1" 
+              - "/etc.clientlibs/$1"
+              - "/content/experience-fragments/$1"
       upstreams:
         - name: aem-upstream
