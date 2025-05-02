@@ -1,5 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
+  "anyOf": [
+    {
+      "$ref": "#/definitions/SxProduct"
+    },
+    {
+      "$ref": "#/definitions/SxCategory"
+    }
+  ],
   "definitions": {
     "SxProduct": {
       "type": "object",
@@ -7,6 +15,7 @@
       "required": [
         "id",
         "sku",
+        "type",
         "slug",
         "name"
       ],
@@ -15,6 +24,9 @@
           "type": "string"
         },
         "sku": {
+          "type": "string"
+        },
+        "type": {
           "type": "string"
         },
         "lang": {
