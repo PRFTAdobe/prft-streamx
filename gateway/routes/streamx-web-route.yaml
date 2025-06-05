@@ -8,8 +8,9 @@ spec:
       match:
         hosts:
           - lumax.streamx.com
-        paths:
+        paths: 
           - /homepage.html
+          - /login.html
           - /cart.html
           - /my-orders.html
           - /sitemap.xml
