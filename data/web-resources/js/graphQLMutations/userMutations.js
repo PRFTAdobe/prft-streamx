@@ -23,6 +23,33 @@ const regenerateUserToken = async () => {
   utilities.setTokentoSS(newTokenResponse.token);
 }
 
+const createUser = async (userEmail, userPsw, firstname, lastname) => {
+    const query = JSON.stringify({
+      query: 
+        `mutation {
+          createCustomerV2(
+            input: {
+              firstname: "${firstname}",
+              lastname: "${lastname}",
+              email: "${userEmail}",
+              password: "${userPsw}",
+              is_subscribed: true
+            }
+          ) {
+            customer {
+              firstname,
+              lastname,
+              email,
+              is_subscribed,
+            }
+          }
+        }`});
+  
+    const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
+  
+    return response.data.generateCustomerToken;
+}
+
 const getCustomerOrders = async (token) => {
     const query = JSON.stringify({
       query: `{ customerOrders { items { order_number id created_at grand_total status items { id product_sku product_name quantity_ordered } } } }`
@@ -43,6 +70,7 @@ const customerQuery = async (token) => {
 }
 
 export const userMutations = {
+  createUser,
   getUserToken,
   customerQuery,
   regenerateUserToken,
