@@ -69,6 +69,16 @@ let shippingMethodObj = {
   return setShippingMethodResponse.errors ? setShippingMethodResponse : setShippingMethodResponse.data.setShippingMethodsOnCart.cart;
 }
 
+//set discount coupon
+const setDiscountCoupon = async (cartID, couponCode) => {
+  const query = JSON.stringify({
+    query: `mutation { applyCouponToCart( input: { cart_id: "${cartID}", coupon_code: "${couponCode}" } ) { cart { itemsV2 { items { product { name } quantity } total_count page_info { page_size current_page total_pages } } applied_coupons { code } prices { grand_total{ value currency } } } } }`,
+  });
+
+  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
+  const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.setPaymentMethodOnCart.cart;
+}
 //set payment method
 const setPaymentMethod = async (cartID, paymentCode="checkmo") => {
   const query = JSON.stringify({
@@ -126,6 +136,7 @@ export const checkoutMutations = {
   setShippingAddress,
   setBillingAddress,
   setShippingMethod,
+  setDiscountCoupon,
   setPaymentMethod,
   placeOrder,
   setPaymentMethodandPlaceOrder,
