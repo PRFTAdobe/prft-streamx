@@ -228,8 +228,31 @@ export async function updateCartPage() {
             document.querySelector('.subtotal').innerText = cart.prices.subtotal_excluding_tax.value;
             document.querySelector('.tax').innerText = cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value;
 
+            if (cart.applied_coupons != null) {
+                const discounts = cart.prices.discounts[0].amount.value;
+                document.querySelector('.discount-container').classList.remove('hidden');
+                document.querySelector('.discount').innerText = discounts;
+
+                document.querySelector('.discount-info').classList.add('hidden');
+                const p = document.createElement('p');
+                p.classList.add(
+                    'text-sm',
+                    'bg-light-gray',
+                    'p-1',
+                    'rounded'
+                );
+                p.innerHTML = cart.applied_coupons[0].code;
+
+                const couponApplied = document.querySelector('.coupon-applied');
+                couponApplied.appendChild(p);
+                couponApplied.classList.remove('hidden');
+
+                document.querySelector('#apply-discount').classList.add('hidden');
+                document.querySelector('#remove-discount').classList.remove('hidden');
+            }
+
             document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
-            document.querySelector('.total').innerText = parseFloat(cart.prices.subtotal_including_tax.value) + parseFloat(document.querySelector('.shipping').innerText);
+            document.querySelector('.total').innerText = parseFloat(cart.prices.grand_total.value) + parseFloat(document.querySelector('.shipping').innerText);
 
             document.querySelector('.checkout-button').addEventListener('click', () => {
                 document.querySelector('.shipping-information-content').classList.remove('hidden');

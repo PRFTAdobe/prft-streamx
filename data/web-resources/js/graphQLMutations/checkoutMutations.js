@@ -69,6 +69,28 @@ let shippingMethodObj = {
   return setShippingMethodResponse.errors ? setShippingMethodResponse : setShippingMethodResponse.data.setShippingMethodsOnCart.cart;
 }
 
+//set discount coupon
+const setDiscountCoupon = async (cartID, couponCode) => {
+  const query = JSON.stringify({
+    query: `mutation { applyCouponToCart( input: { cart_id: "${cartID}", coupon_code: "${couponCode}" } ) { cart{ items { uid product { name sku } quantity prices{ price{ currency value } total_item_discount{ currency value } discounts{ value } } } applied_coupons { code } prices { grand_total { value currency } subtotal_with_discount_excluding_tax{ value } discounts{ value } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } } } }`,
+  });
+
+  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
+  const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.applyCouponToCart.cart;
+}
+
+//remove discount coupon
+const removeDiscountCoupon = async (cartID) => {
+  const query = JSON.stringify({
+    query: `mutation { removeCouponFromCart( input: { cart_id: "${cartID}" } ) { cart{ items { uid product { name sku } quantity prices{ price{ currency value } total_item_discount{ currency value } discounts{ value } } } applied_coupons { code } prices { grand_total { value currency } subtotal_with_discount_excluding_tax{ value } discounts{ value } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } } } }`,
+  });
+
+  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
+  const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.removeCouponFromCart.cart;
+}
+
 //set payment method
 const setPaymentMethod = async (cartID, paymentCode="checkmo") => {
   const query = JSON.stringify({
@@ -109,7 +131,6 @@ const setGuestEmailOnCart = async (cartID, email) => {
   return response.errors ? response : response.data.setGuestEmailOnCart.cart;
 }
 
-
 //get regions
 const getRegionsByCountry = async (countryId="US") => {
   const query = JSON.stringify({
@@ -126,6 +147,8 @@ export const checkoutMutations = {
   setShippingAddress,
   setBillingAddress,
   setShippingMethod,
+  setDiscountCoupon,
+  removeDiscountCoupon,
   setPaymentMethod,
   placeOrder,
   setPaymentMethodandPlaceOrder,
