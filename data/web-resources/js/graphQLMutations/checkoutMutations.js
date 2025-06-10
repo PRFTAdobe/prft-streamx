@@ -77,7 +77,7 @@ const setDiscountCoupon = async (cartID, couponCode) => {
 
   const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
   const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
-  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.setPaymentMethodOnCart.cart;
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.applyCouponToCart.cart;
 }
 
 //set discount coupon
@@ -88,7 +88,7 @@ const removeDiscountCoupon = async (cartID) => {
 
   const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
   const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
-  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.setPaymentMethodOnCart.cart;
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.removeCouponFromCart.cart;
 }
 
 //set payment method
