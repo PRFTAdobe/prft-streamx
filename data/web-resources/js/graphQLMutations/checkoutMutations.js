@@ -80,7 +80,7 @@ const setDiscountCoupon = async (cartID, couponCode) => {
   return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.applyCouponToCart.cart;
 }
 
-//set discount coupon
+//remove discount coupon
 const removeDiscountCoupon = async (cartID) => {
   const query = JSON.stringify({
     query: `mutation { removeCouponFromCart( input: { cart_id: "${cartID}" } ) { cart{ items { uid product { name sku } quantity prices{ price{ currency value } total_item_discount{ currency value } discounts{ value } } } applied_coupons { code } prices { grand_total { value currency } subtotal_with_discount_excluding_tax{ value } discounts{ value } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } } } }`,
@@ -130,7 +130,6 @@ const setGuestEmailOnCart = async (cartID, email) => {
   const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
   return response.errors ? response : response.data.setGuestEmailOnCart.cart;
 }
-
 
 //get regions
 const getRegionsByCountry = async (countryId="US") => {
