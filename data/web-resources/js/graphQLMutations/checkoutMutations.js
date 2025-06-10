@@ -72,13 +72,25 @@ let shippingMethodObj = {
 //set discount coupon
 const setDiscountCoupon = async (cartID, couponCode) => {
   const query = JSON.stringify({
-    query: `mutation { applyCouponToCart( input: { cart_id: "${cartID}", coupon_code: "${couponCode}" } ) { cart { itemsV2 { items { product { name } quantity } total_count page_info { page_size current_page total_pages } } applied_coupons { code } prices { grand_total{ value currency } } } } }`,
+    query: `mutation { applyCouponToCart( input: { cart_id: "${cartID}", coupon_code: "${couponCode}" } ) { cart{ items { uid product { name sku } quantity prices{ price{ currency value } total_item_discount{ currency value } discounts{ value } } } applied_coupons { code } prices { grand_total { value currency } subtotal_with_discount_excluding_tax{ value } discounts{ value } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } } } }`,
   });
 
   const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
   const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
   return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.setPaymentMethodOnCart.cart;
 }
+
+//set discount coupon
+const removeDiscountCoupon = async (cartID) => {
+  const query = JSON.stringify({
+    query: `mutation { removeCouponFromCart( input: { cart_id: "${cartID}" } ) { cart{ items { uid product { name sku } quantity prices{ price{ currency value } total_item_discount{ currency value } discounts{ value } } } applied_coupons { code } prices { grand_total { value currency } subtotal_with_discount_excluding_tax{ value } discounts{ value } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } } } }`,
+  });
+
+  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getTokenFromSS()}`} : utilities.HEADERS;
+  const setPaymentMethodResponse = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
+  return setPaymentMethodResponse.errors ? setPaymentMethodResponse : setPaymentMethodResponse.data.setPaymentMethodOnCart.cart;
+}
+
 //set payment method
 const setPaymentMethod = async (cartID, paymentCode="checkmo") => {
   const query = JSON.stringify({
@@ -137,6 +149,7 @@ export const checkoutMutations = {
   setBillingAddress,
   setShippingMethod,
   setDiscountCoupon,
+  removeDiscountCoupon,
   setPaymentMethod,
   placeOrder,
   setPaymentMethodandPlaceOrder,
