@@ -275,6 +275,14 @@
   padding: inherit;
 }
 
+.bg-light-gray {
+  background-color: #EFEFEF;
+}
+
+.p-1 {
+  padding: calc(var(--spacing) * 1);
+}
+
 .w-100 {
   width: calc(var(--spacing) * 100);
 }
