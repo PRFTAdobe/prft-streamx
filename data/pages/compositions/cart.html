@@ -39,6 +39,13 @@
                             <span class="shipping"></span>
                         </span>
                     </div>
+                    <div class="discount-container flex justify-between hidden">
+                        <span>Discount</span>
+                        <span class="font-semibold">
+                            <span>- $</span>
+                            <span class="discount"></span>
+                        </span>
+                    </div>
                     <div class="border-t pt-4">
                         <div class="flex justify-between">
                             <span class="font-semibold">Total</span>
@@ -200,13 +207,33 @@
                                         <p>Please select a payment method</p>
                                     </div>
                                 </div>
+                                <div class="discount-container">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="street">Discount Coupon Code</label>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <input
+                                            class="discount-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="discount" required="" value="" />
+                                        <div class="hidden coupon-applied w-fit">
+                                        </div>
+                                        <button
+                                            class="transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-white hover:bg-white/40 text-dsg-red border border-dsg-red"
+                                            type="button" id="apply-discount">Apply</button>
+                                        <button
+                                            class="transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-white hover:bg-white/40 text-dsg-red border border-dsg-red hidden"
+                                            type="button" id="remove-discount">Remove coupon</button>
+                                    </div>
+                                    <div class="coupon-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                    </div>
+                                </div>
                             </div>
                             <div class="hidden mt-8 border-t pt-6 step-2">
                                 <div class="flex justify-between mb-4">
                                     <span class="font-semibold">Total</span>
                                     <span class="font-semibold">
                                         <span>$</span>
-                                        <span class="total"></span>
+                                        <span class="total total-payment"></span>
                                     </span>
                                 </div>
                                 <button

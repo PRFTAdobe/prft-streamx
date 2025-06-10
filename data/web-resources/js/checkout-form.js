@@ -110,6 +110,100 @@ const updateStep2State = async () => {
     return isError;
 };
 
+const applyDiscount = async () => {
+    const adButton = document.querySelector('#apply-discount');
+    let discountResponse;
+    let isError = false;
+    adButton.addEventListener('click', async () => {
+        const discountCoupon = document.querySelector('.discount-info').value;
+        if (discountCoupon != null) {
+            const cartID = utilities.getCartIDFromSS();
+            discountResponse = await checkoutMutations.setDiscountCoupon(cartID, discountCoupon);
+    
+            if (discountResponse.errors) {
+                isError = true;
+                if (discountResponse.errors[0].extensions?.category == 'graphql-authorization') {
+                    await userMutations.regenerateUserToken();
+                    discountResponse = await checkoutMutations.setDiscountCoupon(cartID, discountCoupon);
+                    isError = false;
+                }
+                
+                if (discountResponse.errors[0].extensions?.category == 'graphql-input') {
+                    await checkoutMutations.removeDiscountCoupon(cartID);
+                    discountResponse = await checkoutMutations.setDiscountCoupon(cartID, discountCoupon);
+                    isError = false;
+                }
+                    
+                console.log(discountResponse.errors);
+            }
+        }
+
+        if (isError) {
+            const error = document.querySelector('.coupon-error-message');
+            error.innerHTML = discountResponse.errors[0].message;
+            error.classList.remove('hidden');
+        } else {
+            const p = document.createElement('p');
+            p.classList.add(
+                'text-sm',
+                'bg-light-gray',
+                'p-1',
+                'rounded'
+            );
+            p.innerHTML = discountCoupon;
+
+            const couponApplied = document.querySelector('.coupon-applied');
+            couponApplied.appendChild(p);
+            couponApplied.classList.remove('hidden');
+            document.querySelector('#remove-discount').classList.remove('hidden');
+
+            adButton.classList.add('hidden');
+            document.querySelector('.discount-info').classList.add('hidden');
+
+            const total = discountResponse.prices.grand_total.value;
+            const shipping = document.querySelector('.shipping').textContent;
+            document.querySelector('.total-payment').innerHTML = parseFloat(shipping) + parseFloat(total);
+        }
+    });
+}
+
+const removeDiscount = async () => {
+    const rdButton = document.querySelector('#remove-discount');
+    let discountResponse;
+    let isError = false;
+    rdButton.addEventListener('click', async () => {
+        const cartID = utilities.getCartIDFromSS();
+        discountResponse = await checkoutMutations.removeDiscountCoupon(cartID);
+
+        if (discountResponse.errors) {
+            isError = true;
+            if (discountResponse.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken();
+                discountResponse = await checkoutMutations.removeDiscountCoupon(cartID);
+                isError = false;
+            }
+        }
+
+        if (isError) {
+            const error = document.querySelector('.coupon-error-message');
+            error.innerHTML = discountResponse.errors[0].message;
+            error.classList.remove('hidden');
+        } else {
+            const couponApplied = document.querySelector('.coupon-applied');
+            couponApplied.classList.add('hidden');
+            couponApplied.querySelector('p').remove();
+            rdButton.classList.add('hidden');
+            document.querySelector('.discount-info').classList.remove('hidden');
+            document.querySelector('.discount-info').value = "";
+            document.querySelector('#apply-discount').classList.remove('hidden');
+
+            const total = discountResponse.prices.grand_total.value;
+            const shipping = document.querySelector('.shipping').textContent;
+            document.querySelector('.total-payment').innerHTML = parseFloat(shipping) + parseFloat(total);
+        }
+    });
+}
+
 const showStep3 = async () => {
     let isError = await updateStep2State();
 
@@ -142,7 +236,7 @@ const showStep3 = async () => {
 
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
-                var totalCost = document.querySelector(".total").innerHTML;
+                var totalCost = document.querySelector(".total-payment").innerHTML;
                 purchaseOrderEvent(placeOrderNumber, totalCost);
                 utilities.removeCartIDFromSS();
                 utilities.setCartQuantityToSS(0);
@@ -320,6 +414,8 @@ if (location.href.includes('cart')) {
         document.querySelector('.email-input').classList.remove('hidden');
     }
     continuePaymentButton();
+    applyDiscount();
+    removeDiscount();
     placeOrderButton();
     updatePaymentoptions();
 }
