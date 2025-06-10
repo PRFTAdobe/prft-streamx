@@ -1,5 +1,32 @@
 import { utilities } from "./utility.js";
 
+const createUser = async (userEmail, userPsw, firstname, lastname) => {
+    const query = JSON.stringify({
+      query: 
+        `mutation {
+          createCustomerV2(
+            input: {
+              firstname: "${firstname}",
+              lastname: "${lastname}",
+              email: "${userEmail}",
+              password: "${userPsw}",
+              is_subscribed: true
+            }
+          ) {
+            customer {
+              firstname,
+              lastname,
+              email,
+              is_subscribed,
+            }
+          }
+        }`});
+
+    const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
+
+    return response.data.generateCustomerToken;
+}
+
 const getUserToken = async (userEmail, userPsw) => {
     const query = JSON.stringify({
       query: `mutation {
