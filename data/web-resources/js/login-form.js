@@ -51,9 +51,40 @@ const activeFormType = (newValue) => {
     return document.getElementById(FORM_ID).dataset[FORM_TYPE_ATTRIBUTE];
 }
 
-const submitLogin = (formSubmitEvent) => {
+const getUserResponseToken = (response) => {
+  return response.data?.generateCustomerToken?.token;
+}
+
+const userResponseHasErrors = (response) =>{
+  return response.errors !== undefined;
+}
+
+const getUserResponseError = (response) => {
+  return userResponseHasErrors(response) ? response.errors[0].message:null;
+}
+
+
+const showHideErrorMessage = (message) => {
+    let errorMessageEl = document.querySelector("p.errorMessage");
+
+    if( message === null || message === "" ){//empty, hide
+        errorMessageEl.innerText = "";
+        errorMessageEl.classList.add("invisible");
+    }else{
+        errorMessageEl.innerText = message;
+        errorMessageEl.classList.remove("invisible");
+    }
+}
+
+const submitLogin = async (formSubmitEvent) => {
     formSubmitEvent.preventDefault(); // Prevent default form submission
     // Get input values
+    var buttonClicked = formSubmitEvent.target;
+
+    //don't allow spamming the submit event!
+    buttonClicked.setAttribute("disabled", true);
+    utilities.addSpinnerSVG(buttonClicked);
+
     const formType = activeFormType();
     const username = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -68,9 +99,21 @@ const submitLogin = (formSubmitEvent) => {
 
     }
 
-    const token = userMutations.getUserToken(username, password);
-    utilities.setTokentoSS(token.token);
-
+    const response = await userMutations.getUserTokenResponse(username, password);
+    showHideErrorMessage(getUserResponseError(response));//if no error, message is null which will hide field.
+    if( !userResponseHasErrors(response) ){
+        //login success - store token and switch spinner to checkmark
+        utilities.addCheckmarkSVG(buttonClicked);
+        utilities.setTokentoSS(getUserResponseToken(response));
+        //window.location.url = "/";   
+        console.log("Logged in with:"+username);
+        console.log("Using token:"+getUserResponseToken(response));
+    }else{
+        //login failed, remove spinner and re-enable button.
+        utilities.removeSpinnerSVG(buttonClicked);
+        console.log("Found errors:"+getUserResponseError(response));
+    }
+    buttonClicked.removeAttribute("disabled");
 };
 
 init();
