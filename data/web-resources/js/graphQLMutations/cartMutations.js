@@ -41,7 +41,7 @@ const addProductToCart = async (cartID, cartItems) => {
 //update
 const updateProductInCart = async (cartID, uid, quantity) => {
   const query = JSON.stringify({
-    query: `mutation { updateCartItems( input: { cart_id: "${cartID}", cart_items: [ { cart_item_uid: "${uid}" quantity: ${quantity} } ] } ){ cart { items { product { name } quantity } total_quantity prices { grand_total{ value currency } } } } }`,
+    query: `mutation { updateCartItems( input: { cart_id: "${cartID}", cart_items: [ { cart_item_uid: "${uid}" quantity: ${quantity} } ] } ){ cart { items { product { name } quantity } total_quantity prices { grand_total{ value currency } discounts{ value amount{ currency value } } } } } }`,
     variables: {},
   });
 
