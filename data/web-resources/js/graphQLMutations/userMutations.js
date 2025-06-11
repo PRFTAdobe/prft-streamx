@@ -40,7 +40,7 @@ const getUserTokenResponse = async (userEmail, userPsw ) => {
 
 //depricated
 const getUserToken = async (userEmail, userPsw) => {
-    getUserTokenResponse(userEmail,userPsw);
+    response = await getUserTokenResponse(userEmail,userPsw);
     return response.data.generateCustomerToken;
 }
 
