@@ -99,6 +99,8 @@ const removeSpinnerSVG = (button) => {
   button.removeChild(spinner);
 }
 
+const formatCurrencyUS = (amount) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+
 export const utilities = {
   GRAPHQL_ENDPOINT,
   AEM_GRAPHQL_ENDPOINT,
@@ -121,5 +123,6 @@ export const utilities = {
   removeActiveUserFromSS,
   updateCartCountOnUI,
   addCheckmarkSVG,
-  addSpinnerSVG
+  addSpinnerSVG,
+  formatCurrencyUS
 } 

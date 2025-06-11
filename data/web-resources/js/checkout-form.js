@@ -161,8 +161,8 @@ const applyDiscount = async () => {
             document.querySelector('.discount-info').classList.add('hidden');
 
             const total = discountResponse.prices.grand_total.value;
-            const shipping = document.querySelector('.shipping').textContent;
-            document.querySelector('.total-payment').innerHTML = parseFloat(shipping) + parseFloat(total);
+            const shipping = (document.querySelector('.shipping').textContent).substring(1);
+            document.querySelector('.total-payment').innerHTML = utilities.formatCurrencyUS(total + parseFloat(shipping));
         }
     });
 }
@@ -198,8 +198,8 @@ const removeDiscount = async () => {
             document.querySelector('#apply-discount').classList.remove('hidden');
 
             const total = discountResponse.prices.grand_total.value;
-            const shipping = document.querySelector('.shipping').textContent;
-            document.querySelector('.total-payment').innerHTML = parseFloat(shipping) + parseFloat(total);
+            const shipping = (document.querySelector('.shipping').textContent).substring(1);
+            document.querySelector('.total-payment').innerHTML = utilities.formatCurrencyUS(total + parseFloat(shipping));
         }
     });
 }
