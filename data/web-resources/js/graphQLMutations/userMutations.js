@@ -21,14 +21,11 @@ const createUser = async (userEmail, userPsw, firstname, lastname) => {
             }
           }
         }`});
-
-    const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
-
-    return response.data.generateCustomerToken;
+    return await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
 }
 
-const getUserToken = async (userEmail, userPsw) => {
-    const query = JSON.stringify({
+const getUserTokenResponse = async (userEmail, userPsw ) => {
+      const query = JSON.stringify({
       query: `mutation {
         generateCustomerToken(email: "${userEmail}", password: "${userPsw}") {
           token
@@ -37,8 +34,13 @@ const getUserToken = async (userEmail, userPsw) => {
       variables: {},
     });
   
-    const response = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
-  
+    return await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
+}
+
+
+//depricated
+const getUserToken = async (userEmail, userPsw) => {
+    getUserTokenResponse(userEmail,userPsw);
     return response.data.generateCustomerToken;
 }
 
@@ -73,5 +75,7 @@ export const userMutations = {
   getUserToken,
   customerQuery,
   regenerateUserToken,
-  getCustomerOrders
+  getCustomerOrders,
+  getUserTokenResponse,
+  createUser
 };
