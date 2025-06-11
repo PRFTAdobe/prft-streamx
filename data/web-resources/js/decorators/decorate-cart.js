@@ -30,7 +30,7 @@ const updatePrice = async (el, price, quantity) => {
         if (discount != null && discount != "") {
             const value = response.prices.discounts[0].amount.value;
             if (value) {
-                document.querySelector('.discount-container .discount').innerText = value;
+                document.querySelector('.discount-container .discount').innerText = utilities.formatCurrencyUS(value);
                 total -= value;
             } else {
                 total -= parseFloat(discount.substring(1));
