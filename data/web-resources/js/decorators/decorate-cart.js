@@ -27,10 +27,10 @@ const updatePrice = async (el, price, quantity) => {
         document.querySelector('.subtotal').innerHTML = utilities.formatCurrencyUS(total);
         const discount = document.querySelector('.discount-container .discount').textContent;
         const shipping = document.querySelector('.shipping').textContent;
-        if (discount != null) {
+        if (discount != null && discount != "") {
             total -= parseFloat(discount.substring(1));
         }
-        if (shipping != null) {
+        if (shipping != null && discount != "") {
             total += parseFloat(shipping.substring(1));
         }
         document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
