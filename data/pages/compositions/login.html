@@ -23,11 +23,11 @@
                 <div class="signUpFields hidden grid grid-cols-2 gap-4">
                     <div class="space-y-2">
                         <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="firstName">First Name</label>
-                        <input type="text" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="firstName" name="firstName" required="" placeholder="John" value="">
+                        <input type="text" disabled="true" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="firstName" name="firstName" required="" placeholder="John" value="">
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="lastName">Last Name</label>
-                        <input type="text" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="lastName" name="lastName" required="" placeholder="Doe" value="">
+                        <input type="text" disabled="true" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="lastName" name="lastName" required="" placeholder="Doe" value="">
                     </div>
                 </div>
                 <div class="space-y-2">
@@ -77,7 +77,14 @@
                         Sign Up
                     </button>
                 </div>
-            </form>
+            </form>           
+            <div class="loginMessageContainer">
+                <p class="successMessage hidden text-sm">
+                    You have logged in successfully!<br/>
+                    You will be automatically redirected back to the homepage in 5 seconds...
+                </p>
+                <p class="errorMessage invisible text-sm text-dsg-red"></p>
+            </div>
             <div class="signInFields mt-6 text-center">
                 <p class="toggleFormText text-sm text-gray-600">Don't have an account?</p>
                 <button type="button" class="toggleForm signUp text-sm text-dsg-red hover:underline font-medium">Sign Up</button>
