@@ -4,7 +4,7 @@ import { utilities } from "../graphQLMutations/utility.js";
 
 
 const updateSubtotalPriceItem = (quantity, price) => {
-    return quantity * price;
+    return utilities.formatCurrencyUS(quantity * price);
 }
 
 const updatePrice = async (el, price, quantity) => {
@@ -19,15 +19,25 @@ const updatePrice = async (el, price, quantity) => {
     let total = 0;
     if (subtotal) {
         subtotal.forEach((el) => {
-            const value = el.textContent;
+            const value = (el.textContent).substring(1);
             if (value) {
-                total += parseInt(value);
+                total += parseFloat(value);
             }
         });
-        document.querySelector('.subtotal').innerHTML = document.querySelector('.total').innerHTML = total;
+        document.querySelector('.subtotal').innerHTML = utilities.formatCurrencyUS(total);
+        const discount = document.querySelector('.discount-container .discount').textContent;
+        const shipping = document.querySelector('.shipping').textContent;
+        if (discount != null) {
+            total -= parseFloat(discount.substring(1));
+        }
+        if (shipping != null) {
+            total += parseFloat(shipping.substring(1));
+        }
         document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
-            el.innerHTML = total;
+            el.innerHTML = utilities.formatCurrencyUS(total);
         });
+
+        document.querySelector('.total').innerHTML = utilities.formatCurrencyUS(total);
     }
 }
 
@@ -37,7 +47,7 @@ const removeItem = (cartID) => {
     if (removeItemButton) {
         removeItemButton.forEach((el) => {
             el.addEventListener('click', async () => {
-                const price = el.closest(".actions-container").previousElementSibling.querySelector(".value").textContent;
+                const price = (el.closest(".actions-container").previousElementSibling.querySelector(".value").textContent).substring(1);
                 updatePrice(el, price, 0);
                 const uid = el.closest(".item > div").dataset.uid;
                 el.closest('.item').remove();
@@ -62,7 +72,7 @@ const itemTemplate = (item) => `
         <div class="flex-1"><div data-discover="true">
             <h3 class="font-semibold text-lg mb-1">${item.product.name}</h3>
         </div>
-        <p class="text-gray-600 mb-2 price"><span>$</span><span class="value">${item.prices.price.value}</span>
+        <p class="text-gray-600 mb-2 price"><span class="value">${utilities.formatCurrencyUS(item.prices.price.value)}</span>
         </p>
         <div class="flex items-center space-x-4 actions-container">
             <div class="flex items-center space-x-2 quantity-container">
@@ -102,7 +112,7 @@ const itemTemplate = (item) => `
         </div>
     </div>
     <div class="text-right">
-        <p class="font-semibold text-lg"><span>$</span><span class="subtotal-item">${updateSubtotalPriceItem(item.quantity, item.prices.price.value)}</span></p>
+        <p class="font-semibold text-lg"><span class="subtotal-item">${updateSubtotalPriceItem(item.quantity, item.prices.price.value)}</span></p>
     </div>
 </div>`;
 
@@ -110,7 +120,7 @@ const addIncreaseDecreaseQuantityAction = () => {
     const quantityContainer = document.querySelectorAll('.quantity-container');
     if (quantityContainer) {
         quantityContainer.forEach((el) => {
-            const price = el.closest(".actions-container").previousElementSibling.querySelector(".value").textContent;
+            const price = (el.closest(".actions-container").previousElementSibling.querySelector(".value").textContent).substring(1);
 
             let quantity = parseInt(
                 el.querySelector('span')?.textContent ?? '1',
@@ -225,13 +235,13 @@ export async function updateCartPage() {
             });
             addIncreaseDecreaseQuantityAction();
 
-            document.querySelector('.subtotal').innerText = cart.prices.subtotal_excluding_tax.value;
-            document.querySelector('.tax').innerText = cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value;
+            document.querySelector('.subtotal').innerText = utilities.formatCurrencyUS(cart.prices.subtotal_excluding_tax.value);
+            document.querySelector('.tax').innerText = utilities.formatCurrencyUS(cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value);
 
             if (cart.applied_coupons != null) {
                 const discounts = cart.prices.discounts[0].amount.value;
                 document.querySelector('.discount-container').classList.remove('hidden');
-                document.querySelector('.discount').innerText = discounts;
+                document.querySelector('.discount').innerText = utilities.formatCurrencyUS(discounts);
 
                 document.querySelector('.discount-info').classList.add('hidden');
                 const p = document.createElement('p');
@@ -251,8 +261,10 @@ export async function updateCartPage() {
                 document.querySelector('#remove-discount').classList.remove('hidden');
             }
 
-            document.querySelector('.shipping').innerText = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
-            document.querySelector('.total').innerText = parseFloat(cart.prices.grand_total.value) + parseFloat(document.querySelector('.shipping').innerText);
+            const shipping = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
+            const tot = cart.prices.grand_total.value + shipping;
+            document.querySelector('.shipping').innerText = utilities.formatCurrencyUS(shipping);
+            document.querySelector('.total').innerText = utilities.formatCurrencyUS(tot);
 
             document.querySelector('.checkout-button').addEventListener('click', () => {
                 document.querySelector('.shipping-information-content').classList.remove('hidden');
