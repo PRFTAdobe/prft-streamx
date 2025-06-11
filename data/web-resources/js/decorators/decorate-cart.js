@@ -11,8 +11,8 @@ const updatePrice = async (el, price, quantity) => {
     const cartID = utilities.getCartIDFromSS();
 
     const uid = el.closest(".item > div").dataset.uid;
-    await updateItemQuantityInCart(cartID, uid, quantity);
-
+    const response = await updateItemQuantityInCart(cartID, uid, quantity);
+    
     el.closest(".item").querySelector(".subtotal-item").innerHTML = updateSubtotalPriceItem(quantity, price);
 
     const subtotal = document.querySelectorAll(".item:not(.hidden) .subtotal-item");
@@ -28,7 +28,13 @@ const updatePrice = async (el, price, quantity) => {
         const discount = document.querySelector('.discount-container .discount').textContent;
         const shipping = document.querySelector('.shipping').textContent;
         if (discount != null && discount != "") {
-            total -= parseFloat(discount.substring(1));
+            const value = response.prices.discounts[0].amount.value;
+            if (value) {
+                document.querySelector('.discount-container .discount').innerText = value;
+                total -= value;
+            } else {
+                total -= parseFloat(discount.substring(1));
+            }
         }
         if (shipping != null && discount != "") {
             total += parseFloat(shipping.substring(1));

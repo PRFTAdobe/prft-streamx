@@ -81,6 +81,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
         utilities.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
+    return response;
 }
 
 export const fetchCartByID = async (cartID) => {
