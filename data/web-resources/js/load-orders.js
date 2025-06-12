@@ -11,7 +11,7 @@ const formatDateLocale = (dateString) => {
 };
 
 export const loadMyOrders = async () => {
-    const activeToken = utilities.getActiveUserFromSS() ? utilities.getTokenFromSS : null;
+    const activeToken = utilities.getActiveUserFromSS() ? utilities.getTokenFromSS() : null;
 
     if (activeToken != null) {
         let orders = await userMutations.getCustomerOrders(activeToken);
