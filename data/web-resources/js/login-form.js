@@ -69,10 +69,10 @@ const showHideErrorMessage = (message) => {
 
     if( message === null || message === "" ){//empty, hide
         errorMessageEl.innerText = "";
-        errorMessageEl.classList.add("invisible");
+        errorMessageEl.classList.add("hidden");
     }else{
         errorMessageEl.innerText = message;
-        errorMessageEl.classList.remove("invisible");
+        errorMessageEl.classList.remove("hidden");
     }
 }
 
