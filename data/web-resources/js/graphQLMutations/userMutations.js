@@ -45,6 +45,7 @@ const getUserToken = async (userEmail, userPsw) => {
 }
 
 //to be called when current token has expired
+//TODO: Update for any user type.. (request password re-entry)
 const regenerateUserToken = async () => {
   const activeUser = utilities.getActiveUserFromSS();
   const activeUserCreds = activeUser == 'user01' ? utilities.user01 : utilities.user02;
