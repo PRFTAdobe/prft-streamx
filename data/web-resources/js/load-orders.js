@@ -11,7 +11,7 @@ const formatDateLocale = (dateString) => {
 };
 
 export const loadMyOrders = async () => {
-    const activeToken = utilities.getActiveUserFromSS() ? utilities.getTokenFromSS() : null;
+    const activeToken = utilities.getActiveUserFromSS() ? utilities.getActiveLoginToken() : null;
 
     if (activeToken != null) {
         let orders = await userMutations.getCustomerOrders(activeToken);
@@ -22,7 +22,7 @@ export const loadMyOrders = async () => {
             console.log(orders.errors);
             if (orders.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken();
-                orders = await userMutations.getCustomerOrders(utilities.getTokenFromSS());
+                orders = await userMutations.getCustomerOrders(utilities.getActiveLoginToken());
                 isError = false;
             }
         }

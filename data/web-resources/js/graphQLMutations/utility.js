@@ -4,6 +4,11 @@ const AEM_GRAPHQL_ENDPOINT = `/aemgraphql`;
 //const AEM_GRAPHQL_ENDPOINT = `https://publish-p7752-e729659.adobeaemcloud.com/graphql`;
 const CF_PROMO_PATH = `/content/dam/LumaX/shopping-cart/test-banner`;
 
+//Session Storage Keys
+const ACTIVE_USER_KEY = "active_user";
+const CART_ID_KEY = "shoppingCartID";
+const CART_QUANTITY = "shoppingCartQuantity";
+
 const HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'mode': 'no-cors',
@@ -37,36 +42,45 @@ const fetchRequests = async (url, method, headers, body) => {
     const response = await fetch(url, requestOptions);
     return await response.json();
 }
-
+const getTokenKeyForUser = (userID) => {
+  //base64 encoded for privacy
+  return btoa(userID)+"_token";
+}
   // getter setter - cartID on Local storage
-const getCartIDFromSS = () => sessionStorage.getItem("shoppingCartID");
-const setCartIDtoSS = (cartID) => sessionStorage.setItem("shoppingCartID", cartID);
-const removeCartIDFromSS = () => sessionStorage.removeItem("shoppingCartID");
+const getCartIDFromSS = () => sessionStorage.getItem(CART_ID_KEY);
+const setCartIDtoSS = (cartID) => sessionStorage.setItem(CART_ID_KEY, cartID);
+const removeCartIDFromSS = () => sessionStorage.removeItem(CART_ID_KEY);
 
-const getCartQuantityFromSS = () => sessionStorage.getItem("shoppingCartQuantity");
-const setCartQuantityToSS = (quantity) => sessionStorage.setItem("shoppingCartQuantity", quantity);
-const removeCartQuantityFromSS = () => sessionStorage.removeItem("shoppingCartQuantity");
+const getCartQuantityFromSS = () => sessionStorage.getItem(CART_QUANTITY);
+const setCartQuantityToSS = (quantity) => sessionStorage.setItem(CART_QUANTITY, quantity);
+const removeCartQuantityFromSS = () => sessionStorage.removeItem(CART_QUANTITY);
 
-// getter setter user token 
-const getUser1TokenFromSS = () => sessionStorage.getItem("user1_token");
-const setUser1TokentoSS = (userToken) => sessionStorage.setItem("user1_token", userToken);
-const removeUser1TokenFromSS = () => sessionStorage.removeItem("user1_token");
+const getActiveUserFromSS = () => sessionStorage.getItem(ACTIVE_USER_KEY);
+const setActiveUsertoSS = (user) => sessionStorage.setItem(ACTIVE_USER_KEY, user);
+const removeActiveUserFromSS = () => sessionStorage.removeItem(ACTIVE_USER_KEY);
 
-const getUser2TokenFromSS = () => sessionStorage.getItem("user2_token");
-const setUser2TokentoSS = (userToken) => sessionStorage.setItem("user2_token", userToken);
-const removeUser2TokenFromSS = () => sessionStorage.removeItem("user2_token");
+const getActiveLoginToken = () => {
+  let activeUser = getActiveUserFromSS();
+  let token_key = getTokenKeyForUser(activeUser);
+  return sessionStorage.getItem(token_key);
+}
 
-const getActiveUserFromSS = () => sessionStorage.getItem("active_user");
-const setActiveUsertoSS = (user) => sessionStorage.setItem("active_user", user);
-const removeActiveUserFromSS = () => sessionStorage.removeItem("active_user");
+const storeLoginSession = (user,userToken) => {
+  setActiveUsertoSS(user);
+  let token_key = getTokenKeyForUser(user)
+  sessionStorage.setItem(token_key, userToken);
+}
 
-const getTokenFromSS = () => getActiveUserFromSS() == 'user01' ? getUser1TokenFromSS() : getUser2TokenFromSS();
-const setTokentoSS = (userToken) => getActiveUserFromSS() == 'user01' ? setUser1TokentoSS(userToken) : setUser2TokentoSS(userToken); 
-const removeTokenFromSS = () => getActiveUserFromSS() == 'user01' ? removeUser1TokenFromSS() : removeUser2TokenFromSS(); 
+const removeLoginSession = () => {
+  let activeUser = getActiveUserFromSS();
+  let token_key = getTokenKeyForUser(activeUser);
+  sessionStorage.removeItem(token_key);
+  sessionStorage.removeItem(ACTIVE_USER_KEY);
+}
 
 const updateCartCountOnUI = () => { 
   const cartQuantity = getCartQuantityFromSS(); 
-  document.querySelector('.cart-quantity').innerText = cartQuantity ? cartQuantity : 0;
+  document.querySelector('.cart-quantity')?.innerText = cartQuantity ? cartQuantity : 0;
 }
 
 const addCheckmarkSVG = (button) => {
@@ -115,9 +129,6 @@ export const utilities = {
   getCartQuantityFromSS,
   setCartQuantityToSS,
   removeCartQuantityFromSS,
-  getTokenFromSS,
-  setTokentoSS,
-  removeTokenFromSS,
   getActiveUserFromSS,
   setActiveUsertoSS,
   removeActiveUserFromSS,

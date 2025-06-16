@@ -3,11 +3,11 @@ import { cartMutations } from './graphQLMutations/cartMutations.js';
 import { userMutations } from './graphQLMutations/userMutations.js';
 import { updateCartPage } from './decorators/decorate-cart.js';
 import { loadMyOrders, updateOnLogOut } from './load-orders.js';
-
+//depricated
 const updateToken = async (activeUserCreds) => {
-    if (!utilities.getTokenFromSS()) {
+    if (!utilities.getActiveLoginToken()) {
         const token = await userMutations.getUserToken(activeUserCreds.email, activeUserCreds.password);
-        utilities.setTokentoSS(token.token)
+        utilities.storeLoginSession(activeUserCreds.email,token.token)
     }
 }
 
@@ -42,9 +42,8 @@ const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
     utilities.updateCartCountOnUI();
 }
 
-const onLoginHandler = async (activeUser, activeUserCreds) => {
-    utilities.setActiveUsertoSS(activeUser);
-
+//depricated - please use methods in login-form for non-hardcoded users.
+const onLoginHandler = async (activeUserCreds) => {
     await updateToken(activeUserCreds);
     await updateCartDetailsOnLoad(true);
 
@@ -58,6 +57,7 @@ const onLoginHandler = async (activeUser, activeUserCreds) => {
     }
 }
 
+//depricated - please use methods in login-form for non-hardcoded users.
 const onLogoutHandler = async () => {
     utilities.removeCartQuantityFromSS();
     utilities.removeActiveUserFromSS();
@@ -71,12 +71,18 @@ const onLogoutHandler = async () => {
         updateOnLogOut();
     }
 }
-
+//depricated - please use methods in login-form for non-hardcoded users.
 async function signIn(user) {
-    const activeUserCreds = user == 'user01' ? utilities.user01 : utilities.user02;
-    await onLoginHandler(user, activeUserCreds);
+    let activeUserCreds;
+    if( user === "user01" || user === utilities.user01.email){
+        activeUserCreds = utilities.user01;
+    }else if (user === "user02" || user === utilities.user02.email ){
+        activeUserCreds = utilities.user02;
+    }
+    
+    await onLoginHandler(activeUserCreds);
 
-    const userToken = utilities.getTokenFromSS();
+    const userToken = utilities.getActiveLoginToken();
     const firstname = activeUserCreds.firstname;
 
     if (userToken !== null) {
