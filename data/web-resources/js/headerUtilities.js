@@ -1,15 +1,6 @@
 import { utilities } from './graphQLMutations/utility.js';
 import { cartMutations } from './graphQLMutations/cartMutations.js';
 import { userMutations } from './graphQLMutations/userMutations.js';
-import { updateCartPage } from './decorators/decorate-cart.js';
-import { loadMyOrders, updateOnLogOut } from './load-orders.js';
-//depricated
-const updateToken = async (activeUserCreds) => {
-    if (!utilities.getActiveLoginToken()) {
-        const token = await userMutations.getUserToken(activeUserCreds.email, activeUserCreds.password);
-        utilities.storeLoginSession(activeUserCreds.email,token.token)
-    }
-}
 
 const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
     if (isLoggedIn) {
@@ -42,142 +33,12 @@ const updateCartDetailsOnLoad = async (isLoggedIn = false) => {
     utilities.updateCartCountOnUI();
 }
 
-//depricated - please use methods in login-form for non-hardcoded users.
-const onLoginHandler = async (activeUserCreds) => {
-    await updateToken(activeUserCreds);
-    await updateCartDetailsOnLoad(true);
-
-    if (location.href.includes('cart')) {
-        await updateCartPage();
-        document.querySelector('.shipping-information-content').classList.add('hidden');
-        document.querySelector('.email-input').classList.add('hidden');
-    }
-    if (location.href.includes('my-orders')) {
-        await loadMyOrders();
-    }
-}
-
-//depricated - please use methods in login-form for non-hardcoded users.
-const onLogoutHandler = async () => {
-    utilities.removeCartQuantityFromSS();
-    utilities.removeActiveUserFromSS();
-    utilities.removeCartIDFromSS();
-    updateCartDetailsOnLoad();
-
-    if (location.href.includes('cart')) {
-        await updateCartPage();
-    }
-    if (location.href.includes('my-orders')) {
-        updateOnLogOut();
-    }
-}
-//depricated - please use methods in login-form for non-hardcoded users.
-async function signIn(user) {
-    let activeUserCreds;
-    if( user === "user01" || user === utilities.user01.email){
-        activeUserCreds = utilities.user01;
-    }else if (user === "user02" || user === utilities.user02.email ){
-        activeUserCreds = utilities.user02;
-    }
-    
-    await onLoginHandler(activeUserCreds);
-
-    const userToken = utilities.getActiveLoginToken();
-    const firstname = activeUserCreds.firstname;
-
-    if (userToken !== null) {
-        const loggedTitle = document.querySelector('.close-title h5');
-        const signInInfo = document.querySelector('.sign-in-information');
-        const loggedUser = document.querySelector('.logged-user');
-        const welcomeMsg = document.querySelector('.welcome-message');
-        const logOutBtn = document.querySelector('.sign-in-buttons button');
-
-        loggedTitle.innerHTML = 'Profile';
-        welcomeMsg.innerHTML = `Welcome, ${firstname}!`;
-        signInInfo.classList.add('hidden');
-        loggedUser.classList.remove('hidden');
-        logOutBtn.classList.remove('hidden');
-    }
-}
-
-function createSignIn() {
-    const activeUser = utilities.getActiveUserFromSS();
-
-    let activeUserCreds, userName;
-
-    if (activeUser !== null) {
-        activeUserCreds = activeUser == 'user01' ? utilities.user01 : utilities.user02;
-        userName = activeUserCreds.firstname;
-    }
-
-    let navTools = document.querySelector('.nav');
-    let signInHtml = document.createElement("div");
-
-    signInHtml.classList.add(...['sign-in', 'absolute', 'md:right-4', 'w-full', 'md:w-100', 'z-10', 'bg-white', 'hidden', 'shadow-sm']);
-
-    signInHtml.innerHTML = `
-      <div class ="sign-in-wrapper px-6 py-4 grid gap-4 w-full">
-        <div class="close-title flex items-center justify-between">
-          <h5 class="w-full  sign-in-message">${activeUser ? 'Profile' : 'Sign-In To Your Account'}</h5>
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" fill="currentColor" width="16" height="16" viewBox="0 0 24 24">
-          <path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"></path>
-          </svg>
-        </div>
-        <form class="sign-in-information flex justify-center gap-4 ${activeUser ? 'hidden' : ''}">
-          <small class="hidden">The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.</small>
-          <div class="persona1 flex flex-col items-center px-3 py-4 border rounded-md cursor-pointer">
-            <span>Persona1</span>
-            <svg height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </div>
-          <div class="persona2 flex flex-col items-center px-3 py-4 border rounded-md cursor-pointer">
-            <span>Persona2</span>
-            <svg height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </div>
-        </form>
-        <div class="logged-user ${activeUser ? '' : 'hidden'}"">
-          <span class="welcome-message">${activeUser ? `Welcome, ${userName}!` : ''}</span>
-          <br/>
-          <a href="/my-orders.html" >My orders</a>
-        </div>
-        <div class="sign-in-buttons flex items-center flex-col flex-wrap">
-          <button type="submit" id="log-out" class="${activeUser ? '' : 'hidden'} text-dsg-red">Log Out</button>
-        </div>
-      </div>
-    `;
-    navTools.append(signInHtml);
-
-    const persona1 = document.querySelector('.persona1');
-    const persona2 = document.querySelector('.persona2');
-    const closeBtn = document.querySelector('.close-title svg');
-    const logOutBtn = document.querySelector('#log-out');
-    const loggedTitle = document.querySelector('.close-title h5');
-    const signInInfo = document.querySelector('.sign-in-information');
-    const loggedUser = document.querySelector('.logged-user');
-
-    persona1.addEventListener('click', () => {
-        signIn("user01");
-    });
-    persona2.addEventListener('click', () => {
-        signIn("user02");
-    });
-
-    closeBtn.addEventListener('click', () => {
-        document.querySelector('.sign-in').classList.add('hidden');
-    });
-
-    logOutBtn.addEventListener('click', async () => {
-        loggedTitle.innerHTML = 'Sign-In To Your Account';
-        signInInfo.classList.remove('hidden');
-        loggedUser.classList.add('hidden');
-        logOutBtn.classList.add('hidden');
-        await onLogoutHandler();
-    });
-}
-
 function importSearch() {
     import('./autocomplete-init.js');
 }
 
+// TODO: Adjust this code to be shared with EDS (i.e create js module and reference it 
+// from both decorate[eds] and streamx[this section])
 function initHeader() {
     const navBlock = document.querySelector('.nav');
     const logo = navBlock.querySelector('.logo');
@@ -193,6 +54,8 @@ function initHeader() {
     const logoAsset = anchorElement.querySelector('img');
     logoAsset.classList.add(...['h-10', 'w-27']);
 
+
+    //call shared function here...
     const container = document.createElement('div');
     container.classList.add(...['container', 'mx-auto', 'px-4', 'py-4']);
 
@@ -315,14 +178,19 @@ function initHeader() {
 
     accountButton.append(accountIcon);
     accountButton.addEventListener('click', () => {
-        document.querySelector('.sign-in').classList.toggle('hidden');
-    })
+        let loggedIn = utilities.getActiveUserFromSS();
+        if( loggedIn ){
+            document.querySelector('.sign-in').classList.toggle('hidden')
+        }else{
+            window.location.pathname = "/login.html"
+        }     
+    });
 
     const cartButton = document.createElement('a');
 
     cartButton.classList.add(...buttonClassList, ...['relative']);
     cartButton.setAttribute('type', 'button');
-    cartButton.setAttribute('aria-label', 'carbutton');
+    cartButton.setAttribute('aria-label', 'cart button');
 
     const cartIcon = document.createElementNS(
         'http://www.w3.org/2000/svg',
@@ -478,13 +346,9 @@ function initHeader() {
     navBlock.classList.add(
         ...['bg-white', 'border-b', 'border-gray-200', 'w-full'],
     );
+
+    navBlock.classList.remove("hidden");
 }
 
-initHeader();
 importSearch();
-createSignIn();
-
-export const headerUtilities = {
-    onLoginHandler,
-    onLogoutHandler
-}
+initHeader();

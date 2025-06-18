@@ -11,6 +11,11 @@ const SIGNUP_FORM = "createUser";
 
 
 const init = ()=> {
+    if( utilities.getActiveUserFromSS() ){
+        //if user is logged in, redirect to my-orders
+        window.location.pathname = "/my-orders.html";
+    }
+
     document.querySelectorAll('.toggleForm').forEach(
         (element) => {
             element.addEventListener('click', toggleForm);
