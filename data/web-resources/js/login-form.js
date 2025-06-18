@@ -104,7 +104,7 @@ const submitLogin = async (formSubmitEvent) => {
     if( !userResponseHasErrors(response) ){
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
-        utilities.setTokentoSS(getUserResponseToken(response));
+        utilities.storeLoginSession(username,getUserResponseToken(response));
         //window.location.url = "/";   
         console.log("Logged in with:"+username);
         console.log("Using token:"+getUserResponseToken(response));

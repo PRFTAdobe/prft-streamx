@@ -80,7 +80,7 @@ const removeLoginSession = () => {
 
 const updateCartCountOnUI = () => { 
   const cartQuantity = getCartQuantityFromSS(); 
-  document.querySelector('.cart-quantity')?.innerText = cartQuantity ? cartQuantity : 0;
+  document.querySelector('.cart-quantity').innerText = cartQuantity ? cartQuantity : 0;
 }
 
 const addCheckmarkSVG = (button) => {
@@ -123,6 +123,8 @@ export const utilities = {
   user01,
   user02,
   fetchRequests,
+  getActiveLoginToken,
+  storeLoginSession,
   getCartIDFromSS,
   setCartIDtoSS,
   removeCartIDFromSS,
