@@ -34,9 +34,6 @@ spec:
               - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
               - "Pragma: no-cache"
           config:
-            regex_uri:
-              - "/graphql/$1"
-              - "/etc.clientlibs/$1"
-              - "/content/experience-fragments/$1"
+            regex_uri: ["^/aemgraphql/(.*)","/graphql/$1","^/etc.clientlibs/(.*)","/etc.clientlibs/$1","^/content/experience-fragments/(.*)","/content/experience-fragments/$1"]
       upstreams:
         - name: aem-upstream
