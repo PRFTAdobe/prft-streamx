@@ -1,4 +1,6 @@
-import { utilities } from "./graphQLMutations/utility.js";
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
+
 import { userMutations } from "./graphQLMutations/userMutations.js"
 
 const FORM_ID = "loginForm";
@@ -11,7 +13,7 @@ const SIGNUP_FORM = "createUser";
 
 
 const init = ()=> {
-    if( utilities.getActiveUserFromSS() ){
+    if( userSession.getActiveUserFromSS() ){
         //if user is logged in, redirect to my-orders
         window.location.pathname = "/my-orders.html";
     }
@@ -109,7 +111,7 @@ const submitLogin = async (formSubmitEvent) => {
     if( !userResponseHasErrors(response) ){
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
-        utilities.storeLoginSession(username,getUserResponseToken(response));
+        userSession.storeLoginSession(username,getUserResponseToken(response));
         //window.location.url = "/";   
         console.log("Logged in with:"+username);
         console.log("Using token:"+getUserResponseToken(response));

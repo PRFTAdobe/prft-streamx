@@ -1,4 +1,6 @@
-import { utilities } from "./utility.js";
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
+
 
 const createUser = async (userEmail, userPsw, firstname, lastname) => {
     const query = JSON.stringify({
@@ -47,10 +49,10 @@ const getUserToken = async (userEmail, userPsw) => {
 //to be called when current token has expired
 //TODO: Update for any user type.. (request password re-entry)
 const regenerateUserToken = async () => {
-  const activeUser = utilities.getActiveUserFromSS();
-  const activeUserCreds = activeUser == 'user01' ? utilities.user01 : utilities.user02;
+  const activeUser = userSession.getActiveUserFromSS();
+  const activeUserCreds = activeUser == 'user01' ? userSession.user01 : userSession.user02;
   const newTokenResponse = await getUserToken(activeUserCreds.email, activeUserCreds.password)
-  utilities.setTokentoSS(newTokenResponse.token);
+  userSession.setTokentoSS(newTokenResponse.token);
 }
 
 const getCustomerOrders = async (token) => {

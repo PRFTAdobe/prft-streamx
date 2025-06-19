@@ -1,4 +1,5 @@
-import { utilities } from "./graphQLMutations/utility.js";
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 import { addToCartEvent } from "./analytics-functions.js"
@@ -6,15 +7,15 @@ import { addToCartEvent } from "./analytics-functions.js"
 export const addProductToCart = async (sku, quantity = 1, event) => {
     utilities.addSpinnerSVG(event.target);
     let isError = false;
-    let cartID = utilities.getCartIDFromSS();
+    let cartID = userSession.getCartIDFromSS();
     if (!cartID) {
-        if (utilities.getActiveUserFromSS()) {
+        if (userSession.getActiveUserFromSS()) {
             cartID = await cartMutations.getCustomerCart();
             cartID = cartID.id;
         } else {
             cartID = await cartMutations.generateCartID();
         }
-        utilities.setCartIDtoSS(cartID);
+        userSession.setCartIDtoSS(cartID);
     }
     let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
 
@@ -29,7 +30,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
     }
     if (!isError) {
         addToCartEvent(event);
-        utilities.setCartQuantityToSS(cart.total_quantity);
+        userSession.setCartQuantityToSS(cart.total_quantity);
         utilities.updateCartCountOnUI();
         utilities.addCheckmarkSVG(event.target);
     }
@@ -59,7 +60,7 @@ export const removeItemFromCart = async (cartID, uid) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToSS(response.total_quantity);
+        userSession.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
 }
@@ -78,7 +79,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToSS(response.total_quantity);
+        userSession.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
     }
     return response;
@@ -98,7 +99,7 @@ export const fetchCartByID = async (cartID) => {
         console.log(response.errors);
     }
     if (!isError) {
-        utilities.setCartQuantityToSS(response.total_quantity);
+        userSession.setCartQuantityToSS(response.total_quantity);
         utilities.updateCartCountOnUI();
         return response;
     }

@@ -1,5 +1,5 @@
 import { userMutations } from "./graphQLMutations/userMutations.js";
-import { utilities } from "./graphQLMutations/utility.js";
+import { utilities } from "/scripts/utility.js";
 
 const formatDateLocale = (dateString) => {
     const date = new Date(dateString);
