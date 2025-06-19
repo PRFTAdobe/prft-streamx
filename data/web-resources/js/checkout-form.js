@@ -1,6 +1,7 @@
 import { checkoutMutations } from "./graphQLMutations/checkoutMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
-import { utilities } from "./graphQLMutations/utility.js";
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
 import { purchaseOrderEvent } from "./analytics-functions.js"
 import { updateValues } from "./decorators/decorate-cart.js";
 
@@ -92,7 +93,7 @@ const updateStep2State = async () => {
 
     address = { ...address, ...value };
 
-    const cartID = utilities.getCartIDFromSS();
+    const cartID = userSession.getCartIDFromSS();
     let isError = false;
 
     // Set payment method
@@ -118,7 +119,7 @@ const applyDiscount = async () => {
     adButton.addEventListener('click', async () => {
         const discountCoupon = document.querySelector('.discount-info').value;
         if (discountCoupon != null) {
-            const cartID = utilities.getCartIDFromSS();
+            const cartID = userSession.getCartIDFromSS();
             discountResponse = await checkoutMutations.setDiscountCoupon(cartID, discountCoupon);
     
             if (discountResponse.errors) {
@@ -171,7 +172,7 @@ const removeDiscount = async () => {
     let discountResponse;
     let isError = false;
     rdButton.addEventListener('click', async () => {
-        const cartID = utilities.getCartIDFromSS();
+        const cartID = userSession.getCartIDFromSS();
         discountResponse = await checkoutMutations.removeDiscountCoupon(cartID);
 
         if (discountResponse.errors) {
@@ -205,7 +206,7 @@ const showStep3 = async () => {
     let isError = await updateStep2State();
 
     if (isError != null && !isError) {
-        const cartID = utilities.getCartIDFromSS();
+        const cartID = userSession.getCartIDFromSS();
 
         // Set shipping method
         const shippingMethod = await checkoutMutations.setShippingMethod(cartID);
@@ -235,8 +236,8 @@ const showStep3 = async () => {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 var totalCost = document.querySelector(".total-payment").innerHTML;
                 purchaseOrderEvent(placeOrderNumber, totalCost);
-                utilities.removeCartIDFromSS();
-                utilities.setCartQuantityToSS(0);
+                userSession.removeCartIDFromSS();
+                userSession.setCartQuantityToSS(0);
                 utilities.updateCartCountOnUI();
 
 
@@ -284,8 +285,8 @@ const updateStep1State = async () => {
 
     address = { ...address, ...value };
 
-    const cartID = utilities.getCartIDFromSS();
-    const activeUser = utilities.getActiveUserFromSS();
+    const cartID = userSession.getCartIDFromSS();
+    const activeUser = userSession.getActiveUserFromSS();
     let response;
 
     // Set Guest Email on Cart when user is not logged in
@@ -339,7 +340,7 @@ const showStep2 = async () => {
 
         if (!isError) {
             const billingAddress = document.querySelector('.billing-address');
-            const cartID = utilities.getCartIDFromSS();
+            const cartID = userSession.getCartIDFromSS();
 
             // Set billing address
             let billignAddressResponse = billingAddress.value ? await checkoutMutations.setBillingAddress(cartID, address, billingAddress.value) : '';
@@ -409,7 +410,7 @@ async function filterByCountry() {
 
 if (location.href.includes('cart')) {
     await filterByCountry();
-    const activeUser = utilities.getActiveUserFromSS();
+    const activeUser = userSession.getActiveUserFromSS();
     if (activeUser == null) {
         document.querySelector('.email-input').classList.remove('hidden');
     }

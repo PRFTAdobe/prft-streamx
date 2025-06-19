@@ -1,4 +1,5 @@
-import { utilities } from "./utility.js";
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
 
 const CART_QUERY = `{email billing_address { city country { code label } firstname lastname postcode region { code label } street telephone } shipping_addresses { firstname lastname street city region { code label } country { code label } telephone available_shipping_methods { amount { currency value } available carrier_code carrier_title error_message method_code method_title price_excl_tax { value currency } price_incl_tax { value currency } } selected_shipping_method { amount { value currency } carrier_code carrier_title method_code method_title } } items { uid id product { name sku image { url } thumbnail { url } } quantity prices { price { value currency } } } total_quantity available_payment_methods { code title } selected_payment_method { code title } applied_coupons { code } prices { grand_total { value currency } discounts{ value amount{ currency value } } applied_taxes { label amount { value } } subtotal_excluding_tax { value } subtotal_including_tax { value } } }`;
 
@@ -19,8 +20,7 @@ const getCartByID = async (cartID) => {
   const query = JSON.stringify({
     query: `{ cart(cart_id: "${cartID}") ${CART_QUERY} }`,
   });
-
-  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`} : utilities.HEADERS;
+  const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`} : utilities.HEADERS;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.cart;
@@ -32,7 +32,7 @@ const addProductToCart = async (cartID, cartItems) => {
     query: `mutation { addSimpleProductsToCart( input: { cart_id: "${cartID}" cart_items: [ { data: { quantity: ${cartItems.quantity} sku: "${cartItems.sku}" } } ] } ) { cart { items { id product { sku stock_status } quantity } total_quantity } } }`,
   });
 
-  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`} : utilities.HEADERS;
+  const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`} : utilities.HEADERS;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.addSimpleProductsToCart.cart;
@@ -45,7 +45,7 @@ const updateProductInCart = async (cartID, uid, quantity) => {
     variables: {},
   });
 
-  const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`} : utilities.HEADERS;
+  const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`} : utilities.HEADERS;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.updateCartItems.cart;
@@ -58,7 +58,7 @@ const removeItemFromCart = async (cartID, uid) => {
     variables: {},
  });
 
- const header = utilities.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`} : utilities.HEADERS;
+ const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`} : utilities.HEADERS;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.removeItemFromCart.cart;
@@ -74,7 +74,7 @@ const mergeCarts = async (guestCartID, loggedinUserCartID) => {
       "destination": loggedinUserCartID
     }
   });
-  const header = {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`} ;
+  const header = {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`} ;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.mergeCarts;
@@ -86,7 +86,7 @@ const getCustomerCart = async () => {
     query: `{ customerCart { id items { id product { name sku } quantity } total_quantity } }`
   });
 
-  const userCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', {...utilities.HEADERS, 'Authorization': `Bearer ${utilities.getActiveLoginToken()}`}, query);
+  const userCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getTokenFromSS()}`}, query);
   
   return userCart.errors ? userCart : userCart.data.customerCart;
 }

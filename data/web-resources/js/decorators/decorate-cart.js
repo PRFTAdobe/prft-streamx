@@ -1,14 +1,14 @@
 import { updateItemQuantityInCart, removeItemFromCart, fetchCartByID } from "../productUtilities.js";
 import { aemFragmentsMutations } from "../graphQLMutations/aemFragmentsMutations.js";
-import { utilities } from "../graphQLMutations/utility.js";
-
+import { utilities } from "/scripts/utility.js";
+import { userSession } from "../user-session-utils.js"
 
 const updateSubtotalPriceItem = (quantity, price) => {
     return utilities.formatCurrencyUS(quantity * price);
 }
 
 const updatePrice = async (el, price, quantity) => {
-    const cartID = utilities.getCartIDFromSS();
+    const cartID = userSession.getCartIDFromSS();
 
     const uid = el.closest(".item > div").dataset.uid;
     const response = await updateItemQuantityInCart(cartID, uid, quantity);
@@ -62,7 +62,7 @@ const removeItem = (cartID) => {
 
                 await removeItemFromCart(cartID, uid);
 
-                if (utilities.getCartQuantityFromSS() == 0) {
+                if (userSession.getCartQuantityFromSS() == 0) {
                     document.querySelector('.no-products').classList.remove('hidden');
                     document.querySelector('.shopping-cart-content').classList.add('hidden');
                     document.querySelector('.shipping-information-content').classList.add('hidden');
@@ -282,7 +282,7 @@ export async function updateValues() {
 }
 
 export async function updateCartPage() {
-    const cartID = utilities.getCartIDFromSS();
+    const cartID = userSession.getCartIDFromSS();
 
     if (cartID == null) {
         document.querySelector('.no-products') && document.querySelector('.no-products').classList.remove('hidden');
