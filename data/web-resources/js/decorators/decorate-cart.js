@@ -12,7 +12,7 @@ const updatePrice = async (el, price, quantity) => {
 
     const uid = el.closest(".item > div").dataset.uid;
     const response = await updateItemQuantityInCart(cartID, uid, quantity);
-    
+
     el.closest(".item").querySelector(".subtotal-item").innerHTML = updateSubtotalPriceItem(quantity, price);
 
     const subtotal = document.querySelectorAll(".item:not(.hidden) .subtotal-item");
@@ -165,9 +165,9 @@ const addIncreaseDecreaseQuantityAction = () => {
 };
 
 const promoBannerTemplate = (content) => {
-    const imageAlt = content.imagePath.title ? content.imagePath.title :  content.imagePath._path;
+    const imageAlt = content.imagePath.title ? content.imagePath.title : content.imagePath._path;
     const imagePath = content.imagePath._publishUrl.replace("https://publish-p7752-e729659.adobeaemcloud.com", "");
-    return` <div class="flex flex-col md:flex-row items-center p-6">
+    return ` <div class="flex flex-col md:flex-row items-center p-6">
     <div class="w-full md:w-1/4 mb-4 md:mb-0">
       <img src="${imagePath}" alt="${imageAlt}" class="cf--promo-banner--image w-full h-48 object-cover rounded-lg"></div>
     <div class="w-full md:w-3/4 md:pl-8 text-white">
@@ -198,11 +198,85 @@ const enablePromoUI = (content) => {
     promoDiv.classList.remove('hidden');
 }
 
-const updatePromoUI = async () =>{
+const updatePromoUI = async () => {
     let promoData = await aemFragmentsMutations.fetchPromoContentFromCF();
-    if(promoData){
+    if (promoData) {
         enablePromoUI(promoData);
     }
+}
+
+export async function updateValues() {
+    const cartID = utilities.getCartIDFromSS();
+    let cart = await fetchCartByID(cartID);
+
+    document.querySelectorAll('.subtotal').forEach((el) => {
+        el.innerHTML = utilities.formatCurrencyUS(cart.prices.subtotal_excluding_tax.value);
+    });
+
+    if (cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value > 0) {
+        document.querySelector('.tax-wrapper ').classList.remove('hidden');
+        document.querySelectorAll('.tax').forEach((el) => {
+            el.innerText = utilities.formatCurrencyUS(cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value);
+        });
+    }
+
+    if (cart.applied_coupons != null) {
+        const discounts = cart.prices.discounts[0].amount.value;
+        document.querySelectorAll('.discount-container').forEach((el) => {
+            el.classList.remove('hidden');
+        });
+
+        document.querySelectorAll('.discount').forEach((el) => {
+            el.innerText = utilities.formatCurrencyUS(discounts);
+        });
+
+        document.querySelector('.discount-info').classList.add('hidden');
+        const p = document.createElement('p');
+        p.classList.add(
+            'text-sm',
+            'bg-light-gray',
+            'p-1',
+            'rounded'
+        );
+        p.innerHTML = cart.applied_coupons[0].code;
+
+        const couponApplied = document.querySelector('.coupon-applied');
+        couponApplied.innerHTML = ""; // Clear existing content
+        couponApplied.appendChild(p);
+        couponApplied.classList.remove('hidden');
+
+        document.querySelector('#apply-discount').classList.add('hidden');
+        document.querySelector('#remove-discount').classList.remove('hidden');
+    } else {
+        document.querySelectorAll('.discount-container').forEach((el) => {
+            el.classList.add('hidden');
+        });
+        document.querySelectorAll('.discount').forEach((el) => {
+            el.innerText = "";
+            el.classList.add('hidden');
+        });
+    }
+
+    const shipping = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
+    const tot = cart.prices.grand_total.value + shipping;
+    document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
+        el.innerHTML = document.querySelector('.total').innerText;
+    });
+
+    document.querySelectorAll('.shipping').forEach((el) => {
+        el.innerText = utilities.formatCurrencyUS(shipping);
+    });
+
+    document.querySelector('.total').innerText = utilities.formatCurrencyUS(tot);
+
+    document.querySelector('.checkout-button').addEventListener('click', () => {
+        document.querySelector('.shipping-information-content').classList.remove('hidden');
+        document.querySelector('.shopping-cart-content').classList.add('hidden');
+    });
+
+    document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
+        el.innerHTML = document.querySelector('.total').innerText;
+    });
 }
 
 export async function updateCartPage() {
@@ -241,45 +315,7 @@ export async function updateCartPage() {
             });
             addIncreaseDecreaseQuantityAction();
 
-            document.querySelector('.subtotal').innerText = utilities.formatCurrencyUS(cart.prices.subtotal_excluding_tax.value);
-            document.querySelector('.tax').innerText = utilities.formatCurrencyUS(cart.prices.subtotal_including_tax.value - cart.prices.subtotal_excluding_tax.value);
-
-            if (cart.applied_coupons != null) {
-                const discounts = cart.prices.discounts[0].amount.value;
-                document.querySelector('.discount-container').classList.remove('hidden');
-                document.querySelector('.discount').innerText = utilities.formatCurrencyUS(discounts);
-
-                document.querySelector('.discount-info').classList.add('hidden');
-                const p = document.createElement('p');
-                p.classList.add(
-                    'text-sm',
-                    'bg-light-gray',
-                    'p-1',
-                    'rounded'
-                );
-                p.innerHTML = cart.applied_coupons[0].code;
-
-                const couponApplied = document.querySelector('.coupon-applied');
-                couponApplied.appendChild(p);
-                couponApplied.classList.remove('hidden');
-
-                document.querySelector('#apply-discount').classList.add('hidden');
-                document.querySelector('#remove-discount').classList.remove('hidden');
-            }
-
-            const shipping = cart.shipping_addresses[0] ? cart.shipping_addresses[0].available_shipping_methods[0].amount.value : 0;
-            const tot = cart.prices.grand_total.value + shipping;
-            document.querySelector('.shipping').innerText = utilities.formatCurrencyUS(shipping);
-            document.querySelector('.total').innerText = utilities.formatCurrencyUS(tot);
-
-            document.querySelector('.checkout-button').addEventListener('click', () => {
-                document.querySelector('.shipping-information-content').classList.remove('hidden');
-                document.querySelector('.shopping-cart-content').classList.add('hidden');
-            });
-
-            document.querySelectorAll('.shipping-information-content .total').forEach((el) => {
-                el.innerHTML = document.querySelector('.total').innerText;
-            });
+            updateValues();
             removeItem(cartID);
         }
     }
