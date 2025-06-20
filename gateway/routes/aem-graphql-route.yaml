@@ -21,7 +21,59 @@ spec:
           - lumax.streamx.com
         paths:
           - /aemgraphql/*
+      priority: 15
+      plugins:
+        - name: proxy-cache
+          nocache: true
+        - name: proxy-rewrite
+          enable: true
+          headers:
+            set:
+              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
+              - "Pragma: no-cache"
+          config:
+            regex_uri: ["^/aemgraphql/(.*)","/graphql/$1"]
+      upstreams:
+        - name: aem-upstream
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: aem-clientlib-route
+spec:
+  http:
+    - name: aem-clientlib-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
           - /etc.clientlibs/*
+      priority: 15
+      plugins:
+        - name: proxy-cache
+          nocache: true
+        - name: proxy-rewrite
+          enable: true
+          headers:
+            set:
+              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
+              - "Pragma: no-cache"
+          config:
+            regex_uri: ["^/etc.clientlibs/(.*)","/etc.clientlibs/$1"]
+      upstreams:
+        - name: aem-upstream
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: aem-xf-route
+spec:
+  http:
+    - name: aem-xf-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
           - /content/experience-fragments/*
       priority: 15
       plugins:
@@ -34,6 +86,6 @@ spec:
               - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
               - "Pragma: no-cache"
           config:
-            regex_uri: ["^/aemgraphql/(.*)","/graphql/$1","^/etc.clientlibs/(.*)","/etc.clientlibs/$1","^/content/experience-fragments/(.*)","/content/experience-fragments/$1"]
+            regex_uri: ["^/content/experience-fragments/(.*)","/content/experience-fragments/$1"]
       upstreams:
         - name: aem-upstream
