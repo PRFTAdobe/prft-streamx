@@ -2,6 +2,7 @@ import { checkoutMutations } from "./graphQLMutations/checkoutMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 import { utilities } from "./graphQLMutations/utility.js";
 import { purchaseOrderEvent } from "./analytics-functions.js"
+import { updateValues } from "./decorators/decorate-cart.js";
 
 let address = {
     firstname: '',
@@ -160,9 +161,7 @@ const applyDiscount = async () => {
             adButton.classList.add('hidden');
             document.querySelector('.discount-info').classList.add('hidden');
 
-            const total = discountResponse.prices.grand_total.value;
-            const shipping = (document.querySelector('.shipping').textContent).substring(1);
-            document.querySelector('.total-payment').innerHTML = utilities.formatCurrencyUS(total + parseFloat(shipping));
+            updateValues();
         }
     });
 }
@@ -197,9 +196,7 @@ const removeDiscount = async () => {
             document.querySelector('.discount-info').value = "";
             document.querySelector('#apply-discount').classList.remove('hidden');
 
-            const total = discountResponse.prices.grand_total.value;
-            const shipping = (document.querySelector('.shipping').textContent).substring(1);
-            document.querySelector('.total-payment').innerHTML = utilities.formatCurrencyUS(total + parseFloat(shipping));
+            updateValues();
         }
     });
 }
@@ -379,6 +376,9 @@ const showStep2 = async () => {
                 shipping.querySelector('div').classList.add('border-gray-200');
                 payment.querySelector('div').classList.remove('border-gray-200');
                 payment.querySelector('div').classList.add('border-dsg-red');
+
+                // Display Product Cost, Shipping and Discount in payment 
+                updateValues();
             }
         }
     } else {
