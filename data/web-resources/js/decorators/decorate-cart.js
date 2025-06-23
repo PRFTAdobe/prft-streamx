@@ -208,7 +208,7 @@ const updatePromoUI = async () => {
 }
 
 export async function updateValues() {
-    const cartID = utilities.getCartIDFromSS();
+    const cartID = userSession.getCartIDFromSS();
     let cart = await fetchCartByID(cartID);
 
     document.querySelectorAll('.subtotal').forEach((el) => {

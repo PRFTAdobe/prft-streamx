@@ -1,5 +1,5 @@
 import { userMutations } from "./graphQLMutations/userMutations.js";
-import { utilities } from "/scripts/utility.js";
+import { userSession } from "./user-session-utils.js";
 
 const formatDateLocale = (dateString) => {
     const date = new Date(dateString);
@@ -11,7 +11,7 @@ const formatDateLocale = (dateString) => {
 };
 
 export const loadMyOrders = async () => {
-    const activeToken = utilities.getActiveUserFromSS() ? utilities.getActiveLoginToken() : null;
+    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null;
 
     if (activeToken != null) {
         let orders = await userMutations.getCustomerOrders(activeToken);
@@ -22,7 +22,7 @@ export const loadMyOrders = async () => {
             console.log(orders.errors);
             if (orders.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken();
-                orders = await userMutations.getCustomerOrders(utilities.getActiveLoginToken());
+                orders = await userMutations.getCustomerOrders(userSession.getActiveLoginToken());
                 isError = false;
             }
         }
