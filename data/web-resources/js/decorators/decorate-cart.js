@@ -25,12 +25,14 @@ const updatePrice = async (el, price, quantity) => {
             }
         });
         document.querySelector('.subtotal').innerHTML = utilities.formatCurrencyUS(total);
-        const discount = document.querySelector('.discount-container .discount').textContent;
+        const discountEle = document.querySelector('.discount-container .discount');
+        const discount = discountEle.textContent;
         const shipping = document.querySelector('.shipping').textContent;
         if (discount != null && discount != "") {
             const value = response.prices.discounts[0].amount.value;
             if (value) {
-                document.querySelector('.discount-container .discount').innerText = utilities.formatCurrencyUS(value);
+                discountEle.innerText = utilities.formatCurrencyUS(value);
+                discountEle.classList.remove('hidden');
                 total -= value;
             } else {
                 total -= parseFloat(discount.substring(1));
