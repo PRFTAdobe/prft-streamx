@@ -1,6 +1,6 @@
 import { checkoutMutations } from "./graphQLMutations/checkoutMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
-import { utilities } from "/scripts/utility.js";
+import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "/web-resources/js/user-session-utils.js";
 import { purchaseOrderEvent } from "./analytics-functions.js";
 import { updateValues } from "./decorators/decorate-cart.js";
