@@ -1,5 +1,5 @@
 import { utilities } from "/scripts/utility.js";
-import { userSession } from "../user-session-utils.js"
+import { userSession } from "/web-resources/js/user-session-utils.js";
 
 //set shipping
 const setShippingAddress = async (cartID, address) => {

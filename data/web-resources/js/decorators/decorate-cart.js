@@ -1,7 +1,7 @@
 import { updateItemQuantityInCart, removeItemFromCart, fetchCartByID } from "../productUtilities.js";
 import { aemFragmentsMutations } from "../graphQLMutations/aemFragmentsMutations.js";
 import { utilities } from "/scripts/utility.js";
-import { userSession } from "../user-session-utils.js"
+import { userSession } from "/web-resources/js/user-session-utils.js";
 
 const updateSubtotalPriceItem = (quantity, price) => {
     return utilities.formatCurrencyUS(quantity * price);
