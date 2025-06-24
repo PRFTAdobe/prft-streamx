@@ -1,5 +1,5 @@
 import { utilities } from "/scripts/utility.js";
-import { userSession } from "../user-session-utils.js"
+import { userSession } from "./user-session-utils.js"
 
 import { userMutations } from "./graphQLMutations/userMutations.js"
 
