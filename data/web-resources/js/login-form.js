@@ -1,7 +1,7 @@
 import { utilities } from "/scripts/utility.js";
-import { userSession } from "./user-session-utils.js"
+import { userSession } from "/web-resources/js/user-session-utils.js";
 
-import { userMutations } from "./graphQLMutations/userMutations.js"
+import { userMutations } from "./graphQLMutations/userMutations.js";
 
 const FORM_ID = "loginForm";
 const SIGNUP_FIELDS = ".signUpFields";
