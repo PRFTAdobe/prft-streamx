@@ -86,7 +86,7 @@ const showHideErrorMessage = (message) => {
 const submitLogin = async (formSubmitEvent) => {
     formSubmitEvent.preventDefault(); // Prevent default form submission
     // Get input values
-    var buttonClicked = formSubmitEvent.target;
+    var buttonClicked = formSubmitEvent.submitter;
 
     //don't allow spamming the submit event!
     buttonClicked.setAttribute("disabled", true);
