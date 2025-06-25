@@ -1,5 +1,7 @@
-import { utilities } from "./graphQLMutations/utility.js";
-import { userMutations } from "./graphQLMutations/userMutations.js"
+import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
+import { userSession } from "/web-resources/js/user-session-utils.js";
+
+import { userMutations } from "./graphQLMutations/userMutations.js";
 
 const FORM_ID = "loginForm";
 const SIGNUP_FIELDS = ".signUpFields";
@@ -11,6 +13,11 @@ const SIGNUP_FORM = "createUser";
 
 
 const init = ()=> {
+    if( userSession.getActiveUserFromSS() ){
+        //if user is logged in, redirect to my-orders
+        window.location.pathname = "/my-orders.html";
+    }
+
     document.querySelectorAll('.toggleForm').forEach(
         (element) => {
             element.addEventListener('click', toggleForm);
@@ -79,7 +86,7 @@ const showHideErrorMessage = (message) => {
 const submitLogin = async (formSubmitEvent) => {
     formSubmitEvent.preventDefault(); // Prevent default form submission
     // Get input values
-    var buttonClicked = formSubmitEvent.target;
+    var buttonClicked = formSubmitEvent.submitter;
 
     //don't allow spamming the submit event!
     buttonClicked.setAttribute("disabled", true);
@@ -104,7 +111,7 @@ const submitLogin = async (formSubmitEvent) => {
     if( !userResponseHasErrors(response) ){
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
-        utilities.setTokentoSS(getUserResponseToken(response));
+        userSession.storeLoginSession(username,getUserResponseToken(response));
         //window.location.url = "/";   
         console.log("Logged in with:"+username);
         console.log("Using token:"+getUserResponseToken(response));

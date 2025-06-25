@@ -1,4 +1,4 @@
-import { utilities } from "./utility.js";
+import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 
 const fetchPromoContentFromCF = async () => {
     const now = new Date();
