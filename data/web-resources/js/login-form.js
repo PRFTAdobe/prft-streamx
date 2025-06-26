@@ -58,19 +58,6 @@ const activeFormType = (newValue) => {
     return document.getElementById(FORM_ID).dataset[FORM_TYPE_ATTRIBUTE];
 }
 
-const getUserResponseToken = (response) => {
-  return response.data?.generateCustomerToken?.token;
-}
-
-const userResponseHasErrors = (response) =>{
-  return response.errors !== undefined;
-}
-
-const getUserResponseError = (response) => {
-  return userResponseHasErrors(response) ? response.errors[0].message:null;
-}
-
-
 const showHideErrorMessage = (message) => {
     let errorMessageEl = document.querySelector("p.errorMessage");
 
@@ -107,18 +94,18 @@ const submitLogin = async (formSubmitEvent) => {
     }
 
     const response = await userMutations.getUserTokenResponse(username, password);
-    showHideErrorMessage(getUserResponseError(response));//if no error, message is null which will hide field.
-    if( !userResponseHasErrors(response) ){
+    showHideErrorMessage(userMutations.getUserResponseError(response));//if no error, message is null which will hide field.
+    if( !userMutations.userResponseHasErrors(response) ){
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
-        userSession.storeLoginSession(username,getUserResponseToken(response));
+        userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
         //window.location.url = "/";   
         console.log("Logged in with:"+username);
-        console.log("Using token:"+getUserResponseToken(response));
+        console.log("Using token:"+userMutations.getUserResponseToken(response));
     }else{
         //login failed, remove spinner and re-enable button.
         utilities.removeSpinnerSVG(buttonClicked);
-        console.log("Found errors:"+getUserResponseError(response));
+        console.log("Found errors:"+userMutations.getUserResponseError(response));
     }
     buttonClicked.removeAttribute("disabled");
 };

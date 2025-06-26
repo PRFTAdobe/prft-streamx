@@ -74,11 +74,27 @@ const customerQuery = async (token) => {
   return userData.errors ? userData : userData.data.customer;
 }
 
+
+const getUserResponseToken = (response) => {
+  return response.data?.generateCustomerToken?.token;
+}
+
+const userResponseHasErrors = (response) =>{
+  return response.errors !== undefined;
+}
+
+const getUserResponseError = (response) => {
+  return userResponseHasErrors(response) ? response.errors[0].message:null;
+}
+
 export const userMutations = {
   getUserToken,
   customerQuery,
   regenerateUserToken,
   getCustomerOrders,
   getUserTokenResponse,
-  createUser
+  createUser,
+  getUserResponseToken,
+  userResponseHasErrors,
+  getUserResponseError
 };
