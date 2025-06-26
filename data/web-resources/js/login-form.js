@@ -93,7 +93,7 @@ const submitLogin = async (formSubmitEvent) => {
 
     }
 
-    const response = await userMutations.getUserTokenResponse(username, password);
+    const response = await userMutations.getLoginResponse(username, password);
     showHideErrorMessage(userMutations.getUserResponseError(response));//if no error, message is null which will hide field.
     if( !userMutations.userResponseHasErrors(response) ){
         //login success - store token and switch spinner to checkmark
