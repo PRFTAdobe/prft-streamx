@@ -26,7 +26,7 @@ const createUser = async (userEmail, userPsw, firstname, lastname) => {
     return await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', utilities.HEADERS, query);
 }
 
-const getUserTokenResponse = async (userEmail, userPsw ) => {
+const getLoginResponse = async (userEmail, userPsw ) => {
       const query = JSON.stringify({
       query: `mutation {
         generateCustomerToken(email: "${userEmail}", password: "${userPsw}") {
@@ -42,17 +42,8 @@ const getUserTokenResponse = async (userEmail, userPsw ) => {
 
 //depricated
 const getUserToken = async (userEmail, userPsw) => {
-    const response = await getUserTokenResponse(userEmail,userPsw);
+    const response = await getLoginResponse(userEmail,userPsw);
     return response.data.generateCustomerToken;
-}
-
-//to be called when current token has expired
-//TODO: Update for any user type.. (request password re-entry)
-const regenerateUserToken = async () => {
-  const activeUser = userSession.getActiveUserFromSS();
-  const activeUserCreds = activeUser == 'user01' ? userSession.user01 : userSession.user02;
-  const newTokenResponse = await getUserToken(activeUserCreds.email, activeUserCreds.password)
-  userSession.setTokentoSS(newTokenResponse.token);
 }
 
 const getCustomerOrders = async (token) => {
@@ -90,9 +81,8 @@ const getUserResponseError = (response) => {
 export const userMutations = {
   getUserToken,
   customerQuery,
-  regenerateUserToken,
   getCustomerOrders,
-  getUserTokenResponse,
+  getLoginResponse,
   createUser,
   getUserResponseToken,
   userResponseHasErrors,
