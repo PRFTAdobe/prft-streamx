@@ -3,7 +3,7 @@ const ACTIVE_USER_KEY = "active_user";
 const CART_ID_KEY = "shoppingCartID";
 const CART_QUANTITY = "shoppingCartQuantity";
 
-export const user01 = {
+const user01 = {
   firstname: "prft",
   lastname: "lumax",
   email: "prft01@lumax.com",
@@ -11,12 +11,23 @@ export const user01 = {
   is_subscribed: true
 }
 
-export const user02 = {
+const user02 = {
   firstname: "perficient",
   lastname: "lumax",
   email: "prft02@lumax.com",
   password: "prft@123",
   is_subscribed: true
+}
+
+const supplier1 = {
+  firstname: 'SupplierOne',
+  email: 'supplier1@example.com',
+  password: 'supplierpass1'
+}
+const supplier2 = {
+  firstname: 'SupplierTwo',
+  email: 'supplier2@example.com',
+  password: 'supplierpass2'
 }
 
 const getTokenKeyForUser = (userID) => {
@@ -53,11 +64,14 @@ const removeLoginSession = () => {
   let token_key = getTokenKeyForUser(activeUser);
   sessionStorage.removeItem(token_key);
   sessionStorage.removeItem(ACTIVE_USER_KEY);
+  sessionStorage.removeItem(CART_ID_KEY);
 }
 
 export const userSession = {
   user01,
   user02,
+  supplier1,
+  supplier2,
   getActiveLoginToken,
   storeLoginSession,
   getCartIDFromSS,
