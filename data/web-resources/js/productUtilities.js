@@ -1,5 +1,5 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
-import { userSession } from "../user-session-utils.js"
+import { userSession } from "/web-resources/js/user-session-utils.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 import { addToCartEvent } from "./analytics-functions.js"

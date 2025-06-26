@@ -74,6 +74,7 @@ export const userSession = {
   supplier2,
   getActiveLoginToken,
   storeLoginSession,
+  removeLoginSession,
   getCartIDFromSS,
   setCartIDtoSS,
   removeCartIDFromSS,
