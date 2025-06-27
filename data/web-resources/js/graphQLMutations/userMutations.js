@@ -17,7 +17,9 @@ const regenerateUserToken = async () => {
     }
   }else{
     console.log("redirecting to login for standard users");
-    window.location.href = `login.html/?refreshToken="${activeUser}"`;
+    //remove active session info, its invalid, and let them log in again.  Pass active user and page URL to login screen
+    userSession.removeLoginSession();
+    window.location.href = `login.html?refreshToken="${activeUser}"&returnUrl="${encodeURI(window.location.pathname)}"`;
   }
 }
 
