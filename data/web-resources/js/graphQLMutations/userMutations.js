@@ -2,7 +2,7 @@ import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "/web-resources/js/user-session-utils.js";
 
 const regenerateUserToken = async () => {
-  const activeUser = utilities.getActiveUserFromSS();
+  const activeUser = userSession.getActiveUserFromSS();
   let activeUserObj = null;
   if( activeUser === utilities.user01.firstname || activeUser === utilities.user02.email){
     activeUserObj = utilities.user01;
