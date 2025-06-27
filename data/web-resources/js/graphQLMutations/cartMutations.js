@@ -32,7 +32,7 @@ const addProductToCart = async (cartID, cartItems) => {
     query: `mutation { addSimpleProductsToCart( input: { cart_id: "${cartID}" cart_items: [ { data: { quantity: ${cartItems.quantity} sku: "${cartItems.sku}" } } ] } ) { cart { items { id product { sku stock_status } quantity } total_quantity } } }`,
   });
 
-  const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.get()}`} : utilities.HEADERS;
+  const header = userSession.getActiveUserFromSS() ? {...utilities.HEADERS, 'Authorization': `Bearer ${userSession.getActiveLoginToken()}`} : utilities.HEADERS;
   const shoppingCart = await utilities.fetchRequests(utilities.GRAPHQL_ENDPOINT, 'POST', header, query);
 
   return shoppingCart.errors ? shoppingCart : shoppingCart.data.addSimpleProductsToCart.cart;

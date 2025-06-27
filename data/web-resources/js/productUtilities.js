@@ -3,6 +3,8 @@ import { userSession } from "/web-resources/js/user-session-utils.js";
 import { cartMutations } from "./graphQLMutations/cartMutations.js";
 import { userMutations } from "./graphQLMutations/userMutations.js";
 import { addToCartEvent } from "./analytics-functions.js"
+import { updateCartCountOnUI } from "https://lumax.streamx.com/blocks/header/header.js"
+
 
 export const addProductToCart = async (sku, quantity = 1, event) => {
     utilities.addSpinnerSVG(event.target);
@@ -31,7 +33,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
     if (!isError) {
         addToCartEvent(event);
         userSession.setCartQuantityToSS(cart.total_quantity);
-        utilities.updateCartCountOnUI();
+        updateCartCountOnUI(cart.total_quantity);
         utilities.addCheckmarkSVG(event.target);
     }
 }
@@ -61,7 +63,7 @@ export const removeItemFromCart = async (cartID, uid) => {
     }
     if (!isError) {
         userSession.setCartQuantityToSS(response.total_quantity);
-        utilities.updateCartCountOnUI();
+        updateCartCountOnUI(response.total_quantity);
     }
 }
 
@@ -80,7 +82,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
     }
     if (!isError) {
         userSession.setCartQuantityToSS(response.total_quantity);
-        utilities.updateCartCountOnUI();
+        updateCartCountOnUI(response.total_quantity);
     }
     return response;
 }
@@ -100,7 +102,7 @@ export const fetchCartByID = async (cartID) => {
     }
     if (!isError) {
         userSession.setCartQuantityToSS(response.total_quantity);
-        utilities.updateCartCountOnUI();
+        updateCartCountOnUI(response.total_quantity);
         return response;
     }
 }
