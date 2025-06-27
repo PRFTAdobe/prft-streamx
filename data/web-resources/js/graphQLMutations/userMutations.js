@@ -1,6 +1,27 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "/web-resources/js/user-session-utils.js";
 
+const regenerateUserToken = async () => {
+  const activeUser = userSession.getActiveUserFromSS();
+  let activeUserObj = null;
+  if( activeUser === utilities.user01.firstname || activeUser === utilities.user02.email){
+    activeUserObj = utilities.user01;
+  }else if ( activeUser === utilities.user02.email || activeUser === utilities.user02.email ){
+    activeUserObj = utilities.user02;
+  }
+  if( activeUserObj ){
+    const activeUserCreds = activeUser == 'user01' ? utilities.user01 : utilities.user02;
+    const loginResponse = await getLoginResponse(activeUserCreds.email, activeUserCreds.password)
+    if( !userResponseHasErrors(loginResponse) ){
+      userSession.storeLoginSession(activeUser, getUserResponseToken(loginResponse));
+    }
+  }else{
+    console.log("redirecting to login for standard users");
+    //remove active session info, its invalid, and let them log in again.  Pass active user and page URL to login screen
+    userSession.removeLoginSession();
+    window.location.href = `login.html?refreshToken="${activeUser}"&returnUrl="${encodeURI(window.location.pathname)}"`;
+  }
+}
 
 const createUser = async (userEmail, userPsw, firstname, lastname) => {
     const query = JSON.stringify({
@@ -86,5 +107,6 @@ export const userMutations = {
   createUser,
   getUserResponseToken,
   userResponseHasErrors,
-  getUserResponseError
+  getUserResponseError,
+  regenerateUserToken
 };
