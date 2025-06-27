@@ -27,7 +27,7 @@ const init = ()=> {
         (button) => {
             button.addEventListener("click", 
                 () => {
-                    quickLogin(button.getAttribute("data-user-id"));
+                    quickLogin(button));
                 }
             );
         });
@@ -86,8 +86,39 @@ const showHideErrorMessage = (message) => {
     }
 }
 
-const quickLogin = async (demoUser) => {
+const quickLogin = async (button) => {
+    const demoUserID = button.getAttribute("data-user-id");
+    const demoUserCreds = utilities[demoUser];
     console.log(utilities[demoUser]);
+    
+    if( demoUserCreds ){
+        button.setAttribute("disabled",true);
+        utilities.addSpinnerSVG(button);
+        if( demoUserID.contains("user") ){
+            //standard user login
+            const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
+            showHideErrorMessage(userMutations.getUserResponseError(response));
+            if( !userMutations.userResponseHasErrors(respsone)){
+                utilities.addCheckmarkSVG(button);
+                userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
+                redirectSuccess();
+            }
+        }else if (demoUserID.contains("supplier")){
+            //supplier login
+        }
+        
+    }
+    
+}
+
+const redirectSuccess = async () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const returnUrl = queryParams.get(utilities.RETURN_URL_QP); 
+    if( returnUrl ){
+        window.location.pathname = decodeURI(returnUrl);
+    }else{
+        window.location.pathname = "/my-orders.html"
+    }
 }
 
 const submitLogin = async (formSubmitEvent) => {  
@@ -124,13 +155,7 @@ const submitLogin = async (formSubmitEvent) => {
         console.log("Using token:"+userMutations.getUserResponseToken(response));
         document.querySelector(".successMessage").classList.remove("hidden");
         setTimeout( () => {
-            let queryParams = new URLSearchParams(window.location.search);
-            let returnUrl = queryParams.get(utilities.RETURN_URL_QP); 
-            if( returnUrl ){
-                window.location.pathname = decodeURI(returnUrl);
-            }else{
-                window.location.pathname = "/my-orders.html"
-            }
+            redirectSuccess();
         },2500);
     }else{
         //login failed, remove spinner and re-enable button.
