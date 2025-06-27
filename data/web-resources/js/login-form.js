@@ -11,10 +11,6 @@ const FORM_TYPE_ATTRIBUTE = "formType";//form-type converts to formType in datas
 const SIGNIN_FORM = "login";
 const SIGNUP_FORM = "createUser";
 
-export const getLoginRefreshURL = (activeUser,currentPath) => {
-    return `/login.html?${utilities.REFRESH_TOKEN_QP}="${activeUser}"&${utilities.RETURN_URL_QP}="${currentPath}"`;
-}
-
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
         //if user is logged in, redirect to my-orders
@@ -26,6 +22,15 @@ const init = ()=> {
             element.addEventListener('click', toggleForm);
         }
     );
+
+    document.querySelectorAll(".quicklogin").forEach( 
+        (button) => {
+            button.addEventListener("click", 
+                () => {
+                    quickLogin(button.getAttribute("data-user-id"));
+                }
+            );
+        });
 
     const loginForm = document.getElementById(FORM_ID);
     let queryParams = new URLSearchParams(window.location.search);
@@ -81,6 +86,10 @@ const showHideErrorMessage = (message) => {
     }
 }
 
+const quickLogin = async (demoUser) => {
+    console.log(utilities[demoUser]);
+}
+
 const submitLogin = async (formSubmitEvent) => {  
     formSubmitEvent.preventDefault(); // Prevent default form submission
     // Get input values
@@ -118,7 +127,7 @@ const submitLogin = async (formSubmitEvent) => {
             let queryParams = new URLSearchParams(window.location.search);
             let returnUrl = queryParams.get(utilities.RETURN_URL_QP); 
             if( returnUrl ){
-                window.location.pathname = returnUrl;
+                window.location.pathname = decodeURI(returnUrl);
             }else{
                 window.location.pathname = "/my-orders.html"
             }

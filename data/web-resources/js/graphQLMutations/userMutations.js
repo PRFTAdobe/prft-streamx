@@ -1,6 +1,7 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "/web-resources/js/user-session-utils.js";
 
+
 const regenerateUserToken = async () => {
   const activeUser = userSession.getActiveUserFromSS();
   let activeUserObj = null;
@@ -16,10 +17,10 @@ const regenerateUserToken = async () => {
       userSession.storeLoginSession(activeUser, getUserResponseToken(loginResponse));
     }
   }else{
-    console.log("redirecting to login for standard users");
+    console.log("Error reauthenticating...redirecting to login.html");
     //remove active session info, its invalid, and let them log in again.  Pass active user and page URL to login screen
     userSession.removeLoginSession();
-    window.location.href = `login.html?refreshToken="${activeUser}"&returnUrl="${encodeURI(window.location.pathname)}"`;
+    window.location.href = `/login.html?${utilities.REFRESH_TOKEN_QP}=${activeUser}&${utilities.RETURN_URL_QP}=${encodeURI(window.location.pathname)}`;
   }
 }
 
