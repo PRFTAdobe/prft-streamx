@@ -13,6 +13,7 @@
         <div class="signInFields flex flex-col space-y-1.5 p-6 text-center">
             <h3 class="headerText tracking-tight text-2xl font-bold">Welcome Back</h3>
             <p class="descText text-sm text-muted-foreground">Sign in to your account to continue</p>
+            <p class="expiredSession text-sm text-dsg-red hidden">Your session has expired - please login again to continue</p>
         </div>
         <div class="signUpFields hidden flex flex-col space-y-1.5 p-6 text-center">
             <h3 class="headerText tracking-tight text-2xl font-bold">Create an Account</h3>
@@ -40,23 +41,13 @@
                     <input type="password" id="password" name="password" required placeholder="••••••••" value=""
                         class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
                 </div>
-                <!--div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <button type="button" role="checkbox" aria-checked="false" value="on" id="rememberMe"
-                            class="peer h-4 w-4 shrink-0 rounded-xs border border-primary ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground">
-                        </button>
-                        <input type="checkbox" aria-hidden="true" tabindex="-1" value="on"
-                            style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;">
-                            <label class="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm" for="rememberMe">Remember me</label>
-                    </div-->
-                    <!--a class="text-sm text-dsg-red hover:underline" href="/forgot-password" data-discover="true">Forgot password?</a-->
                 </div>
                 <div class="loginMessageContainer text-sm text-center justify-center p-5 pt-0">
                     <p class="successMessage hidden">
                         You have logged in successfully!<br/>
-                        You will be automatically redirected back to the homepage in 5 seconds...
+                        You will be automatically redirected back to the orders page...
                     </p>
-                    <p class="errorMessage hidden text-dsg-red"></p>
+                    <p class="errorMessage hidden text-dsg-red">There was an issue logging in using these credentials.  Please try again</p>
                 </div>
                 <div class="signInFields px-6">
                     <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90"
@@ -97,6 +88,29 @@
                 <a class="text-sm text-gray-500 hover:text-dsg-red transition-colors" href="/" data-discover="true">← Back to Store</a>
             </div>
         </div>
+    </div>
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm mt-5">
+        <div class="quickLogins flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="headerText tracking-tight text-2xl font-bold">Demo OneClick Logins</h3>  
+            <div class="wrapper grid gap-4 flex justify-center w-full">
+                <button data-user-id="user01" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <span>Persona1</span>
+                    <svg class="m-auto" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </button>
+                <button class="m-auto" data-user-id="user02" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <span>Persona2</span>
+                    <svg class="m-auto" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </button>
+                <button data-user-id="supplier1" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <span>Supplier1</span>
+                    <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path fill="currentColor" d="M11.5 19.713v-7.426L5 8.523v7.427l6.5 3.763Zm1 0L19 15.95V8.523l-6.5 3.764v7.426Zm-.5 1.433l-8-4.598V7.452l8-4.598l8 4.598v9.096l-8 4.598Zm3.712-11.871l2.713-1.562L12 4L9.3 5.548l6.412 3.727ZM12 11.427l2.7-1.567l-6.425-3.714l-2.7 1.567L12 11.427Z"></path></svg>
+                </button>
+                <button data-user-id="supplier2" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+                    <span>Supplier2</span>
+                    <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path fill="currentColor" d="M11.5 19.713v-7.426L5 8.523v7.427l6.5 3.763Zm1 0L19 15.95V8.523l-6.5 3.764v7.426Zm-.5 1.433l-8-4.598V7.452l8-4.598l8 4.598v9.096l-8 4.598Zm3.712-11.871l2.713-1.562L12 4L9.3 5.548l6.412 3.727ZM12 11.427l2.7-1.567l-6.425-3.714l-2.7 1.567L12 11.427Z"></path></svg>
+                </button>
+            </div>
+        </div>  
     </div>
 </div>
 <script src="../web-resources/js/login-form.js" type="module"></script>
