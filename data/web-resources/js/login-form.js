@@ -11,6 +11,9 @@ const FORM_TYPE_ATTRIBUTE = "formType";//form-type converts to formType in datas
 const SIGNIN_FORM = "login";
 const SIGNUP_FORM = "createUser";
 
+export const getLoginRefreshURL = (activeUser,currentPath) => {
+    return `/login.html?${utilities.REFRESH_TOKEN_QP}="${activeUser}"&${utilities.RETURN_URL_QP}="${currentPath}"`;
+}
 
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
@@ -23,12 +26,20 @@ const init = ()=> {
             element.addEventListener('click', toggleForm);
         }
     );
+
     const loginForm = document.getElementById(FORM_ID);
+    let queryParams = new URLSearchParams(window.location.search);
+    let activeUser = queryParams.get(utilities.REFRESH_TOKEN_QP);
+    if(activeUser){
+        document.getElementById("email").value = activeUser;
+        document.querySelector(".signInFields .expiredSession").classList.remove("hidden");
+        document.querySelector(".signInFields .descText").classList.add("hidden");
+    }
+    
     loginForm.addEventListener('submit', submitLogin);
 }
 
 const toggleForm = (clickEvent) => {
-    let buttonClicked = clickEvent.target;
     let currentForm = activeFormType();
     //toggle signin fields based on current display
     toggleFields(SIGNIN_FIELDS,currentForm == SIGNUP_FORM);
@@ -70,7 +81,7 @@ const showHideErrorMessage = (message) => {
     }
 }
 
-const submitLogin = async (formSubmitEvent) => {
+const submitLogin = async (formSubmitEvent) => {  
     formSubmitEvent.preventDefault(); // Prevent default form submission
     // Get input values
     var buttonClicked = formSubmitEvent.submitter;
@@ -86,7 +97,7 @@ const submitLogin = async (formSubmitEvent) => {
     if( formType == SIGNUP_FORM ){
         const firstName = document.getElementById('firstName').value; 
         const lastName = document.getElementById('lastName').value;
-        const user = userMutations.createUser(username, password, firstName, lastName);
+        const user = await userMutations.createUser(username, password, firstName, lastName);
         console.log(user);
     }else {
         //sign in as usual...
@@ -99,12 +110,23 @@ const submitLogin = async (formSubmitEvent) => {
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
-        //window.location.url = "/";   
+        
         console.log("Logged in with:"+username);
         console.log("Using token:"+userMutations.getUserResponseToken(response));
+        document.querySelector(".successMessage").classList.remove("hidden");
+        setTimeout( () => {
+            let queryParams = new URLSearchParams(window.location.search);
+            let returnUrl = queryParams.get(utilities.RETURN_URL_QP); 
+            if( returnUrl ){
+                window.location.pathname = returnUrl;
+            }else{
+                window.location.pathname = "/my-orders.html"
+            }
+        },2500);
     }else{
         //login failed, remove spinner and re-enable button.
         utilities.removeSpinnerSVG(buttonClicked);
+        document.querySelector(".errorMessage")
         console.log("Found errors:"+userMutations.getUserResponseError(response));
     }
     buttonClicked.removeAttribute("disabled");
