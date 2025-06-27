@@ -65,6 +65,7 @@ const removeLoginSession = () => {
   sessionStorage.removeItem(token_key);
   sessionStorage.removeItem(ACTIVE_USER_KEY);
   sessionStorage.removeItem(CART_ID_KEY);
+  sessionStorage.removeItem(CART_QUANTITY);
 }
 
 export const userSession = {
