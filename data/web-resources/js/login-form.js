@@ -27,7 +27,7 @@ const init = ()=> {
         (button) => {
             button.addEventListener("click", 
                 () => {
-                    quickLogin(button));
+                    quickLogin(button);
                 }
             );
         });
