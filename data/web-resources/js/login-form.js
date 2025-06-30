@@ -88,8 +88,8 @@ const showHideErrorMessage = (message) => {
 
 const quickLogin = async (button) => {
     const demoUserID = button.getAttribute("data-user-id");
-    const demoUserCreds = utilities[demoUser];
-    console.log(utilities[demoUser]);
+    const demoUserCreds = utilities[demoUserID];
+    console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
