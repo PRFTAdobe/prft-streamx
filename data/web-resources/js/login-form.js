@@ -1,6 +1,5 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
 
 const FORM_ID = "loginForm";
@@ -13,7 +12,7 @@ const SIGNUP_FORM = "createUser";
 
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
-        //if user is logged in, redirect to my-orders
+        //if user is logged in, redirect
         window.location.pathname = "/my-orders.html";
     }
 
@@ -87,6 +86,7 @@ const showHideErrorMessage = (message) => {
 }
 
 const quickLogin = async (button) => {
+    userSession.removeLoginSession();
     const demoUserID = button.getAttribute("data-user-id");
     const demoUserCreds = userSession[demoUserID];
     console.log(utilities[demoUserID]);
@@ -94,18 +94,19 @@ const quickLogin = async (button) => {
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
         utilities.addSpinnerSVG(button);
-        if( demoUserID.contains("user") ){
+        if( demoUserID.startsWith("user") ){
             //standard user login
             const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
             showHideErrorMessage(userMutations.getUserResponseError(response));
-            if( !userMutations.userResponseHasErrors(respsone)){
+            if( !userMutations.userResponseHasErrors(response)){
                 utilities.addCheckmarkSVG(button);
-                userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
+                userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
                 redirectSuccess();
             }
-        }else if (demoUserID.contains("supplier")){
+        }else if (demoUserID.startsWith("supplier")){
             //supplier login
             userSession.storeLoginSession(demoUserID,`dummy_${demoUserID}_token`);
+            utilities.addCheckmarkSVG(button);
             redirectSupplierSuccess();
         }
         
