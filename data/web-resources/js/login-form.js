@@ -144,14 +144,12 @@ const submitLogin = async (formSubmitEvent) => {
     if( formType == SIGNUP_FORM ){
         const firstName = document.getElementById('firstName').value; 
         const lastName = document.getElementById('lastName').value;
-        const user = await userMutations.createUser(username, password, firstName, lastName);
-        showHideErrorMessage(userMutations.getUserResponseError(response));
-        if(userMutations.userResponseHasErrors(response)){
+        const createUserResp = await userMutations.createUser(username, password, firstName, lastName);
+        showHideErrorMessage(userMutations.getUserResponseError(createUserResp));
+        if(userMutations.userResponseHasErrors(createUserResp)){
+            utilities.removeSpinnerSVG(buttonClicked);
             return;
         } 
-    }else {
-        //sign in as usual...
-
     }
 
     const response = await userMutations.getLoginResponse(username, password);
