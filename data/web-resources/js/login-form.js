@@ -1,6 +1,5 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
 
 const FORM_ID = "loginForm";
@@ -13,7 +12,7 @@ const SIGNUP_FORM = "createUser";
 
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
-        //if user is logged in, redirect to my-orders
+        //if user is logged in, redirect
         window.location.pathname = "/my-orders.html";
     }
 
@@ -87,28 +86,36 @@ const showHideErrorMessage = (message) => {
 }
 
 const quickLogin = async (button) => {
+    userSession.removeLoginSession();
     const demoUserID = button.getAttribute("data-user-id");
-    const demoUserCreds = utilities[demoUserID];
+    const demoUserCreds = userSession[demoUserID];
     console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
         utilities.addSpinnerSVG(button);
-        if( demoUserID.contains("user") ){
+        if( demoUserID.startsWith("user") ){
             //standard user login
             const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
             showHideErrorMessage(userMutations.getUserResponseError(response));
-            if( !userMutations.userResponseHasErrors(respsone)){
+            if( !userMutations.userResponseHasErrors(response)){
                 utilities.addCheckmarkSVG(button);
-                userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
+                userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
                 redirectSuccess();
             }
-        }else if (demoUserID.contains("supplier")){
+        }else if (demoUserID.startsWith("supplier")){
             //supplier login
+            userSession.storeLoginSession(demoUserID,`dummy_${demoUserID}_token`);
+            utilities.addCheckmarkSVG(button);
+            redirectSupplierSuccess();
         }
         
     }
     
+}
+
+const redirectSupplierSuccess = async () => {
+    window.location.pathname = "/supplier-dashboard.html";
 }
 
 const redirectSuccess = async () => {
@@ -137,11 +144,12 @@ const submitLogin = async (formSubmitEvent) => {
     if( formType == SIGNUP_FORM ){
         const firstName = document.getElementById('firstName').value; 
         const lastName = document.getElementById('lastName').value;
-        const user = await userMutations.createUser(username, password, firstName, lastName);
-        console.log(user);
-    }else {
-        //sign in as usual...
-
+        const createUserResp = await userMutations.createUser(username, password, firstName, lastName);
+        showHideErrorMessage(userMutations.getUserResponseError(createUserResp));
+        if(userMutations.userResponseHasErrors(createUserResp)){
+            utilities.removeSpinnerSVG(buttonClicked);
+            return;
+        } 
     }
 
     const response = await userMutations.getLoginResponse(username, password);
@@ -151,8 +159,8 @@ const submitLogin = async (formSubmitEvent) => {
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
         
-        console.log("Logged in with:"+username);
-        console.log("Using token:"+userMutations.getUserResponseToken(response));
+        console.info("Logged in with:"+username);
+        console.info("Using token:"+userMutations.getUserResponseToken(response));
         document.querySelector(".successMessage").classList.remove("hidden");
         setTimeout( () => {
             redirectSuccess();
