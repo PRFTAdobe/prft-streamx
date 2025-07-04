@@ -145,7 +145,10 @@ const submitLogin = async (formSubmitEvent) => {
         const firstName = document.getElementById('firstName').value; 
         const lastName = document.getElementById('lastName').value;
         const user = await userMutations.createUser(username, password, firstName, lastName);
-        console.log(user);
+        showHideErrorMessage(userMutations.getUserResponseError(response));
+        if(userMutations.userResponseHasErrors(response)){
+            return;
+        } 
     }else {
         //sign in as usual...
 
@@ -158,8 +161,8 @@ const submitLogin = async (formSubmitEvent) => {
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
         
-        console.log("Logged in with:"+username);
-        console.log("Using token:"+userMutations.getUserResponseToken(response));
+        console.info("Logged in with:"+username);
+        console.info("Using token:"+userMutations.getUserResponseToken(response));
         document.querySelector(".successMessage").classList.remove("hidden");
         setTimeout( () => {
             redirectSuccess();
