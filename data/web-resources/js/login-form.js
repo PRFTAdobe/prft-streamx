@@ -88,7 +88,7 @@ const showHideErrorMessage = (message) => {
 
 const quickLogin = async (button) => {
     const demoUserID = button.getAttribute("data-user-id");
-    const demoUserCreds = utilities[demoUserID];
+    const demoUserCreds = userSession[demoUserID];
     console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
@@ -105,10 +105,16 @@ const quickLogin = async (button) => {
             }
         }else if (demoUserID.contains("supplier")){
             //supplier login
+            userSession.storeLoginSession(demoUserID,`dummy_${demoUserID}_token`);
+            redirectSupplierSuccess();
         }
         
     }
     
+}
+
+const redirectSupplierSuccess = async () => {
+    window.location.pathname = "/supplier-dashboard.html";
 }
 
 const redirectSuccess = async () => {
