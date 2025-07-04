@@ -1,8 +1,8 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
-import { userSession } from "/web-resources/js/user-session-utils.js";
-import { cartMutations } from "./graphQLMutations/cartMutations.js";
-import { userMutations } from "./graphQLMutations/userMutations.js";
-import { addToCartEvent } from "./analytics-functions.js"
+import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
+import { cartMutations } from "https://lumax.streamx.com/scripts/auth/commerce/cartMutations.js";
+import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
+import { addToCartEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 import { updateCartCountOnUI } from "https://lumax.streamx.com/blocks/header/header.js"
 
 
@@ -106,3 +106,5 @@ export const fetchCartByID = async (cartID) => {
         return response;
     }
 }
+
+export const addIncreaseDecreaseQuantityAction=()=>{let e=document.querySelector(".quantity-container");if(e){let t=parseInt(e.querySelector("span")?.textContent??"1",10),n=e.querySelector(":scope > button:nth-of-type(1)"),r=e.querySelector(":scope > button:nth-of-type(2)");n?.addEventListener("click",()=>{t>1&&1==(t-=1)&&n?.setAttribute("disabled",(!0).toString()),e.querySelector("span").innerText=t.toString()}),r?.addEventListener("click",()=>{1===t&&n?.removeAttribute("disabled"),t+=1,e.querySelector("span").innerText=t.toString()})}};
