@@ -38,6 +38,10 @@ terraform.rc
 *.iml
 *.ipr
 
+
+### VS Code ###
+.vscode
+
 ### Mac OS ###
 .DS_Store
 

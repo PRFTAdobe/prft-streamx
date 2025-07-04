@@ -1,7 +1,7 @@
 import { updateItemQuantityInCart, removeItemFromCart, fetchCartByID } from "../productUtilities.js";
-import { aemFragmentsMutations } from "../graphQLMutations/aemFragmentsMutations.js";
+import { aemFragmentsMutations } from ".https://lumax.streamx.com/scripts/auth/commerce/aemFragmentsMutations.js";
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
-import { userSession } from "/web-resources/js/user-session-utils.js";
+import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 
 const updateSubtotalPriceItem = (quantity, price) => {
     return utilities.formatCurrencyUS(quantity * price);
