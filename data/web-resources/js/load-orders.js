@@ -1,5 +1,5 @@
-import { userMutations } from "./graphQLMutations/userMutations.js";
-import { userSession } from "/web-resources/js/user-session-utils.js";
+import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
+import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 
 const formatDateLocale = (dateString) => {
     const date = new Date(dateString);

@@ -1,7 +1,7 @@
 import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
-import { userSession } from "/web-resources/js/user-session-utils.js";
+import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 
-import { userMutations } from "./graphQLMutations/userMutations.js";
+import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
 
 const FORM_ID = "loginForm";
 const SIGNUP_FIELDS = ".signUpFields";
@@ -88,8 +88,8 @@ const showHideErrorMessage = (message) => {
 
 const quickLogin = async (button) => {
     const demoUserID = button.getAttribute("data-user-id");
-    const demoUserCreds = utilities[demoUser];
-    console.log(utilities[demoUser]);
+    const demoUserCreds = utilities[demoUserID];
+    console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
