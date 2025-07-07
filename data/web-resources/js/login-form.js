@@ -43,6 +43,11 @@ const init = ()=> {
     loginForm.addEventListener('submit', submitLogin);
 }
 
+const initCart = async () => {
+    const header = await import ("https://lumax.streamx.com/blocks/header/header.js");
+    await header.updateCartDetailsOnLoad(true);
+}
+
 const toggleForm = (clickEvent) => {
     let currentForm = activeFormType();
     //toggle signin fields based on current display
@@ -101,6 +106,7 @@ const quickLogin = async (button) => {
             if( !userMutations.userResponseHasErrors(response)){
                 utilities.addCheckmarkSVG(button);
                 userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
+                await initCart();
                 redirectSuccess();
             }
         }else if (demoUserID.startsWith("supplier")){
@@ -159,6 +165,7 @@ const submitLogin = async (formSubmitEvent) => {
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
+        await initCart();
         document.querySelector(".successMessage").classList.remove("hidden");
         setTimeout( () => {
             redirectSuccess();
