@@ -148,6 +148,7 @@ const submitLogin = async (formSubmitEvent) => {
         showHideErrorMessage(userMutations.getUserResponseError(createUserResp));
         if(userMutations.userResponseHasErrors(createUserResp)){
             utilities.removeSpinnerSVG(buttonClicked);
+            buttonClicked.removeAttribute("disabled");
             return;
         } 
     }
@@ -158,9 +159,6 @@ const submitLogin = async (formSubmitEvent) => {
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
-        
-        console.info("Logged in with:"+username);
-        console.info("Using token:"+userMutations.getUserResponseToken(response));
         document.querySelector(".successMessage").classList.remove("hidden");
         setTimeout( () => {
             redirectSuccess();
@@ -168,7 +166,6 @@ const submitLogin = async (formSubmitEvent) => {
     }else{
         //login failed, remove spinner and re-enable button.
         utilities.removeSpinnerSVG(buttonClicked);
-        document.querySelector(".errorMessage")
         console.log("Found errors:"+userMutations.getUserResponseError(response));
     }
     buttonClicked.removeAttribute("disabled");
