@@ -235,6 +235,7 @@ delivery:
       QUARKUS_ELASTICSEARCH_USERNAME: "admin"
       QUARKUS_ELASTICSEARCH_HOSTS: "blueprint-search.opensearch:9201"
       STREAMX_BLUEPRINTS_OPENSEARCH-DELIVERY-SERVICE_MIGRATION-SCRIPT-LOCATIONS: "classpath:opensearch/service-init,file:opensearch/service-init"
+      STREAMX_DELIVERY_SERVICE_READINESS_CHECK_ENABLED: false
     environmentFrom:
       secrets:
         - "opensearch-secrets.properties"
@@ -264,6 +265,7 @@ delivery:
         topic: outboxes/web-resources
     environment:
       STREAMX_BLUEPRINTS_WEB-DELIVERY-SERVICE_RESOURCES_DIRECTORY: "/srv/www"
+      STREAMX_DELIVERY_SERVICE_READINESS_CHECK_ENABLED: false
     repositoryVolume: "/srv/www"
     port: 8083
     components:
