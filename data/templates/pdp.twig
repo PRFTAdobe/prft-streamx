@@ -219,6 +219,14 @@
           {% endif %}
         </div>
       </div>
+      <!--render XF if present-->
+      <div class="mt-16 product-xf">
+        <div class="max-w-6xl mx-auto">
+          {% autoescape false %}
+            {{ '{{#include src="/content/experience-fragments/lumax/products/product-mj01/master.html"}}' }}
+          {% endautoescape %}
+        </div>
+      </div>
     </section>
   </div>
 </div>
