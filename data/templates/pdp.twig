@@ -224,6 +224,14 @@
   </div>
 </div>
 <!-- Related Products end -->
+      <!--render XF if present-->
+      <div class="mt-16 product-xf">
+        <div class="max-w-6xl mx-auto">
+          {% autoescape false %}
+            {{ '{{#include src="https://lumax.streamx.com/content/experience-fragments/lumax/products/product-mj01/master.html"}}' }}
+          {% endautoescape %}
+        </div>
+      </div>
 
 <div class="fixed bottom-4 right-4 z-50">Powered By:<img src="/content/dam/psg-demo-ue/streamx-logo-full-black.png" alt="Floating promotional image" class="w-32 h-auto md:w-48 lg:w-64"></div>
 <script src="../web-resources/js/pdp-init.js" type="module"></script>
