@@ -7,7 +7,7 @@ import { addProductToCart } from './productUtilities.js';
   const RESULTS_CONTAINER_ID = 'product-list';
   const LOAD_MORE_BUTTON_ID = 'load-more-button';
   // const PER_PAGE = 6;
-  const PER_PAGE = 100;
+  const PER_PAGE = 10000;
   const SEARCH_URL = '/search/query/body';
   const DEFAULT_IMG = '../data/assets/342x457.webp';
   const EXCLUDE_LOADMORE_FOR_KEYWORD = '-men';
@@ -77,9 +77,8 @@ import { addProductToCart } from './productUtilities.js';
      const query = {
        id: 'products',
        params: {
-         from: PER_PAGE * currentPage, 
-        /* to disabled load more */
-         /* size: PER_PAGE, */
+        from: PER_PAGE * currentPage, 
+        size: PER_PAGE,
          ...(category ? { filter_category: { fields: [category] } } : {})
        }
      };
