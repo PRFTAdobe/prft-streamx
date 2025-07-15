@@ -63,3 +63,29 @@ spec:
       upstreams:
         - name: aem-upstream
 ---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: aem-xf-route
+spec:
+  http:
+    - name: aem-xf-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /content/experience-fragments/*
+      priority: 15
+      plugins:
+        - name: proxy-cache
+          nocache: true
+        - name: proxy-rewrite
+          enable: true
+          headers:
+            set:
+              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
+              - "Pragma: no-cache"
+          config:
+            regex_uri: ["^/content/experience-fragments/(.*)","/content/experience-fragments/$1"]
+      upstreams:
+        - name: aem-upstream
