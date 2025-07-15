@@ -7,7 +7,7 @@ import { addProductToCart } from './productUtilities.js';
   const RESULTS_CONTAINER_ID = 'product-list';
   const LOAD_MORE_BUTTON_ID = 'load-more-button';
   // const PER_PAGE = 6;
-  const PER_PAGE = 10000;
+  const PER_PAGE = 100;
   const SEARCH_URL = '/search/query/body';
   const DEFAULT_IMG = '../data/assets/342x457.webp';
   const EXCLUDE_LOADMORE_FOR_KEYWORD = '-men';
