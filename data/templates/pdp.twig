@@ -229,7 +229,7 @@
         <div class="max-w-6xl mx-auto">
           {% set lowercasesku = sku|lower %}
           {% autoescape false %}
-            {{ '{{#include src="https://lumax.streamx.com/content/experience-fragments/lumax/products/product-' + lowercasesku + '/master.html"}}' }}
+            {{ '{{#include src="/content/experience-fragments/lumax/products/product-' + lowercasesku + '/master.html"}}' }}
           {% endautoescape %}
         </div>
       </div>
