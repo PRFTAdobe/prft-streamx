@@ -238,7 +238,7 @@ const showStep3 = async () => {
                 purchaseOrderEvent(placeOrderNumber, totalCost);
                 userSession.removeCartIDFromSS();
                 userSession.setCartQuantityToSS(0);
-                utilities.updateCartCountOnUI();
+                utilities.updateCartCountOnUI(0);
 
 
                 Array.from(step2).forEach((element) => {
