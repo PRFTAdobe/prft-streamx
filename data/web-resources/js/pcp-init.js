@@ -8,6 +8,7 @@ import { addProductToCart } from './productUtilities.js';
   const LOAD_MORE_BUTTON_ID = 'load-more-button';
   // const PER_PAGE = 6;
   const PER_PAGE = 100;
+  const PER_PAGE_MAX = 1000;
   const SEARCH_URL = '/search/query/body';
   const DEFAULT_IMG = '../data/assets/342x457.webp';
   const EXCLUDE_LOADMORE_FOR_KEYWORD = '-men';
@@ -83,10 +84,9 @@ import { addProductToCart } from './productUtilities.js';
        }
      };
 
-     /* to disabled load more */
-    /*  if (!category.includes(EXCLUDE_LOADMORE_FOR_KEYWORD)) {
-         query.params.size = PER_PAGE
-     } */
+     if (!category.includes(EXCLUDE_LOADMORE_FOR_KEYWORD)) {
+         query.params.size = PER_PAGE_MAX
+     }
 
       if (facets && facets.length > 0) {
         const facetsWithoutCategory = facets.filter(f => Object.keys(f)[0] !== 'category');
@@ -349,17 +349,14 @@ import { addProductToCart } from './productUtilities.js';
       initFilters = false;
     }
 
-    /* to disabled load more */
-    loadMoreButton.classList.add('hidden')
-    /* currentPage += 1;
-
+    currentPage += 1;
     const loadMoreButton = document.getElementById(LOAD_MORE_BUTTON_ID);
     // eslint-disable-next-line no-unused-expressions
     if (loadMoreButton && !category.includes(EXCLUDE_LOADMORE_FOR_KEYWORD)) {
         response.hits.total.value > PER_PAGE * currentPage
           ? loadMoreButton.classList.remove('hidden')
           : loadMoreButton.classList.add('hidden');
-    } */
+    }
   };
 
   const fetchProductData = () => {
