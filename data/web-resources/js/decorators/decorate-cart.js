@@ -168,10 +168,15 @@ const addIncreaseDecreaseQuantityAction = () => {
 
 const promoBannerTemplate = (content) => {
     const imageAlt = content.imagePath.title ? content.imagePath.title : content.imagePath._path;
-    const imagePath = content.imagePath._publishUrl.replace("https://publish-p7752-e729659.adobeaemcloud.com", "");
+    const imagePath = content.imagePath?._publishUrl?.replace("https://publish-p7752-e729659.adobeaemcloud.com", "");
     return ` <div class="flex flex-col md:flex-row items-center p-6">
-    <div class="w-full md:w-1/4 mb-4 md:mb-0">
-      <img src="${imagePath}" alt="${imageAlt}" class="cf--promo-banner--image w-full h-48 object-cover rounded-lg"></div>
+    
+      ${imagePath ? 
+        `<div class="w-full md:w-1/4 mb-4 md:mb-0">
+            <img src="${imagePath}" alt="${imageAlt}" class="cf--promo-banner--image w-full h-48 object-cover rounded-lg">
+        </div>` 
+        : ''}
+
     <div class="w-full md:w-3/4 md:pl-8 text-white">
       <div class="flex items-center gap-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
