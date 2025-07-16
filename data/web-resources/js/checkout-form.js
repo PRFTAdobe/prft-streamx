@@ -1,6 +1,5 @@
 import { checkoutMutations } from "https://lumax.streamx.com/scripts/auth/commerce/checkoutMutations.js";
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
-import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 import { purchaseOrderEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js";
 import { updateValues } from "./decorators/decorate-cart.js";
@@ -20,6 +19,11 @@ let address = {
 const step1 = document.querySelectorAll('.step-1');
 const step2 = document.querySelectorAll('.step-2');
 const step3 = document.querySelectorAll('.step-3');
+
+const updateCartCountOnUI = async () => {
+    const header = await import ("https://lumax.streamx.com/blocks/header/header.js");
+    await header.updateCartCountOnUI();
+}
 
 const resetRadioSelection = () => {
     const payments = document.querySelectorAll('.payment-group > div');
@@ -236,9 +240,9 @@ const showStep3 = async () => {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 var totalCost = document.querySelector(".total-payment").innerHTML;
                 purchaseOrderEvent(placeOrderNumber, totalCost);
+                updateCartCountOnUI();
                 userSession.removeCartIDFromSS();
                 userSession.setCartQuantityToSS(0);
-                utilities.updateCartCountOnUI();
 
 
                 Array.from(step2).forEach((element) => {
