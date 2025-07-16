@@ -32,7 +32,7 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
     }
     if (!isError) {
         addToCartEvent(event);
-        userSession.setCartQuantityToSS(cart.total_quantity);
+        userSession.setActiveCart(cart);
         updateCartCountOnUI(cart.total_quantity);
         utilities.addCheckmarkSVG(event.target);
     }
@@ -62,7 +62,7 @@ export const removeItemFromCart = async (cartID, uid) => {
         console.log(response.errors);
     }
     if (!isError) {
-        userSession.setCartQuantityToSS(response.total_quantity);
+        userSession.setActiveCart(response);
         updateCartCountOnUI(response.total_quantity);
     }
 }
@@ -81,7 +81,7 @@ export const updateItemQuantityInCart = async (cartID, uid, quantity) => {
         console.log(response.errors);
     }
     if (!isError) {
-        userSession.setCartQuantityToSS(response.total_quantity);
+        userSession.setActiveCart(response);
         updateCartCountOnUI(response.total_quantity);
     }
     return response;
@@ -101,7 +101,7 @@ export const fetchCartByID = async (cartID) => {
         console.log(response.errors);
     }
     if (!isError) {
-        userSession.setCartQuantityToSS(response.total_quantity);
+        userSession.setActiveCart(response);
         updateCartCountOnUI(response.total_quantity);
         return response;
     }
