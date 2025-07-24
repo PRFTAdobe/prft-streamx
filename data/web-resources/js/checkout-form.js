@@ -22,7 +22,7 @@ const step3 = document.querySelectorAll('.step-3');
 
 const updateCartCountOnUI = async () => {
     const header = await import ("https://lumax.streamx.com/blocks/header/header.js");
-    await header.updateCartCountOnUI();
+    header.updateCartCountOnUI();
 }
 
 const resetRadioSelection = () => {
@@ -240,10 +240,8 @@ const showStep3 = async () => {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 var totalCost = document.querySelector(".total-payment").innerHTML;
                 purchaseOrderEvent(placeOrderNumber, totalCost);
+                userSession.clearCart();
                 updateCartCountOnUI();
-                userSession.removeCartIDFromSS();
-                userSession.setCartQuantityToSS(0);
-
 
                 Array.from(step2).forEach((element) => {
                     element.classList.remove('block');
