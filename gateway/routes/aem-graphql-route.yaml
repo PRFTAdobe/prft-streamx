@@ -77,15 +77,14 @@ spec:
           - /content/experience-fragments/*
       priority: 15
       plugins:
-        - name: proxy-cache
-          nocache: true
-        - name: proxy-rewrite
+        - name: response-rewrite
           enable: true
-          headers:
-            set:
-              - "Cache-Control: no-cache, must-revalidate, public, max-age=0"
-              - "Pragma: no-cache"
           config:
-            regex_uri: ["^/content/experience-fragments/(.*)","/content/experience-fragments/$1"]
+            headers:
+              Cache-Control: "no-store, no-cache, must-revalidate"
+              Pragma: "no-cache"
+              Expires: "0"
+            vars:
+              - [ "sent_http_content_type", "~~", "text/html" ]      
       upstreams:
         - name: aem-upstream
