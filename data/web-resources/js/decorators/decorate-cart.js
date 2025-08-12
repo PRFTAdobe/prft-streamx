@@ -330,7 +330,14 @@ export async function updateCartPage() {
 
 window.addEventListener('DOMContentLoaded', () => {
     if (location.href.includes('cart')) {
-        updateCartPage();
-        updatePromoUI();
+        const queryString = location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const source = urlParams.get('source');
+        if (source = 'email' && !userSession.getActiveUserFromSS()) {
+            location.pathname = '/login.html';
+        }else{
+            updateCartPage();
+            updatePromoUI();
+        }
     }
 });
