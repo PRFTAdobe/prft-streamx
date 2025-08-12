@@ -13,7 +13,7 @@ const SIGNUP_FORM = "createUser";
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
         //if user is logged in, redirect
-        window.location.pathname = "/my-orders.html";
+        window.location.pathname = "/cart.html";
     }
 
     document.querySelectorAll('.toggleForm').forEach(
