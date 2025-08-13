@@ -333,7 +333,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const queryString = location.search;
         const urlParams = new URLSearchParams(queryString);
         const source = urlParams.get('source');
-        if (source = 'email' && !userSession.getActiveUserFromSS()) {
+        if (source == 'email' && !userSession.getActiveUserFromSS()) {
             location.pathname = '/login.html';
         }else{
             updateCartPage();
