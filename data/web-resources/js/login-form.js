@@ -121,7 +121,7 @@ const quickLogin = async (button) => {
 }
 
 const redirectSupplierSuccess = async () => {
-    window.location.pathname = "/supplier-dashboard.html";
+    window.location.pathname = "/supplier-dashboard";
 }
 
 const redirectSuccess = async () => {
