@@ -130,7 +130,7 @@ const redirectSuccess = async () => {
     if( returnUrl ){
         window.location.pathname = decodeURI(returnUrl);
     }else{
-        window.location.pathname = "/my-orders.html"
+        window.location.pathname = "/cart.html"
     }
 }
 
