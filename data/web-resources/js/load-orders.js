@@ -140,5 +140,12 @@ export const updateOnLogOut = async () => {
 }
 
 if (location.href.includes('my-orders')) {
-    loadMyOrders();
+    const queryString = location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const source = urlParams.get('source');
+    if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
+        location.pathname = '/login.html';
+    }else{
+        loadMyOrders();
+    }
 }
