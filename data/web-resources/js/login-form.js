@@ -10,10 +10,20 @@ const FORM_TYPE_ATTRIBUTE = "formType";//form-type converts to formType in datas
 const SIGNIN_FORM = "login";
 const SIGNUP_FORM = "createUser";
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const source = urlParams.get('source');
+
+const IS_REDIRECT_TO_ORDER = source == 'order_email';
+
 const init = ()=> {
     if( userSession.getActiveUserFromSS() ){
         //if user is logged in, redirect
-        window.location.pathname = "/cart.html";
+        if (IS_REDIRECT_TO_ORDER) {
+            window.location.pathname = "/my-orders.html"
+        }else{
+            window.location.pathname = "/cart.html";
+        }
     }
 
     document.querySelectorAll('.toggleForm').forEach(
@@ -129,6 +139,8 @@ const redirectSuccess = async () => {
     const returnUrl = queryParams.get(utilities.RETURN_URL_QP); 
     if( returnUrl ){
         window.location.pathname = decodeURI(returnUrl);
+    }else if (IS_REDIRECT_TO_ORDER) {
+        window.location.pathname = "/my-orders.html"
     }else{
         window.location.pathname = "/cart.html"
     }
