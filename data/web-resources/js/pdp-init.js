@@ -44,7 +44,7 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
 
   const isVariantInStock = (stockStatusResponse, variantSKU) => {
     const filteredVariant = stockStatusResponse?.filter(product => product.product.sku === variantSKU);
-    return filteredVariant[0]?product.inStock;
+    return filteredVariant[0]?.product?.inStock ;
   }
 
   const updateStockStatusOnUI = (isProductVariantInStock) => {
