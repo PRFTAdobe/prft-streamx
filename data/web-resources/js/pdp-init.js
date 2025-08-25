@@ -57,7 +57,7 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
       quantityEle.classList.contains('hidden') ? quantityEle.classList.remove('hidden') : '';
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
-      notifyMeEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
+      notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
       
     }else{
       const activeUser = userSession.getActiveUserFromSS();
