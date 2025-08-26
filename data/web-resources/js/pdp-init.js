@@ -3,12 +3,14 @@ import { addProductToCart } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
+import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
     style: 'currency',
   });
+  let firstLoad = true;
 
   const swapImageAction = () => {
     const mainImage = document.querySelector('.main-image');
@@ -44,7 +46,7 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
 
   const isVariantInStock = (stockStatusResponse, variantSKU) => {
     const filteredVariant = stockStatusResponse?.filter(product => product.product.sku === variantSKU);
-    return filteredVariant[0]?.product?.inStock ;
+    return filteredVariant[0]?.product?.inStock;
   }
 
   const updateStockStatusOnUI = (isProductVariantInStock) => {
@@ -52,21 +54,29 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
     const addToCartEle = document.querySelector(".add-to-cart-wrapper");
     const outOfStockEle = document.querySelector(".oos-message-container");
     const notifyMeEle = document.querySelector(".notify-me-wrapper");
-    
-    if(isProductVariantInStock){
+
+    document.body.dataset.inStock = isProductVariantInStock;
+
+    if (!firstLoad) {
+      updateVariantStatusEvent();
+    }
+
+    firstLoad = false;
+
+    if (isProductVariantInStock) {
       quantityEle.classList.contains('hidden') ? quantityEle.classList.remove('hidden') : '';
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
       notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
-      
-    }else{
+
+    } else {
       const activeUser = userSession.getActiveUserFromSS();
 
       quantityEle.classList.contains('hidden') ? '' : quantityEle.classList.add('hidden');
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
-      outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';   
+      outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
 
-      if(activeUser && notifyMeEle.classList.contains('hidden')){
+      if (activeUser && notifyMeEle.classList.contains('hidden')) {
         notifyMeEle.classList.remove('hidden');
       }
     }
@@ -122,8 +132,9 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
         }
         newSku = `${newSku}-${selectedColor}`;
         document.body.dataset.sku = newSku;
-
-        updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+        if (stockStatusResponse.length) {
+          updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+        }
       });
     });
   };
@@ -177,7 +188,9 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
         }
         document.body.dataset.sku = newSku;
 
-        updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+        if (stockStatusResponse.length) {
+          updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+        }
       });
     });
   };
@@ -203,7 +216,7 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
 
     let stockStatusResponse = await productMutations.getStockStatusBySKU(baseSku);
     stockStatusResponse = stockStatusResponse.data.variants.variants;
-    
+
     if (pricesParagraph) {
       const { prices } = pricesParagraph.dataset;
       const priceAssociativeArray = buildPriceAssociativeArray(prices);
@@ -237,7 +250,13 @@ import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session
     addToCartButton?.addEventListener('click', handleAddToCartClick);
   };
 
+  const addToWishList = () => {
+    const addToWishListButton = document.querySelector('.notifyWhenInStock');
+    addToWishListButton?.addEventListener('click', addToWishlistEvent);
+  }
+
   init();
   addToCart();
   addIncreaseDecreaseQuantityAction();
+  addToWishList();
 })();
