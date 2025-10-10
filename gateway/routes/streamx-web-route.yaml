@@ -18,6 +18,7 @@ spec:
           - /web-resources/*
           - /fragments/*
           - /_fragments/*
+          - /media/*
           - /products/*
           - /categories/*
           - /content/dam/*
