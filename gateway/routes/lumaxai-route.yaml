@@ -1,0 +1,37 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: lumaxai-upstream
+spec:
+  scheme: https
+  passHost: node
+  externalNodes:
+    - type: Domain
+      name: happy-dune-0ad7a2a0f.3.azurestaticapps.net
+
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: lumaxai-default-route
+spec:
+  http:
+    - name: lumaxai-default-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /ai
+      priority: 10
+      upstreams:
+        - name: lumaxai-upstream
+      plugins:
+        - name: response-rewrite
+          enable: true
+          config:
+            headers:
+              Cache-Control: "no-store, no-cache, must-revalidate"
+              Pragma: "no-cache"
+              Expires: "0"
+            vars:
+              - [ "sent_http_content_type", "~~", "text/html" ]
