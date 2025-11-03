@@ -10,7 +10,7 @@
         - host: happy-dune-0ad7a2a0f.3.azurestaticapps.net
           weight: 1
       scheme: https
-       type: roundrobin
+      type: roundrobin
      plugins:
       proxy-rewrite:
         uri: /
