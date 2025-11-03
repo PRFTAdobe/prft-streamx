@@ -23,8 +23,10 @@ spec:
         paths:
           - /ai
           - /_next/*
-          - /*.svg
+          - /logo.svg
+          - /voiceIcon.svg
           - /favicon.ico
+          - /germ.svg
       priority: 10
       upstreams:
         - name: lumaxai-upstream
