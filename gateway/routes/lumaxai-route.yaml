@@ -22,6 +22,10 @@ spec:
           - lumax.streamx.com
         paths:
           - /ai
+          - /_next/*
+          - /logo.svg
+          - /voiceIcon.svg
+          - /favicon.ico
       priority: 10
       upstreams:
         - name: lumaxai-upstream
