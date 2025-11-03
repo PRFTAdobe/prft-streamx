@@ -23,8 +23,7 @@ spec:
         paths:
           - /ai
           - /_next/*
-          - /logo.svg
-          - /voiceIcon.svg
+          - /*.svg
           - /favicon.ico
       priority: 10
       upstreams:
