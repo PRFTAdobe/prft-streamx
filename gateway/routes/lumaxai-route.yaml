@@ -28,6 +28,9 @@ spec:
           - /favicon.ico
           - /germ.svg
           - /api/*
+          - /voiceCancel.svg
+          - /hero-home.jpg
+          - /voice-start-short.mp3
       priority: 10
       upstreams:
         - name: lumaxai-upstream
