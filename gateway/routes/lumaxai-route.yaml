@@ -27,6 +27,7 @@ spec:
           - /voiceIcon.svg
           - /favicon.ico
           - /germ.svg
+          - /api/*
       priority: 10
       upstreams:
         - name: lumaxai-upstream
