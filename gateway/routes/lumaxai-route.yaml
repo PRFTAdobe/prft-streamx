@@ -36,6 +36,10 @@ spec:
       upstreams:
         - name: lumaxai-upstream
       plugins:
+        - proxy-rewrite:
+          config:
+            regex_uri: ["^/(.*)","$1"]
+            host: "happy-dune-0ad7a2a0f.3.azurestaticapps.net"
         - name: response-rewrite
           enable: true
           config:
