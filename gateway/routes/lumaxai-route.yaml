@@ -37,6 +37,8 @@ spec:
         - name: lumaxai-upstream
       plugins:
         - proxy-rewrite:
+          status_code: 200
+          body: "This is a fallback response for non-existing pages"
           config:
             regex_uri: ["^/(.*)","$1"]
             host: "happy-dune-0ad7a2a0f.3.azurestaticapps.net"
