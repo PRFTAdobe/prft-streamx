@@ -32,14 +32,15 @@ const init = ()=> {
         }
     );
 
-    document.querySelectorAll(".quicklogin").forEach( 
-        (button) => {
-            button.addEventListener("click", 
-                () => {
-                    quickLogin(button);
-                }
-            );
-        });
+    const userDropdown = document.getElementById('userDropdown');
+    const signAsButton = document.getElementById('signAsButton');
+
+    userDropdown.addEventListener('change', e => {
+        signAsButton.disabled = !e.target.value;
+    });
+    signAsButton.addEventListener("click", () => {
+        quickLogin(signAsButton, userDropdown.value);
+    });
 
     const loginForm = document.getElementById(FORM_ID);
     let queryParams = new URLSearchParams(window.location.search);
@@ -100,34 +101,29 @@ const showHideErrorMessage = (message) => {
     }
 }
 
-const quickLogin = async (button) => {
+const quickLogin = async (button, demoUserID) => {
     userSession.removeLoginSession();
-    const demoUserID = button.getAttribute("data-user-id");
     const demoUserCreds = userSession[demoUserID];
     console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
         utilities.addSpinnerSVG(button);
-        if( demoUserID.startsWith("user") ){
-            //standard user login
-            const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
-            showHideErrorMessage(userMutations.getUserResponseError(response));
-            if( !userMutations.userResponseHasErrors(response)){
-                utilities.addCheckmarkSVG(button);
-                userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
+        const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
+        showHideErrorMessage(userMutations.getUserResponseError(response));
+        if(!userMutations.userResponseHasErrors(response)){
+            utilities.addCheckmarkSVG(button);
+            utilities.addCheckmarkSVG(button);
+            userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
+            const isSupplier = await userMutationsMutations.isSupplier(userMutations.getUserResponseToken(response));
+            if (isSupplier) {
                 await initCart();
                 redirectSuccess();
+            } else {
+              redirectSupplierSuccess();  
             }
-        }else if (demoUserID.startsWith("supplier")){
-            //supplier login
-            userSession.storeLoginSession(demoUserID,`dummy_${demoUserID}_token`);
-            utilities.addCheckmarkSVG(button);
-            redirectSupplierSuccess();
-        }
-        
+        }    
     }
-    
 }
 
 const redirectSupplierSuccess = async () => {
