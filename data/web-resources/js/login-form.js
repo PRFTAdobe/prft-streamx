@@ -104,7 +104,6 @@ const showHideErrorMessage = (message) => {
 const quickLogin = async (button, demoUserID) => {
     userSession.removeLoginSession();
     const demoUserCreds = userSession[demoUserID];
-    console.log(utilities[demoUserID]);
     
     if( demoUserCreds ){
         button.setAttribute("disabled",true);
@@ -112,7 +111,6 @@ const quickLogin = async (button, demoUserID) => {
         const response = await userMutations.getLoginResponse(demoUserCreds.email,demoUserCreds.password);
         showHideErrorMessage(userMutations.getUserResponseError(response));
         if(!userMutations.userResponseHasErrors(response)){
-            utilities.addCheckmarkSVG(button);
             utilities.addCheckmarkSVG(button);
             userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
             const isSupplier = await userMutationsMutations.isSupplier(userMutations.getUserResponseToken(response));
