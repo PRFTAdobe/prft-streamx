@@ -114,7 +114,7 @@ const quickLogin = async (button, demoUserID) => {
             utilities.addCheckmarkSVG(button);
             userSession.storeLoginSession(demoUserCreds.email,userMutations.getUserResponseToken(response));
             const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
-            if (isSupplier) {
+            if (!isSupplier) {
                 await initCart();
                 redirectSuccess();
             } else {
