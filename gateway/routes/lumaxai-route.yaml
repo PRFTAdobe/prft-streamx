@@ -8,10 +8,6 @@ spec:
   externalNodes:
     - type: Domain
       name: wonderful-flower-0ae435e0f.3.azurestaticapps.net
-loadbalancer:
-    type: chash          # 1. Use Consistent Hashing
-    hashOn: cookie      # 2. Hash based on a cookie
-    key: affinity    # 3. Specify the cookie name
 ---
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
