@@ -171,11 +171,19 @@ const submitLogin = async (formSubmitEvent) => {
         //login success - store token and switch spinner to checkmark
         utilities.addCheckmarkSVG(buttonClicked);
         userSession.storeLoginSession(username,userMutations.getUserResponseToken(response));
-        await initCart();
-        document.querySelector(".successMessage").classList.remove("hidden");
-        setTimeout( () => {
-            redirectSuccess();
-        },2500);
+        const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
+            if (!isSupplier) {   
+                await initCart();
+                document.querySelector(".successMessage").classList.remove("hidden");
+                setTimeout( () => {
+                    redirectSuccess();
+                },2500);
+            } else {
+                document.querySelector(".successMessage").classList.remove("hidden");
+                setTimeout( () => {
+                    redirectSupplierSuccess();  
+                },2500);
+            }
     }else{
         //login failed, remove spinner and re-enable button.
         utilities.removeSpinnerSVG(buttonClicked);
