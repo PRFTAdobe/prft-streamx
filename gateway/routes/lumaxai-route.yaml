@@ -7,7 +7,7 @@ spec:
   passHost: node
   externalNodes:
     - type: Domain
-      name: happy-dune-0ad7a2a0f.3.azurestaticapps.net
+      name: wonderful-flower-0ae435e0f.3.azurestaticapps.net
 
 ---
 apiVersion: apisix.apache.org/v2
@@ -41,7 +41,7 @@ spec:
           body: "This is a fallback response for non-existing pages"
           config:
             regex_uri: ["^/(.*)","$1"]
-            host: "happy-dune-0ad7a2a0f.3.azurestaticapps.net"
+            host: "wonderful-flower-0ae435e0f.3.azurestaticapps.net"
         - name: response-rewrite
           enable: true
           config:
