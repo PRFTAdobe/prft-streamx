@@ -44,7 +44,7 @@
                 <div class="loginMessageContainer text-sm text-center justify-center p-5 pt-0">
                     <p class="successMessage hidden">
                         You have logged in successfully!<br/>
-                        You will be automatically redirected back to the orders page...
+                        You will be automatically redirected...
                     </p>
                     <p class="errorMessage hidden text-dsg-red">There was an issue logging in using these credentials.  Please try again</p>
                 </div>
@@ -90,25 +90,76 @@
         <div class="rounded-lg border bg-card text-card-foreground shadow-sm mt-5">
             <div class="quickLogins flex flex-col space-y-1.5 p-6 text-center">
                 <h3 class="headerText tracking-tight text-2xl font-bold">Demo OneClick Logins</h3>  
-                <div class="wrapper grid grid-cols-4 gap-4 flex justify-center w-full">
-                    <button data-user-id="user01" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
-                        <span>Persona1</span>
-                        <svg class="m-auto" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </button>
-                    <button data-user-id="user02" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
-                        <span>Persona2</span>
-                        <svg class="m-auto" height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-user h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </button>
-                    <button data-user-id="supplier1" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
-                        <span>Supplier1</span>
-                        <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path fill="currentColor" d="M11.5 19.713v-7.426L5 8.523v7.427l6.5 3.763Zm1 0L19 15.95V8.523l-6.5 3.764v7.426Zm-.5 1.433l-8-4.598V7.452l8-4.598l8 4.598v9.096l-8 4.598Zm3.712-11.871l2.713-1.562L12 4L9.3 5.548l6.412 3.727ZM12 11.427l2.7-1.567l-6.425-3.714l-2.7 1.567L12 11.427Z"></path></svg>
-                    </button>
-                    <button data-user-id="supplier2" class="quicklogin justify-center items-center px-1 py-4 border rounded-md cursor-pointer hover:bg-gray-50 transition-colors duration-200">
-                        <span>Supplier2</span>
-                        <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"><path fill="currentColor" d="M11.5 19.713v-7.426L5 8.523v7.427l6.5 3.763Zm1 0L19 15.95V8.523l-6.5 3.764v7.426Zm-.5 1.433l-8-4.598V7.452l8-4.598l8 4.598v9.096l-8 4.598Zm3.712-11.871l2.713-1.562L12 4L9.3 5.548l6.412 3.727ZM12 11.427l2.7-1.567l-6.425-3.714l-2.7 1.567L12 11.427Z"></path></svg>
+                <div class="wrapper flex flex-col items-center w-full space-y-4">
+                    <div class="relative w-full max-w-xs">
+                        <select id="userDropdown" class="w-full p-4 border rounded-md cursor-pointer appearance-none bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="" disabled selected>Select user to sign in as</option>
+                            <option value="user01" class="flex items-center py-2">
+                                <span>Persona1</span>
+                            </option>
+                            <option value="user02" class="flex items-center py-2">
+                                <span>Persona2</span>
+                            </option>
+                            <option value="supplier1" class="flex items-center py-2">
+                                <span>LeanX Fitness - Administrator</span>
+                            </option>
+                            <option value="supplier2" class="flex items-center py-2">
+                                <span>LeanX Manager - Manager</span>
+                            </option>
+                            <option value="supplier3" class="flex items-center py-2">
+                                <span>Maya Calderon - CEO</span>
+                            </option>
+                            <option value="supplier4" class="flex items-center py-2">
+                                <span>Omar Nguyen - Director of Operations</span>
+                            </option>
+                            <option value="supplier5" class="flex items-center py-2">
+                                <span>Priya Patel - Marketing Director</span>
+                            </option>
+                            <option value="supplier6" class="flex items-center py-2">
+                                <span>Lucas Moretti - Sr Sales Manager</span>
+                            </option>
+                            <option value="supplier7" class="flex items-center py-2">
+                                <span>Hannah Ortiz - Trainer</span>
+                            </option>
+                            <option value="supplier8" class="flex items-center py-2">
+                                <span>Daniel Price - Trainer</span>
+                            </option>
+                            <option value="supplier9" class="flex items-center py-2">
+                                <span>MuscleUp Fitness - Administrator</span>
+                            </option>
+                            <option value="supplier10" class="flex items-center py-2">
+                                <span>MuscleUp Manager - Manager</span>
+                            </option>
+                            <option value="supplier11" class="flex items-center py-2">
+                                <span>Serena Blake - COO</span>
+                            </option>
+                            <option value="supplier12" class="flex items-center py-2">
+                                <span>Mateo Alvarez - Director of Membership Sales</span>
+                            </option>
+                            <option value="supplier13" class="flex items-center py-2">
+                                <span>Chloe Rivers - Marketing & Partnership Manager</span>
+                            </option>
+                            <option value="supplier14" class="flex items-center py-2">
+                                <span>Ethan Cole - Trainer</span>
+                            </option>
+                            <option value="supplier15" class="flex items-center py-2">
+                                <span>Aisha Khan - Customer Service Manager</span>
+                            </option>
+                            <option value="supplier16" class="flex items-center py-2">
+                                <span>Victor Stone - Facilities & Logistics Manager</span>
+                            </option>
+                        </select>
+                    </div>
+                    <button id="signAsButton" class="inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full max-w-xs bg-dsg-red hover:bg-dsg-red/90" type="button" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in mr-2 h-4 w-4">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                        </svg> 
+                        Sign In As
                     </button>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 
