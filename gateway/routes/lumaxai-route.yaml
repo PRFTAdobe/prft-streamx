@@ -29,8 +29,10 @@ spec:
           - /api/*
           - /voiceCancel.svg
           - /hero-home.jpg
-          - /voice-start-short.mp3
+          - /voice*.mp3
           - /_next/image*
+          - /audio-*.js
+          - /video*.mp4
       priority: 10
       upstreams:
         - name: lumaxai-upstream
