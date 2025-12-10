@@ -35,6 +35,8 @@ const init = ()=> {
     const userDropdown = document.getElementById('userDropdown');
     const signAsButton = document.getElementById('signAsButton');
 
+    populateUserDropdown(userDropdown);
+
     userDropdown.addEventListener('change', e => {
         signAsButton.disabled = !e.target.value;
     });
@@ -190,6 +192,19 @@ const submitLogin = async (formSubmitEvent) => {
         console.log("Found errors:"+userMutations.getUserResponseError(response));
     }
     buttonClicked.removeAttribute("disabled");
+};
+
+const populateUserDropdown = (userDropdown) => {
+    userSession.suppliers.forEach( (supplier, index) => {
+        const display_name = `${supplier.firstname} - ${supplier.jobTitle}`;
+        const option = document.createElement('option');
+        option.value = `supplier${index+1}`;
+        option.className = "flex items-center py-2";
+        const span = document.createElement('span');
+        span.textContent = display_name;
+        option.appendChild(span);
+        userDropdown.appendChild(option);
+    });
 };
 
 init();
