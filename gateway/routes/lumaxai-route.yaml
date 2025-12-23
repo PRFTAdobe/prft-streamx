@@ -21,6 +21,7 @@ spec:
           - lumax.streamx.com
         paths:
           - /ai
+          - /ai/*
           - /_next/*
           - /logo.svg
           - /voiceIcon.svg
