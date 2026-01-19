@@ -112,7 +112,7 @@ const updateStep2State = async () => {
         }
         console.log(response.errors);
     }
-    sessionStorage.setItem("orderProducts",JSON.stringify(setPaymentMethodResponse.items))
+    sessionStorage.setItem("orderProducts",JSON.stringify(response.items))
     return isError;
 };
 
