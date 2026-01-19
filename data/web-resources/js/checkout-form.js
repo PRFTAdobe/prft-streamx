@@ -112,7 +112,6 @@ const updateStep2State = async () => {
         }
         console.log(response.errors);
     }
-    sessionStorage.setItem("orderProducts",JSON.stringify(response.items))
     return isError;
 };
 
@@ -239,9 +238,7 @@ const showStep3 = async () => {
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 var totalCost = document.querySelector(".total-payment").innerHTML;
-                const orderProducts = JSON.parse(sessionStorage.getItem("orderProducts"));
-                purchaseOrderEvent(placeOrderNumber, totalCost, orderProducts);
-                sessionStorage.removeItem("orderProducts");
+                purchaseOrderEvent(placeOrderNumber, totalCost);
                 userSession.clearCart();
                 updateCartCountOnUI();
 
