@@ -238,6 +238,7 @@ const showStep3 = async () => {
             if (!isError) {
                 document.querySelector('.order-number').innerHTML = placeOrderNumber;
                 var totalCost = document.querySelector(".total-payment").innerHTML;
+                purchaseOrderEvent(placeOrderNumber, totalCost);
                 userSession.clearCart();
                 updateCartCountOnUI();
 
