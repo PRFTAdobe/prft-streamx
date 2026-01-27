@@ -112,3 +112,14 @@ export const updateOnLogOut = async () => {
   document.querySelector('.my-wishlist-content')?.classList.add('hidden')
   document.querySelector('.log-out-user')?.classList.remove('hidden')
 };
+
+if (location.href.includes('my-watchlist')) {
+    const queryString = location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const source = urlParams.get('source');
+    if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
+        location.pathname = '/login.html';
+    }else{
+        loadMyOrders();
+    }
+}
