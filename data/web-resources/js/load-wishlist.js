@@ -120,6 +120,6 @@ if (location.href.includes('my-watchlist')) {
     if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
         location.pathname = '/login.html';
     }else{
-        loadMyOrders();
+        loadMyWishlist();
     }
 }
