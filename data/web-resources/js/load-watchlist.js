@@ -2,7 +2,7 @@ import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/u
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/wishlistMutation.js";
 
-export const loadMyWishlist = async () => {
+export const loadMyWatchlist = async () => {
   const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
 
   if (activeToken != null) {
@@ -20,16 +20,16 @@ export const loadMyWishlist = async () => {
     }
 
     if (!isError) {
-      document.querySelector('.my-wishlist-content')?.classList.remove('hidden')
+      document.querySelector('.my-watchlist-content')?.classList.remove('hidden')
       document.querySelector('.log-out-user')?.classList.add('hidden')
 
-      const itemListEmptyElement = document.querySelector('.wishlist-empty')
-      const wishlistContent = document.querySelector('.wishlist-content')
+      const itemListEmptyElement = document.querySelector('.watchlist-empty')
+      const watchlistContent = document.querySelector('.watchlist-content')
 
       if (wishlist?.length > 0) {
         itemListEmptyElement?.classList.add('hidden')
         
-        wishlistContent.innerHTML = wishlist.map(item => {
+        watchlistContent.innerHTML = wishlist.map(item => {
           const product = item.product
           const variant = item.configured_variant
           const imageUrl = variant?.image?.url || product.image.url
@@ -71,7 +71,7 @@ export const loadMyWishlist = async () => {
             </div>`
         }).join('')
 
-        wishlistContent.onclick = async (e) => {
+        watchlistContent.onclick = async (e) => {
           const card = e.target.closest('.product-card')
           if (!card) return
 
@@ -82,24 +82,24 @@ export const loadMyWishlist = async () => {
           // Delete logic
           if (e.target.closest('.btn-remove')) {
             const res = await wishlistMutation.removeProductFromWishlist(currentToken, "0", itemId)
-            if (!res.errors) loadMyWishlist()
+            if (!res.errors) loadMyWatchlist()
           }
 
           // Increase logic
           if (e.target.closest('.btn-qty-plus')) {
             const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty + 1)
-            if (!res.errors) loadMyWishlist()
+            if (!res.errors) loadMyWatchlist()
           }
 
           // Decrease logic
           if (e.target.closest('.btn-qty-minus') && currentQty > 1) {
             const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty - 1)
-            if (!res.errors) loadMyWishlist()
+            if (!res.errors) loadMyWatchlist()
           }
         }
 
       } else {
-        wishlistContent.innerHTML = ''
+        watchlistContent.innerHTML = ''
         itemListEmptyElement?.classList.remove('hidden')
       }
     }
@@ -109,7 +109,7 @@ export const loadMyWishlist = async () => {
 }
 
 export const updateOnLogOut = async () => {
-  document.querySelector('.my-wishlist-content')?.classList.add('hidden')
+  document.querySelector('.my-watchlist-content')?.classList.add('hidden')
   document.querySelector('.log-out-user')?.classList.remove('hidden')
 };
 
@@ -120,6 +120,6 @@ if (location.href.includes('my-watchlist')) {
     if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
         location.pathname = '/login.html';
     }else{
-        loadMyWishlist();
+        loadMyWatchlist();
     }
 }
