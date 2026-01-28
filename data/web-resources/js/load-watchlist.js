@@ -1,6 +1,18 @@
-import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
-import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js";
+import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js"
+import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js"
+import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
+
+// Helper function to show spinner in any button
+const showSpinner = (button) => {
+  button.disabled = true
+  button.classList.add('opacity-70', 'pointer-events-none')
+  button.innerHTML = `
+    <svg class="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  `
+}
 
 export const loadMyWatchlist = async () => {
   const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
@@ -31,17 +43,20 @@ export const loadMyWatchlist = async () => {
         
         watchlistContent.innerHTML = wishlist.map(item => {
           const product = item.product
-          const variant = item.configured_variant
-          const imageUrl = variant?.image?.url || product.image.url
+          const imageUrl = item.configured_variant?.image?.url || product.image.url
+          const name = item.configured_variant?.name || product.name
           const price = product.price_range.minimum_price.final_price.value
+          const stockStatus = item.configured_variant?.stock_status || product.stock_status
+
+          const isOutOfStock = stockStatus === 'OUT_OF_STOCK'
 
           return `
             <div class="product-card bg-white shadow-sm border-radius p-4 rounded-md" data-item-id="${item.id}">
               <a class="m-auto" href="/products/${product.url_key}.html">
-                <img alt="${product.name}" class="object-contain" loading="lazy" src="${imageUrl}" width="100%" height="100%">
+                <img alt="${name}" class="object-contain" loading="lazy" src="${imageUrl}" width="100%" height="100%">
               </a>
               <a href="/products/${product.url_key}.html">
-                <h3 class="font-bold">${product.name}</h3>
+                <h3 class="font-bold">${name}</h3>
               </a>
               <p class="font-bold">$${price.toFixed(2)}</p>
               
@@ -63,8 +78,11 @@ export const loadMyWatchlist = async () => {
                 </button>
 
                 <div class="add-to-cart-wrapper flex-1">
-                  <button class="addToCart w-full transition active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 bg-red-600 hover:bg-red-700 text-white shadow-sm"> 
-                    Add to Cart 
+                  <button 
+                    class="addToCart w-full transition active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 shadow-sm ${isOutOfStock ? 'bg-gray-400 cursor-not-allowed text-white' : 'bg-red-600 hover:bg-red-700 text-white'}"
+                    ${isOutOfStock ? 'disabled' : ''}
+                  > 
+                    ${isOutOfStock ? 'Out of stock' : 'Add to Cart'} 
                   </button>
                 </div>
               </div>
@@ -80,21 +98,31 @@ export const loadMyWatchlist = async () => {
           const currentToken = userSession.getActiveLoginToken()
 
           // Delete logic
-          if (e.target.closest('.btn-remove')) {
+          const btnRemove = e.target.closest('.btn-remove')
+          if (btnRemove) {
+            showSpinner(btnRemove)
             const res = await wishlistMutation.removeProductFromWishlist(currentToken, "0", itemId)
             if (!res.errors) loadMyWatchlist()
           }
 
-          // Increase logic
-          if (e.target.closest('.btn-qty-plus')) {
+          const btnPlus = e.target.closest('.btn-qty-plus')
+          if (btnPlus) {
+            showSpinner(btnPlus)
             const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty + 1)
             if (!res.errors) loadMyWatchlist()
           }
 
-          // Decrease logic
-          if (e.target.closest('.btn-qty-minus') && currentQty > 1) {
+          const btnMinus = e.target.closest('.btn-qty-minus')
+          if (btnMinus && currentQty > 1) {
+            showSpinner(btnMinus)
             const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty - 1)
             if (!res.errors) loadMyWatchlist()
+          }
+
+          const btnAdd = e.target.closest('.addToCart')
+          if (btnAdd && !btnAdd.disabled) {
+            showSpinner(btnAdd)
+            setTimeout(() => loadMyWatchlist(), 1000)
           }
         }
 
@@ -111,15 +139,15 @@ export const loadMyWatchlist = async () => {
 export const updateOnLogOut = async () => {
   document.querySelector('.my-watchlist-content')?.classList.add('hidden')
   document.querySelector('.log-out-user')?.classList.remove('hidden')
-};
+}
 
 if (location.href.includes('my-watchlist')) {
-    const queryString = location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const source = urlParams.get('source');
-    if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
-        location.pathname = '/login.html';
-    }else{
-        loadMyWatchlist();
-    }
+  const queryString = location.search
+  const urlParams = new URLSearchParams(queryString)
+  const source = urlParams.get('source')
+  if (source == 'order_email' && !userSession.getActiveUserFromSS()) {
+    location.pathname = '/login.html'
+  } else {
+    loadMyWatchlist()
+  }
 }
