@@ -1,32 +1,52 @@
 {{#define name="metaTitle"}}
-<title>My Watchlist</title>
+<title>My Orders</title>
 
 {{#define name="content.html"}}
 
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-8">My Watchlist</h1>
-    <div class="my-wishlist-content hidden h-auto min-h-[25em]">
+    <h1 class="text-2xl font-bold mb-8">My Orders</h1>
+    <div class="my-orders-content h-auto min-h-[25em]">
         <div class="lg:col-span-2">
             <div class="cart-items-container bg-white rounded-lg shadow-sm divide-y"></div>
         </div>
-        <div class="lg:col-span-1 hidden wishlist-empty h-[25em]">
+        <div class="lg:col-span-1 hidden order-list-empty h-[25em]">
             <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
-                <div class="mb-8">Please add a product to your watchlist</div>
+                <div class="mb-8">Please place an order to view the order history</div>
                 <a href="/"
                     class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md mb-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Continue
                     Shopping</a>
             </div>
         </div>
-        <div class="wishlist-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            <!-- Watchlist items will be dynamically loaded here from load-wishlist.js -->
+        <div class="bg-white h-auto hidden rounded-lg order-list-with-items min-h-[25em] overflow-x-auto p-6 shadow-sm">
+            <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+            <table class="w-full caption-bottom text-sm">
+                <thead class="[&_tr]:border-b">
+                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Order Number</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Date</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Items</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Total</th>
+                        <th
+                            class="h-12 px-4 text-left align-middle font-semibold text-muted-foreground [&:has([role=checkbox])]:pr-0">
+                            Status</th>
+                    </tr>
+                </thead>
+                <tbody class="[&_tr:last-child]:border-0">
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="lg:col-span-1 hidden log-out-user h-[25em]">
         <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
-            <p class="mb-8">Please sign in.</p>
-            <a href="/login.html"
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md mb-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Sign
-                In</a>
+            <div class="mb-8">Please sign in.</div>
         </div>
     </div>
 </div>
