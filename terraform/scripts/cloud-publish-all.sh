@@ -19,7 +19,9 @@ if [ "$1" == "load-init-data=true" ]; then
 fi
 
 export QUARKUS_PROFILE=cloud,github && streamx --accept-license batch publish data
-export QUARKUS_PROFILE=cloud,github && streamx stream data data/catalog/products.stream
-export QUARKUS_PROFILE=cloud,github && streamx stream data data/catalog/categories.stream
+#export QUARKUS_PROFILE=cloud,github && streamx stream data data/catalog/products.stream
+#export QUARKUS_PROFILE=cloud,github && streamx stream data data/catalog/categories.stream
+# export QUARKUS_PROFILE=cloud,cms && streamx stream renderers ../lumaxscript/unpublish-renderers.stream
+# pim (data channel), cms (renderers),
 
 popd || exit

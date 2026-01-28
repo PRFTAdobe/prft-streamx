@@ -1,59 +1,52 @@
-
-
-<!DOCTYPE html>
-<html class="be-vietnam-pro" lang="en">
+<!doctype html>
+<html lang="en">
 
 <head>
   <title>{{name}}</title>
   {{ '{{#include src="/fragments/headContent.html"}}' }}
 </head>
 
-<body class="pt-24 overflow-scroll">
-{{ '{{#include src="/fragments/header.html"}}' }}
+<!-- <script
+src="https://assets.adobedtm.com/6851bdae8e57/0d020289eb2a/launch-a6ca4b843978-development.min.js"
+async>
+</script> -->
 
-    <section class="container bg-white mx-auto">
-      <div class="pb-16 sm:pb-24 px-8 mt-16">
-        <nav class="flex mb-6" aria-label="Breadcrumb">
-          <nav class="breadcrumb  is-medium" aria-label="breadcrumbs">
-            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-              <li><a> <span>Products</span> </a></li>
-              <li><a> <span>{{name}}</span> </a></li>
-            </ol>
-          </nav>
-         </nav>
-         <div class="w-full" >
-           <h1 class="text-4xl lg:text-[40px] leading-[60px] font-bold tracking-tight text-gray-800 mb-6">{{name}}</h1>
-           <p class="text-gray-600">Checkout out the latest release of {{name}}, new and improved with four openings!</p>
-           <hr class="my-4 md:my-6 border-gray-200"/>
+<body class="overflow-scroll" data-page-type="Category Landing" data-product-category="{{ name }}">
+  <div class="nav header hidden">{{ '{{#include src="/content/psg-demo-ue/nav.html"}}' }}</div>
+  <div class="container mx-auto px-4 pt-8">
+    <h1 class="text-3xl font-bold mb-8 capitalize">{{name }} | {{ parent.slug }} <span id="pcp-result-count"></span></h1>
+  </div>
+  <div class="container mx-auto px-4 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-category="{{slug}}"
+      data-filters='[{"ft_activity":"Activity"},{"ft_material":"Material"},{"ft_style_bags":"Style Bags"}]'
+      id="product-category-component">
+      <aside>
+        <!-- <h2 class="hidden">Filters</h2>
+        <button type="button" class="hidden">
+          <span class="">Filters</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="ke om ww bar">
+            <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
+          </svg>
+        </button> -->
+        <ul class="hidden lg:block" id="category-list"></ul>
+      </aside>
+      <div class="grid md:col-span-2 lg:col-span-3">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
+          id="product-list">
+          <div> </div>
         </div>
-
-        <div class="pt-6 inline-block" id="product-category-component" data-category="{{name}}"
-             data-filters="[{&quot;ft_material&quot;:&quot;Material&quot;},{&quot;ft_brand&quot;:&quot;Brand&quot;},{&quot;ft_color&quot;:&quot;Color&quot;}]">
-          <aside class="lg:w-[25%] lg:float-left inline-flex">
-            <!-- <h2 class="hidden">Filters</h2>
-            <button type="button" class="hidden">
-              <span class="">Filters</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" class="ke om ww bar">
-                <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
-              </svg>
-            </button> -->
-            <ul class="hidden lg:block" id="category-list">
-            </ul>
-          </aside>
-          <ul class="lg:float-right lg:w-[75%] grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 xl:gap-x-8 lg:col-span-3" id="product-list">
-          </ul>
-          <div class="lg:float-right lg:w-[75%] grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 xl:gap-x-8 lg:col-span-3">
-            <div class="hidden grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-col-span-1 xl:gap-x-8 lg:col-end-3" id="load-more-button">
-              <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-sm shadow mt-5" aria-label="Load more">
-                <span class="">Load more</span>
-              </button>
-            </div>
-          </div>
+        <div class="hidden flex justify-center mt-8 mb-12 md:col-span-2 lg:col-span-3" id="load-more-button">
+            <button aria-label="Load more"
+              class="transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">
+              <span class="">Show More Products</span>
+            </button>
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
 
+  <div class="fixed bottom-4 right-4 z-50">Powered By:<img src="/content/dam/psg-demo-ue/streamx-logo-full-black.png" alt="Floating promotional image" class="w-32 h-auto md:w-48 lg:w-64"></div>
+  <script src="../web-resources/js/pcp-init.js" type="module"></script>
   {{ '{{#include src="/fragments/footer.html"}}' }}
-  <script defer src="../web-resources/js/pcp-init.js"></script>
-  </body>
-
+</body>
 </html>

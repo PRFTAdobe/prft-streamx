@@ -37,7 +37,6 @@ on:
       TF_VAR_monitoring_grafana_admin_password:
         required: false
 
-
 permissions:
   contents: read
 
@@ -128,11 +127,11 @@ jobs:
             ${{ vars.TF_VAR_monitoring_storage_container_name }}
           TF_VAR_monitoring_storage_access_key:
             ${{ secrets.TF_VAR_monitoring_storage_access_key }}
+          TF_VAR_streamx_environment_size: ${{ inputs.environment_size }}
           TF_VAR_monitoring_grafana_admin_password:
             ${{ secrets.TF_VAR_monitoring_grafana_admin_password }}
           TF_VAR_monitoring_grafana_host:
             ${{ vars.TF_VAR_monitoring_grafana_host }}
-          TF_VAR_streamx_environment_size: ${{ inputs.environment_size }}
         run: |
           terraform/scripts/deploy-streamx.sh
           echo "kubeconfig_path=$(terraform -chdir=./terraform/azure/platform output -raw kubeconfig_path)" >> $GITHUB_OUTPUT

@@ -1,5 +1,5 @@
 **/.streamx/*
-
+.java-version
 # Local .terraform directories
 **/.terraform/*
 
@@ -38,6 +38,10 @@ terraform.rc
 *.iml
 *.ipr
 
+
+### VS Code ###
+.vscode
+
 ### Mac OS ###
 .DS_Store
 
@@ -50,7 +54,8 @@ auth/*
 /target
 /repository
 
-# Ignore trusted cers symlinks
+/node_modules
+
 /gateway/tls/*
 
 /mesh/auth/*

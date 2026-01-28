@@ -1,0 +1,338 @@
+{{#define name="metaTitle"}}
+<title>Cart</title>
+
+{{#define name="content.html"}}
+
+<div class="container mx-auto px-4 py-8">
+
+    <h1 class="text-2xl font-bold mb-8">Shopping Cart</h1>
+    <div id="promoBanner">
+        <div
+            class="cf--promo-banner--container bg-gradient-to-r from-dsg-red/90 to-dsg-red mb-8 rounded-lg shadow-lg overflow-hidden hidden">
+        </div>
+    </div>
+    <div class="shopping-cart-content grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+        <div class="lg:col-span-2">
+            <div class="cart-items-container bg-white rounded-lg shadow-sm divide-y">
+            </div>
+        </div>
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span class="font-semibold">
+                            <span class="subtotal"></span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Tax</span>
+                        <span class="font-semibold">
+                            <span class="tax"></span>
+                        </span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Shipping</span>
+                        <span class="font-semibold">
+                            <span class="shipping"></span>
+                        </span>
+                    </div>
+                    <div class="discount-container flex justify-between hidden">
+                        <span>Discount</span>
+                        <span class="font-semibold">
+                            <span>- </span>
+                            <span class="discount"></span>
+                        </span>
+                    </div>
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Total</span>
+                            <span class="font-semibold">
+                                <span class="total"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <a class="checkout-button transition active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90 text-white"
+                        href="#shippingInformation">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="shippingInformation"
+        class="shipping-information-content grid grid-cols-1 lg:grid-cols-3 gap-8 form-section hidden">
+        <div class="lg:col-span-2">
+            <div class="container mx-auto px-4 py-8">
+                <div class="max-w-3xl mx-auto">
+                    <div class="tabs flex justify-between mb-8">
+                        <div class="shipping-information flex-1 text-center text-dsg-red">
+                            <div class="border-b-2 pb-2 border-dsg-red">Shipping Information</div>
+                        </div>
+                        <div class="payment-method flex-1 text-center text-gray-500">
+                            <div class="border-b-2 pb-2 border-gray-200">Payment Method</div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <form class="checkout-form">
+                            <div class="block space-y-4 step-1">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="firstname">First Name</label>
+                                        <input
+                                            class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="firstname" required="" value="" />
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="lastname">Last Name</label>
+                                        <input
+                                            class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="lastname" required="" value="" />
+                                    </div>
+                                </div>
+                                <div class="hidden email-input">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="email">Email</label>
+                                    <input
+                                        class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                        id="email" value="" />
+                                </div>
+                                <div>
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="street">Street Address</label>
+                                    <input
+                                        class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                        id="street" required="" value="" />
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="city">City</label>
+                                        <input
+                                            class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="city" required="" value="" />
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="region">State</label>
+                                        <input
+                                            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="region" value="" />
+                                        <select id="dropdown-states"
+                                            class="hidden flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"><select />
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="postcode">ZIP Code</label>
+                                        <input
+                                            class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="postcode" required="" value="" />
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                            for="telephone">Phone Number</label>
+                                        <input type="tel"
+                                            class="shipping-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="telephone" required="" value="" />
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input class="billing-address" type="checkbox" aria-hidden="true" name="billing"
+                                        tabindex="-1" value="true" checked />
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2 cursor-pointer"
+                                        for="billing">
+                                        Billing address same as Shipping address
+                                    </label>
+                                </div>
+                                <div class="form-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                    <p>All inputs are required</p>
+                                </div>
+                            </div>
+                            <div class="block mt-8 border-t pt-6 step-1">
+                                <div class="flex justify-between mb-4">
+                                    <span class="font-semibold">Total</span>
+                                    <span class="font-semibold">
+                                        <span class="total"></span>
+                                    </span>
+                                </div>
+                                <button
+                                    class="continue-payment transition active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90 text-white"
+                                    type="button">
+                                    Continue to Payment
+                                </button>
+                            </div>
+                            <div class="hidden space-y-6 step-2">
+                                <div role="radiogroup" aria-required="false" dir="ltr"
+                                    class="grid grid-cols-2 gap-4 payment-group" tabindex="0" style="outline: none">
+                                    <div class="border rounded-lg p-4 cursor-pointer border-gray-200">
+                                        <button type="button" role="radio" aria-checked="false" data-state="checked"
+                                            value="stripe"
+                                            class="transition active:scale-95 aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sr-only"
+                                            id="stripe" tabindex="-1" data-radix-collection-item=""></button>
+                                        <input type="radio" aria-hidden="true" name="payment" tabindex="-1"
+                                            value="checkmo"
+                                            style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px; width: 16px; height: 16px;" />
+                                        <label
+                                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2 cursor-pointer"
+                                            for="stripe">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-banknote h-5 w-5">
+                                                <rect width="20" height="12" x="2" y="6" rx="2"></rect>
+                                                <circle cx="12" cy="12" r="2"></circle>
+                                                <path d="M6 12h.01M18 12h.01"></path>
+                                            </svg>
+                                            Check / Money order
+                                        </label>
+                                    </div>
+                                    <div class="payment-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                        <p>Please select a payment method</p>
+                                    </div>
+                                </div>
+                                <div class="discount-wrapper">
+                                    <label
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="street">Discount Coupon Code</label>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <input
+                                            class="discount-info flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                            id="discount" required="" value="" />
+                                        <div class="hidden coupon-applied w-fit">
+                                        </div>
+                                        <button
+                                            class="transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-white hover:bg-white/40 text-dsg-red border border-dsg-red"
+                                            type="button" id="apply-discount">Apply</button>
+                                        <button
+                                            class="transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-white hover:bg-white/40 text-dsg-red border border-dsg-red hidden"
+                                            type="button" id="remove-discount">Remove coupon</button>
+                                    </div>
+                                    <div class="coupon-error-message flex items-center space-x-2 text-dsg-red hidden">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden mt-8 border-t pt-6 step-2">
+                                <div class="flex justify-between">
+                                    <span>Subtotal</span>
+                                    <span class="font-semibold">
+                                        <span class="subtotal"></span>
+                                    </span>
+                                </div>
+                                <div class="tax-wrapper flex justify-between hidden">
+                                    <span>Tax</span>
+                                    <span class="font-semibold">
+                                        <span class="tax"></span>
+                                    </span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Shipping</span>
+                                    <span class="font-semibold">
+                                        <span class="shipping"></span>
+                                    </span>
+                                </div>
+                                <div class="discount-container flex justify-between hidden">
+                                    <span>Discount</span>
+                                    <span class="font-semibold">
+                                        <span>- </span>
+                                        <span class="discount"></span>
+                                    </span>
+                                </div>
+                                <div class="flex justify-between mb-4">
+                                    <span class="font-semibold">Total</span>
+                                    <span class="font-semibold">
+                                        <span class="total total-payment"></span>
+                                    </span>
+                                </div>
+                                <button
+                                    class="transition active:scale-95 inline-flex cursor-pointer items-center justify-center gap-2 place-order whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90 text-white"
+                                    type="button">
+                                    Place Order
+                                </button>
+                            </div>
+                            <div class="container hidden mx-auto px-4 py-8 grow step-3">
+                                <div class="max-w-3xl mx-auto">
+                                    <div>
+                                        <div class="text-center mb-8">
+                                            <h1 class="text-2xl font-bold text-dsg-red mb-2">Order Confirmed!</h1>
+                                            <p class="text-gray-600">Thank you for your purchase</p>
+                                        </div>
+                                        <div class="space-y-6 user-data">
+                                            <div>
+                                                <h2 class="font-semibold mb-4 text-xl">Shipping Information</h2>
+                                                <div class="grid grid-cols-2 gap-4 text-gray-600">
+                                                    <div>
+                                                        <p class="font-medium">Name:</p>
+                                                        <p class="checkout-name"></p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium">Phone:</p>
+                                                        <p class="checkout-phone"></p>
+                                                    </div>
+                                                    <div class="col-span-2">
+                                                        <p class="font-medium">Address:</p>
+                                                        <p class="checkout-address">Main street</p>
+                                                        <p class="checkout-city"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h2 class="font-semibold text-xl mb-4">Payment Information</h2>
+                                                <div class="text-gray-600">
+                                                    <p class="font-medium">Payment Method:</p>
+                                                    <p class="capitalize checkout-payment"></p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h2 class="font-semibold text-xl mb-4">Order Summary</h2>
+                                                <div class="space-y-4">
+                                                    <div class="border-t pt-4">
+                                                        <div class="flex justify-between mb-4">
+                                                            <span class="font-semibold">Order number</span>
+                                                            <span class="font-semibold order-number"></span>
+                                                        </div>
+                                                        <div class="flex justify-between">
+                                                            <span class="font-semibold">Total</span>
+                                                            <span class="font-semibold text-dsg-red">
+                                                                <span class="total"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-products text-center hidden">
+        <p class="py-8">Please add products to your cart</p>
+        <a href="/"
+            class="continue-payment inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white m-auto">Continue
+            Shopping</a>
+    </div>
+    <div class="loading-message text-center py-8 hidden">
+        <p>Please wait, while we fetch your cart...</p>
+    </div>
+</div>
+
+<script defer src="../web-resources/js/decorators/decorate-cart.js" type="module"></script>
+<script defer src="../web-resources/js/checkout-form.js" type="module"></script>

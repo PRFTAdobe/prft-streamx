@@ -1,0 +1,119 @@
+{{#define name="metaTitle"}}
+<title>Login</title>
+
+{{#define name="content.html"}}
+
+<div class="w-full max-w-md p-5 mx-auto">
+    <div class="text-center">
+        <a class="inline-flex items-center space-x-2" href="/" data-discover="true">
+            <img src="//lumax.streamx.com/media_18f4cff218909438342488a90c7fba78d73de445f.svg?width=750&format=svg&optimize=medium" alt="LumaX Logo" class="h-10 w-27">
+        </a>
+    </div>
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+        <div class="signInFields flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="headerText tracking-tight text-2xl font-bold">Welcome Back</h3>
+            <p class="descText text-sm text-muted-foreground">Sign in to your account to continue</p>
+            <p class="expiredSession text-sm text-dsg-red hidden">Your session has expired - please login again to continue</p>
+        </div>
+        <div class="signUpFields hidden flex flex-col space-y-1.5 p-6 text-center">
+            <h3 class="headerText tracking-tight text-2xl font-bold">Create an Account</h3>
+            <p class="descText text-sm text-muted-foreground">Sign up to start shopping with us</p>
+        </div>
+        <div class="p-6 pt-0">
+            <form id="loginForm" class="space-y-4" data-form-type="login">
+                <div class="signUpFields hidden grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="firstName">First Name</label>
+                        <input type="text" disabled="true" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="firstName" name="firstName" required="" placeholder="John" value="" autocomplete>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="lastName">Last Name</label>
+                        <input type="text" disabled="true" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" id="lastName" name="lastName" required="" placeholder="Doe" value="" autocomplete>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
+                    <input type="email" id="email" name="email" required="" placeholder="john@example.com" value=""
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" autocomplete>
+                    </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••" value=""
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm">
+                </div>
+                <div class="loginMessageContainer text-sm text-center justify-center p-5 pt-0">
+                    <p class="successMessage hidden">
+                        You have logged in successfully!<br/>
+                        You will be automatically redirected...
+                    </p>
+                    <p class="errorMessage hidden text-dsg-red">There was an issue logging in using these credentials.  Please try again</p>
+                </div>
+                <div class="signInFields px-6">
+                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90"
+                        type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-log-in mr-2 h-4 w-4">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                        </svg>
+                        Sign In
+                    </button>
+                </div>
+                <div class="signUpFields px-6 hidden">
+                    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-dsg-red hover:bg-dsg-red/90"
+                        type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-log-in mr-2 h-4 w-4">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                        </svg>
+                        Sign Up
+                    </button>
+                </div>
+            </form>           
+            <div class="signInFields mt-6 text-center">
+                <p class="toggleFormText text-sm text-gray-600">Don't have an account?</p>
+                <button type="button" class="toggleForm signUp text-sm text-dsg-red hover:underline font-medium">Sign Up</button>
+            </div>
+            <div class="signUpFields hidden mt-6 text-center">
+                <p class="toggleFormText text-sm text-gray-600">Have an account?</p>
+                <button type="button" class="toggleForm signIn text-sm text-dsg-red hover:underline font-medium">Sign In</button>
+            </div>
+            <div class="mt-4 text-center">
+                <a class="text-sm text-gray-500 hover:text-dsg-red transition-colors" href="/" data-discover="true">← Back to Store</a>
+            </div>
+        </div>
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm mt-5">
+            <div class="quickLogins flex flex-col space-y-1.5 p-6 text-center">
+                <h3 class="headerText tracking-tight text-2xl font-bold">Demo OneClick Logins</h3>  
+                <div class="wrapper flex flex-col items-center w-full space-y-4">
+                    <div class="relative w-full max-w-xs">
+                        <select id="userDropdown" class="w-full p-4 border rounded-md cursor-pointer appearance-none bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="" disabled selected>Select user to sign in as</option>
+                            <option value="user01" class="flex items-center py-2">
+                                <span>Persona1</span>
+                            </option>
+                            <option value="user02" class="flex items-center py-2">
+                                <span>Persona2</span>
+                            </option>
+                        </select>
+                    </div>
+                    <button id="signAsButton" class="inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full max-w-xs bg-dsg-red hover:bg-dsg-red/90" type="button" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in mr-2 h-4 w-4">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                        </svg> 
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../web-resources/js/login-form.js" type="module"></script>

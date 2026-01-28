@@ -1,5 +1,5 @@
 {
-  "rendererKey": { "string": "templates/pdp.html" },
+  "rendererKey": { "string": "templates/pdp.twig" },
   "dataKeyMatchPattern": { "string": "product:.*" },
   "dataTypeMatchPattern": null,
   "outputKeyTemplate": { "string": "/products/{{slug}}.html" },
