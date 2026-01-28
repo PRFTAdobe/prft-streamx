@@ -1,0 +1,8 @@
+{
+  "rendererKey": { "string": "templates/test.html" },
+  "dataKeyMatchPattern": { "string": "product:.*" },
+  "dataTypeMatchPattern": null,
+  "outputKeyTemplate": { "string": "/test/{{slug}}.html" },
+  "outputTypeTemplate": { "string": "page/product" },
+  "outputFormat": { "dev.streamx.blueprints.data.RenderingContext.OutputFormat": "PAGE" }
+}
