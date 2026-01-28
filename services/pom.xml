@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>web-delivery-service</module>
+        <module>template-processing-service</module>
+        <module>lumax-delivery-service</module>
     </modules>
 
     <dependencyManagement>
