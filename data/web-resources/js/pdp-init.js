@@ -63,7 +63,7 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
     firstLoad = false;
 
-    if (isProductVariantInStock) {
+    if (isProductVariantInStock === true) {
       quantityEle.classList.contains('hidden') ? quantityEle.classList.remove('hidden') : '';
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
@@ -76,8 +76,10 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
       outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
 
-      if (activeUser && notifyMeEle.classList.contains('hidden')) {
-        notifyMeEle.classList.remove('hidden');
+      if (activeUser && isProductVariantInStock === false) {
+        notifyMeEle.classList.remove('hidden')
+      } else {
+        notifyMeEle.classList.add('hidden')
       }
     }
   }
@@ -190,6 +192,15 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
         if (stockStatusResponse.length) {
           updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+
+          const variant = stockStatusResponse.find(v => v.product.sku === newSku)
+          const notifyMeButton = document.querySelector('.notifyWhenInStock')
+          
+          if (variant && notifyMeButton) {
+            notifyMeButton.dataset.selections = JSON.stringify(variant.selections)
+          } else if (notifyMeButton) {
+            notifyMeButton.dataset.selections = '[]'
+          }
         }
       });
     });
@@ -250,13 +261,50 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
     addToCartButton?.addEventListener('click', handleAddToCartClick);
   };
 
-  const addToWishList = () => {
-    const addToWishListButton = document.querySelector('.notifyWhenInStock');
-    addToWishListButton?.addEventListener('click', addToWishlistEvent);
+  const addToWatchlist = async () => {
+
+    const notifyMeButton = document.querySelector('.notifyWhenInStock')
+    const quantitySpan = document.querySelector('.quantity')
+
+    const handleWatchlistClick = async (event) => {
+      const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
+    
+      if (activeToken != null) {
+
+        const skuSelected = document.body.dataset.sku
+        const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
+
+        let selectedOptions = []
+        try {
+          selectedOptions = notifyMeButton.dataset.selections 
+            ? JSON.parse(notifyMeButton.dataset.selections) 
+            : []
+        } catch (e) {
+          selectedOptions = []
+        }
+
+        let response = await productMutations.addProductToWishlist(activeToken, "0", skuSelected, quantity, selectedOptions)
+        let isError = false
+    
+        if (response.errors) {
+          if (response.errors[0].extensions?.category == 'graphql-authorization') {
+            await userMutations.regenerateUserToken()
+            response = await productMutations.addProductToWishlist(userSession.getActiveLoginToken(), "0", skuSelected, quantity, selectedOptions)
+            isError = false
+          }
+        }
+
+        if (!isError) {
+          addToWishlistEvent()
+        }
+      }
+    }
+
+    notifyMeButton?.addEventListener('click', handleWatchlistClick)
   }
 
   init();
   addToCart();
   addIncreaseDecreaseQuantityAction();
-  addToWishList();
+  addToWatchlist();
 })();

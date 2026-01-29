@@ -122,7 +122,8 @@ export const loadMyWatchlist = async () => {
           const btnAdd = e.target.closest('.addToCart')
           if (btnAdd && !btnAdd.disabled) {
             showSpinner(btnAdd)
-            setTimeout(() => loadMyWatchlist(), 1000)
+            const res = await wishlistMutation.addWishlistItemToCart(currentToken, wishlist.id, itemId)
+            if (!res.errors) loadMyWatchlist()
           }
         }
 
