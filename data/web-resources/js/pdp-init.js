@@ -4,6 +4,7 @@ import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -283,13 +284,13 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
           selectedOptions = []
         }
 
-        let response = await productMutations.addProductToWishlist(activeToken, "0", skuSelected, quantity, selectedOptions)
+        let response = await wishlistMutation.addProductToWishlist(activeToken, "0", skuSelected, quantity, selectedOptions)
         let isError = false
     
         if (response.errors) {
           if (response.errors[0].extensions?.category == 'graphql-authorization') {
             await userMutations.regenerateUserToken()
-            response = await productMutations.addProductToWishlist(userSession.getActiveLoginToken(), "0", skuSelected, quantity, selectedOptions)
+            response = await wishlistMutation.addProductToWishlist(userSession.getActiveLoginToken(), "0", skuSelected, quantity, selectedOptions)
             isError = false
           }
         }
