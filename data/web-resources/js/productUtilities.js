@@ -160,19 +160,19 @@ export const removeProductFromWatchlist = async (itemId, event) => {
     }
 }
 
-export const updateProductInWishlist = async (itemId, event) => {
+export const updateProductInWishlist = async (itemId, quantity, event) => {
     utilities.addSpinnerSVG(event.target)
     const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
 
     if (activeToken != null) {
-        let response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId)
+        let response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId, quantity)
         let isError = false
 
         if (response.errors) {
             isError = true
             if (response.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken()
-                response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId)
+                response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId, quantity)
                 isError = false
             }
         }
@@ -189,14 +189,14 @@ export const addWishlistItemToCart = async (wishlistId, itemId, event) => {
     const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
 
     if (activeToken != null) {
-        let response = await wishlistMutation.addWishlistItemToCart(activeToken, wishlistId, itemId)
+        let response = await wishlistMutation.addWishlistItemsToCart(activeToken, wishlistId, itemId)
         let isError = false
 
         if (response.errors) {
             isError = true
             if (response.errors[0].extensions?.category == 'graphql-authorization') {
                 await userMutations.regenerateUserToken()
-                response = await wishlistMutation.addWishlistItemToCart(activeToken, wishlistId, itemId)
+                response = await wishlistMutation.addWishlistItemsToCart(activeToken, wishlistId, itemId)
                 isError = false
             }
         }
