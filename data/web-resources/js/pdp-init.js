@@ -1,10 +1,9 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js';
+import { addProductToCart, addProductToWatchlist } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
-import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
+import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -268,9 +267,6 @@ import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerc
     const quantitySpan = document.querySelector('.quantity')
 
     const handleWatchlistClick = async (event) => {
-      const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
-    
-      if (activeToken != null) {
 
         const skuSelected = document.body.dataset.baseSku
         const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
@@ -284,21 +280,7 @@ import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerc
           selectedOptions = []
         }
 
-        let response = await wishlistMutation.addProductToWishlist(activeToken, "0", skuSelected, quantity, selectedOptions)
-        let isError = false
-    
-        if (response.errors) {
-          if (response.errors[0].extensions?.category == 'graphql-authorization') {
-            await userMutations.regenerateUserToken()
-            response = await wishlistMutation.addProductToWishlist(userSession.getActiveLoginToken(), "0", skuSelected, quantity, selectedOptions)
-            isError = false
-          }
-        }
-
-        if (!isError) {
-          addToWishlistEvent()
-        }
-      }
+        addProductToWatchlist(skuSelected, quantity, selectedOptions, event)
     }
 
     notifyMeButton?.addEventListener('click', handleWatchlistClick)
