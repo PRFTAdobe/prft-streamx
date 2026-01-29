@@ -1,18 +1,8 @@
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js"
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js"
 import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
+import { removeProductFromWatchlist, updateProductInWishlist, addWishlistItemToCart } from './productUtilities.js'
 
-// Helper function to show spinner in any button
-const showSpinner = (button) => {
-  button.disabled = true
-  button.classList.add('opacity-70', 'pointer-events-none')
-  button.innerHTML = `
-    <svg class="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-    </svg>
-  `
-}
 
 export const loadMyWatchlist = async () => {
   const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
@@ -89,40 +79,34 @@ export const loadMyWatchlist = async () => {
             </div>`
         }).join('')
 
-        watchlistContent.onclick = async (e) => {
-          const card = e.target.closest('.product-card')
+        watchlistContent.onclick = async (event) => {
+          const card = event.target.closest('.product-card')
           if (!card) return
 
           const itemId = card.dataset.itemId
           const currentQty = parseInt(card.querySelector('.quantity').innerText)
-          const currentToken = userSession.getActiveLoginToken()
 
-          // Delete logic
-          const btnRemove = e.target.closest('.btn-remove')
+          const btnRemove = event.target.closest('.btn-remove')
           if (btnRemove) {
-            showSpinner(btnRemove)
-            const res = await wishlistMutation.removeProductFromWishlist(currentToken, "0", itemId)
+            const res = await removeProductFromWatchlist(itemId, event)
             if (!res.errors) loadMyWatchlist()
           }
 
-          const btnPlus = e.target.closest('.btn-qty-plus')
+          const btnPlus = event.target.closest('.btn-qty-plus')
           if (btnPlus) {
-            showSpinner(btnPlus)
-            const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty + 1)
+            const res = await updateProductInWishlist(itemId, currentQty + 1, event)
             if (!res.errors) loadMyWatchlist()
           }
 
-          const btnMinus = e.target.closest('.btn-qty-minus')
+          const btnMinus = event.target.closest('.btn-qty-minus')
           if (btnMinus && currentQty > 1) {
-            showSpinner(btnMinus)
-            const res = await wishlistMutation.updateProductInWishlist(currentToken, "0", itemId, currentQty - 1)
+            const res = await updateProductInWishlist(itemId, currentQty - 1, event)
             if (!res.errors) loadMyWatchlist()
           }
 
-          const btnAdd = e.target.closest('.addToCart')
+          const btnAdd = event.target.closest('.addToCart')
           if (btnAdd && !btnAdd.disabled) {
-            showSpinner(btnAdd)
-            const res = await wishlistMutation.addWishlistItemToCart(currentToken, wishlist.id, itemId)
+            const res = await addWishlistItemToCart( wishlist.id, itemId, event)
             if (!res.errors) loadMyWatchlist()
           }
         }

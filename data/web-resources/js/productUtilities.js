@@ -4,6 +4,7 @@ import { cartMutations } from "https://lumax.streamx.com/scripts/auth/commerce/c
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
 import { addToCartEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 import { updateCartCountOnUI } from "https://lumax.streamx.com/blocks/header/header.js"
+import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
 
 
 export const addProductToCart = async (sku, quantity = 1, event) => {
@@ -108,3 +109,101 @@ export const fetchCartByID = async (cartID) => {
 }
 
 export const addIncreaseDecreaseQuantityAction=()=>{let e=document.querySelector(".quantity-container");if(e){let t=parseInt(e.querySelector("span")?.textContent??"1",10),n=e.querySelector(":scope > button:nth-of-type(1)"),r=e.querySelector(":scope > button:nth-of-type(2)");n?.addEventListener("click",()=>{t>1&&1==(t-=1)&&n?.setAttribute("disabled",(!0).toString()),e.querySelector("span").innerText=t.toString()}),r?.addEventListener("click",()=>{1===t&&n?.removeAttribute("disabled"),t+=1,e.querySelector("span").innerText=t.toString()})}};
+
+export const addProductToWatchlist = async (sku, quantity = 1, selectedOptions = [] , event) => {
+    utilities.addSpinnerSVG(event.target);
+    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
+    
+    if (activeToken != null) {
+
+        let response = await wishlistMutation.addProductToWishlist(activeToken, "0", sku, quantity, selectedOptions)
+        let isError = false
+
+        if (response.errors) {
+
+            isError = true
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken()
+                response = await wishlistMutation.addProductToWishlist(activeToken, "0", sku, quantity, selectedOptions)
+                isError = false
+            }
+        }
+
+        if (!isError) {
+            addToWishlistEvent()
+            utilities.addCheckmarkSVG(event.target);
+        }
+    }
+}
+
+export const removeProductFromWatchlist = async (itemId, event) => {
+    utilities.addSpinnerSVG(event.target)
+    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
+
+    if (activeToken != null) {
+        let response = await wishlistMutation.removeProductFromWishlist(activeToken, "0", itemId)
+        let isError = false
+
+        if (response.errors) {
+            isError = true
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken()
+                response = await wishlistMutation.removeProductFromWishlist(activeToken, "0", itemId)
+                isError = false
+            }
+        }
+
+        if (!isError) {
+            utilities.addCheckmarkSVG(event.target)
+            return response
+        }
+    }
+}
+
+export const updateProductInWishlist = async (itemId, event) => {
+    utilities.addSpinnerSVG(event.target)
+    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
+
+    if (activeToken != null) {
+        let response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId)
+        let isError = false
+
+        if (response.errors) {
+            isError = true
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken()
+                response = await wishlistMutation.updateProductInWishlist(activeToken, "0", itemId)
+                isError = false
+            }
+        }
+
+        if (!isError) {
+            utilities.addCheckmarkSVG(event.target)
+            return response
+        }
+    }
+}
+
+export const addWishlistItemToCart = async (wishlistId, itemId, event) => {
+    utilities.addSpinnerSVG(event.target)
+    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
+
+    if (activeToken != null) {
+        let response = await wishlistMutation.addWishlistItemToCart(activeToken, wishlistId, itemId)
+        let isError = false
+
+        if (response.errors) {
+            isError = true
+            if (response.errors[0].extensions?.category == 'graphql-authorization') {
+                await userMutations.regenerateUserToken()
+                response = await wishlistMutation.addWishlistItemToCart(activeToken, wishlistId, itemId)
+                isError = false
+            }
+        }
+
+        if (!isError) {
+            utilities.addCheckmarkSVG(event.target)
+            return response
+        }
+    }
+}
