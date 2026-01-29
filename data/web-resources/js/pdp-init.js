@@ -272,7 +272,7 @@ import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerc
     
       if (activeToken != null) {
 
-        const skuSelected = document.body.dataset.sku
+        const skuSelected = document.body.dataset.baseSku
         const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
 
         let selectedOptions = []
