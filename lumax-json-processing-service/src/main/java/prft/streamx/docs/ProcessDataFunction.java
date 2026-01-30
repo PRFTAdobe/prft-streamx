@@ -4,15 +4,16 @@ import static dev.streamx.quasar.reactive.messaging.utils.MetadataUtils.extractA
 import static dev.streamx.quasar.reactive.messaging.utils.MetadataUtils.extractEventTime;
 import static dev.streamx.quasar.reactive.messaging.utils.MetadataUtils.extractKey;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import dev.streamx.quasar.reactive.messaging.metadata.Action;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
-import prft.streamx.docs.Data;
 import io.smallrye.mutiny.Multi;
 import org.jboss.logging.Logger;
 import prft.streamx.docs.configuration.Configuration;
@@ -39,29 +40,27 @@ public class ProcessDataFunction extends AbstractFunction {
     Multi<Message<Data>> process(Message<Data> message) {
         String key = extractKey(message);
         log.info("Inside ProcessDataFunction");
-        log.info("Processing message :: " + key);
         Action action = extractAction(message);
         Long eventTime = extractEventTime(message);
         try {
-            if (!accept(key, action, eventTime)) {
-                log.info("Skipping invalid incoming message");
-                log.tracef("Skipping invalid incoming message key=%s", key);
-                message.ack();
-                return Multi.createFrom().empty();
-            }
-
+            log.info("Processing message :: " + key + " :: Action :: " + action);
 
             String[] parts = key.split(KEY_SEPARATOR);
             if (parts.length < 2) {
                 log.warnf("Invalid key format, skipping: %s", key);
                 return Multi.createFrom().empty();
             }
-
             final String id = parts[ID_POSITION];
             final String namespace = parts[NAMESPACE_POSITION];
 
+            if (!namespace.equalsIgnoreCase("product")) {
+                log.tracef("Not a product, skipping: %s", key);
+                return Multi.createFrom().empty();
+            }
+
             // Forward UNPUBLISH as UNPUBLISH (don’t emit a "publish" with empty content)
             if (Action.UNPUBLISH.equals(action)) {
+                log.info("Processing Unpublish event");
                 Message<Data> out = createUnpublishMessage(id, eventTime, namespace);
                 return Multi.createFrom().item(out)
                         .onCompletion().call(() -> Uni.createFrom().completionStage(message.ack()));
@@ -69,8 +68,18 @@ public class ProcessDataFunction extends AbstractFunction {
 
             final Data payload = message.getPayload();
             String json = payload.getContentAsString();
+
             log.info("JSON data of product :: " + json);
 
+            JsonObject gsonObj = JsonParser.parseString(json).getAsJsonObject();
+            JsonArray gsonArray = new JsonArray();
+            com.google.gson.JsonObject viewGson = new JsonObject();
+            viewGson.addProperty("name", "view1");
+            viewGson.addProperty("description", "compare-view");
+            viewGson.addProperty("url", "/products/view1/"+gsonObj.get("slug"));
+            gsonArray.add(viewGson);
+            gsonObj.add("views", gsonArray);
+            log.info("GsonObject :: "+gsonObj);
         }
         catch (Exception e){
             message.nack(e);
@@ -79,11 +88,6 @@ public class ProcessDataFunction extends AbstractFunction {
 
 
         return Multi.createFrom().empty();
-    }
-
-    private boolean accept(String key, Action action, Long eventTime) {
-        return super.accept(key) && action != null && eventTime != null
-                && key.split(KEY_SEPARATOR).length == 2;
     }
 
 }
