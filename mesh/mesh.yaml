@@ -164,11 +164,20 @@ processing:
       configs:
         - "aggregator.properties"
 
+  blueprint-custom-json-processor:
+    image: hemanth.sreenuneelam/lumax-json-processing-service:1.0.0-SNAPSHOT
+    incoming:
+      aggregated-data:
+        topic: relays/aggregated-data
+    outgoing:
+      custom-aggregated-data:
+        topic: relays/custom-aggregated-data
+
   blueprint-message-converter:
     image: message-converter-processing-service
     incoming:
       data:
-        topic: relays/aggregated-data
+        topic: relays/custom-aggregated-data
     outgoing:
       indexable-resources:
         topic: outboxes/indexable-resources
