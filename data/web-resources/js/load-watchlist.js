@@ -1,7 +1,7 @@
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js"
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js"
 import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
-import { removeProductFromWatchlist, updateProductInWishlist, addWishlistItemToCart } from './productUtilities.js'
+import { removeProductFromWatchlist, updateProductInWishlist, addProductToCart } from './productUtilities.js'
 
 
 export const loadMyWatchlist = async () => {
