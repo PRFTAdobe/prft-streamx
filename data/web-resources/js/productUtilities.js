@@ -183,27 +183,3 @@ export const updateProductInWishlist = async (itemId, quantity, event) => {
         }
     }
 }
-
-export const addWishlistItemToCart = async (wishlistId, itemId, event) => {
-    utilities.addSpinnerSVG(event.target)
-    const activeToken = userSession.getActiveUserFromSS() ? userSession.getActiveLoginToken() : null
-
-    if (activeToken != null) {
-        let response = await wishlistMutation.addWishlistItemsToCart(activeToken, wishlistId, itemId)
-        let isError = false
-
-        if (response.errors) {
-            isError = true
-            if (response.errors[0].extensions?.category == 'graphql-authorization') {
-                await userMutations.regenerateUserToken()
-                response = await wishlistMutation.addWishlistItemsToCart(activeToken, wishlistId, itemId)
-                isError = false
-            }
-        }
-
-        if (!isError) {
-            utilities.addCheckmarkSVG(event.target)
-            return response
-        }
-    }
-}
