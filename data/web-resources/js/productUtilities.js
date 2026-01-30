@@ -183,3 +183,36 @@ export const updateProductInWishlist = async (itemId, quantity, event) => {
         }
     }
 }
+
+export const addWishlistItemToCart = async (itemId, sku, quantity = 1, event) => {
+    utilities.addSpinnerSVG(event.target);
+    let isError = false;
+    let cartID = userSession.getCartIDFromSS();
+    if (!cartID) {
+        if (userSession.getActiveUserFromSS()) {
+            cartID = await cartMutations.getCustomerCart();
+            cartID = cartID.id;
+        } else {
+            cartID = await cartMutations.generateCartID();
+        }
+        userSession.setCartIDtoSS(cartID);
+    }
+    let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
+
+    if (cart.errors) {
+        isError = true;
+        if (cart.errors[0].extensions?.category == 'graphql-authorization') {
+            await userMutations.regenerateUserToken();
+            cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
+            isError = false;
+        }
+        console.log(cart.errors);
+    }
+    if (!isError) {
+        addToCartEvent(event);
+        userSession.setActiveCart(cart);
+        updateCartCountOnUI(cart.total_quantity);
+        removeProductFromWatchlist(itemId, event);
+        utilities.addCheckmarkSVG(event.target);
+    }
+}
