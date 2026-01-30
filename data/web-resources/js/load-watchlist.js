@@ -40,8 +40,21 @@ export const loadMyWatchlist = async () => {
 
           const isOutOfStock = stockStatus === 'OUT_OF_STOCK'
 
+          const productDataDetails = {
+            description: product.description.html,
+            brand: "LumaX",
+            category: product.categories?.[0]?.name, 
+            isFeatured:product.categories?.[0]?.name === "Featured" ? "true" : "false",
+            name: name,
+            productPrice: product.price_range.minimum_price.final_price.value,
+            rating: product.rating_summary,
+            salesOrg: "Perficient",
+            sku: item.configured_variant?.sku || product.sku,
+            productImpression: { "value": 1 }
+          }
+
           return `
-            <div class="product-card bg-white shadow-sm border-radius p-4 rounded-md" data-item-id="${item.id}">
+            <div class="product-card bg-white shadow-sm border-radius p-4 rounded-md" data-item-id="${item.id}" data-item-sku="${productDataDetails.sku}" data-product-details="${JSON.stringify(productDataDetails).replace(/"/g, '&quot;')}">
               <a class="m-auto" href="/products/${product.url_key}.html">
                 <img alt="${name}" class="object-contain" loading="lazy" src="${imageUrl}" width="100%" height="100%">
               </a>
@@ -84,6 +97,7 @@ export const loadMyWatchlist = async () => {
           if (!card) return
 
           const itemId = card.dataset.itemId
+          const itemSku = card.dataset.itemSku
           const currentQty = parseInt(card.querySelector('.quantity').innerText)
 
           const btnRemove = event.target.closest('.btn-remove')
@@ -106,8 +120,10 @@ export const loadMyWatchlist = async () => {
 
           const btnAdd = event.target.closest('.addToCart')
           if (btnAdd && !btnAdd.disabled) {
-            const res = await addWishlistItemToCart( wishlist.id, itemId, event)
-            if (!res.errors) loadMyWatchlist()
+            const res = await addProductToCart(itemSku, currentQty, event)
+            if (!res.errors) {
+              await removeProductFromWatchlist(itemId, event)
+            }
           }
         }
 
