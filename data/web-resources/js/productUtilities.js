@@ -214,5 +214,6 @@ export const addWishlistItemToCart = async (itemId, sku, quantity = 1, event) =>
         updateCartCountOnUI(cart.total_quantity);
         removeProductFromWatchlist(itemId, event);
         utilities.addCheckmarkSVG(event.target);
+        return cart;
     }
 }

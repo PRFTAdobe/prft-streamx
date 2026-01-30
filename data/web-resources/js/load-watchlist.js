@@ -82,8 +82,7 @@ export const loadMyWatchlist = async () => {
 
                 <div class="add-to-cart-wrapper flex-1">
                   <button 
-                    class="addToCart w-full transition active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 shadow-sm ${isOutOfStock ? 'bg-gray-400 cursor-not-allowed text-white' : 'bg-red-600 hover:bg-red-700 text-white'}"
-                    ${isOutOfStock ? 'disabled' : ''}
+                    class="addToCart w-full transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 shadow-sm ${isOutOfStock ? 'bg-gray-400 cursor-not-allowed disabled' : 'bg-red-600 hover:bg-red-700 text-white cursor-pointer'}"
                   > 
                     ${isOutOfStock ? 'Out of stock' : 'Add to Cart'} 
                   </button>
@@ -120,7 +119,8 @@ export const loadMyWatchlist = async () => {
 
           const btnAdd = event.target.closest('.addToCart')
           if (btnAdd && !btnAdd.disabled) {
-            await addWishlistItemToCart(itemId, itemSku, currentQty, event)
+            const res = await addWishlistItemToCart(itemId, itemSku, currentQty, event)
+            if (!res.errors) loadMyWatchlist()
           }
         }
 
