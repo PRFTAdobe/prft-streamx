@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{ name }}</title>
+  {{ '{{#include src="/fragments/headContent.html"}}' }}
+</head>
+
+{% set productDescription = description|replace({"\n":"",'"':'\"'}) %}
+{% set isFeatured = "false" %}
+{% set categoryName = categories[0].name %}
+{% for category in categories %}
+  {% if category.name == "Featured" %}
+    {% set isFeatured = "true" %}
+  {% else %}
+    {% set categoryName = category.name %}
+  {% endif %}
+{% endfor %}
+<body data-page-type='Product Detail'
+      data-sku="{{ sku }}"
+      data-base-sku="{{ sku }}"
+      data-product-details='{"sku":"{{ sku }}","name": "{{ name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ price.value }}"}'
+      data-product-category="{{ categoryName }}" data-product-featured="{{ isFeatured }}">
+<div class="min-h-screen bg-gray-50 flex flex-col">
+   Tile View
+  {{ name }}
+  {{ productDescription }}
+  {{ categoryName }}
+  {{ price.value }}
+</div>
+
+<div class="fixed bottom-4 right-4 z-50">Powered By:<img src="/content/dam/psg-demo-ue/streamx-logo-full-black.png" alt="Floating promotional image" class="w-32 h-auto md:w-48 lg:w-64"></div>
+<script src="../web-resources/js/pdp-init.js" type="module"></script>
+</body>
+</html>

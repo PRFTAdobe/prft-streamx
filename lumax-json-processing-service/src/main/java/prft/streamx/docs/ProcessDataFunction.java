@@ -5,6 +5,7 @@ import static dev.streamx.quasar.reactive.messaging.utils.MetadataUtils.extractE
 import static dev.streamx.quasar.reactive.messaging.utils.MetadataUtils.extractKey;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.streamx.quasar.reactive.messaging.metadata.Action;
@@ -72,12 +73,26 @@ public class ProcessDataFunction extends AbstractFunction {
             log.info("JSON data of product :: " + json);
 
             JsonObject gsonObj = JsonParser.parseString(json).getAsJsonObject();
+
+
+            JsonElement slugEl = gsonObj.get("slug");
+            String slug = (slugEl != null && !slugEl.isJsonNull()) ? slugEl.getAsString() : "";
+
+
             JsonArray gsonArray = new JsonArray();
-            com.google.gson.JsonObject viewGson = new JsonObject();
+            //Adding View1
+            JsonObject viewGson = new JsonObject();
             viewGson.addProperty("name", "view1");
             viewGson.addProperty("description", "compare-view");
-            viewGson.addProperty("url", "/products/view1/"+gsonObj.get("slug"));
+            viewGson.addProperty("url", "/products/view1/"+slug+".html");
             gsonArray.add(viewGson);
+
+            //Adding View2
+            JsonObject view2Gson = new JsonObject();
+            view2Gson.addProperty("name", "view2");
+            view2Gson.addProperty("description", "tile-view");
+            view2Gson.addProperty("url", "/products/view2/"+slug+".html");
+            gsonArray.add(view2Gson);
             gsonObj.add("views", gsonArray);
             log.info("GsonObject :: "+gsonObj);
         }
