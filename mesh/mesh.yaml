@@ -148,6 +148,15 @@ processing:
       STREAMX_BLUEPRINTS_EXTERNAL_RESOURCES_PROCESSING_SERVICE_PROCESSABLE_SX_TYPES: "product/simple,category,product/master"
       STREAMX_BLUEPRINTS_EXTERNAL_RESOURCES_PROCESSING_SERVICE_JSON_EXTERNAL_RESOURCE_JSONPATH_SELECTORS: "$..attributes[?(@.name=='small_image' || @.name=='thumbnail')].values.*.value,$..attributes[?(@.name=='small_image' || @.name=='thumbnail')].values.*.label,$..primaryImage.url,$..gallery.*.url"
 
+  lumax-processing-service:
+    image: YOUR_USERNAME/lumax-processing-service:1.0.0-SNAPSHOT
+    incoming:
+      incoming-strings:
+        topic: relays/aggregated-data
+    outgoing:
+      capitalized-strings:
+        topic: relays/capitalized-aggregated-data
+
   blueprint-json-aggregator:
     image: json-aggregator-processing-service
     incoming:
@@ -168,7 +177,7 @@ processing:
     image: message-converter-processing-service
     incoming:
       data:
-        topic: relays/aggregated-data
+        topic: relays/capitalized-aggregated-data
     outgoing:
       indexable-resources:
         topic: outboxes/indexable-resources
