@@ -81,11 +81,10 @@ export const loadMyWatchlist = async () => {
                 </button>
 
                 <div class="add-to-cart-wrapper flex-1">
-                  <button 
-                    class="addToCart w-full transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 shadow-sm ${isOutOfStock ? 'bg-gray-400 cursor-not-allowed disabled' : 'bg-red-600 hover:bg-red-700 text-white cursor-pointer'}"
-                  > 
-                    ${isOutOfStock ? 'Out of stock' : 'Add to Cart'} 
-                  </button>
+                  ${isOutOfStock 
+                    ? `<span class="outOfStock w-full inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 shadow-sm bg-gray-400">Out of stock</span>`
+                    : `<button class="addToCart w-full transition active:scale-95 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-10 px-4 shadow-sm bg-red-600 hover:bg-red-700 text-white cursor-pointer">Add to Cart</button>`
+                  }
                 </div>
               </div>
             </div>`
