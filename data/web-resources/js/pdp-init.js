@@ -136,6 +136,15 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
         document.body.dataset.sku = newSku;
         if (stockStatusResponse.length) {
           updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+
+          const variant = stockStatusResponse.find(v => v.product.sku === newSku)
+          const notifyMeButton = document.querySelector('.notifyWhenInStock')
+          
+          if (variant && notifyMeButton) {
+            notifyMeButton.dataset.selections = JSON.stringify(variant.selections)
+          } else if (notifyMeButton) {
+            notifyMeButton.dataset.selections = '[]'
+          }
         }
       });
     });
