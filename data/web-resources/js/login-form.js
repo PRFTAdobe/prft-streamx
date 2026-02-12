@@ -62,8 +62,8 @@ const initCart = async () => {
 }
 
 const initWishlist = async (token) => {
-    const wishlist = await import ("https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js");
-    let getCustomerWishlistResponse = await wishlist.getCustomerWishlist(token)
+    const { wishlistMutation } = await import ("https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js");
+    let getCustomerWishlistResponse = await wishlistMutation.getCustomerWishlist(token)
     let isError = false
 
     if (getCustomerWishlistResponse.errors) {
@@ -71,7 +71,7 @@ const initWishlist = async (token) => {
       console.log(getCustomerWishlistResponse.errors)
       if (getCustomerWishlistResponse.errors[0].extensions?.category == 'graphql-authorization') {
         await userMutations.regenerateUserToken()
-        getCustomerWishlistResponse = await wishlist.getCustomerWishlist(userSession.getActiveLoginToken())
+        getCustomerWishlistResponse = await wishlistMutation.getCustomerWishlist(userSession.getActiveLoginToken())
         isError = false
       }
     }
