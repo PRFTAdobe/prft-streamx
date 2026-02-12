@@ -56,7 +56,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
     const notifyMeEle = document.querySelector(".notify-me-wrapper");
     const currentSku = document.body.dataset.sku;
 
-    let inWishlistMessage = document.querySelector(".in-wishlist-message");
+    let inWishlistWrapper = document.querySelector(".in-wishlist-wrapper");
 
     document.body.dataset.inStock = isProductVariantInStock;
 
@@ -71,7 +71,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
       notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
-      inWishlistMessage?.classList.add('hidden');
+      inWishlistWrapper?.classList.add('hidden');
 
     } else {
       const activeUser = userSession.getActiveUserFromSS();
@@ -85,20 +85,30 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
       if (activeUser && isProductVariantInStock === false) {
         if (isAlreadyInWishlist) {
           notifyMeEle.classList.add('hidden');
-          if (!inWishlistMessage) {
-            inWishlistMessage = document.createElement('span');
-            inWishlistMessage.className = 'in-wishlist-message font-bold text-sm';
-            inWishlistMessage.textContent = 'In your wishlist';
-            notifyMeEle.parentNode.insertBefore(inWishlistMessage, notifyMeEle.nextSibling);
+          if (!inWishlistWrapper) {
+            const wrapper = document.createElement('div')
+            wrapper.className = 'in-wishlist-wrapper'
+
+            inWishlistWrapper = document.createElement('span')
+            inWishlistWrapper.className = 'in-wishlist-message w-full md:w-auto inline-flex items-center justify-center rounded-md text-sm font-bold h-10 px-4 shadow-sm bg-gray-400'
+            inWishlistWrapper.textContent = 'In your wishlist'
+
+            const subtext = document.createElement('p')
+            subtext.className = 'text-xs'
+            subtext.textContent = 'we will send you an email notification once the product is back in stock'
+
+            wrapper.appendChild(inWishlistWrapper)
+            wrapper.appendChild(subtext)
+            notifyMeEle.parentNode.insertBefore(wrapper, notifyMeEle.nextSibling)
           }
-          inWishlistMessage.classList.remove('hidden');
+          inWishlistWrapper.classList.remove('hidden');
         } else {
           notifyMeEle.classList.remove('hidden');
-          inWishlistMessage?.classList.add('hidden');
+          inWishlistWrapper?.classList.add('hidden');
         }
       } else {
         notifyMeEle.classList.add('hidden')
-        inWishlistMessage?.classList.add('hidden');
+        inWishlistWrapper?.classList.add('hidden');
       }
     }
   }
