@@ -21,7 +21,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
         const { alt, src } = target;
         mainImage.alt = alt;
         mainImage.src = src;
-      }
+      };
       const imageList = [
         ...imageListContainer.getElementsByClassName('image-list-item'),
       ];
@@ -30,7 +30,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
         item.addEventListener('click', handleMouseEnter);
       });
     }
-  }
+  };
 
   const buildPriceAssociativeArray = (prices) => {
     const pricesAsArray = prices.split(',');
