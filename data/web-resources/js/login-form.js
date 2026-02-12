@@ -144,7 +144,7 @@ const quickLogin = async (button, demoUserID) => {
             const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
             if (!isSupplier) {
                 await initCart();
-                await initWishlist();
+                await initWishlist(userMutations.getUserResponseToken(response));
                 redirectSuccess();
             } else {
               redirectSupplierSuccess();  
@@ -203,7 +203,7 @@ const submitLogin = async (formSubmitEvent) => {
         const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
             if (!isSupplier) {   
                 await initCart();
-                await initWishlist();
+                await initWishlist(userMutations.getUserResponseToken(response));
                 document.querySelector(".successMessage").classList.remove("hidden");
                 setTimeout( () => {
                     redirectSuccess();
