@@ -63,7 +63,7 @@ const initCart = async () => {
 
 const initWishlist = async (token) => {
     const wishlist = await import ("https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js");
-    let getCustomerWishlistResponse = await wishlist.getCustomerWishlist(activeToken)
+    let getCustomerWishlistResponse = await wishlist.getCustomerWishlist(token)
     let isError = false
 
     if (getCustomerWishlistResponse.errors) {
