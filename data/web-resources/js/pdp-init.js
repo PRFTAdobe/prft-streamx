@@ -3,7 +3,7 @@ import { addProductToCart, addProductToWatchlist } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js";
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -21,7 +21,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
         const { alt, src } = target;
         mainImage.alt = alt;
         mainImage.src = src;
-      };
+      }
       const imageList = [
         ...imageListContainer.getElementsByClassName('image-list-item'),
       ];
@@ -30,7 +30,7 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
         item.addEventListener('click', handleMouseEnter);
       });
     }
-  };
+  }
 
   const buildPriceAssociativeArray = (prices) => {
     const pricesAsArray = prices.split(',');
@@ -54,6 +54,9 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
     const addToCartEle = document.querySelector(".add-to-cart-wrapper");
     const outOfStockEle = document.querySelector(".oos-message-container");
     const notifyMeEle = document.querySelector(".notify-me-wrapper");
+    const currentSku = document.body.dataset.sku;
+
+    let inWishlistMessage = document.querySelector(".in-wishlist-message");
 
     document.body.dataset.inStock = isProductVariantInStock;
 
@@ -68,18 +71,34 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
       notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
+      inWishlistMessage?.classList.add('hidden');
 
     } else {
       const activeUser = userSession.getActiveUserFromSS();
+      const wishlist = userSession.getWishlistSession() || [];
+      const isAlreadyInWishlist = wishlist.includes(currentSku);
 
       quantityEle.classList.contains('hidden') ? '' : quantityEle.classList.add('hidden');
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
       outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
-
+      
       if (activeUser && isProductVariantInStock === false) {
-        notifyMeEle.classList.remove('hidden')
+        if (isAlreadyInWishlist) {
+          notifyMeEle.classList.add('hidden');
+          if (!inWishlistMessage) {
+            inWishlistMessage = document.createElement('span');
+            inWishlistMessage.className = 'in-wishlist-message font-bold text-sm';
+            inWishlistMessage.textContent = 'In your wishlist';
+            notifyMeEle.parentNode.insertBefore(inWishlistMessage, notifyMeEle.nextSibling);
+          }
+          inWishlistMessage.classList.remove('hidden');
+        } else {
+          notifyMeEle.classList.remove('hidden');
+          inWishlistMessage?.classList.add('hidden');
+        }
       } else {
         notifyMeEle.classList.add('hidden')
+        inWishlistMessage?.classList.add('hidden');
       }
     }
   }
