@@ -164,7 +164,7 @@ processing:
       configs:
         - "aggregator.properties"
 
-  blueprint-custom-json-processor:
+  lumax-custom-json-processor:
     image: hemanth.sreenuneelam/lumax-json-processing-service:1.0.0-SNAPSHOT
     incoming:
       aggregated-data:
