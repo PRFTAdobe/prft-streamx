@@ -3,7 +3,7 @@ import { addProductToCart, addProductToWatchlist } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js";
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -54,6 +54,9 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
     const addToCartEle = document.querySelector(".add-to-cart-wrapper");
     const outOfStockEle = document.querySelector(".oos-message-container");
     const notifyMeEle = document.querySelector(".notify-me-wrapper");
+    const currentSku = document.body.dataset.sku;
+
+    let inWishlistWrapper = document.querySelector(".in-wishlist-wrapper");
 
     document.body.dataset.inStock = isProductVariantInStock;
 
@@ -68,18 +71,44 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
       notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
+      inWishlistWrapper?.classList.add('hidden');
 
     } else {
       const activeUser = userSession.getActiveUserFromSS();
+      const wishlist = userSession.getWishlistSession() || [];
+      const isAlreadyInWishlist = wishlist.includes(currentSku);
 
       quantityEle.classList.contains('hidden') ? '' : quantityEle.classList.add('hidden');
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
       outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
-
+      
       if (activeUser && isProductVariantInStock === false) {
-        notifyMeEle.classList.remove('hidden')
+        if (isAlreadyInWishlist) {
+          notifyMeEle.classList.add('hidden');
+          if (!inWishlistWrapper) {
+            const wrapper = document.createElement('div')
+            wrapper.className = 'in-wishlist-wrapper'
+
+            inWishlistWrapper = document.createElement('span')
+            inWishlistWrapper.className = 'in-wishlist-message w-full md:w-auto inline-flex items-center justify-center rounded-md text-sm font-bold h-10 px-4 shadow-sm bg-gray-400'
+            inWishlistWrapper.textContent = 'In your wishlist'
+
+            const subtext = document.createElement('p')
+            subtext.className = 'text-xs'
+            subtext.textContent = 'we will send you an email notification once the product is back in stock'
+
+            wrapper.appendChild(inWishlistWrapper)
+            wrapper.appendChild(subtext)
+            notifyMeEle.parentNode.insertBefore(wrapper, notifyMeEle.nextSibling)
+          }
+          inWishlistWrapper.classList.remove('hidden');
+        } else {
+          notifyMeEle.classList.remove('hidden');
+          inWishlistWrapper?.classList.add('hidden');
+        }
       } else {
         notifyMeEle.classList.add('hidden')
+        inWishlistWrapper?.classList.add('hidden');
       }
     }
   }
