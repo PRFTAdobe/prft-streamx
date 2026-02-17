@@ -133,7 +133,8 @@ export const addProductToWatchlist = async (sku, quantity = 1, selectedOptions =
             addToWishlistEvent(event)
             utilities.addCheckmarkSVG(event.target);
             const wishlistSKUs = userSession.getWishlistSession() || []
-            wishlistSKUs.push(sku)
+            const itemSKU = event.target.closest('.product-card')?.dataset.itemSku
+            wishlistSKUs.push(itemSKU)
             userSession.storeWishlistSession(wishlistSKUs)
         }
     }
