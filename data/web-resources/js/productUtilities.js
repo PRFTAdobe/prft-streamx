@@ -2,7 +2,7 @@ import { utilities } from "https://lumax.streamx.com/scripts/utility.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
 import { cartMutations } from "https://lumax.streamx.com/scripts/auth/commerce/cartMutations.js";
 import { userMutations } from "https://lumax.streamx.com/scripts/auth/commerce/userMutations.js";
-import { addToCartEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { addToCartEvent, addToWishlistEvent, removeFromWishlist } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 import { updateCartCountOnUI } from "https://lumax.streamx.com/blocks/header/header.js"
 import { wishlistMutation } from "https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js"
 
@@ -130,8 +130,11 @@ export const addProductToWatchlist = async (sku, quantity = 1, selectedOptions =
         }
 
         if (!isError) {
-            addToWishlistEvent()
+            addToWishlistEvent(event)
             utilities.addCheckmarkSVG(event.target);
+            const wishlistSKUs = userSession.getWishlistSKUsFromSS() || []
+            wishlistSKUs.push(sku)
+            userSession.storeWishlistSession(wishlistSKUs)
         }
     }
 }
@@ -154,7 +157,12 @@ export const removeProductFromWatchlist = async (itemId, event) => {
         }
 
         if (!isError) {
+            removeFromWishlist(event)
             utilities.addCheckmarkSVG(event.target)
+            const wishlistSKUs = userSession.getWishlistSKUsFromSS() || []
+            const itemSKU = event.target.closest('.product-card')?.dataset.itemSku
+            const updatedWishlistSKUs = wishlistSKUs.filter(sku => sku !== itemSKU)
+            userSession.storeWishlistSession(updatedWishlistSKUs)
             return response
         }
     }
