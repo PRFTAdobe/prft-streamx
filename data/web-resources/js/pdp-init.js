@@ -306,19 +306,21 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
 
     const handleWatchlistClick = async (event) => {
 
-        const skuSelected = document.body.dataset.baseSku
-        const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
+      const skuSelected = document.body.dataset.baseSku
+      const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
 
-        let selectedOptions = []
-        try {
-          selectedOptions = notifyMeButton.dataset.selections 
-            ? JSON.parse(notifyMeButton.dataset.selections) 
-            : []
-        } catch (e) {
-          selectedOptions = []
-        }
+      let selectedOptions = []
+      try {
+        selectedOptions = notifyMeButton.dataset.selections 
+          ? JSON.parse(notifyMeButton.dataset.selections) 
+          : []
+      } catch (e) {
+        selectedOptions = []
+      }
 
-        addProductToWatchlist(skuSelected, quantity, selectedOptions, event)
+      await addProductToWatchlist(skuSelected, quantity, selectedOptions, event)
+      const isInStock = document.body.dataset.inStock === 'true'
+      updateStockStatusOnUI(isInStock)
     }
 
     notifyMeButton?.addEventListener('click', handleWatchlistClick)
