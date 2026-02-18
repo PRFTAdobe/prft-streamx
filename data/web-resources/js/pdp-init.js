@@ -89,9 +89,13 @@ import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/anal
             const wrapper = document.createElement('div')
             wrapper.className = 'in-wishlist-wrapper'
 
-            inWishlistWrapper = document.createElement('span')
-            inWishlistWrapper.className = 'in-wishlist-message w-full md:w-auto inline-flex items-center justify-center rounded-md text-sm font-bold h-10 px-4 shadow-sm bg-gray-400'
+            inWishlistWrapper = document.createElement('button')
+            inWishlistWrapper.className = 'in-wishlist-message cursor-pointer w-full md:w-auto inline-flex items-center justify-center rounded-md text-sm text-white h-10 px-4 shadow-sm bg-dsg-red hover:bg-dsg-red/90'
             inWishlistWrapper.textContent = 'In your wishlist'
+
+            inWishlistWrapper.addEventListener('click', () => {
+              window.location.href = '/my-watchlist.html'
+            })
 
             const subtext = document.createElement('p')
             subtext.className = 'text-xs'
