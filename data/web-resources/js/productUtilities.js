@@ -132,8 +132,14 @@ export const addProductToWatchlist = async (sku, quantity = 1, selectedOptions =
         if (!isError) {
             addToWishlistEvent(event)
             utilities.addCheckmarkSVG(event.target);
-            const wishlistSKUs = userSession.getWishlistSKUsFromSS() || []
-            wishlistSKUs.push(sku)
+            const wishlistSKUs = userSession.getWishlistSession() || []
+            let itemSKU = ""
+            if (document.body.dataset.pageType === "Product Detail") {
+                itemSKU = document.body.dataset.sku
+            } else {
+                itemSKU = event.target.closest('.product-card')?.dataset.itemSku
+            }
+            wishlistSKUs.push(itemSKU)
             userSession.storeWishlistSession(wishlistSKUs)
         }
     }
@@ -159,7 +165,7 @@ export const removeProductFromWatchlist = async (itemId, event) => {
         if (!isError) {
             removeFromWishlist(event)
             utilities.addCheckmarkSVG(event.target)
-            const wishlistSKUs = userSession.getWishlistSKUsFromSS() || []
+            const wishlistSKUs = userSession.getWishlistSession() || []
             const itemSKU = event.target.closest('.product-card')?.dataset.itemSku
             const updatedWishlistSKUs = wishlistSKUs.filter(sku => sku !== itemSKU)
             userSession.storeWishlistSession(updatedWishlistSKUs)
