@@ -59,3 +59,4 @@ auth/*
 /gateway/tls/*
 
 /mesh/auth/*
+/lumax-json-processing-service/target
