@@ -166,6 +166,8 @@ processing:
 
   lumax-custom-json-processor:
     image: lumax.azurecr.io/lumax-json-processing-service:latest
+    identity:
+      type: ManagedIdentity
     incoming:
       aggregated-data:
         topic: relays/aggregated-data
