@@ -61,6 +61,32 @@ const initCart = async () => {
     await header.updateCartDetailsOnLoad(true);
 }
 
+const initWishlist = async (token) => {
+    const { wishlistMutation } = await import ("https://lumax.streamx.com/scripts/auth/commerce/wishlistMutation.js");
+    let getCustomerWishlistResponse = await wishlistMutation.getCustomerWishlist(token)
+    let isError = false
+
+    if (getCustomerWishlistResponse.errors) {
+      isError = true
+      console.log(getCustomerWishlistResponse.errors)
+      if (getCustomerWishlistResponse.errors[0].extensions?.category == 'graphql-authorization') {
+        await userMutations.regenerateUserToken()
+        getCustomerWishlistResponse = await wishlistMutation.getCustomerWishlist(userSession.getActiveLoginToken())
+        isError = false
+      }
+    }
+
+    if (!isError) {
+        const wishlistSKUs = []
+        if (getCustomerWishlistResponse?.length > 0) {
+            getCustomerWishlistResponse.forEach(item => {
+                wishlistSKUs.push(item.configured_variant?.sku || item.product.sku)
+            })
+        }
+        userSession.storeWishlistSession(wishlistSKUs)
+    }
+}
+
 const toggleForm = (clickEvent) => {
     let currentForm = activeFormType();
     //toggle signin fields based on current display
@@ -118,6 +144,7 @@ const quickLogin = async (button, demoUserID) => {
             const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
             if (!isSupplier) {
                 await initCart();
+                await initWishlist(userMutations.getUserResponseToken(response));
                 redirectSuccess();
             } else {
               redirectSupplierSuccess();  
@@ -176,6 +203,7 @@ const submitLogin = async (formSubmitEvent) => {
         const isSupplier = await userMutations.isSupplier(userMutations.getUserResponseToken(response));
             if (!isSupplier) {   
                 await initCart();
+                await initWishlist(userMutations.getUserResponseToken(response));
                 document.querySelector(".successMessage").classList.remove("hidden");
                 setTimeout( () => {
                     redirectSuccess();
