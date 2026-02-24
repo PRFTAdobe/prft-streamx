@@ -1,0 +1,33 @@
+{{#define name="metaTitle"}}
+<title>My Watchlist</title>
+
+{{#define name="content.html"}}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-8">My Watchlist</h1>
+    <div class="my-watchlist-content hidden h-auto min-h-[25em]">
+        <div class="lg:col-span-2">
+            <div class="cart-items-container bg-white rounded-lg shadow-sm divide-y"></div>
+        </div>
+        <div class="lg:col-span-1 hidden watchlist-empty h-[25em]">
+            <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
+                <div class="mb-8">Please add a product to your watchlist</div>
+                <a href="/"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md mb-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Continue
+                    Shopping</a>
+            </div>
+        </div>
+        <div class="watchlist-content grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Watchlist items will be dynamically loaded here from load-watchlist.js -->
+        </div>
+    </div>
+    <div class="lg:col-span-1 hidden log-out-user h-[25em]">
+        <div class="flex flex-col items-center rounded-lg py-[10em] px-6">
+            <p class="mb-8">Please sign in.</p>
+            <a href="/login.html"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md mb-4 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-dsg-red hover:bg-dsg-red/90 text-white">Sign
+                In</a>
+        </div>
+    </div>
+</div>
+<script src="../web-resources/js/load-watchlist.js" type="module"></script>
