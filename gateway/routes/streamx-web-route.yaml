@@ -13,6 +13,7 @@ spec:
           - /cart.html
           - /login.html
           - /my-orders.html
+          - /my-watchlist.html
           - /sitemap.xml
           - /assets/*
           - /web-resources/*
