@@ -28,7 +28,7 @@ public class ProcessDataFunction {
     public GenericPayload<Data> processRequest(Data data, Action action) {
         if (Action.PUBLISH.equals(action)) {
             String dataString = new String(data.getContent().array());
-            log.infof("In: %s", dataString);
+            log.infof("Inside processRequest ProcessDataFunction");
             JsonObject gsonObj = JsonParser.parseString(dataString).getAsJsonObject();
 
             JsonElement slugEl = gsonObj.get("slug");
@@ -51,8 +51,42 @@ public class ProcessDataFunction {
             gsonArray.add(view2Gson);
             gsonObj.add("views", gsonArray);
 
+
+            JsonArray attributes = gsonObj.getAsJsonArray("attributes");
+            JsonArray aiPayloadArray = new JsonArray();
+
+            for (JsonElement attrElement : attributes) {
+                JsonObject attrObj = attrElement.getAsJsonObject();
+
+                if (attrObj.get("name").getAsString().equals("ai_payload")) {
+
+                    // Get the CSV string from values[0].value
+                    String csv = attrObj
+                            .getAsJsonArray("values")
+                            .get(0).getAsJsonObject()
+                            .get("value").getAsString();
+
+                    // Split and add into JsonArray
+                    for (String s : csv.split("\\s*,\\s*")) {
+                        aiPayloadArray.add(s);
+                    }
+                    break;
+                }
+            }
+
+            JsonObject dbJson = new JsonObject();
+            dbJson.addProperty("productid", gsonObj.get("sku").getAsString());
+            dbJson.addProperty("name", gsonObj.get("name").getAsString());
+            dbJson.addProperty("description", gsonObj.get("description").getAsString());
+            dbJson.addProperty("slug",slug);
+            dbJson.add("views", gsonArray);
+            dbJson.add("ai_payload", aiPayloadArray);
+
+            log.infof("CosmosDB JSON : %s", dbJson.toString());
+
+
             Data updatedData = new Data(gsonObj.toString());
-            log.infof("Out: %s", new String(updatedData.getContent().array()));
+            log.infof("Updated the Product JSON with Views");
             return GenericPayload.of(updatedData);
         } else if (Action.UNPUBLISH.equals(action)) {
             return GenericPayload.of(null);
