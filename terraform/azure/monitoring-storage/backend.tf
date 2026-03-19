@@ -3,6 +3,6 @@ terraform {
     resource_group_name  = "rg-adobe-summit-demo"
     storage_account_name = "tfstateo7n14"
     container_name       = "streamx-tfstate"
-    key                  = "network.tfstate"
+    key                  = "monitoring_storage.tfstate"
   }
 }

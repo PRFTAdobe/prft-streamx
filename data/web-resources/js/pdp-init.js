@@ -1,9 +1,9 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js';
+import { addProductToCart, addProductToWatchlist } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js";
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -54,6 +54,9 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
     const addToCartEle = document.querySelector(".add-to-cart-wrapper");
     const outOfStockEle = document.querySelector(".oos-message-container");
     const notifyMeEle = document.querySelector(".notify-me-wrapper");
+    const currentSku = document.body.dataset.sku;
+
+    let inWishlistWrapper = document.querySelector(".in-wishlist-wrapper");
 
     document.body.dataset.inStock = isProductVariantInStock;
 
@@ -63,21 +66,53 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
     firstLoad = false;
 
-    if (isProductVariantInStock) {
+    if (isProductVariantInStock === true) {
       quantityEle.classList.contains('hidden') ? quantityEle.classList.remove('hidden') : '';
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
       notifyMeEle.classList.contains('hidden') ? '' : notifyMeEle.classList.add('hidden');
+      inWishlistWrapper?.classList.add('hidden');
 
     } else {
       const activeUser = userSession.getActiveUserFromSS();
+      const wishlist = userSession.getWishlistSession() || [];
+      const isAlreadyInWishlist = wishlist.includes(currentSku);
 
       quantityEle.classList.contains('hidden') ? '' : quantityEle.classList.add('hidden');
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
       outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
+      
+      if (activeUser && isProductVariantInStock === false) {
+        if (isAlreadyInWishlist) {
+          notifyMeEle.classList.add('hidden');
+          if (!inWishlistWrapper) {
+            const wrapper = document.createElement('div')
+            wrapper.className = 'in-wishlist-wrapper'
 
-      if (activeUser && notifyMeEle.classList.contains('hidden')) {
-        notifyMeEle.classList.remove('hidden');
+            inWishlistWrapper = document.createElement('button')
+            inWishlistWrapper.className = 'in-wishlist-message cursor-pointer w-full md:w-auto inline-flex items-center justify-center rounded-md text-sm text-white h-10 px-4 shadow-sm bg-dsg-red hover:bg-dsg-red/90'
+            inWishlistWrapper.textContent = 'In your wishlist'
+
+            inWishlistWrapper.addEventListener('click', () => {
+              window.location.href = '/my-watchlist.html'
+            })
+
+            const subtext = document.createElement('p')
+            subtext.className = 'text-xs'
+            subtext.textContent = 'we will send you an email notification once the product is back in stock'
+
+            wrapper.appendChild(inWishlistWrapper)
+            wrapper.appendChild(subtext)
+            notifyMeEle.parentNode.insertBefore(wrapper, notifyMeEle.nextSibling)
+          }
+          inWishlistWrapper.classList.remove('hidden');
+        } else {
+          notifyMeEle.classList.remove('hidden');
+          inWishlistWrapper?.classList.add('hidden');
+        }
+      } else {
+        notifyMeEle.classList.add('hidden')
+        inWishlistWrapper?.classList.add('hidden');
       }
     }
   }
@@ -134,6 +169,15 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
         document.body.dataset.sku = newSku;
         if (stockStatusResponse.length) {
           updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+
+          const variant = stockStatusResponse.find(v => v.product.sku === newSku)
+          const notifyMeButton = document.querySelector('.notifyWhenInStock')
+          
+          if (variant && notifyMeButton) {
+            notifyMeButton.dataset.selections = JSON.stringify(variant.selections)
+          } else if (notifyMeButton) {
+            notifyMeButton.dataset.selections = '[]'
+          }
         }
       });
     });
@@ -190,6 +234,15 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
         if (stockStatusResponse.length) {
           updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+
+          const variant = stockStatusResponse.find(v => v.product.sku === newSku)
+          const notifyMeButton = document.querySelector('.notifyWhenInStock')
+          
+          if (variant && notifyMeButton) {
+            notifyMeButton.dataset.selections = JSON.stringify(variant.selections)
+          } else if (notifyMeButton) {
+            notifyMeButton.dataset.selections = '[]'
+          }
         }
       });
     });
@@ -250,13 +303,35 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
     addToCartButton?.addEventListener('click', handleAddToCartClick);
   };
 
-  const addToWishList = () => {
-    const addToWishListButton = document.querySelector('.notifyWhenInStock');
-    addToWishListButton?.addEventListener('click', addToWishlistEvent);
+  const addToWatchlist = async () => {
+
+    const notifyMeButton = document.querySelector('.notifyWhenInStock')
+    const quantitySpan = document.querySelector('.quantity')
+
+    const handleWatchlistClick = async (event) => {
+
+      const skuSelected = document.body.dataset.baseSku
+      const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
+
+      let selectedOptions = []
+      try {
+        selectedOptions = notifyMeButton.dataset.selections 
+          ? JSON.parse(notifyMeButton.dataset.selections) 
+          : []
+      } catch (e) {
+        selectedOptions = []
+      }
+
+      await addProductToWatchlist(skuSelected, quantity, selectedOptions, event)
+      const isInStock = document.body.dataset.inStock === 'true'
+      updateStockStatusOnUI(isInStock)
+    }
+
+    notifyMeButton?.addEventListener('click', handleWatchlistClick)
   }
 
   init();
   addToCart();
   addIncreaseDecreaseQuantityAction();
-  addToWishList();
+  addToWatchlist();
 })();

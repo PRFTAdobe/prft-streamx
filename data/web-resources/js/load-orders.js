@@ -102,7 +102,7 @@ export const loadMyOrders = async () => {
                             'font-medium',
                             '[&:has([role=checkbox])]:pr-0',
                         );
-                        totalTd.innerText = `$${order.grand_total}`;
+                        totalTd.innerText = `$${order.total.base_grand_total.value.toFixed(2)}`;
                         tr.appendChild(totalTd);
 
                         const statueTd = document.createElement('td');

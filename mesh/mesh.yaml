@@ -165,7 +165,7 @@ processing:
         - "aggregator.properties"
 
   lumax-custom-json-processor:
-    image: hemanth.sreenuneelam/lumax-json-processing-service:1.0.0-SNAPSHOT
+    image: lumax.azurecr.io/lumax-json-processing-service:latest
     incoming:
       aggregated-data:
         topic: relays/aggregated-data
