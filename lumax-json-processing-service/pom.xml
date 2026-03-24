@@ -26,6 +26,13 @@
       <artifactId>quarkus-rest</artifactId>
     </dependency>
 
+    <!-- pom.xml - Cosmos DB SDK dependency -->
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-cosmos</artifactId>
+      <version>4.53.0</version>
+    </dependency>
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -60,6 +67,12 @@
       <groupId>io.smallrye.reactive</groupId>
       <artifactId>smallrye-reactive-messaging-in-memory</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.38</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
   <build>

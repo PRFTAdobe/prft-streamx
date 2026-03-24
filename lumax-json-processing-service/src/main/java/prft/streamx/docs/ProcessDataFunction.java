@@ -1,9 +1,8 @@
 package prft.streamx.docs;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.azure.cosmos.CosmosClient;
+import com.azure.cosmos.CosmosContainer;
+import com.google.gson.*;
 import dev.streamx.quasar.reactive.messaging.metadata.Action;
 import io.smallrye.reactive.messaging.GenericPayload;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -12,6 +11,9 @@ import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import dev.streamx.blueprints.data.Data;
 import org.jboss.logging.Logger;
+import prft.streamx.cosmosdb.CosmosClientProvider;
+
+import java.util.Map;
 
 @ApplicationScoped
 public class ProcessDataFunction {
@@ -22,6 +24,8 @@ public class ProcessDataFunction {
     @Inject
     Logger log;
 
+    @Inject
+    CosmosClientProvider cosmosProvider;
 
     @Incoming(CHANNEL_AGGREGATED_DATA)
     @Outgoing(CHANNEL_CUSTOM_AGGREGATED_DATA)
@@ -75,6 +79,7 @@ public class ProcessDataFunction {
             }
 
             JsonObject dbJson = new JsonObject();
+            dbJson.addProperty("id", gsonObj.get("sku").getAsString());
             dbJson.addProperty("productid", gsonObj.get("sku").getAsString());
             dbJson.addProperty("name", gsonObj.get("name").getAsString());
             dbJson.addProperty("description", gsonObj.get("description").getAsString());
@@ -85,8 +90,14 @@ public class ProcessDataFunction {
             log.infof("CosmosDB JSON : %s", dbJson.toString());
 
 
+            CosmosClient client = cosmosProvider.getClient();
+            CosmosContainer container = client
+                    .getDatabase("lumaxdb")
+                    .getContainer("products");
+            Map<String, Object> dbMap = new Gson().fromJson(dbJson, Map.class);
+            container.createItem(dbMap);
+            log.infof("Inserted data into CosmosDB");
             Data updatedData = new Data(gsonObj.toString());
-            log.infof("Updated the Product JSON with Views");
             return GenericPayload.of(updatedData);
         } else if (Action.UNPUBLISH.equals(action)) {
             return GenericPayload.of(null);
