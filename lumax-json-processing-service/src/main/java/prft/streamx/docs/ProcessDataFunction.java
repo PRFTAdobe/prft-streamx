@@ -89,7 +89,7 @@ public class ProcessDataFunction {
                         .getDatabase("lumaxdb")
                         .getContainer("products");
                 Map<String, Object> dbMap = new Gson().fromJson(dbJson, Map.class);
-                container.createItem(dbMap);
+                container.upsertItem(dbMap);
                 log.infof("Inserted data into CosmosDB");
             }catch (Exception e) {
                 log.error("Error while inserting data into DB. ", e);
