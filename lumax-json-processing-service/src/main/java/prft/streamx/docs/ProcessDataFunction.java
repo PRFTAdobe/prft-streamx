@@ -40,19 +40,13 @@ public class ProcessDataFunction {
 
 
             JsonArray gsonArray = new JsonArray();
-            //Adding View1
+            //Adding View
             JsonObject viewGson = new JsonObject();
             viewGson.addProperty("name", "view1");
             viewGson.addProperty("description", "compare-view");
-            viewGson.addProperty("url", "/products/view1/"+slug+".html");
+            viewGson.addProperty("url", "/products/view/"+slug+".html");
             gsonArray.add(viewGson);
 
-            //Adding View2
-            JsonObject view2Gson = new JsonObject();
-            view2Gson.addProperty("name", "view2");
-            view2Gson.addProperty("description", "tile-view");
-            view2Gson.addProperty("url", "/products/view2/"+slug+".html");
-            gsonArray.add(view2Gson);
             gsonObj.add("views", gsonArray);
 
 
@@ -87,16 +81,19 @@ public class ProcessDataFunction {
             dbJson.add("views", gsonArray);
             dbJson.add("ai_payload", aiPayloadArray);
 
-            log.infof("CosmosDB JSON : %s", dbJson.toString());
+            log.debugf("CosmosDB JSON : %s", dbJson.toString());
 
-
-            CosmosClient client = cosmosProvider.getClient();
-            CosmosContainer container = client
-                    .getDatabase("lumaxdb")
-                    .getContainer("products");
-            Map<String, Object> dbMap = new Gson().fromJson(dbJson, Map.class);
-            container.createItem(dbMap);
-            log.infof("Inserted data into CosmosDB");
+            try {
+                CosmosClient client = cosmosProvider.getClient();
+                CosmosContainer container = client
+                        .getDatabase("lumaxdb")
+                        .getContainer("products");
+                Map<String, Object> dbMap = new Gson().fromJson(dbJson, Map.class);
+                container.createItem(dbMap);
+                log.infof("Inserted data into CosmosDB");
+            }catch (Exception e) {
+                log.error("Error while inserting data into DB. ", e);
+            }
             Data updatedData = new Data(gsonObj.toString());
             return GenericPayload.of(updatedData);
         } else if (Action.UNPUBLISH.equals(action)) {
