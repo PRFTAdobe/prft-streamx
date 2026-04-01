@@ -1,34 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{ name }}</title>
-  {{ '{{#include src="/fragments/headContent.html"}}' }}
+    <title>{{ name }}</title>
+    {{ '{{#include src="/fragments/headContent.html"}}' }}
 </head>
 
 {% set productDescription = description|replace({"\n":"",'"':'\"'}) %}
 {% set isFeatured = "false" %}
 {% set categoryName = categories[0].name %}
 {% for category in categories %}
-  {% if category.name == "Featured" %}
-    {% set isFeatured = "true" %}
-  {% else %}
-    {% set categoryName = category.name %}
-  {% endif %}
+    {% if category.name == "Featured" %}
+        {% set isFeatured = "true" %}
+    {% else %}
+        {% set categoryName = category.name %}
+    {% endif %}
 {% endfor %}
+
 <body data-page-type='Product Detail'
       data-sku="{{ sku }}"
       data-base-sku="{{ sku }}"
       data-product-details='{"sku":"{{ sku }}","name": "{{ name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ price.value }}"}'
-      data-product-category="{{ categoryName }}" data-product-featured="{{ isFeatured }}">
-<div class="min-h-screen bg-gray-50 flex flex-col">
-   Tile View
-  {{ name }}
-  {{ productDescription }}
-  {{ categoryName }}
-  {{ price.value }}
-</div>
+      data-product-category="{{ categoryName }}" 
+      data-product-featured="{{ isFeatured }}"
+      class="bg-[#f4f4f4] min-h-screen flex flex-col items-center p-5 font-sans">
 
-<div class="fixed bottom-4 right-4 z-50">Powered By:<img src="/content/dam/psg-demo-ue/streamx-logo-full-black.png" alt="Floating promotional image" class="w-32 h-auto md:w-48 lg:w-64"></div>
-<script src="../web-resources/js/pdp-init.js" type="module"></script>
+    <div class="flex-grow flex justify-center items-center w-full">
+        <!-- Single Standalone Card using Dynamic Data -->
+        <article class="bg-[#1c1c1c] rounded-xl p-5 text-white flex flex-col shadow-2xl max-w-[360px] w-full">
+            <!-- Image Placeholder -->
+            <div class="w-full aspect-[4/3] rounded-lg mb-5 flex flex-col justify-center items-center text-center overflow-hidden bg-[radial-gradient(circle,#ddd_0%,#aaa_100%)] text-[#333]">
+                <strong class="text-sm font-bold">{{ categoryName }}</strong>
+                <span class="text-xs opacity-70">LumaX Performance</span>
+            </div>
+            
+            <h2 class="text-[1.1rem] font-bold mb-2">{{ name }}</h2>
+            
+            <div class="flex items-center gap-3 mb-5">
+                <span class="text-[#d32f2f] font-bold text-xl">${{ price.value }}</span>
+                <div class="text-[0.85rem] text-[#a0a0a0] flex items-center gap-1">
+                    <span>★</span> 4.7 (1284 reviews)
+                </div>
+            </div>
+
+            <h3 class="text-[0.85rem] uppercase tracking-wider mb-2.5 font-semibold">Description</h3>
+            <p class="text-[0.85rem] text-[#a0a0a0] leading-relaxed mb-5">
+                {{ productDescription }}
+            </p>
+
+            <h3 class="text-[0.85rem] uppercase tracking-wider mb-2.5 font-semibold">Climate specs</h3>
+            <div class="grid grid-cols-3 gap-2.5 mb-5">
+                <div class="flex flex-col gap-1">
+                    <span class="text-[0.7rem] text-[#a0a0a0]">Best for</span>
+                    <span class="text-[0.8rem] font-medium leading-tight text-white">Humid summer nights</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <span class="text-[0.7rem] text-[#a0a0a0]">UPF</span>
+                    <span class="text-[0.8rem] font-medium text-white">UPF 30</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <span class="text-[0.7rem] text-[#a0a0a0]">Airflow</span>
+                    <span class="text-[0.8rem] font-medium text-white">High</span>
+                </div>
+            </div>
+
+            <h3 class="text-[0.85rem] uppercase tracking-wider mb-2.5 font-semibold">Highlights</h3>
+            <ul class="mb-8 flex-grow space-y-2">
+                <li class="text-[0.85rem] text-[#a0a0a0] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-[5px] before:h-[5px] before:bg-[#d32f2f] before:rounded-sm">Moisture-wicking fabric</li>
+                <li class="text-[0.85rem] text-[#a0a0a0] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-[5px] before:h-[5px] before:bg-[#d32f2f] before:rounded-sm">Targeted mesh airflow</li>
+                <li class="text-[0.85rem] text-[#a0a0a0] pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-[5px] before:h-[5px] before:bg-[#d32f2f] before:rounded-sm">Featherlight weight</li>
+            </ul>
+
+            <div class="flex gap-2.5">
+                <button class="bg-[#d32f2f] hover:bg-[#b71c1c] text-white rounded py-3 px-4 font-semibold text-[0.9rem] flex-grow transition-colors">
+                    View details
+                </button>
+                <div class="bg-white w-11 h-11 rounded flex justify-center items-center cursor-pointer shrink-0">
+                    <svg class="w-5 h-5 fill-[#333]" viewBox="0 0 24 24">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-white/80 p-2 rounded-lg backdrop-blur">
+        <span class="text-xs font-bold text-gray-500">Powered By:</span>
+        <img src="/content/dam/psg-demo-ue/logo-full-black.png" alt="Logo" class="w-32 h-auto">
+    </div>
+
+    <script src="../web-resources/js/pdp-init.js" type="module"></script>
 </body>
 </html>
