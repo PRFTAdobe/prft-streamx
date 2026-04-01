@@ -12,9 +12,10 @@ public class CosmosClientProvider {
 
 
     public CosmosClientProvider() {
+        String key = System.getenv("DB_Key");
         this.client = new CosmosClientBuilder()
                 .endpoint("https://lumax.documents.azure.com:443")
-                .key("key==")
+                .key(key)
                 .consistencyLevel(ConsistencyLevel.EVENTUAL)
                 .buildClient();
     }
