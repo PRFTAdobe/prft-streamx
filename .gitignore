@@ -60,3 +60,4 @@ auth/*
 
 /mesh/auth/*
 /lumax-json-processing-service/target
+ai/target
