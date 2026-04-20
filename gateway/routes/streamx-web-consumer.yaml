@@ -5,6 +5,5 @@ metadata:
 spec:
   authParameter:
     basicAuth:
-      value:
-        username: admin
-        password: Test1234
+      secretRef:
+        name: streamx-web-basic-auth-secret

@@ -1,10 +1,10 @@
  consumers:
    -
-     username: admin
+     username: ${BASIC_AUTH_USERNAME}
      plugins:
        basic-auth:
-         username: admin
-         password: Test1234
+         username: ${BASIC_AUTH_USERNAME}
+         password: ${BASIC_AUTH_PASSWORD}
 
  routes:
    -
