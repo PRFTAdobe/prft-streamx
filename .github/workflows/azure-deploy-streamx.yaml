@@ -21,9 +21,9 @@ on:
       GRAFANA_TLS_CERT:
         required: false
       BASIC_AUTH_USERNAME:
-        required: true
+        required: false
       BASIC_AUTH_PASSWORD:
-        required: true
+        required: false
       ARM_ACCESS_KEY:
         required: true
       ARM_CLIENT_ID:
