@@ -30,9 +30,6 @@ spec:
       plugins:
       - name: basic-auth
         enable: true
-        config:
-          username: admin
-          password: Test1234
       - name: cors
         enable: true
         config:

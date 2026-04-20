@@ -1,0 +1,10 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixConsumer
+metadata:
+  name: streamx-web-consumer
+spec:
+  authParameter:
+    basicAuth:
+      value:
+        username: admin
+        password: Test1234
