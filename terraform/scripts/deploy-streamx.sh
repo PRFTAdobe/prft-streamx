@@ -20,6 +20,8 @@ terraform -chdir="$SETUP_ENV_SCRIPT_DIR"/../azure/platform apply -auto-approve
 export KUBECONFIG="$(terraform -chdir="$SETUP_ENV_SCRIPT_DIR"/../azure/platform output -raw kubeconfig_path)"
 streamx_ingress_ip="$(terraform -chdir="$SETUP_ENV_SCRIPT_DIR"/../azure/platform output -raw loadbalancer_ip)"
 echo "%cloud.streamx.accelerator.ip=$streamx_ingress_ip" > "$SETUP_ENV_SCRIPT_DIR/../../.env"
+echo "%cloud.basic.auth.username=$BASIC_AUTH_USERNAME" >> "$SETUP_ENV_SCRIPT_DIR/../../.env"
+echo "%cloud.basic.auth.password=$BASIC_AUTH_PASSWORD" >> "$SETUP_ENV_SCRIPT_DIR/../../.env"
 
 #"$SETUP_ENV_SCRIPT_DIR"/verify_secrets.sh
 

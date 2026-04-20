@@ -20,6 +20,10 @@ on:
         required: false
       GRAFANA_TLS_CERT:
         required: false
+      BASIC_AUTH_USERNAME:
+        required: true
+      BASIC_AUTH_PASSWORD:
+        required: true
       ARM_ACCESS_KEY:
         required: true
       ARM_CLIENT_ID:
@@ -132,6 +136,10 @@ jobs:
             ${{ secrets.TF_VAR_monitoring_grafana_admin_password }}
           TF_VAR_monitoring_grafana_host:
             ${{ vars.TF_VAR_monitoring_grafana_host }}
+          BASIC_AUTH_USERNAME:
+            ${{ secrets.BASIC_AUTH_USERNAME }}
+          BASIC_AUTH_PASSWORD:
+            ${{ secrets.BASIC_AUTH_PASSWORD }}
         run: |
           terraform/scripts/deploy-streamx.sh
           echo "kubeconfig_path=$(terraform -chdir=./terraform/azure/platform output -raw kubeconfig_path)" >> $GITHUB_OUTPUT
