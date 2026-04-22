@@ -1,0 +1,95 @@
+{{#define name="metaTitle"}}
+<title>Welcome to LumaX Sports Apparel</title>
+
+{{#define name="content.html"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to LumaX Sports Apparel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .landing-container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+    }
+
+    .logo-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .logo-wrapper img {
+      height: 60px;
+      width: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: #6b7280;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .enter-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #c8102e;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 2.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .enter-btn:hover {
+      background-color: #a50d26;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="landing-container">
+    <div class="logo-wrapper">
+      <img src="/assets/lumax.svg" alt="LumaX Sports Apparel" />
+    </div>
+    <h1>Welcome to LumaX</h1>
+    <p>Your destination for premium sports equipment and apparel. Please sign in to access the full site.</p>
+    <a class="enter-btn" href="/homepage.html">Enter Site</a>
+    <p class="footer-note">You will be prompted to enter your credentials.</p>
+  </div>
+</body>
+</html>

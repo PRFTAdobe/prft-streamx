@@ -8,6 +8,36 @@
 
  routes:
    -
+     name: streamx-web-public-route
+     id: blueprint-web-public
+     uri: /
+     hosts:
+       - web.127.0.0.1.nip.io
+     upstream:
+       nodes:
+         "blueprint-web.webserver:80": 1
+       type: roundrobin
+     plugins:
+       gzip:
+         buffers:
+           number: 8
+         types: "*"
+   -
+     name: streamx-web-public-index-route
+     id: blueprint-web-public-index
+     uri: /index.html
+     hosts:
+       - web.127.0.0.1.nip.io
+     upstream:
+       nodes:
+         "blueprint-web.webserver:80": 1
+       type: roundrobin
+     plugins:
+       gzip:
+         buffers:
+           number: 8
+         types: "*"
+   -
      name: streamx-web-route
      id: blueprint-web
      uri: /*

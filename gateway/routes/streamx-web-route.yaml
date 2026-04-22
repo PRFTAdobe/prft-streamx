@@ -1,6 +1,39 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
+  name: streamx-web-public-route
+spec:
+  http:
+    - name: streamx-web-public-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /
+          - /index.html
+      priority: 30
+      backends:
+        - serviceName: sx-del-blueprint-web
+          servicePort: 8084
+      plugins:
+      - name: cors
+        enable: true
+        config:
+          allow_origins: "*"
+          allow_methods: "*"
+          allow_headers: "*"
+          expose_headers: "*"
+          max_age: 3600
+      - name: gzip
+        enable: true
+        config:
+          buffers:
+            number: 8
+          types: "*"
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
   name: streamx-web-route
 spec:
   http:
