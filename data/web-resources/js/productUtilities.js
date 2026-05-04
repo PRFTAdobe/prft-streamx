@@ -20,6 +20,9 @@ export const addProductToCart = async (sku, quantity = 1, event) => {
         }
         userSession.setCartIDtoSS(cartID);
     }
+    if (cartID) {
+      await cartMutations.updateCartEcid(cartID, _satellite.getVar("ECID"));
+    }    
     let cart = await cartMutations.addProductToCart(cartID, { sku, quantity });
 
     if (cart.errors) {
