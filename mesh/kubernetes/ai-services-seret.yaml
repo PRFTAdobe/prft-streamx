@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ai-service-secrets
+type: Opaque
+stringData:
+  cosmos-endpoint: "https://lumax.documents.azure.com:443/"
+  cosmos-key: "<COSMOS_KEY>"
+  cosmos-database-name: "lumaxdb"
+  cosmos-container-name: "productstest"
+  vertex-project-id: "<VERTEX_PROJECT_ID>"
+  vertex-location: "us-central1"
+  gemini-chat-model: "gemini-2.0-flash"
+  embedding-model: "gemini-embedding-001"

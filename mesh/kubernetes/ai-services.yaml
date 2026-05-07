@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-service
+  labels:
+    app: ai-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-service
+  template:
+    metadata:
+      labels:
+        app: ai-service
+    spec:
+      containers:
+        - name: ai-service
+          image: lumax.azurecr.io/lumax-ai-demo:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+
+            - name: SPRING_APPLICATION_NAME
+              value: "ai"
+
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: cosmos-endpoint
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: cosmos-key
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: cosmos-database-name
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_CONTAINER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: cosmos-container-name
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_PARTITION_KEY_PATH
+              value: "/id"
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_VECTOR_DIMENSIONS
+              value: "3072"
+            - name: SPRING_AI_VECTORSTORE_COSMOSDB_INITIALIZE_SCHEMA
+              value: "true"
+
+            - name: SPRING_AI_VERTEX_AI_GEMINI_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: vertex-project-id
+            - name: SPRING_AI_VERTEX_AI_EMBEDDING_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: vertex-project-id
+            - name: SPRING_AI_VERTEX_AI_GEMINI_LOCATION
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: vertex-location
+            - name: SPRING_AI_VERTEX_AI_EMBEDDING_LOCATION
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: vertex-location
+            - name: SPRING_AI_VERTEX_AI_GEMINI_CHAT_OPTIONS_MODEL
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: gemini-chat-model
+            - name: SPRING_AI_VERTEX_AI_EMBEDDING_TEXT_OPTIONS_MODEL
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secrets
+                  key: embedding-model
+
+          readinessProbe:
+            httpGet:
+              path: /api/products/search?query=health&topK=1
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+
+          livenessProbe:
+            httpGet:
+              path: /api/products/search?query=health&topK=1
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 6
+
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-service
+  labels:
+    app: ai-service
+spec:
+  selector:
+    app: ai-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
