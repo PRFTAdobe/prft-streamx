@@ -27,21 +27,24 @@
       data-product-details='{"sku":"{{ sku }}","name": "{{ name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ price.value }}"}'
       data-product-category="{{ categoryName }}" 
       data-product-featured="{{ isFeatured }}"
-      class="bg-[#f4f4f4] min-h-screen flex flex-col items-center p-5 font-sans">
+      class="bg-gray-900 min-h-screen flex flex-col items-center p-5 font-sans">
 
     <div class="flex-grow flex justify-center items-center w-full">
         <!-- Single Standalone Card using Dynamic Data -->
         <article class="bg-[#1c1c1c] rounded-xl p-5 text-white flex flex-col shadow-2xl max-w-[360px] w-full">
             <!-- Image Placeholder -->
             <div class="w-full aspect-[4/3] rounded-lg mb-5 flex flex-col justify-center items-center text-center overflow-hidden bg-[radial-gradient(circle,#ddd_0%,#aaa_100%)] text-[#333]">
-                <strong class="text-sm font-bold">{{ categoryName }}</strong>
-                <span class="text-xs opacity-70">LumaX Performance</span>
+                {% set primaryImageUrl = primaryImage.url.replace("master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud","lumax.streamx.com") %}
+                <picture>
+                  <img src="{{ primaryImageUrl }}" alt="{{ primaryImage.alt }}"
+                       class="object-cover main-image" loading="eager" width="100%" height="100%"/>
+                </picture>
             </div>
             
             <h2 class="text-[1.1rem] font-bold mb-2">{{ name }}</h2>
             
             <div class="flex items-center gap-3 mb-5">
-                <span class="text-[#d32f2f] font-bold text-xl">${{ price.value }}</span>
+                <span class="text-dsg-red font-bold text-xl">${{ price.value }}</span>
                 <div class="text-[0.85rem] text-[#a0a0a0] flex items-center gap-1">
                     <span>★</span> 4.7 (1284 reviews)
                 </div>
@@ -76,7 +79,7 @@
             </ul>
 
             <div class="flex gap-2.5">
-                <button class="bg-[#d32f2f] hover:bg-[#b71c1c] text-white rounded py-3 px-4 font-semibold text-[0.9rem] flex-grow transition-colors">
+                <button class="bg-dsg-red hover:bg-[#b71c1c] text-white rounded py-3 px-4 font-semibold text-[0.9rem] flex-grow transition-colors">
                     View details
                 </button>
                 <div class="bg-white w-11 h-11 rounded flex justify-center items-center cursor-pointer shrink-0">
@@ -93,6 +96,6 @@
         <img src="/content/dam/psg-demo-ue/logo-full-black.png" alt="Logo" class="w-32 h-auto">
     </div>
 
-    <script src="../web-resources/js/pdp-init.js" type="module"></script>
+    <script src="../../web-resources/js/pdp-init.js" type="module"></script>
 </body>
 </html>
