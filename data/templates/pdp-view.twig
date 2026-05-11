@@ -4,12 +4,10 @@
     <title>{{ name }}</title>
 
     <link
-      href="../web-resources/css/tailwind-output.css"
+      href="../../web-resources/css/tailwind-output.css"
       rel="stylesheet"
       type="text/css"
     />
-
-    {{ '{{#include src="/fragments/headContent.html"}}' }}
 </head>
 
 {% set productDescription = description|replace({"\n":"",'"':'\"'}) %}
