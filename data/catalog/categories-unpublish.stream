@@ -1,0 +1,767 @@
+{
+  "specversion": "1.0",
+  "id": "cat:Accent Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Accent Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bar & Serving Carts",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar & Serving Carts",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bar Cabinets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bar Sets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Barstools",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Barstools",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bed Frames",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bed Frames",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bedroom Armoires",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bedroom Armoires",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bedroom Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bedroom Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Beds",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Beds",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Beds, Frames & Bases",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Beds, Frames & Bases",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bookcases",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bookcases",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Bookcases, Cabinets & Shelves",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bookcases, Cabinets & Shelves",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Box Springs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Box Springs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Buffets & Sideboards",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Buffets & Sideboards",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Chairs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Chaise Lounges",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Chaise Lounges",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:China Cabinets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:China Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Coffee Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Coffee Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Dressers",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Dressers",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:End Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:End Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Entryway Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Entryway Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Featured",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Featured",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Folding Chairs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Folding Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Folding Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Folding Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Gliders",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Gliders",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Headboards",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Headboards",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Bar Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Bar Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Office Cabinets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Office Chairs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Office Desk Chairs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Desk Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Office Desks",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Desks",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Home Office Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Kids' Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kids' Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Kitchen & Dining Room Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kitchen & Dining Room Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Kitchen Islands & Carts",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kitchen Islands & Carts",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Living Room Furniture",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Living Room Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Living Room Sets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Living Room Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Mattresses",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Mattresses",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Mattresses & Box Springs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Mattresses & Box Springs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Media Storage",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Media Storage",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Nesting Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Nesting Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Nightstands",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Nightstands",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Ottomans",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Ottomans",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Recliners",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Recliners",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Sofa & Console Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofa & Console Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Sofas",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofas",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Sofas & Couches",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofas & Couches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Storage Benches",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Storage Cabinets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Storage Chests",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Chests",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Table & Chair Sets",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Table & Chair Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Table Benches",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Table Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Tables",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Television Stands & Entertainment Centers",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Television Stands & Entertainment Centers",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Vanities",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanities",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Vanities & Vanity Benches",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanities & Vanity Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Vanity Benches",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanity Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
+{
+  "specversion": "1.0",
+  "id": "cat:Video Game Chairs",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.unpublished.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Video Game Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "",
+    "type": "data/product"
+  }
+}
