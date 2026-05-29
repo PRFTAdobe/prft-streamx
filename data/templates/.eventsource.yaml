@@ -1,7 +1,0 @@
-channel: renderers
-relativePathLevel: 1
-
-key: ${relativePath}
-payload:
-  template:
-    bytes: file://${payloadPath}

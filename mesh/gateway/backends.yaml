@@ -1,0 +1,51 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: aem-backend
+spec:
+  endpoints:
+    - fqdn:
+        hostname: publish-p7752-e729659.adobeaemcloud.com
+        port: 443
+  tls:
+    sni: publish-p7752-e729659.adobeaemcloud.com
+    insecureSkipVerify: true
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: eds-backend
+spec:
+  endpoints:
+    - fqdn:
+        hostname: main--psgdemoue--prftadobe.aem.live
+        port: 443
+  tls:
+    sni: main--psgdemoue--prftadobe.aem.live
+    insecureSkipVerify: true
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: ai-backend
+spec:
+  endpoints:
+    - fqdn:
+        hostname: wonderful-flower-0ae435e0f.3.azurestaticapps.net
+        port: 443
+  tls:
+    sni: wonderful-flower-0ae435e0f.3.azurestaticapps.net
+    insecureSkipVerify: true
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: magento-backend
+spec:
+  endpoints:
+    - fqdn:
+        hostname: master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud
+        port: 443
+  tls:
+    sni: master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud
+    insecureSkipVerify: true    

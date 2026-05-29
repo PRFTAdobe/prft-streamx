@@ -1,598 +1,598 @@
 {
-  "key": "review:'WP03':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Workout Essential\",\"content\":\"The Ida Workout Parachute Pant is super comfy for running or lounging, thanks to its soft fabric. The antimicrobial finish keeps it fresh after sweaty sessions!\",\"stars\":1,\"author\":\"Scarlett Gomez\",\"date\":\"November 11, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP03':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP03':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJXb3Jrb3V0IEVzc2VudGlhbCIsICJjb250ZW50IjogIlRoZSBJZGEgV29ya291dCBQYXJhY2h1dGUgUGFudCBpcyBzdXBlciBjb21meSBmb3IgcnVubmluZyBvciBsb3VuZ2luZywgdGhhbmtzIHRvIGl0cyBzb2Z0IGZhYnJpYy4gVGhlIGFudGltaWNyb2JpYWwgZmluaXNoIGtlZXBzIGl0IGZyZXNoIGFmdGVyIHN3ZWF0eSBzZXNzaW9ucyEiLCAic3RhcnMiOiAxLCAiYXV0aG9yIjogIlNjYXJsZXR0IEdvbWV6IiwgImRhdGUiOiAiTm92ZW1iZXIgMTEsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP04':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Versatile Comfort\",\"content\":\"The Cora Parachute Pant feels amazing for yoga or chilling, with a supportive mesh waistband. The internal pocket is a handy bonus!\",\"stars\":3,\"author\":\"Aiden Clark\",\"date\":\"April 27, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP04':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP04':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJWZXJzYXRpbGUgQ29tZm9ydCIsICJjb250ZW50IjogIlRoZSBDb3JhIFBhcmFjaHV0ZSBQYW50IGZlZWxzIGFtYXppbmcgZm9yIHlvZ2Egb3IgY2hpbGxpbmcsIHdpdGggYSBzdXBwb3J0aXZlIG1lc2ggd2Fpc3RiYW5kLiBUaGUgaW50ZXJuYWwgcG9ja2V0IGlzIGEgaGFuZHkgYm9udXMhIiwgInN0YXJzIjogMywgImF1dGhvciI6ICJBaWRlbiBDbGFyayIsICJkYXRlIjogIkFwcmlsIDI3LCAyMDIzIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP05':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Stylish Leggings\",\"content\":\"The Sahara Leggings’ pinstripe design and stretchy fabric make them a go-to for workouts. The secret pocket is perfect for small essentials!\",\"stars\":4,\"author\":\"Harper Stewart\",\"date\":\"July 16, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP05':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP05':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJTdHlsaXNoIExlZ2dpbmdzIiwgImNvbnRlbnQiOiAiVGhlIFNhaGFyYSBMZWdnaW5nc+KAmSBwaW5zdHJpcGUgZGVzaWduIGFuZCBzdHJldGNoeSBmYWJyaWMgbWFrZSB0aGVtIGEgZ28tdG8gZm9yIHdvcmtvdXRzLiBUaGUgc2VjcmV0IHBvY2tldCBpcyBwZXJmZWN0IGZvciBzbWFsbCBlc3NlbnRpYWxzISIsICJzdGFycyI6IDQsICJhdXRob3IiOiAiSGFycGVyIFN0ZXdhcnQiLCAiZGF0ZSI6ICJKdWx5IDE2LCAyMDIwIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP06':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Perfect Yoga Tights\",\"content\":\"The Diana Tights stretch beautifully for bikram, and the vented gusset keeps me cool. Flat-lock seams are a comfort game-changer!\",\"stars\":5,\"author\":\"Evelyn Ross\",\"date\":\"December 7, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP06':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP06':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJQZXJmZWN0IFlvZ2EgVGlnaHRzIiwgImNvbnRlbnQiOiAiVGhlIERpYW5hIFRpZ2h0cyBzdHJldGNoIGJlYXV0aWZ1bGx5IGZvciBiaWtyYW0sIGFuZCB0aGUgdmVudGVkIGd1c3NldCBrZWVwcyBtZSBjb29sLiBGbGF0LWxvY2sgc2VhbXMgYXJlIGEgY29tZm9ydCBnYW1lLWNoYW5nZXIhIiwgInN0YXJzIjogNSwgImF1dGhvciI6ICJFdmVseW4gUm9zcyIsICJkYXRlIjogIkRlY2VtYmVyIDcsIDIwMjQifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP07':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Capri Coolness\",\"content\":\"The Aeon Capri’s moisture-wicking fabric keeps me dry, and the thick waistband is super flattering. Love the teal accents!\",\"stars\":2,\"author\":\"Wyatt King\",\"date\":\"September 20, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP07':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP07':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDYXByaSBDb29sbmVzcyIsICJjb250ZW50IjogIlRoZSBBZW9uIENhcHJp4oCZcyBtb2lzdHVyZS13aWNraW5nIGZhYnJpYyBrZWVwcyBtZSBkcnksIGFuZCB0aGUgdGhpY2sgd2Fpc3RiYW5kIGlzIHN1cGVyIGZsYXR0ZXJpbmcuIExvdmUgdGhlIHRlYWwgYWNjZW50cyEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIld5YXR0IEtpbmciLCAiZGF0ZSI6ICJTZXB0ZW1iZXIgMjAsIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP08':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Basic but Decent\",\"content\":\"The Bardot Capri is comfy with its organic fabric and drawcord waist. It’s not the most exciting design, though.\",\"stars\":3,\"author\":\"Lila Jensen\",\"date\":\"March 8, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP08':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP08':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJCYXNpYyBidXQgRGVjZW50IiwgImNvbnRlbnQiOiAiVGhlIEJhcmRvdCBDYXByaSBpcyBjb21meSB3aXRoIGl0cyBvcmdhbmljIGZhYnJpYyBhbmQgZHJhd2NvcmQgd2Fpc3QuIEl04oCZcyBub3QgdGhlIG1vc3QgZXhjaXRpbmcgZGVzaWduLCB0aG91Z2guIiwgInN0YXJzIjogMywgImF1dGhvciI6ICJMaWxhIEplbnNlbiIsICJkYXRlIjogIk1hcmNoIDgsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP09':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Practical Capri\",\"content\":\"The Carina Basic Capri’s cotton-spandex blend feels soft, and the reinforced seams hold up well. Great for layering or standalone wear!\",\"stars\":4,\"author\":\"Caleb Ortiz\",\"date\":\"January 23, 2025\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP09':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP09':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJQcmFjdGljYWwgQ2FwcmkiLCAiY29udGVudCI6ICJUaGUgQ2FyaW5hIEJhc2ljIENhcHJp4oCZcyBjb3R0b24tc3BhbmRleCBibGVuZCBmZWVscyBzb2Z0LCBhbmQgdGhlIHJlaW5mb3JjZWQgc2VhbXMgaG9sZCB1cCB3ZWxsLiBHcmVhdCBmb3IgbGF5ZXJpbmcgb3Igc3RhbmRhbG9uZSB3ZWFyISIsICJzdGFycyI6IDQsICJhdXRob3IiOiAiQ2FsZWIgT3J0aXoiLCAiZGF0ZSI6ICJKYW51YXJ5IDIzLCAyMDI1In0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP10':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Yoga Bliss\",\"content\":\"The Daria Bikram Pant moves with me perfectly during stretches, and the flatlock seams are a dream. The pink stripe adds a fun touch!\",\"stars\":5,\"author\":\"Nora Baker\",\"date\":\"June 12, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP10':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP10':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJZb2dhIEJsaXNzIiwgImNvbnRlbnQiOiAiVGhlIERhcmlhIEJpa3JhbSBQYW50IG1vdmVzIHdpdGggbWUgcGVyZmVjdGx5IGR1cmluZyBzdHJldGNoZXMsIGFuZCB0aGUgZmxhdGxvY2sgc2VhbXMgYXJlIGEgZHJlYW0uIFRoZSBwaW5rIHN0cmlwZSBhZGRzIGEgZnVuIHRvdWNoISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiTm9yYSBCYWtlciIsICJkYXRlIjogIkp1bmUgMTIsIDIwMjAifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP11':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Slimming Style\",\"content\":\"The Sylvia Capri’s support fabric gives a sleek look, and moisture-wicking keeps me fresh. The wide waistband is a comfy bonus!\",\"stars\":1,\"author\":\"Gabriel Stone\",\"date\":\"October 31, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP11':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP11':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJTbGltbWluZyBTdHlsZSIsICJjb250ZW50IjogIlRoZSBTeWx2aWEgQ2FwcmnigJlzIHN1cHBvcnQgZmFicmljIGdpdmVzIGEgc2xlZWsgbG9vaywgYW5kIG1vaXN0dXJlLXdpY2tpbmcga2VlcHMgbWUgZnJlc2guIFRoZSB3aWRlIHdhaXN0YmFuZCBpcyBhIGNvbWZ5IGJvbnVzISIsICJzdGFycyI6IDEsICJhdXRob3IiOiAiR2FicmllbCBTdG9uZSIsICJkYXRlIjogIk9jdG9iZXIgMzEsIDIwMjMifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP12':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Relaxed Perfection\",\"content\":\"The Deirdre Relaxed-Fit Capri is ideal for yoga with its stretchy, moisture-wicking fabric. The hidden pocket is a lifesaver!\",\"stars\":3,\"author\":\"Violet Hughes\",\"date\":\"February 4, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP12':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP12':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSZWxheGVkIFBlcmZlY3Rpb24iLCAiY29udGVudCI6ICJUaGUgRGVpcmRyZSBSZWxheGVkLUZpdCBDYXByaSBpcyBpZGVhbCBmb3IgeW9nYSB3aXRoIGl0cyBzdHJldGNoeSwgbW9pc3R1cmUtd2lja2luZyBmYWJyaWMuIFRoZSBoaWRkZW4gcG9ja2V0IGlzIGEgbGlmZXNhdmVyISIsICJzdGFycyI6IDMsICJhdXRob3IiOiAiVmlvbGV0IEh1Z2hlcyIsICJkYXRlIjogIkZlYnJ1YXJ5IDQsIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP13':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"All-Day Comfort\",\"content\":\"The Portia Capri’s high waist and relaxed fit make it perfect from yoga to lounging. The sporty stripes are a stylish win!\",\"stars\":4,\"author\":\"Elijah Cook\",\"date\":\"August 6, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP13':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP13':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJBbGwtRGF5IENvbWZvcnQiLCAiY29udGVudCI6ICJUaGUgUG9ydGlhIENhcHJp4oCZcyBoaWdoIHdhaXN0IGFuZCByZWxheGVkIGZpdCBtYWtlIGl0IHBlcmZlY3QgZnJvbSB5b2dhIHRvIGxvdW5naW5nLiBUaGUgc3BvcnR5IHN0cmlwZXMgYXJlIGEgc3R5bGlzaCB3aW4hIiwgInN0YXJzIjogNCwgImF1dGhvciI6ICJFbGlqYWggQ29vayIsICJkYXRlIjogIkF1Z3VzdCA2LCAyMDI0In0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH01':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Fitness Favorite\",\"content\":\"The Fiona Fitness Short’s wicking fabric keeps me cool during runs, and the cotton-spandex blend feels great. Simple but effective!\",\"stars\":2,\"author\":\"Aria Patel\",\"date\":\"May 28, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH01':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH01':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJGaXRuZXNzIEZhdm9yaXRlIiwgImNvbnRlbnQiOiAiVGhlIEZpb25hIEZpdG5lc3MgU2hvcnTigJlzIHdpY2tpbmcgZmFicmljIGtlZXBzIG1lIGNvb2wgZHVyaW5nIHJ1bnMsIGFuZCB0aGUgY290dG9uLXNwYW5kZXggYmxlbmQgZmVlbHMgZ3JlYXQuIFNpbXBsZSBidXQgZWZmZWN0aXZlISIsICJzdGFycyI6IDIsICJhdXRob3IiOiAiQXJpYSBQYXRlbCIsICJkYXRlIjogIk1heSAyOCwgMjAyMSJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH02':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Laid-Back Style\",\"content\":\"The Maxima Drawstring Short is comfy for walks with its elastic waist and sporty design. The contrast binding adds a nice flair!\",\"stars\":5,\"author\":\"Owen Mitchell\",\"date\":\"November 19, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH02':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH02':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJMYWlkLUJhY2sgU3R5bGUiLCAiY29udGVudCI6ICJUaGUgTWF4aW1hIERyYXdzdHJpbmcgU2hvcnQgaXMgY29tZnkgZm9yIHdhbGtzIHdpdGggaXRzIGVsYXN0aWMgd2Fpc3QgYW5kIHNwb3J0eSBkZXNpZ24uIFRoZSBjb250cmFzdCBiaW5kaW5nIGFkZHMgYSBuaWNlIGZsYWlyISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiT3dlbiBNaXRjaGVsbCIsICJkYXRlIjogIk5vdmVtYmVyIDE5LCAyMDIwIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH03':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Bike Short Brilliance\",\"content\":\"The Gwen Drawstring Bike Short’s CoolTech fabric keeps me dry, and the adjustable waist is spot-on. Super modern look!\",\"stars\":3,\"author\":\"Stella Kim\",\"date\":\"July 25, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH03':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH03':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJCaWtlIFNob3J0IEJyaWxsaWFuY2UiLCAiY29udGVudCI6ICJUaGUgR3dlbiBEcmF3c3RyaW5nIEJpa2UgU2hvcnTigJlzIENvb2xUZWNoIGZhYnJpYyBrZWVwcyBtZSBkcnksIGFuZCB0aGUgYWRqdXN0YWJsZSB3YWlzdCBpcyBzcG90LW9uLiBTdXBlciBtb2Rlcm4gbG9vayEiLCAic3RhcnMiOiAzLCAiYXV0aG9yIjogIlN0ZWxsYSBLaW0iLCAiZGF0ZSI6ICJKdWx5IDI1LCAyMDIzIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH04':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Running in Style\",\"content\":\"The Artemis Running Short’s maritime design is chic, and LumaTech wicking keeps me comfy on jogs. Lightweight perfection!\",\"stars\":4,\"author\":\"Isaac Lopez\",\"date\":\"March 9, 2025\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH04':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH04':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSdW5uaW5nIGluIFN0eWxlIiwgImNvbnRlbnQiOiAiVGhlIEFydGVtaXMgUnVubmluZyBTaG9ydOKAmXMgbWFyaXRpbWUgZGVzaWduIGlzIGNoaWMsIGFuZCBMdW1hVGVjaCB3aWNraW5nIGtlZXBzIG1lIGNvbWZ5IG9uIGpvZ3MuIExpZ2h0d2VpZ2h0IHBlcmZlY3Rpb24hIiwgInN0YXJzIjogNCwgImF1dGhvciI6ICJJc2FhYyBMb3BleiIsICJkYXRlIjogIk1hcmNoIDksIDIwMjUifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH05':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Bikram Bust\",\"content\":\"The Bess Yoga Short promises stretch for intense sessions, but the fabric feels stiff and traps heat. The vented gusset doesn’t help much.\",\"stars\":1,\"author\":\"Ruby Ellis\",\"date\":\"September 1, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH05':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH05':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJCaWtyYW0gQnVzdCIsICJjb250ZW50IjogIlRoZSBCZXNzIFlvZ2EgU2hvcnQgcHJvbWlzZXMgc3RyZXRjaCBmb3IgaW50ZW5zZSBzZXNzaW9ucywgYnV0IHRoZSBmYWJyaWMgZmVlbHMgc3RpZmYgYW5kIHRyYXBzIGhlYXQuIFRoZSB2ZW50ZWQgZ3Vzc2V0IGRvZXNu4oCZdCBoZWxwIG11Y2guIiwgInN0YXJzIjogMSwgImF1dGhvciI6ICJSdWJ5IEVsbGlzIiwgImRhdGUiOiAiU2VwdGVtYmVyIDEsIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH06':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Light and Breezy\",\"content\":\"The Angel Light Running Short’s Cocona fabric beats sweat and UV rays effortlessly. Ideal for long runs!\",\"stars\":5,\"author\":\"Leo Carter\",\"date\":\"December 22, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH06':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH06':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJMaWdodCBhbmQgQnJlZXp5IiwgImNvbnRlbnQiOiAiVGhlIEFuZ2VsIExpZ2h0IFJ1bm5pbmcgU2hvcnTigJlzIENvY29uYSBmYWJyaWMgYmVhdHMgc3dlYXQgYW5kIFVWIHJheXMgZWZmb3J0bGVzc2x5LiBJZGVhbCBmb3IgbG9uZyBydW5zISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiTGVvIENhcnRlciIsICJkYXRlIjogIkRlY2VtYmVyIDIyLCAyMDIwIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH07':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Compression Done Right\",\"content\":\"The Echo Fit Compression Short supports my muscles perfectly during workouts. Breathable and comfy all the way!\",\"stars\":2,\"author\":\"Hazel Nguyen\",\"date\":\"June 30, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH07':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH07':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb21wcmVzc2lvbiBEb25lIFJpZ2h0IiwgImNvbnRlbnQiOiAiVGhlIEVjaG8gRml0IENvbXByZXNzaW9uIFNob3J0IHN1cHBvcnRzIG15IG11c2NsZXMgcGVyZmVjdGx5IGR1cmluZyB3b3Jrb3V0cy4gQnJlYXRoYWJsZSBhbmQgY29tZnkgYWxsIHRoZSB3YXkhIiwgInN0YXJzIjogMiwgImF1dGhvciI6ICJIYXplbCBOZ3V5ZW4iLCAiZGF0ZSI6ICJKdW5lIDMwLCAyMDI0In0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH08':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Cute but Average\",\"content\":\"The Sybil Running Short’s color-blocked design is fun, and the mesh breathes okay. It’s not standout for performance, though.\",\"stars\":3,\"author\":\"Julian Brooks\",\"date\":\"April 15, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH08':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH08':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDdXRlIGJ1dCBBdmVyYWdlIiwgImNvbnRlbnQiOiAiVGhlIFN5YmlsIFJ1bm5pbmcgU2hvcnTigJlzIGNvbG9yLWJsb2NrZWQgZGVzaWduIGlzIGZ1biwgYW5kIHRoZSBtZXNoIGJyZWF0aGVzIG9rYXkuIEl04oCZcyBub3Qgc3RhbmRvdXQgZm9yIHBlcmZvcm1hbmNlLCB0aG91Z2guIiwgInN0YXJzIjogMywgImF1dGhvciI6ICJKdWxpYW4gQnJvb2tzIiwgImRhdGUiOiAiQXByaWwgMTUsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH09':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Multi-Sport Star\",\"content\":\"The Mimi All-Purpose Short is water-resistant and comfy for biking or swimming. The flatlock seams prevent any irritation!\",\"stars\":4,\"author\":\"Maya Evans\",\"date\":\"October 26, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH09':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH09':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJNdWx0aS1TcG9ydCBTdGFyIiwgImNvbnRlbnQiOiAiVGhlIE1pbWkgQWxsLVB1cnBvc2UgU2hvcnQgaXMgd2F0ZXItcmVzaXN0YW50IGFuZCBjb21meSBmb3IgYmlraW5nIG9yIHN3aW1taW5nLiBUaGUgZmxhdGxvY2sgc2VhbXMgcHJldmVudCBhbnkgaXJyaXRhdGlvbiEiLCAic3RhcnMiOiA0LCAiYXV0aG9yIjogIk1heWEgRXZhbnMiLCAiZGF0ZSI6ICJPY3RvYmVyIDI2LCAyMDIyIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH10':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Cool Running Companion\",\"content\":\"The Ana Running Short’s mesh panels keep me cool, and the lightweight fabric is a dream. Perfect for beating PRs!\",\"stars\":5,\"author\":\"Eli Parker\",\"date\":\"January 14, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH10':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH10':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb29sIFJ1bm5pbmcgQ29tcGFuaW9uIiwgImNvbnRlbnQiOiAiVGhlIEFuYSBSdW5uaW5nIFNob3J04oCZcyBtZXNoIHBhbmVscyBrZWVwIG1lIGNvb2wsIGFuZCB0aGUgbGlnaHR3ZWlnaHQgZmFicmljIGlzIGEgZHJlYW0uIFBlcmZlY3QgZm9yIGJlYXRpbmcgUFJzISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiRWxpIFBhcmtlciIsICJkYXRlIjogIkphbnVhcnkgMTQsIDIwMjAifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH11':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Supportive Staple\",\"content\":\"The Ina Compression Short hugs perfectly for runs or reps, and the moisture-wicking fabric is a lifesaver. Anti-microbial is a big plus!\",\"stars\":2,\"author\":\"Sofia Reed\",\"date\":\"August 3, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH11':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH11':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJTdXBwb3J0aXZlIFN0YXBsZSIsICJjb250ZW50IjogIlRoZSBJbmEgQ29tcHJlc3Npb24gU2hvcnQgaHVncyBwZXJmZWN0bHkgZm9yIHJ1bnMgb3IgcmVwcywgYW5kIHRoZSBtb2lzdHVyZS13aWNraW5nIGZhYnJpYyBpcyBhIGxpZmVzYXZlci4gQW50aS1taWNyb2JpYWwgaXMgYSBiaWcgcGx1cyEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIlNvZmlhIFJlZWQiLCAiZGF0ZSI6ICJBdWd1c3QgMywgMjAyMyJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH12':1",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Fitted Flop\",\"content\":\"The Erika Running Short’s snug design sounded great, but it’s too tight and restricts movement. The fabric isn’t breathable enough either.\",\"stars\":1,\"author\":\"Jasper Hayes\",\"date\":\"February 27, 2025\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH12':1",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH12':1",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJGaXR0ZWQgRmxvcCIsICJjb250ZW50IjogIlRoZSBFcmlrYSBSdW5uaW5nIFNob3J04oCZcyBzbnVnIGRlc2lnbiBzb3VuZGVkIGdyZWF0LCBidXQgaXTigJlzIHRvbyB0aWdodCBhbmQgcmVzdHJpY3RzIG1vdmVtZW50LiBUaGUgZmFicmljIGlzbuKAmXQgYnJlYXRoYWJsZSBlbm91Z2ggZWl0aGVyLiIsICJzdGFycyI6IDEsICJhdXRob3IiOiAiSmFzcGVyIEhheWVzIiwgImRhdGUiOiAiRmVicnVhcnkgMjcsIDIwMjUifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP03':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Parachute Pant Party\",\"content\":\"The Ida Workout Pant feels plush for runs or relaxing, and the antimicrobial tech is a game-changer. So comfy!\",\"stars\":4,\"author\":\"Theo Parker\",\"date\":\"July 3, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP03':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP03':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJQYXJhY2h1dGUgUGFudCBQYXJ0eSIsICJjb250ZW50IjogIlRoZSBJZGEgV29ya291dCBQYW50IGZlZWxzIHBsdXNoIGZvciBydW5zIG9yIHJlbGF4aW5nLCBhbmQgdGhlIGFudGltaWNyb2JpYWwgdGVjaCBpcyBhIGdhbWUtY2hhbmdlci4gU28gY29tZnkhIiwgInN0YXJzIjogNCwgImF1dGhvciI6ICJUaGVvIFBhcmtlciIsICJkYXRlIjogIkp1bHkgMywgMjAyNCJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP04':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Cora Cozy\",\"content\":\"The Cora Parachute Pant is a yoga dream with its mesh waist support. Pocket inside is a sweet perk!\",\"stars\":5,\"author\":\"Ruby Carter\",\"date\":\"March 22, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP04':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP04':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb3JhIENvenkiLCAiY29udGVudCI6ICJUaGUgQ29yYSBQYXJhY2h1dGUgUGFudCBpcyBhIHlvZ2EgZHJlYW0gd2l0aCBpdHMgbWVzaCB3YWlzdCBzdXBwb3J0LiBQb2NrZXQgaW5zaWRlIGlzIGEgc3dlZXQgcGVyayEiLCAic3RhcnMiOiA1LCAiYXV0aG9yIjogIlJ1YnkgQ2FydGVyIiwgImRhdGUiOiAiTWFyY2ggMjIsIDIwMjAifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP05':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Legging Love\",\"content\":\"The Sahara Leggings stretch great and look cool with pinstripes. Secret pocket is a workout must-have!\",\"stars\":2,\"author\":\"Finn Brooks\",\"date\":\"November 7, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP05':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP05':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJMZWdnaW5nIExvdmUiLCAiY29udGVudCI6ICJUaGUgU2FoYXJhIExlZ2dpbmdzIHN0cmV0Y2ggZ3JlYXQgYW5kIGxvb2sgY29vbCB3aXRoIHBpbnN0cmlwZXMuIFNlY3JldCBwb2NrZXQgaXMgYSB3b3Jrb3V0IG11c3QtaGF2ZSEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIkZpbm4gQnJvb2tzIiwgImRhdGUiOiAiTm92ZW1iZXIgNywgMjAyMiJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP06':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Tights Triumph\",\"content\":\"The Diana Tights move with me in bikram, and the vented gusset is clutch. Flat seams seal the deal!\",\"stars\":1,\"author\":\"Hazel Ortiz\",\"date\":\"August 28, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP06':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP06':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJUaWdodHMgVHJpdW1waCIsICJjb250ZW50IjogIlRoZSBEaWFuYSBUaWdodHMgbW92ZSB3aXRoIG1lIGluIGJpa3JhbSwgYW5kIHRoZSB2ZW50ZWQgZ3Vzc2V0IGlzIGNsdXRjaC4gRmxhdCBzZWFtcyBzZWFsIHRoZSBkZWFsISIsICJzdGFycyI6IDEsICJhdXRob3IiOiAiSGF6ZWwgT3J0aXoiLCAiZGF0ZSI6ICJBdWd1c3QgMjgsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP07':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Capri Charm\",\"content\":\"The Aeon Capri wicks sweat away, and the wide waistband flatters my figure. Teal details are a vibe!\",\"stars\":3,\"author\":\"Eli Nguyen\",\"date\":\"February 14, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP07':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP07':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDYXByaSBDaGFybSIsICJjb250ZW50IjogIlRoZSBBZW9uIENhcHJpIHdpY2tzIHN3ZWF0IGF3YXksIGFuZCB0aGUgd2lkZSB3YWlzdGJhbmQgZmxhdHRlcnMgbXkgZmlndXJlLiBUZWFsIGRldGFpbHMgYXJlIGEgdmliZSEiLCAic3RhcnMiOiAzLCAiYXV0aG9yIjogIkVsaSBOZ3V5ZW4iLCAiZGF0ZSI6ICJGZWJydWFyeSAxNCwgMjAyMyJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP08':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Simple Capri Snooze\",\"content\":\"The Bardot Capri is soft with organic fabric, but it’s kinda bland design-wise. Drawcord helps, I guess.\",\"stars\":4,\"author\":\"Stella Lee\",\"date\":\"December 25, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP08':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP08':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJTaW1wbGUgQ2FwcmkgU25vb3plIiwgImNvbnRlbnQiOiAiVGhlIEJhcmRvdCBDYXByaSBpcyBzb2Z0IHdpdGggb3JnYW5pYyBmYWJyaWMsIGJ1dCBpdOKAmXMga2luZGEgYmxhbmQgZGVzaWduLXdpc2UuIERyYXdjb3JkIGhlbHBzLCBJIGd1ZXNzLiIsICJzdGFycyI6IDQsICJhdXRob3IiOiAiU3RlbGxhIExlZSIsICJkYXRlIjogIkRlY2VtYmVyIDI1LCAyMDI0In0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP09':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Capri Classic\",\"content\":\"The Carina Basic Capri’s spandex blend is soft, and seams hold strong. Perfect for layering up!\",\"stars\":5,\"author\":\"Leo Hayes\",\"date\":\"June 5, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP09':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP09':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDYXByaSBDbGFzc2ljIiwgImNvbnRlbnQiOiAiVGhlIENhcmluYSBCYXNpYyBDYXByaeKAmXMgc3BhbmRleCBibGVuZCBpcyBzb2Z0LCBhbmQgc2VhbXMgaG9sZCBzdHJvbmcuIFBlcmZlY3QgZm9yIGxheWVyaW5nIHVwISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiTGVvIEhheWVzIiwgImRhdGUiOiAiSnVuZSA1LCAyMDIwIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP10':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Bikram Buddy\",\"content\":\"The Daria Bikram Pant flows with my poses, and flatlock seams feel amazing. Pink stripe pops!\",\"stars\":2,\"author\":\"Aria Patel\",\"date\":\"September 19, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP10':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP10':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJCaWtyYW0gQnVkZHkiLCAiY29udGVudCI6ICJUaGUgRGFyaWEgQmlrcmFtIFBhbnQgZmxvd3Mgd2l0aCBteSBwb3NlcywgYW5kIGZsYXRsb2NrIHNlYW1zIGZlZWwgYW1hemluZy4gUGluayBzdHJpcGUgcG9wcyEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIkFyaWEgUGF0ZWwiLCAiZGF0ZSI6ICJTZXB0ZW1iZXIgMTksIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP11':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Sleek Capri Sleuth\",\"content\":\"The Sylvia Capri’s fabric slims me down, and wicking keeps me cool. Wide waistband is a comfy touch!\",\"stars\":1,\"author\":\"Mason Kim\",\"date\":\"March 7, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP11':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP11':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJTbGVlayBDYXByaSBTbGV1dGgiLCAiY29udGVudCI6ICJUaGUgU3lsdmlhIENhcHJp4oCZcyBmYWJyaWMgc2xpbXMgbWUgZG93biwgYW5kIHdpY2tpbmcga2VlcHMgbWUgY29vbC4gV2lkZSB3YWlzdGJhbmQgaXMgYSBjb21meSB0b3VjaCEiLCAic3RhcnMiOiAxLCAiYXV0aG9yIjogIk1hc29uIEtpbSIsICJkYXRlIjogIk1hcmNoIDcsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP12':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Relaxed Royalty\",\"content\":\"The Deirdre Capri stretches perfectly for yoga, and the pocket is a lifesaver. Moisture-wicking is top-tier!\",\"stars\":3,\"author\":\"Ivy Brooks\",\"date\":\"October 24, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP12':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP12':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSZWxheGVkIFJveWFsdHkiLCAiY29udGVudCI6ICJUaGUgRGVpcmRyZSBDYXByaSBzdHJldGNoZXMgcGVyZmVjdGx5IGZvciB5b2dhLCBhbmQgdGhlIHBvY2tldCBpcyBhIGxpZmVzYXZlci4gTW9pc3R1cmUtd2lja2luZyBpcyB0b3AtdGllciEiLCAic3RhcnMiOiAzLCAiYXV0aG9yIjogIkl2eSBCcm9va3MiLCAiZGF0ZSI6ICJPY3RvYmVyIDI0LCAyMDIzIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WP13':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Comfy All Day\",\"content\":\"The Portia Capri’s high waist rocks for yoga or chilling, and the stripes add flair. Relaxed fit is a win!\",\"stars\":4,\"author\":\"Noah Carter\",\"date\":\"January 31, 2025\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WP13':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WP13':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb21meSBBbGwgRGF5IiwgImNvbnRlbnQiOiAiVGhlIFBvcnRpYSBDYXByaeKAmXMgaGlnaCB3YWlzdCByb2NrcyBmb3IgeW9nYSBvciBjaGlsbGluZywgYW5kIHRoZSBzdHJpcGVzIGFkZCBmbGFpci4gUmVsYXhlZCBmaXQgaXMgYSB3aW4hIiwgInN0YXJzIjogNCwgImF1dGhvciI6ICJOb2FoIENhcnRlciIsICJkYXRlIjogIkphbnVhcnkgMzEsIDIwMjUifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH01':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Fitness Short Fave\",\"content\":\"The Fiona Fitness Short wicks sweat like a pro, and the spandex feels great. Simple design shines!\",\"stars\":5,\"author\":\"Luna Ortiz\",\"date\":\"July 12, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH01':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH01':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJGaXRuZXNzIFNob3J0IEZhdmUiLCAiY29udGVudCI6ICJUaGUgRmlvbmEgRml0bmVzcyBTaG9ydCB3aWNrcyBzd2VhdCBsaWtlIGEgcHJvLCBhbmQgdGhlIHNwYW5kZXggZmVlbHMgZ3JlYXQuIFNpbXBsZSBkZXNpZ24gc2hpbmVzISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiTHVuYSBPcnRpeiIsICJkYXRlIjogIkp1bHkgMTIsIDIwMjAifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH02':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Drawstring Dream\",\"content\":\"The Maxima Short’s elastic waist is comfy for walks, and the sporty look is a hit. Binding adds a cool edge!\",\"stars\":2,\"author\":\"Eli Reed\",\"date\":\"April 18, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH02':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH02':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJEcmF3c3RyaW5nIERyZWFtIiwgImNvbnRlbnQiOiAiVGhlIE1heGltYSBTaG9ydOKAmXMgZWxhc3RpYyB3YWlzdCBpcyBjb21meSBmb3Igd2Fsa3MsIGFuZCB0aGUgc3BvcnR5IGxvb2sgaXMgYSBoaXQuIEJpbmRpbmcgYWRkcyBhIGNvb2wgZWRnZSEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIkVsaSBSZWVkIiwgImRhdGUiOiAiQXByaWwgMTgsIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH03':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Bike Short Bliss\",\"content\":\"The Gwen Bike Short’s CoolTech keeps me dry, and the adjustable waist fits perfect. Sleek and stylish!\",\"stars\":1,\"author\":\"Hazel Nguyen\",\"date\":\"November 3, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH03':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH03':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJCaWtlIFNob3J0IEJsaXNzIiwgImNvbnRlbnQiOiAiVGhlIEd3ZW4gQmlrZSBTaG9ydOKAmXMgQ29vbFRlY2gga2VlcHMgbWUgZHJ5LCBhbmQgdGhlIGFkanVzdGFibGUgd2Fpc3QgZml0cyBwZXJmZWN0LiBTbGVlayBhbmQgc3R5bGlzaCEiLCAic3RhcnMiOiAxLCAiYXV0aG9yIjogIkhhemVsIE5ndXllbiIsICJkYXRlIjogIk5vdmVtYmVyIDMsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH04':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Running Chic\",\"content\":\"The Artemis Short’s maritime vibe is dope, and LumaTech wicking makes jogs a breeze. Light as a feather!\",\"stars\":3,\"author\":\"Finn Lee\",\"date\":\"August 9, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH04':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH04':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSdW5uaW5nIENoaWMiLCAiY29udGVudCI6ICJUaGUgQXJ0ZW1pcyBTaG9ydOKAmXMgbWFyaXRpbWUgdmliZSBpcyBkb3BlLCBhbmQgTHVtYVRlY2ggd2lja2luZyBtYWtlcyBqb2dzIGEgYnJlZXplLiBMaWdodCBhcyBhIGZlYXRoZXIhIiwgInN0YXJzIjogMywgImF1dGhvciI6ICJGaW5uIExlZSIsICJkYXRlIjogIkF1Z3VzdCA5LCAyMDIzIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH05':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Yoga Short Yikes\",\"content\":\"The Bess Yoga Short should stretch for bikram, but it’s stiff and sweaty. Gusset doesn’t save it.\",\"stars\":4,\"author\":\"Stella Brooks\",\"date\":\"February 26, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH05':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH05':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJZb2dhIFNob3J0IFlpa2VzIiwgImNvbnRlbnQiOiAiVGhlIEJlc3MgWW9nYSBTaG9ydCBzaG91bGQgc3RyZXRjaCBmb3IgYmlrcmFtLCBidXQgaXTigJlzIHN0aWZmIGFuZCBzd2VhdHkuIEd1c3NldCBkb2VzbuKAmXQgc2F2ZSBpdC4iLCAic3RhcnMiOiA0LCAiYXV0aG9yIjogIlN0ZWxsYSBCcm9va3MiLCAiZGF0ZSI6ICJGZWJydWFyeSAyNiwgMjAyMCJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH06':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Run Light\",\"content\":\"The Angel Light Short’s Cocona fabric kills sweat and UV, perfect for long runs. Feels like air!\",\"stars\":5,\"author\":\"Leo Patel\",\"date\":\"October 16, 2024\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH06':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH06':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSdW4gTGlnaHQiLCAiY29udGVudCI6ICJUaGUgQW5nZWwgTGlnaHQgU2hvcnTigJlzIENvY29uYSBmYWJyaWMga2lsbHMgc3dlYXQgYW5kIFVWLCBwZXJmZWN0IGZvciBsb25nIHJ1bnMuIEZlZWxzIGxpa2UgYWlyISIsICJzdGFycyI6IDUsICJhdXRob3IiOiAiTGVvIFBhdGVsIiwgImRhdGUiOiAiT2N0b2JlciAxNiwgMjAyNCJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH07':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Compression King\",\"content\":\"The Echo Fit Short hugs my muscles right for workouts, and it breathes easy. Total support win!\",\"stars\":2,\"author\":\"Aria Hayes\",\"date\":\"June 24, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH07':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH07':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb21wcmVzc2lvbiBLaW5nIiwgImNvbnRlbnQiOiAiVGhlIEVjaG8gRml0IFNob3J0IGh1Z3MgbXkgbXVzY2xlcyByaWdodCBmb3Igd29ya291dHMsIGFuZCBpdCBicmVhdGhlcyBlYXN5LiBUb3RhbCBzdXBwb3J0IHdpbiEiLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIkFyaWEgSGF5ZXMiLCAiZGF0ZSI6ICJKdW5lIDI0LCAyMDIxIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH08':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Colorful Meh\",\"content\":\"The Sybil Running Short’s blocks are cute, but the mesh isn’t that breathable. Just okay for runs.\",\"stars\":1,\"author\":\"Mason Carter\",\"date\":\"December 1, 2022\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH08':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH08':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb2xvcmZ1bCBNZWgiLCAiY29udGVudCI6ICJUaGUgU3liaWwgUnVubmluZyBTaG9ydOKAmXMgYmxvY2tzIGFyZSBjdXRlLCBidXQgdGhlIG1lc2ggaXNu4oCZdCB0aGF0IGJyZWF0aGFibGUuIEp1c3Qgb2theSBmb3IgcnVucy4iLCAic3RhcnMiOiAxLCAiYXV0aG9yIjogIk1hc29uIENhcnRlciIsICJkYXRlIjogIkRlY2VtYmVyIDEsIDIwMjIifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH09':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Multi-Move Marvel\",\"content\":\"The Mimi Short resists water for swims and feels great biking. Flatlock seams are a comfort king!\",\"stars\":3,\"author\":\"Ivy Ortiz\",\"date\":\"September 8, 2020\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH09':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH09':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJNdWx0aS1Nb3ZlIE1hcnZlbCIsICJjb250ZW50IjogIlRoZSBNaW1pIFNob3J0IHJlc2lzdHMgd2F0ZXIgZm9yIHN3aW1zIGFuZCBmZWVscyBncmVhdCBiaWtpbmcuIEZsYXRsb2NrIHNlYW1zIGFyZSBhIGNvbWZvcnQga2luZyEiLCAic3RhcnMiOiAzLCAiYXV0aG9yIjogIkl2eSBPcnRpeiIsICJkYXRlIjogIlNlcHRlbWJlciA4LCAyMDIwIn0=",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH10':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Run Cool\",\"content\":\"The Ana Short’s mesh keeps me chill, and the light fabric flies on runs. PRs feel closer!\",\"stars\":4,\"author\":\"Noah Kim\",\"date\":\"March 9, 2025\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH10':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH10':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJSdW4gQ29vbCIsICJjb250ZW50IjogIlRoZSBBbmEgU2hvcnTigJlzIG1lc2gga2VlcHMgbWUgY2hpbGwsIGFuZCB0aGUgbGlnaHQgZmFicmljIGZsaWVzIG9uIHJ1bnMuIFBScyBmZWVsIGNsb3NlciEiLCAic3RhcnMiOiA0LCAiYXV0aG9yIjogIk5vYWggS2ltIiwgImRhdGUiOiAiTWFyY2ggOSwgMjAyNSJ9",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH11':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Compression Crush\",\"content\":\"The Ina Short supports runs and reps like a pro, and wicking saves me. Anti-microbial rocks!\",\"stars\":5,\"author\":\"Luna Nguyen\",\"date\":\"July 27, 2021\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH11':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH11':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJDb21wcmVzc2lvbiBDcnVzaCIsICJjb250ZW50IjogIlRoZSBJbmEgU2hvcnQgc3VwcG9ydHMgcnVucyBhbmQgcmVwcyBsaWtlIGEgcHJvLCBhbmQgd2lja2luZyBzYXZlcyBtZS4gQW50aS1taWNyb2JpYWwgcm9ja3MhIiwgInN0YXJzIjogNSwgImF1dGhvciI6ICJMdW5hIE5ndXllbiIsICJkYXRlIjogIkp1bHkgMjcsIDIwMjEifQ==",
+    "type": "data/review"
   }
 }
 {
-  "key": "review:'WSH12':2",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {},
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"title\":\"Tight Trouble\",\"content\":\"The Erika Short’s fit is too snug, choking my runs. Breathability’s a bust too.\",\"stars\":2,\"author\":\"Eli Brooks\",\"date\":\"November 14, 2023\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "review:'WSH12':2",
+  "source": "streamx-cli",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "review:'WSH12':2",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJ0aXRsZSI6ICJUaWdodCBUcm91YmxlIiwgImNvbnRlbnQiOiAiVGhlIEVyaWthIFNob3J04oCZcyBmaXQgaXMgdG9vIHNudWcsIGNob2tpbmcgbXkgcnVucy4gQnJlYXRoYWJpbGl0eeKAmXMgYSBidXN0IHRvby4iLCAic3RhcnMiOiAyLCAiYXV0aG9yIjogIkVsaSBCcm9va3MiLCAiZGF0ZSI6ICJOb3ZlbWJlciAxNCwgMjAyMyJ9",
+    "type": "data/review"
   }
 }

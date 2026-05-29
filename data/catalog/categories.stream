@@ -1,885 +1,767 @@
 {
-  "key": "cat:Accent Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Accent Furniture\",\"slug\":\"accent-furniture\",\"name\":\"Accent Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Accent Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Accent Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkFjY2VudCBGdXJuaXR1cmUiLCJzbHVnIjoiYWNjZW50LWZ1cm5pdHVyZSIsIm5hbWUiOiJBY2NlbnQgRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bar & Serving Carts",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bar & Serving Carts\",\"slug\":\"bar-&-serving-carts\",\"name\":\"Bar & Serving Carts\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bar & Serving Carts",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar & Serving Carts",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJhciAmIFNlcnZpbmcgQ2FydHMiLCJzbHVnIjoiYmFyLSYtc2VydmluZy1jYXJ0cyIsIm5hbWUiOiJCYXIgJiBTZXJ2aW5nIENhcnRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bar Cabinets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bar Cabinets\",\"slug\":\"bar-cabinets\",\"name\":\"Bar Cabinets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bar Cabinets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJhciBDYWJpbmV0cyIsInNsdWciOiJiYXItY2FiaW5ldHMiLCJuYW1lIjoiQmFyIENhYmluZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bar Sets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bar Sets\",\"slug\":\"bar-sets\",\"name\":\"Bar Sets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bar Sets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bar Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJhciBTZXRzIiwic2x1ZyI6ImJhci1zZXRzIiwibmFtZSI6IkJhciBTZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Barstools",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Barstools\",\"slug\":\"barstools\",\"name\":\"Barstools\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Barstools",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Barstools",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJhcnN0b29scyIsInNsdWciOiJiYXJzdG9vbHMiLCJuYW1lIjoiQmFyc3Rvb2xzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bed Frames",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bed Frames\",\"slug\":\"bed-frames\",\"name\":\"Bed Frames\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bed Frames",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bed Frames",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJlZCBGcmFtZXMiLCJzbHVnIjoiYmVkLWZyYW1lcyIsIm5hbWUiOiJCZWQgRnJhbWVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bedroom Armoires",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bedroom Armoires\",\"slug\":\"bedroom-armoires\",\"name\":\"Bedroom Armoires\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bedroom Armoires",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bedroom Armoires",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJlZHJvb20gQXJtb2lyZXMiLCJzbHVnIjoiYmVkcm9vbS1hcm1vaXJlcyIsIm5hbWUiOiJCZWRyb29tIEFybW9pcmVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bedroom Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bedroom Furniture\",\"slug\":\"bedroom-furniture\",\"name\":\"Bedroom Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bedroom Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bedroom Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJlZHJvb20gRnVybml0dXJlIiwic2x1ZyI6ImJlZHJvb20tZnVybml0dXJlIiwibmFtZSI6IkJlZHJvb20gRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Beds",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Beds\",\"slug\":\"beds\",\"name\":\"Beds\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Beds",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Beds",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJlZHMiLCJzbHVnIjoiYmVkcyIsIm5hbWUiOiJCZWRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Beds, Frames & Bases",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Beds, Frames & Bases\",\"slug\":\"beds,-frames-&-bases\",\"name\":\"Beds, Frames & Bases\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Beds, Frames & Bases",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Beds, Frames & Bases",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJlZHMsIEZyYW1lcyAmIEJhc2VzIiwic2x1ZyI6ImJlZHMsLWZyYW1lcy0mLWJhc2VzIiwibmFtZSI6IkJlZHMsIEZyYW1lcyAmIEJhc2VzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bookcases",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bookcases\",\"slug\":\"bookcases\",\"name\":\"Bookcases\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bookcases",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bookcases",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJvb2tjYXNlcyIsInNsdWciOiJib29rY2FzZXMiLCJuYW1lIjoiQm9va2Nhc2VzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Bookcases, Cabinets & Shelves",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Bookcases, Cabinets & Shelves\",\"slug\":\"bookcases,-cabinets-&-shelves\",\"name\":\"Bookcases, Cabinets & Shelves\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Bookcases, Cabinets & Shelves",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Bookcases, Cabinets & Shelves",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJvb2tjYXNlcywgQ2FiaW5ldHMgJiBTaGVsdmVzIiwic2x1ZyI6ImJvb2tjYXNlcywtY2FiaW5ldHMtJi1zaGVsdmVzIiwibmFtZSI6IkJvb2tjYXNlcywgQ2FiaW5ldHMgJiBTaGVsdmVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Box Springs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Box Springs\",\"slug\":\"box-springs\",\"name\":\"Box Springs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Box Springs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Box Springs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJveCBTcHJpbmdzIiwic2x1ZyI6ImJveC1zcHJpbmdzIiwibmFtZSI6IkJveCBTcHJpbmdzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Buffets & Sideboards",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Buffets & Sideboards\",\"slug\":\"buffets-&-sideboards\",\"name\":\"Buffets & Sideboards\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Buffets & Sideboards",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Buffets & Sideboards",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkJ1ZmZldHMgJiBTaWRlYm9hcmRzIiwic2x1ZyI6ImJ1ZmZldHMtJi1zaWRlYm9hcmRzIiwibmFtZSI6IkJ1ZmZldHMgJiBTaWRlYm9hcmRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Chairs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Chairs\",\"slug\":\"chairs\",\"name\":\"Chairs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Chairs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkNoYWlycyIsInNsdWciOiJjaGFpcnMiLCJuYW1lIjoiQ2hhaXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Chaise Lounges",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Chaise Lounges\",\"slug\":\"chaise-lounges\",\"name\":\"Chaise Lounges\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Chaise Lounges",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Chaise Lounges",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkNoYWlzZSBMb3VuZ2VzIiwic2x1ZyI6ImNoYWlzZS1sb3VuZ2VzIiwibmFtZSI6IkNoYWlzZSBMb3VuZ2VzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:China Cabinets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"China Cabinets\",\"slug\":\"china-cabinets\",\"name\":\"China Cabinets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "China Cabinets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:China Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkNoaW5hIENhYmluZXRzIiwic2x1ZyI6ImNoaW5hLWNhYmluZXRzIiwibmFtZSI6IkNoaW5hIENhYmluZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Coffee Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Coffee Tables\",\"slug\":\"coffee-tables\",\"name\":\"Coffee Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Coffee Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Coffee Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkNvZmZlZSBUYWJsZXMiLCJzbHVnIjoiY29mZmVlLXRhYmxlcyIsIm5hbWUiOiJDb2ZmZWUgVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Dressers",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Dressers\",\"slug\":\"dressers\",\"name\":\"Dressers\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Dressers",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Dressers",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkRyZXNzZXJzIiwic2x1ZyI6ImRyZXNzZXJzIiwibmFtZSI6IkRyZXNzZXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:End Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"End Tables\",\"slug\":\"end-tables\",\"name\":\"End Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "End Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:End Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkVuZCBUYWJsZXMiLCJzbHVnIjoiZW5kLXRhYmxlcyIsIm5hbWUiOiJFbmQgVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Entryway Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Entryway Furniture\",\"slug\":\"entryway-furniture\",\"name\":\"Entryway Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Entryway Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Entryway Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkVudHJ5d2F5IEZ1cm5pdHVyZSIsInNsdWciOiJlbnRyeXdheS1mdXJuaXR1cmUiLCJuYW1lIjoiRW50cnl3YXkgRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Featured",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Featured\",\"slug\":\"featured\",\"name\":\"Featured\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Featured",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Featured",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkZlYXR1cmVkIiwic2x1ZyI6ImZlYXR1cmVkIiwibmFtZSI6IkZlYXR1cmVkIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Folding Chairs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Folding Chairs\",\"slug\":\"folding-chairs\",\"name\":\"Folding Chairs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Folding Chairs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Folding Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkZvbGRpbmcgQ2hhaXJzIiwic2x1ZyI6ImZvbGRpbmctY2hhaXJzIiwibmFtZSI6IkZvbGRpbmcgQ2hhaXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Folding Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Folding Tables\",\"slug\":\"folding-tables\",\"name\":\"Folding Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Folding Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Folding Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkZvbGRpbmcgVGFibGVzIiwic2x1ZyI6ImZvbGRpbmctdGFibGVzIiwibmFtZSI6IkZvbGRpbmcgVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Furniture\",\"slug\":\"furniture\",\"name\":\"Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkZ1cm5pdHVyZSIsInNsdWciOiJmdXJuaXR1cmUiLCJuYW1lIjoiRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Gliders",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Gliders\",\"slug\":\"gliders\",\"name\":\"Gliders\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Gliders",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Gliders",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkdsaWRlcnMiLCJzbHVnIjoiZ2xpZGVycyIsIm5hbWUiOiJHbGlkZXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Headboards",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Headboards\",\"slug\":\"headboards\",\"name\":\"Headboards\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Headboards",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Headboards",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhlYWRib2FyZHMiLCJzbHVnIjoiaGVhZGJvYXJkcyIsIm5hbWUiOiJIZWFkYm9hcmRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Bar Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Bar Furniture\",\"slug\":\"home-bar-furniture\",\"name\":\"Home Bar Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Bar Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Bar Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgQmFyIEZ1cm5pdHVyZSIsInNsdWciOiJob21lLWJhci1mdXJuaXR1cmUiLCJuYW1lIjoiSG9tZSBCYXIgRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Office Cabinets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Office Cabinets\",\"slug\":\"home-office-cabinets\",\"name\":\"Home Office Cabinets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Office Cabinets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgT2ZmaWNlIENhYmluZXRzIiwic2x1ZyI6ImhvbWUtb2ZmaWNlLWNhYmluZXRzIiwibmFtZSI6IkhvbWUgT2ZmaWNlIENhYmluZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Office Chairs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Office Chairs\",\"slug\":\"home-office-chairs\",\"name\":\"Home Office Chairs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Office Chairs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgT2ZmaWNlIENoYWlycyIsInNsdWciOiJob21lLW9mZmljZS1jaGFpcnMiLCJuYW1lIjoiSG9tZSBPZmZpY2UgQ2hhaXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Office Desk Chairs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Office Desk Chairs\",\"slug\":\"home-office-desk-chairs\",\"name\":\"Home Office Desk Chairs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Office Desk Chairs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Desk Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgT2ZmaWNlIERlc2sgQ2hhaXJzIiwic2x1ZyI6ImhvbWUtb2ZmaWNlLWRlc2stY2hhaXJzIiwibmFtZSI6IkhvbWUgT2ZmaWNlIERlc2sgQ2hhaXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Office Desks",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Office Desks\",\"slug\":\"home-office-desks\",\"name\":\"Home Office Desks\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Office Desks",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Desks",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgT2ZmaWNlIERlc2tzIiwic2x1ZyI6ImhvbWUtb2ZmaWNlLWRlc2tzIiwibmFtZSI6IkhvbWUgT2ZmaWNlIERlc2tzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Home Office Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Home Office Furniture\",\"slug\":\"home-office-furniture\",\"name\":\"Home Office Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Home Office Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Home Office Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkhvbWUgT2ZmaWNlIEZ1cm5pdHVyZSIsInNsdWciOiJob21lLW9mZmljZS1mdXJuaXR1cmUiLCJuYW1lIjoiSG9tZSBPZmZpY2UgRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Kids' Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Kids' Furniture\",\"slug\":\"kids'-furniture\",\"name\":\"Kids' Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Kids' Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kids' Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IktpZHMnIEZ1cm5pdHVyZSIsInNsdWciOiJraWRzJy1mdXJuaXR1cmUiLCJuYW1lIjoiS2lkcycgRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Kitchen & Dining Room Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Kitchen & Dining Room Furniture\",\"slug\":\"kitchen-&-dining-room-furniture\",\"name\":\"Kitchen & Dining Room Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Kitchen & Dining Room Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kitchen & Dining Room Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IktpdGNoZW4gJiBEaW5pbmcgUm9vbSBGdXJuaXR1cmUiLCJzbHVnIjoia2l0Y2hlbi0mLWRpbmluZy1yb29tLWZ1cm5pdHVyZSIsIm5hbWUiOiJLaXRjaGVuICYgRGluaW5nIFJvb20gRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Kitchen Islands & Carts",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Kitchen Islands & Carts\",\"slug\":\"kitchen-islands-&-carts\",\"name\":\"Kitchen Islands & Carts\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Kitchen Islands & Carts",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Kitchen Islands & Carts",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IktpdGNoZW4gSXNsYW5kcyAmIENhcnRzIiwic2x1ZyI6ImtpdGNoZW4taXNsYW5kcy0mLWNhcnRzIiwibmFtZSI6IktpdGNoZW4gSXNsYW5kcyAmIENhcnRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Living Room Furniture",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Living Room Furniture\",\"slug\":\"living-room-furniture\",\"name\":\"Living Room Furniture\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Living Room Furniture",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Living Room Furniture",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkxpdmluZyBSb29tIEZ1cm5pdHVyZSIsInNsdWciOiJsaXZpbmctcm9vbS1mdXJuaXR1cmUiLCJuYW1lIjoiTGl2aW5nIFJvb20gRnVybml0dXJlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Living Room Sets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Living Room Sets\",\"slug\":\"living-room-sets\",\"name\":\"Living Room Sets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Living Room Sets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Living Room Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IkxpdmluZyBSb29tIFNldHMiLCJzbHVnIjoibGl2aW5nLXJvb20tc2V0cyIsIm5hbWUiOiJMaXZpbmcgUm9vbSBTZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Mattresses",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Mattresses\",\"slug\":\"mattresses\",\"name\":\"Mattresses\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Mattresses",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Mattresses",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik1hdHRyZXNzZXMiLCJzbHVnIjoibWF0dHJlc3NlcyIsIm5hbWUiOiJNYXR0cmVzc2VzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Mattresses & Box Springs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Mattresses & Box Springs\",\"slug\":\"mattresses-&-box-springs\",\"name\":\"Mattresses & Box Springs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Mattresses & Box Springs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Mattresses & Box Springs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik1hdHRyZXNzZXMgJiBCb3ggU3ByaW5ncyIsInNsdWciOiJtYXR0cmVzc2VzLSYtYm94LXNwcmluZ3MiLCJuYW1lIjoiTWF0dHJlc3NlcyAmIEJveCBTcHJpbmdzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Media Storage",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Media Storage\",\"slug\":\"media-storage\",\"name\":\"Media Storage\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Media Storage",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Media Storage",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik1lZGlhIFN0b3JhZ2UiLCJzbHVnIjoibWVkaWEtc3RvcmFnZSIsIm5hbWUiOiJNZWRpYSBTdG9yYWdlIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Nesting Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Nesting Tables\",\"slug\":\"nesting-tables\",\"name\":\"Nesting Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Nesting Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Nesting Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik5lc3RpbmcgVGFibGVzIiwic2x1ZyI6Im5lc3RpbmctdGFibGVzIiwibmFtZSI6Ik5lc3RpbmcgVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Nightstands",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Nightstands\",\"slug\":\"nightstands\",\"name\":\"Nightstands\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Nightstands",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Nightstands",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik5pZ2h0c3RhbmRzIiwic2x1ZyI6Im5pZ2h0c3RhbmRzIiwibmFtZSI6Ik5pZ2h0c3RhbmRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Ottomans",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Ottomans\",\"slug\":\"ottomans\",\"name\":\"Ottomans\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Ottomans",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Ottomans",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6Ik90dG9tYW5zIiwic2x1ZyI6Im90dG9tYW5zIiwibmFtZSI6Ik90dG9tYW5zIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Recliners",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Recliners\",\"slug\":\"recliners\",\"name\":\"Recliners\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Recliners",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Recliners",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlJlY2xpbmVycyIsInNsdWciOiJyZWNsaW5lcnMiLCJuYW1lIjoiUmVjbGluZXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Sofa & Console Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Sofa & Console Tables\",\"slug\":\"sofa-&-console-tables\",\"name\":\"Sofa & Console Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Sofa & Console Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofa & Console Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlNvZmEgJiBDb25zb2xlIFRhYmxlcyIsInNsdWciOiJzb2ZhLSYtY29uc29sZS10YWJsZXMiLCJuYW1lIjoiU29mYSAmIENvbnNvbGUgVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Sofas",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Sofas\",\"slug\":\"sofas\",\"name\":\"Sofas\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Sofas",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofas",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlNvZmFzIiwic2x1ZyI6InNvZmFzIiwibmFtZSI6IlNvZmFzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Sofas & Couches",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Sofas & Couches\",\"slug\":\"sofas-&-couches\",\"name\":\"Sofas & Couches\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Sofas & Couches",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Sofas & Couches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlNvZmFzICYgQ291Y2hlcyIsInNsdWciOiJzb2Zhcy0mLWNvdWNoZXMiLCJuYW1lIjoiU29mYXMgJiBDb3VjaGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Storage Benches",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Storage Benches\",\"slug\":\"storage-benches\",\"name\":\"Storage Benches\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Storage Benches",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlN0b3JhZ2UgQmVuY2hlcyIsInNsdWciOiJzdG9yYWdlLWJlbmNoZXMiLCJuYW1lIjoiU3RvcmFnZSBCZW5jaGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Storage Cabinets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Storage Cabinets\",\"slug\":\"storage-cabinets\",\"name\":\"Storage Cabinets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Storage Cabinets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Cabinets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlN0b3JhZ2UgQ2FiaW5ldHMiLCJzbHVnIjoic3RvcmFnZS1jYWJpbmV0cyIsIm5hbWUiOiJTdG9yYWdlIENhYmluZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Storage Chests",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Storage Chests\",\"slug\":\"storage-chests\",\"name\":\"Storage Chests\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Storage Chests",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Storage Chests",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlN0b3JhZ2UgQ2hlc3RzIiwic2x1ZyI6InN0b3JhZ2UtY2hlc3RzIiwibmFtZSI6IlN0b3JhZ2UgQ2hlc3RzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Table & Chair Sets",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Table & Chair Sets\",\"slug\":\"table-&-chair-sets\",\"name\":\"Table & Chair Sets\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Table & Chair Sets",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Table & Chair Sets",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlRhYmxlICYgQ2hhaXIgU2V0cyIsInNsdWciOiJ0YWJsZS0mLWNoYWlyLXNldHMiLCJuYW1lIjoiVGFibGUgJiBDaGFpciBTZXRzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Table Benches",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Table Benches\",\"slug\":\"table-benches\",\"name\":\"Table Benches\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Table Benches",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Table Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlRhYmxlIEJlbmNoZXMiLCJzbHVnIjoidGFibGUtYmVuY2hlcyIsIm5hbWUiOiJUYWJsZSBCZW5jaGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Tables",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Tables\",\"slug\":\"tables\",\"name\":\"Tables\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Tables",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Tables",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlRhYmxlcyIsInNsdWciOiJ0YWJsZXMiLCJuYW1lIjoiVGFibGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Television Stands & Entertainment Centers",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Television Stands & Entertainment Centers\",\"slug\":\"television-stands-&-entertainment-centers\",\"name\":\"Television Stands & Entertainment Centers\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Television Stands & Entertainment Centers",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Television Stands & Entertainment Centers",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlRlbGV2aXNpb24gU3RhbmRzICYgRW50ZXJ0YWlubWVudCBDZW50ZXJzIiwic2x1ZyI6InRlbGV2aXNpb24tc3RhbmRzLSYtZW50ZXJ0YWlubWVudC1jZW50ZXJzIiwibmFtZSI6IlRlbGV2aXNpb24gU3RhbmRzICYgRW50ZXJ0YWlubWVudCBDZW50ZXJzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Vanities",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Vanities\",\"slug\":\"vanities\",\"name\":\"Vanities\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Vanities",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanities",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlZhbml0aWVzIiwic2x1ZyI6InZhbml0aWVzIiwibmFtZSI6IlZhbml0aWVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Vanities & Vanity Benches",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Vanities & Vanity Benches\",\"slug\":\"vanities-&-vanity-benches\",\"name\":\"Vanities & Vanity Benches\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Vanities & Vanity Benches",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanities & Vanity Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlZhbml0aWVzICYgVmFuaXR5IEJlbmNoZXMiLCJzbHVnIjoidmFuaXRpZXMtJi12YW5pdHktYmVuY2hlcyIsIm5hbWUiOiJWYW5pdGllcyAmIFZhbml0eSBCZW5jaGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Vanity Benches",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Vanity Benches\",\"slug\":\"vanity-benches\",\"name\":\"Vanity Benches\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Vanity Benches",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Vanity Benches",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlZhbml0eSBCZW5jaGVzIiwic2x1ZyI6InZhbml0eS1iZW5jaGVzIiwibmFtZSI6IlZhbml0eSBCZW5jaGVzIn0=",
+    "type": "data/category"
   }
 }
 {
-  "key": "cat:Video Game Chairs",
-  "action": "publish",
-  "eventTime": null,
-  "properties": {
-    "sx:type": "data/category"
-  },
-  "payload": {
-    "dev.streamx.blueprints.data.Data": {
-      "content": {
-        "bytes": "{\"id\":\"Video Game Chairs\",\"slug\":\"video-game-chairs\",\"name\":\"Video Game Chairs\"}"
-      }
-    }
+  "specversion": "1.0",
+  "id": "Video Game Chairs",
+  "source": "demo-puresight-starter",
+  "type": "com.streamx.blueprints.data.published.v1",
+  "datacontenttype": "application/json",
+  "subject": "cat:Video Game Chairs",
+  "time": "2026-01-01T00:00:00.000000Z",
+  "data": {
+    "content": "eyJpZCI6IlZpZGVvIEdhbWUgQ2hhaXJzIiwic2x1ZyI6InZpZGVvLWdhbWUtY2hhaXJzIiwibmFtZSI6IlZpZGVvIEdhbWUgQ2hhaXJzIn0=",
+    "type": "data/category"
   }
 }

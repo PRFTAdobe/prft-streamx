@@ -1,0 +1,57 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyExtensionPolicy
+metadata:
+  name: cache-control-eds-pages
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: eds
+  lua:
+    - type: Inline
+      inline: |
+        function envoy_on_response(response_handle)
+            local ct = response_handle:headers():get("content-type")
+            if ct and (ct:find("text/html") or ct:find("text/xml")) then
+                response_handle:headers():replace("Cache-Control", "no-store, no-cache, must-revalidate")
+                response_handle:headers():replace("Pragma", "no-cache")
+                response_handle:headers():replace("Expires", "0")
+            end
+        end
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyExtensionPolicy
+metadata:
+  name: cache-control-streamx-resources
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: streamx
+  lua:
+    - type: Inline
+      inline: |
+        function envoy_on_response(response_handle)
+            local ct = response_handle:headers():get("content-type")
+            if ct and not (ct:find("text/html") or ct:find("text/xml")) then
+                response_handle:headers():replace(
+                    "Cache-Control",
+                    "must-revalidate, public, max-age=31536000"
+                )
+            end
+        end
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: response-compression
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: streamx
+  compressor:
+    - type: Gzip
+      gzip: {}
+

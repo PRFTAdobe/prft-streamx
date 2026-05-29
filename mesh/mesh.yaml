@@ -1,315 +1,841 @@
-defaultRegistry: ghcr.io/streamx-dev/streamx-blueprints
-defaultImageTag: 2.0.14-jvm
-environment:
-  # Favor throughput and connection quality over latency
-  PULSAR_CLIENT_USETCPNODELAY: "false"
-  # Keep stores up to date when container inside a pod restarts
-  QUASAR_MESSAGING_STORE_BACKEND: "rocksdb"
-  QUASAR_MESSAGING_STORE_ROCKSDB_PATH: "${streamx.rocksdb.path}"
-  STREAMX_DELIVERY-SERVICE_READINESS-CHECK_CHANNELS-QUIET-TIME: "5"
+default:
+  environment:
+    STREAMX_BLUEPRINTS_KEY_VALUE_STATE_REPOSITORY_BACKEND: rocksdb
+    STREAMX_BLUEPRINTS_KEY_VALUE_STATE_REPOSITORY_ROCKSDB_PATH: /var/lib/rocksdb
 
+descriptors:
+  relay:
+    type: processing
+    containers:
+      service:
+        incoming:
+          events: {}
+        outgoing:
+          relayed-events: {}
+
+  optimized-images-generator:
+    type: processing
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/optimized-images-generator:3.0.19-native
+        incoming:
+          incoming-assets: {}
+        outgoing:
+          optimized-assets: {}
+
+  local-references-rewriter:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/local-references-rewriter:3.0.19-native
+        incoming:
+          incoming-pages: {}
+          optimized-assets:
+            shared: false
+            initState: replay
+            enforceMonotonicEventTime: true
+        outgoing:
+          adjusted-pages: {}
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  external-references-rewriter:
+    type: processing
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/external-references-rewriter:3.0.19-native
+        incoming:
+          incoming-resources: {}
+        outgoing:
+          outgoing-resources: {}
+          download-requests: {}
+
+  resource-downloader:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/resource-downloader:3.0.19-native
+        incoming:
+          download-requests: {}
+        outgoing:
+          downloaded-pages: {}
+          downloaded-assets: {}
+          downloaded-web-resources: {}
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  json-aggregator:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/json-aggregator:3.0.19-native
+        incoming:
+          data: {}
+          multivalued-data: {}
+        outgoing:
+          aggregated-data: {}
+          aggregated-multivalued-data: {}
+        autoRef:
+          - from: data
+            to: data-state
+            using: sync-state
+          - from: multivalued-data
+            to: multivalued-data-state
+            using: sync-state
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  event-converter:
+    type: processing
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/event-converter:3.0.19-native
+        incoming:
+          resources: {}
+        outgoing:
+          indexable-resources: {}
+
+  rendering-engine:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/rendering-engine:3.0.19-native
+        incoming:
+          data: {}
+          renderers: {}
+          rendering-contexts: {}
+        outgoing:
+          pages: {}
+          fragments: {}
+        autoRef:
+          - from: outgoing-rendering-requests
+            to: incoming-rendering-requests
+            using: internal-relay
+          - from: data
+            to: data-state
+            using: sync-state
+          - from: renderers
+            to: renderers-state
+            using: sync-state
+          - from: rendering-contexts
+            to: rendering-contexts-state
+            using: sync-state
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  composition-engine:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/composition-engine:3.0.19-native
+        incoming:
+          layouts: {}
+          compositions: {}
+        outgoing:
+          pages: {}
+        autoRef:
+          - from: outgoing-page-compose-requests
+            to: incoming-page-compose-requests
+            using: internal-relay
+          - from: layouts
+            to: layouts-state
+            using: sync-state
+          - from: compositions
+            to: compositions-state
+            using: sync-state
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  data-collector:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/data-collector:3.0.19-native
+        incoming:
+          data: {}
+        outgoing:
+          collected-data: {}
+          web-resources: {}
+        autoRef:
+          - from: data
+            to: data-state
+            using: sync-state
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  sitemap-generator:
+    type: processing
+    volumes:
+      rocksdb:
+        size: 5Gi
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/sitemap-generator:3.0.19-native
+        incoming:
+          incoming-pages: {}
+        outgoing:
+          outgoing-sitemaps: {}
+        autoRef:
+          - from: incoming-pages
+            to: incoming-pages-state
+            using: sync-state
+        volumes:
+          - rocksdb:/var/lib/rocksdb
+
+  indexable-resources-producer:
+    type: processing
+    containers:
+      processor:
+        image: ghcr.io/streamx-com/streamx-blueprints/indexable-resources-producer:3.0.19-native
+        incoming:
+          pages: {}
+          fragments: {}
+        outgoing:
+          indexable-resources: {}
+          indexable-resource-fragments: {}
+
+  opensearch-sink:
+    type: edge
+    volumes:
+      opensearch-data:
+        size: 20Gi
+        persistent: true
+      rocksdb:
+        size: 20Gi
+        persistent: true
+    containers:
+      sink:
+        image: ghcr.io/streamx-com/streamx-blueprints/opensearch-sink:3.0.19-native
+        incoming:
+          indexable-resources:
+            initState: delta
+          indexable-resource-fragments:
+            initState: delta
+        autoRef:
+          - from: indexable-resource-fragments
+            to: indexable-resource-fragments-state
+            using: sync-state
+        servicePorts:
+          - 8082:8080
+        volumes:
+          - opensearch-data:/usr/share/opensearch/data
+          - rocksdb:/var/lib/rocksdb
+        environment:
+          QUARKUS_ELASTICSEARCH_HOSTS: ${STREAMX_SERVICE_ID}.opensearch:9201
+      opensearch:
+        image: registry.prod-ext.streamx.cloud/streamx-docker-hub-public-proxy/opensearchproject/opensearch:2.16.0
+        servicePorts:
+          - 9201:9201
+        volumes:
+          - opensearch-data:/usr/share/opensearch/data
+        environment:
+          network.host: 0.0.0.0
+          http.port: "9201"
+          discovery.type: single-node
+          DISABLE_SECURITY_PLUGIN: "true"
+
+  web-server-sink:
+    type: edge
+    volumes:
+      repository-volume:
+        size: 20Gi
+        persistent: true
+    containers:
+      sink:
+        image: ghcr.io/streamx-com/streamx-blueprints/web-server-sink:3.0.19-native
+        incoming:
+          resources:
+            initState: delta
+        servicePorts:
+          - 8083:8080
+        volumes:
+          - repository-volume:/srv/www
+        environment:
+          STREAMX_BLUEPRINTS_WEB_SERVER_SINK_STORAGE_ROOT_DIRECTORY: /srv/www
+      webserver:
+        image: registry.prod-ext.streamx.cloud/streamx-docker-hub-public-proxy/library/nginx:1.26.0
+        servicePorts:
+          - 8084:80
+        volumes:
+          - repository-volume:/usr/share/nginx/html
+
+networking:
+  httpRoutes:
+    magento:
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /graphql
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                hostname: master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: magento-backend
+    ai:
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /ai/
+            - path:
+                type: PathPrefix
+                value: /api/
+            - path:
+                type: PathPrefix
+                value: /_next/
+            - path:
+                type: Exact
+                value: /logo.svg
+            - path:
+                type: Exact
+                value: /voiceIcon.svg
+            - path:
+                type: Exact
+                value: /favicon.ico
+            - path:
+                type: Exact
+                value: /germ.svg
+            - path:
+                type: Exact
+                value: /voiceCancel.svg
+            - path:
+                type: PathPrefix
+                value: /hero-home.jpg
+            - path:
+                type: RegularExpression
+                value: ^/voice.*\.mp3$
+            - path:
+                type: RegularExpression
+                value: ^/_next/image.*$
+            - path:
+                type: RegularExpression
+                value: ^/audio-.*\.js$
+            - path:
+                type: RegularExpression
+                value: ^/video.*\.mp4$
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                hostname: wonderful-flower-0ae435e0f.3.azurestaticapps.net
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: ai-backend
+    eds:
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                hostname: main--psgdemoue--prftadobe.aem.live
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: eds-backend
+    aem:
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /content/experience-fragments/
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                hostname: publish-p7752-e729659.adobeaemcloud.com
+            - type: ResponseHeaderModifier
+              responseHeaderModifier:
+                set:
+                  - name: Cache-Control
+                    value: "no-cache, must-revalidate, public, max-age=0"
+                  - name: Pragma
+                    value: "no-cache"
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: aem-backend
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /etc.clientlibs/
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                hostname: publish-p7752-e729659.adobeaemcloud.com
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: aem-backend
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /aemgraphql/
+          filters:
+            - type: URLRewrite
+              urlRewrite:
+                path:
+                  type: ReplacePrefixMatch
+                  replacePrefixMatch: /graphql/
+                hostname: publish-p7752-e729659.adobeaemcloud.com
+          backendRefs:
+            - group: gateway.envoyproxy.io
+              kind: Backend
+              name: aem-backend
+    ingestion-route:
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: ingestion/rest-ingestion
+              port: 8080
+    streamx:
+      rules:
+        - matches:
+            - path:
+                type: Exact
+                value: /homepage.html
+            - path:
+                type: Exact
+                value: /cart.html
+            - path:
+                type: Exact
+                value: /login.html
+            - path:
+                type: Exact
+                value: /my-orders.html
+            - path:
+                type: Exact
+                value: /my-watchlist.html
+            - path:
+                type: Exact
+                value: /sitemap.xml
+            - path:
+                type: PathPrefix
+                value: /assets/
+            - path:
+                type: PathPrefix
+                value: /web-resources/
+            - path:
+                type: PathPrefix
+                value: /fragments/
+            - path:
+                type: PathPrefix
+                value: /_fragments/
+            - path:
+                type: PathPrefix
+                value: /media/
+            - path:
+                type: PathPrefix
+                value: /products/
+            - path:
+                type: PathPrefix
+                value: /categories/
+            - path:
+                type: PathPrefix
+                value: /content/dam/
+          filters:
+            - type: CORS
+              cors:
+                allowOrigins:
+                  - "*"
+                allowMethods:
+                  - "*"
+                allowHeaders:
+                  - "*"
+                exposeHeaders:
+                  - "*"
+          backendRefs:
+            - name: edge/web-server-sink
+              port: 8084
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /search
+          backendRefs:
+            - name: edge/search-sink
+              port: 8082
 sources:
   github:
     outgoing:
-      - "pages"
-      - "fragments"
-      - "assets"
-      - "web-resources"
-      - "data"
-      - "renderers"
-      - "rendering-contexts"
-      - "layouts"
-      - "compositions"
+      - ref: inbox.pages
+        produces:
+          - com.streamx.blueprints.page.published.v1
+          - com.streamx.blueprints.page.unpublished.v1
+      - ref: inbox.fragments
+        produces:
+          - com.streamx.blueprints.fragment.published.v1
+          - com.streamx.blueprints.fragment.unpublished.v1
+      - ref: inbox.assets
+        produces:
+          - com.streamx.blueprints.asset.published.v1
+          - com.streamx.blueprints.asset.unpublished.v1
+      - ref: inbox.web-resources
+        produces:
+          - com.streamx.blueprints.web-resource.published.v1
+          - com.streamx.blueprints.web-resource.unpublished.v1
+      - ref: inbox.data
+        produces:
+          - com.streamx.blueprints.data.published.v1
+          - com.streamx.blueprints.data.unpublished.v1
+      - ref: inbox.renderers
+        produces:
+          - com.streamx.blueprints.renderer.published.v1
+          - com.streamx.blueprints.renderer.unpublished.v1
+      - ref: inbox.rendering-contexts
+        produces:
+          - com.streamx.blueprints.rendering-context.published.v1
+          - com.streamx.blueprints.rendering-context.unpublished.v1
+      - ref: inbox.layouts
+        produces:
+          - com.streamx.blueprints.layout.published.v1
+          - com.streamx.blueprints.layout.unpublished.v1
+      - ref: inbox.compositions
+        produces:
+          - com.streamx.blueprints.composition.published.v1
+          - com.streamx.blueprints.composition.unpublished.v1
   pim:
     outgoing:
-      - "data"
+      - ref: inbox.data
+        produces:
+          - com.streamx.blueprints.data.published.v1
+          - com.streamx.blueprints.data.unpublished.v1
   cms:
     outgoing:
-      - "pages"
-      - "fragments"
-      - "assets"
-      - "web-resources"
-      - "data"
-      - "renderers"
-      - "rendering-contexts"
-      - "layouts"
-      - "compositions"
+      - ref: inbox.pages
+        produces:
+          - com.streamx.blueprints.page.published.v1
+          - com.streamx.blueprints.page.unpublished.v1
+      - ref: inbox.fragments
+        produces:
+          - com.streamx.blueprints.fragment.published.v1
+          - com.streamx.blueprints.fragment.unpublished.v1
+      - ref: inbox.assets
+        produces:
+          - com.streamx.blueprints.asset.published.v1
+          - com.streamx.blueprints.asset.unpublished.v1
+      - ref: inbox.web-resources
+        produces:
+          - com.streamx.blueprints.web-resource.published.v1
+          - com.streamx.blueprints.web-resource.unpublished.v1
+      - ref: inbox.renderers
+        produces:
+          - com.streamx.blueprints.renderer.published.v1
+          - com.streamx.blueprints.renderer.unpublished.v1
+      - ref: inbox.rendering-contexts
+        produces:
+          - com.streamx.blueprints.rendering-context.published.v1
+          - com.streamx.blueprints.rendering-context.unpublished.v1
+      - ref: inbox.layouts
+        produces:
+          - com.streamx.blueprints.layout.published.v1
+          - com.streamx.blueprints.layout.unpublished.v1
+      - ref: inbox.compositions
+        produces:
+          - com.streamx.blueprints.composition.published.v1
+          - com.streamx.blueprints.composition.unpublished.v1
 
 ingestion:
   rest-ingestion:
-    environmentFrom:
-      configs:
-        - "ingestion.properties"
-    environment:
-      # Ensures that generated tokens would work between cluster restarts
-      STREAMX_SOURCES_GITHUB_ACCEPT_IAT_FROM: "1704067200"
-      STREAMX_SOURCES_PIM_ACCEPT_IAT_FROM: "1704067200"
-      STREAMX_SOURCES_CMS_ACCEPT_IAT_FROM: "1704067200"
+    containers:
+      proxy:
+        environmentFrom:
+          configs:
+            - rest-ingestion.properties
 
 processing:
+  assets-relay:
+    descriptor: relay
+    containers:
+      service:
+        incoming:
+          events:
+            ref: inbox.assets,relay.optimized-assets
+        outgoing:
+          relayed-events:
+            ref: outbox.assets
 
-  blueprint-relay-web-resources:
-    image: relay-processing-service
-    incoming:
-      messages:
-        topic: inboxes/web-resources
-    outgoing:
-      relayed-messages:
-        topic: outboxes/web-resources
-    environment:
-      MP_MESSAGING_INCOMING_MESSAGES_SCHEMA: "web-resource-schema"
-      MP_MESSAGING_OUTGOING_RELAYED-MESSAGES_SCHEMA: "web-resource-schema"
+  fragments-relay:
+    descriptor: relay
+    containers:
+      service:
+        incoming:
+          events:
+            ref: inbox.fragments
+        outgoing:
+          relayed-events:
+            ref: relay.fragments
 
-  blueprint-relay-assets:
-    image: relay-processing-service
-    incoming:
-      messages:
-        topic: inboxes/assets
-    outgoing:
-      relayed-messages:
-        topic: outboxes/assets
-    environment:
-      MP_MESSAGING_INCOMING_MESSAGES_SCHEMA: "asset-schema"
-      MP_MESSAGING_OUTGOING_RELAYED-MESSAGES_SCHEMA: "asset-schema"
+  outbox-fragments-relay:
+    descriptor: relay
+    containers:
+      service:
+        incoming:
+          events:
+            ref: relay.fragments
+        outgoing:
+          relayed-events:
+            ref: outbox.fragments
 
-  blueprint-relay-pages:
-    image: relay-processing-service
-    incoming:
-      messages:
-        topic: inboxes/pages
-    outgoing:
-      relayed-messages:
-        topic: relays/pages
-    environment:
-      MP_MESSAGING_INCOMING_MESSAGES_SCHEMA: "page-schema"
-      MP_MESSAGING_OUTGOING_RELAYED-MESSAGES_SCHEMA: "page-schema"
-
-  blueprint-relay-fragments:
-    image: relay-processing-service
-    incoming:
-      messages:
-        topic: inboxes/fragments
-    outgoing:
-      relayed-messages:
-        topic: relays/fragments
-    environment:
-      MP_MESSAGING_INCOMING_MESSAGES_SCHEMA: "fragment-schema"
-      MP_MESSAGING_OUTGOING_RELAYED-MESSAGES_SCHEMA: "fragment-schema"
-
-  blueprint-outbox-relay-fragments:
-    image: relay-processing-service
-    incoming:
-      messages:
-        topic: relays/fragments
-    outgoing:
-      relayed-messages:
-        topic: outboxes/fragments
-    environment:
-      MP_MESSAGING_INCOMING_MESSAGES_SCHEMA: "fragment-schema"
-      MP_MESSAGING_OUTGOING_RELAYED-MESSAGES_SCHEMA: "fragment-schema"
-
-  blueprint-image-optimization:
-    image: image-optimization-processing-service
-    incoming:
-      incoming-assets:
-        topic: inboxes/assets
-      incoming-pages:
-        topic: relays/pages
-    outgoing:
-      optimized-assets:
-        topic: inboxes/assets
-      outgoing-pages:
-        topic: outboxes/pages
-    environmentFrom:
-      configs:
-        - "image-optimization.properties"
-
-
-  blueprint-data-deps-rewriter:
-    image: external-resources-processing-service
-    incoming:
-      incoming-data:
-        topic: inboxes/data
-      incoming-pages:
-        topic: relays/fake-pages-channel
-      incoming-web-resources:
-        topic: relays/fake-web-resources
-    outgoing:
-      outgoing-data:
-        topic: relays/data
-      outgoing-assets:
-        topic: outboxes/assets
-      outgoing-pages:
-        topic: relays/fake-pages-channel
-      outgoing-web-resources:
-        topic: relays/fake-web-resources-channel
-    environment:
-      STREAMX_BLUEPRINTS_EXTERNAL_RESOURCES_PROCESSING_SERVICE_BASE_URL_FOR_RELATIVE_PATHS: "https://master-7rqtwti-f3ef32mfqsxfe.us-4.magentosite.cloud"
-      STREAMX_BLUEPRINTS_EXTERNAL_RESOURCES_PROCESSING_SERVICE_PROCESSABLE_SX_TYPES: "product/simple,category,product/master"
-      STREAMX_BLUEPRINTS_EXTERNAL_RESOURCES_PROCESSING_SERVICE_JSON_EXTERNAL_RESOURCE_JSONPATH_SELECTORS: "$..attributes[?(@.name=='small_image' || @.name=='thumbnail')].values.*.value,$..attributes[?(@.name=='small_image' || @.name=='thumbnail')].values.*.label,$..primaryImage.url,$..gallery.*.url"
-
-  blueprint-json-aggregator:
-    image: json-aggregator-processing-service
-    incoming:
-      data:
-        topic: relays/data
-      multivalued-data:
-        topic: relays/data
-    outgoing:
-      aggregated-data:
-        topic: relays/aggregated-data
-      aggregated-multivalued-data:
-        topic: relays/data
-    environmentFrom:
-      configs:
-        - "aggregator.properties"
-
-  blueprint-message-converter:
-    image: message-converter-processing-service
-    incoming:
-      data:
-        topic: relays/aggregated-data
-    outgoing:
-      indexable-resources:
-        topic: outboxes/indexable-resources
-
-  blueprint-rendering-engine:
-    image: rendering-engine-processing-service
-    incoming:
-      data:
-        topic: relays/aggregated-data,relays/collected-data
-      renderers:
-        topic: inboxes/renderers
-      rendering-contexts:
-        topic: inboxes/rendering-contexts
-      incoming-rendering-requests:
-        topic: relays/rendering-requests
-    outgoing:
-      outgoing-rendering-requests:
-        topic: relays/rendering-requests
-      pages:
-        topic: relays/pages
-      fragments:
-        topic: relays/fragments
-
-  blueprint-composition-engine:
-    image: composition-engine-processing-service
-    incoming:
-      layouts:
-        topic: inboxes/layouts
-      compositions:
-        topic: inboxes/compositions
-      incoming-page-compose-requests:
-        topic: relays/page-compose-requests
-    outgoing:
-      pages:
-        topic: relays/pages
-      outgoing-page-compose-requests:
-        topic: relays/page-compose-requests
-
-  blueprint-data-collector:
-    image: data-collector-processing-service
-    incoming:
-      data:
-        topic: relays/aggregated-data,relays/collected-data
-    outgoing:
-      collected-data:
-        topic: relays/collected-data
-      web-resources:
-        topic: outboxes/web-resources
-    environmentFrom:
-      configs:
-        - "data-collector.properties"
-
-  blueprint-sitemap-generator:
-    image: sitemap-generator-processing-service
-    incoming:
-      incoming-pages:
-        topic: relays/pages
-    outgoing:
-      outgoing-sitemaps:
-        topic: outboxes/web-resources
-    environment:
-      # local test domain, see readme
-      STREAMX_BLUEPRINTS_SITEMAP-GENERATOR-PROCESSING-SERVICE_BASE-URL: "${streamx.accelerator.web.url}"
-      STREAMX_BLUEPRINTS_SITEMAP-GENERATOR-PROCESSING-SERVICE_OUTPUT-KEY: "/sitemap.xml"
-      STREAMX_BLUEPRINTS_SITEMAP-GENERATOR-PROCESSING-SERVICE_OUTPUT-TYPE: "web-resource/sitemap"
-
-  blueprint-indexables-producer:
-    image: indexables-producer-processing-service
-    environment:
-      STREAMX_BLUEPRINTS_INDEXABLES_PRODUCER_PROCESSING_SERVICE_INDEX_FRAGMENTS: "true"
-    incoming:
-      pages:
-        topic: relays/pages
-      fragments:
-        topic: relays/fragments
-    outgoing:
-      indexable-resources:
-        topic: outboxes/indexable-resources
-      indexable-resource-fragments:
-        topic: outboxes/indexable-resource-fragments
-
-delivery:
-  blueprint-search:
-    image: opensearch-delivery-service
-    incoming:
-      indexable-resources:
-        topic: outboxes/indexable-resources
-      indexable-resource-fragments:
-        topic: outboxes/indexable-resource-fragments
-    port: 8082
-    volumesFrom:
-      configs:
-        - "opensearch/service-init:/deployments/opensearch/service-init"
-    environment:
-      QUARKUS_ELASTICSEARCH_USERNAME: "admin"
-      QUARKUS_ELASTICSEARCH_HOSTS: "blueprint-search.opensearch:9201"
-      STREAMX_BLUEPRINTS_OPENSEARCH-DELIVERY-SERVICE_MIGRATION-SCRIPT-LOCATIONS: "classpath:opensearch/service-init,file:opensearch/service-init"
-      # Keep stores up to date when container inside a pod restarts
-      QUASAR_MESSAGING_STORE_BACKEND: "rocksdb"
-      QUASAR_MESSAGING_STORE_ROCKSDB_PATH: "${streamx.rocksdb.path}"
-    environmentFrom:
-      secrets:
-        - "opensearch-secrets.properties"
-    components:
-      opensearch:
-        image: "docker.io/opensearchproject/opensearch:2.16.0"
-        ports:
-          - 9201:9201
-        environment:
-          network.host: "0.0.0.0"
-          http.port: "9201"
-          discovery.type: "single-node"
-          DISABLE_SECURITY_PLUGIN: "true"
+  optimized-images-generator:
+    descriptor: optimized-images-generator
+    containers:
+      processor:
+        incoming:
+          incoming-assets:
+            ref: inbox.assets
+        outgoing:
+          optimized-assets:
+            ref: relay.optimized-assets
         environmentFrom:
-          secrets:
-            - "opensearch-component-secrets.properties"
-  blueprint-web:
-    image: web-delivery-service
-    incoming:
-      pages:
-        topic: outboxes/pages
-      fragments:
-        topic: outboxes/fragments
-      assets:
-        topic: outboxes/assets
-      web-resources:
-        topic: outboxes/web-resources
-    environment:
-      STREAMX_BLUEPRINTS_WEB-DELIVERY-SERVICE_RESOURCES_DIRECTORY: "/srv/www"
-      STREAMX_URL-INCLUDE-REPLACEMENT-PROVIDER_SSI-INCLUDE-FALLBACK-CONTENT: "<!-- Include Not Found -->"
-      # Keep stores up to date when container inside a pod restarts
-      QUASAR_MESSAGING_STORE_BACKEND: "rocksdb"
-      QUASAR_MESSAGING_STORE_ROCKSDB_PATH: "${streamx.rocksdb.path}"
-    repositoryVolume: "/srv/www"
-    port: 8083
-    components:
-      webserver:
-        image: "docker.io/library/nginx:1.26.0"
-        ports:
-          - 8084:80
-        repositoryVolume: "/usr/share/nginx/html"
+          configs:
+            - optimized-images-generator.properties
+
+  pages-optimized-img-rewriter:
+    descriptor: local-references-rewriter
+    containers:
+      processor:
+        incoming:
+          incoming-pages:
+            ref: relay.composed-pages
+          optimized-assets:
+            ref: relay.optimized-assets
+        outgoing:
+          adjusted-pages:
+            ref: outbox.pages
+        environmentFrom:
+          configs:
+            - pages-optimized-img-rewriter.properties
+
+  eds-pages-ext-ref-rewriter:
+    descriptor: external-references-rewriter
+    containers:
+      processor:
+        incoming:
+          incoming-resources:
+            ref: inbox.pages
+        outgoing:
+          outgoing-resources:
+            ref: relay.composed-pages
+          download-requests:
+            ref: relay.download-requests
+        environmentFrom:
+          configs:
+            - external-references-rewriter.pages.properties
+
+  eds-web-resources-ext-ref-rewriter:
+    descriptor: external-references-rewriter
+    containers:
+      processor:
+        incoming:
+          incoming-resources:
+            ref: inbox.web-resources
+        outgoing:
+          outgoing-resources:
+            ref: outbox.web-resources
+          download-requests:
+            ref: relay.download-requests
+        environmentFrom:
+          configs:
+            - external-references-rewriter.web-resources.properties
+
+  commerce-data-ext-ref-rewriter:
+    descriptor: external-references-rewriter
+    containers:
+      processor:
+        incoming:
+          incoming-resources:
+            ref: inbox.data
+        outgoing:
+          outgoing-resources:
+            ref: relay.data
+          download-requests:
+            ref: relay.download-requests
+        environmentFrom:
+          configs:
+            - external-references-rewriter.data.properties
+
+  resource-downloader:
+    descriptor: resource-downloader
+    containers:
+      processor:
+        incoming:
+          download-requests:
+            ref: relay.download-requests
+        outgoing:
+          downloaded-pages:
+            ref: inbox.pages
+          downloaded-assets:
+            ref: inbox.assets
+          downloaded-web-resources:
+            ref: inbox.web-resources
+
+  json-aggregator:
+    descriptor: json-aggregator
+    containers:
+      processor:
+        incoming:
+          data:
+            ref: relay.data
+          multivalued-data:
+            ref: relay.data
+        outgoing:
+          aggregated-data:
+            ref: relay.aggregated-data
+          aggregated-multivalued-data:
+            ref: inbox.data
+        environmentFrom:
+          configs:
+            - json-aggregator.properties
+
+  event-converter:
+    descriptor: event-converter
+    containers:
+      processor:
+        incoming:
+          resources:
+            ref: relay.aggregated-data
+        outgoing:
+          indexable-resources:
+            ref: outbox.indexable-resources
+
+  rendering-engine:
+    descriptor: rendering-engine
+    containers:
+      processor:
+        incoming:
+          data:
+            ref: relay.aggregated-data,relay.collected-data
+          renderers:
+            ref: inbox.renderers
+          rendering-contexts:
+            ref: inbox.rendering-contexts
+        outgoing:
+          pages:
+            ref: relay.composed-pages
+          fragments:
+            ref: relay.fragments
+
+  composition-engine:
+    descriptor: composition-engine
+    containers:
+      processor:
+        incoming:
+          layouts:
+            ref: inbox.layouts
+          compositions:
+            ref: inbox.compositions
+        outgoing:
+          pages:
+            ref: relay.composed-pages
+
+  data-collector:
+    descriptor: data-collector
+    containers:
+      processor:
+        incoming:
+          data:
+            ref: relay.aggregated-data,relay.collected-data
+        outgoing:
+          collected-data:
+            ref: relay.collected-data
+          web-resources:
+            ref: outbox.web-resources
+        environmentFrom:
+          configs:
+            - data-collector.properties
+
+  sitemap-generator:
+    descriptor: sitemap-generator
+    containers:
+      processor:
+        incoming:
+          incoming-pages:
+            ref: relay.composed-pages
+        outgoing:
+          outgoing-sitemaps:
+            ref: outbox.web-resources
+        environmentFrom:
+          configs:
+            - sitemap-generator.properties
+
+  indexable-resources-producer:
+    descriptor: indexable-resources-producer
+    containers:
+      processor:
+        incoming:
+          pages:
+            ref: relay.composed-pages
+          fragments:
+            ref: relay.fragments
+        outgoing:
+          indexable-resources:
+            ref: outbox.indexable-resources
+          indexable-resource-fragments:
+            ref: outbox.indexable-resource-fragments
+        environmentFrom:
+          configs:
+            - indexable-resources-producer.properties
+
+edge:
+  search-sink:
+    descriptor: opensearch-sink
+    containers:
+      sink:
+        incoming:
+          indexable-resources:
+            ref: outbox.indexable-resources
+          indexable-resource-fragments:
+            ref: outbox.indexable-resource-fragments
         volumesFrom:
           configs:
-            - "nginx_conf/demo.conf:/etc/nginx/conf.d/default.conf"
+            - opensearch/service-init:/deployments/opensearch/service-init/additional
+        environmentFrom:
+          secrets:
+            - encrypted/search-sink.properties
+
+      opensearch:
+        environmentFrom:
+          secrets:
+            - encrypted/search-sink-opensearch.properties
+
+  web-server-sink:
+    descriptor: web-server-sink
+    containers:
+      sink:
+        incoming:
+          resources:
+            ref: outbox.pages,outbox.fragments,outbox.assets,outbox.web-resources
+        environmentFrom:
+          configs:
+            - web-server-sink.properties
+
+      webserver:
+        volumesFrom:
+          configs:
+            - nginx_conf/nginx.conf:/etc/nginx/conf.d/default.conf

@@ -15,7 +15,7 @@ StreamX Commerce Accelerator allow to have a commerce search index feature, base
 ### 2. **`service-init/`**
 - Contains initialisation requests that configure search index for commerce purposes.
 - Example key requests:
-    - `update_default_index`: Updates default search index, initialised from **`streamx-blueprints/opensearch-delivery-service`** module.
+    - `update_default_index`: Updates default search index, initialised from **`streamx-blueprints/services/edge/opensearch-sink`** module.
     - `update_default_index_mapping`: Updates default search index schema mapping.
     - `update_default_index_default_pipeline`: Updates pipeline required for ingested commerce data
 - Contains formated search templates output
