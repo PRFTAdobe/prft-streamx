@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import dev.streamx.blueprints.data.Data;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import prft.streamx.cosmosdb.CosmosClientProvider;
 
@@ -26,6 +27,10 @@ public class ProcessDataFunction {
 
     @Inject
     CosmosClientProvider cosmosProvider;
+
+    @Inject
+    @RestClient
+    ProductService productService;
 
     @Incoming(CHANNEL_AGGREGATED_DATA)
     @Outgoing(CHANNEL_CUSTOM_AGGREGATED_DATA)
@@ -81,8 +86,9 @@ public class ProcessDataFunction {
             dbJson.add("views", gsonArray);
             dbJson.add("ai_payload", aiPayloadArray);
 
+            
+            /*
             log.debugf("CosmosDB JSON : %s", dbJson.toString());
-
             try {
                 CosmosClient client = cosmosProvider.getClient();
                 CosmosContainer container = client
@@ -94,10 +100,23 @@ public class ProcessDataFunction {
             }catch (Exception e) {
                 log.error("Error while inserting data into DB. ", e);
             }
+            */
+           log.debugf("CosmosDB JSON through web api: %s", dbJson.toString());
+            try {
+                Product product = new Product(
+                        gsonObj.get("sku").getAsString(),
+                        gsonObj.get("name").getAsString(),
+                        gsonObj.get("description").getAsString()
+                );
+                Map<String, String> response = productService.indexProduct(product);
+                log.infof("API response: %s", response);
+            } catch (Exception e) {
+                log.error("Error calling product API", e);
+            }
             Data updatedData = new Data(gsonObj.toString());
             return GenericPayload.of(updatedData);
         } else if (Action.UNPUBLISH.equals(action)) {
-            return GenericPayload.of(null);
+            return GenericPayload.of(data);
         } else {
             return null;
         }
