@@ -30,6 +30,10 @@ public class ProcessDataFunction {
 
     @Inject
     @RestClient
+    SpringBootAiClient springBootAiClient;
+
+    @Inject
+    @RestClient
     ProductService productService;
 
     @Incoming(CHANNEL_AGGREGATED_DATA)
@@ -102,7 +106,7 @@ public class ProcessDataFunction {
             }
             */
            log.debugf("CosmosDB JSON through web api: %s", dbJson.toString());
-            try {
+       /*     try {
                 Product product = new Product(
                         gsonObj.get("sku").getAsString(),
                         gsonObj.get("name").getAsString(),
@@ -112,13 +116,39 @@ public class ProcessDataFunction {
                 log.infof("API response: %s", response);
             } catch (Exception e) {
                 log.error("Error calling product API", e);
-            }
+            }*/
+            String productId = gsonObj.get("sku").getAsString();
+            indexProduct(productId, dbJson.toString());
             Data updatedData = new Data(gsonObj.toString());
             return GenericPayload.of(updatedData);
         } else if (Action.UNPUBLISH.equals(action)) {
             return GenericPayload.of(data);
         } else {
             return null;
+        }
+    }
+
+    private void indexProduct(String productId, String productJson) {
+        try {
+            log.infof("Indexing product: %s", productId);
+            springBootAiClient.indexProduct(productJson);
+            log.infof("Successfully indexed product: %s", productId);
+        } catch (Exception e) {
+            // Don't fail main StreamX flow if AI indexing fails
+            log.warnf("Failed to index product %s in vector store: %s",
+                    productId, e.getMessage());
+        }
+    }
+
+    // ADD — delete with error handling
+    private void deleteProduct(String productId) {
+        try {
+            log.infof("Deleting product from vector store: %s", productId);
+            springBootAiClient.deleteProduct(productId);
+            log.infof("Successfully deleted product: %s", productId);
+        } catch (Exception e) {
+            log.warnf("Failed to delete product %s from vector store: %s",
+                    productId, e.getMessage());
         }
     }
 }
