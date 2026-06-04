@@ -51,10 +51,22 @@ until [ "$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:9180/apisix/
 done
 
 
-# Sync routes
+# Sync routes and consumers
 YAML_FILE="$SCRIPT_DIR"/routes.yaml
 json_content=$(envsubst < "$YAML_FILE" | yq eval -o=json)
 
+# Register consumers
+echo "$json_content" | jq -c '.consumers[]?' | while read -r consumer; do
+  username=$(echo "$consumer" | jq -r '.username')
+  curl -i "http://127.0.0.1:9180/apisix/admin/consumers" \
+    -X PUT \
+    -H 'X-API-KEY: edd1c9f034335f136f87ad84b625c8f1' \
+    -d "$consumer" \
+    -H "Content-Type: application/json" >/dev/null 2>&1
+  echo "Registered consumer: $username"
+done
+
+# Register routes
 echo "$json_content" | jq -c '.routes[]' | while read -r route; do
   curl -i "http://127.0.0.1:9180/apisix/admin/routes" \
     -X PUT \

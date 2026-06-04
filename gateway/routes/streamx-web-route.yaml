@@ -28,6 +28,8 @@ spec:
         - serviceName: sx-del-blueprint-web
           servicePort: 8084
       plugins:
+      - name: basic-auth
+        enable: true
       - name: cors
         enable: true
         config:

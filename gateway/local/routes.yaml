@@ -1,4 +1,42 @@
+ consumers:
+   -
+     username: ${BASIC_AUTH_USERNAME}
+     plugins:
+       basic-auth:
+         username: ${BASIC_AUTH_USERNAME}
+         password: ${BASIC_AUTH_PASSWORD}
+
  routes:
+   -
+     name: streamx-web-public-route
+     id: blueprint-web-public
+     uri: /
+     hosts:
+       - web.127.0.0.1.nip.io
+     upstream:
+       nodes:
+         "blueprint-web.webserver:80": 1
+       type: roundrobin
+     plugins:
+       gzip:
+         buffers:
+           number: 8
+         types: "*"
+   -
+     name: streamx-web-public-index-route
+     id: blueprint-web-public-index
+     uri: /index.html
+     hosts:
+       - web.127.0.0.1.nip.io
+     upstream:
+       nodes:
+         "blueprint-web.webserver:80": 1
+       type: roundrobin
+     plugins:
+       gzip:
+         buffers:
+           number: 8
+         types: "*"
    -
      name: streamx-web-route
      id: blueprint-web
@@ -10,6 +48,9 @@
          "blueprint-web.webserver:80": 1
        type: roundrobin
      plugins:
+       basic-auth:
+         _meta:
+           disable: false
        gzip:
          buffers:
            number: 8
