@@ -20,7 +20,8 @@ spec:
         hosts:
           - lumax.streamx.com
         paths:
-          - /api/chatbot.html
+          - /chatbot.html
+          - /api/*
       priority: 10
       upstreams:
         - name: lumaxragdemo-upstream
