@@ -59,3 +59,5 @@ auth/*
 /gateway/tls/*
 
 /mesh/auth/*
+
+*/target/*
