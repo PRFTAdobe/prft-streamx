@@ -1,0 +1,42 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: lumaxragdemo-upstream
+spec:
+  scheme: https
+  passHost: node
+  externalNodes:
+    - type: Domain
+      name: lumaxragdemo-cef8aeeqdkawbbc4.eastus-01.azurewebsites.net
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: lumaxragdemo-default-route
+spec:
+  http:
+    - name: lumaxragdemo-default-route
+      match:
+        hosts:
+          - lumax.streamx.com
+        paths:
+          - /api/chatbot.html
+      priority: 10
+      upstreams:
+        - name: lumaxragdemo-upstream
+      plugins:
+        - proxy-rewrite:
+          status_code: 200
+          body: "This is a fallback response for non-existing pages"
+          config:
+            regex_uri: ["^/(.*)","$1"]
+            host: "lumaxragdemo-cef8aeeqdkawbbc4.eastus-01.azurewebsites.net"
+        - name: response-rewrite
+          enable: true
+          config:
+            headers:
+              Cache-Control: "no-store, no-cache, must-revalidate"
+              Pragma: "no-cache"
+              Expires: "0"
+            vars:
+              - [ "sent_http_content_type", "~~", "text/html" ]
