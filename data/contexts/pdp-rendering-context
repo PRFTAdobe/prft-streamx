@@ -4,5 +4,5 @@
   "dataTypeMatchPattern": null,
   "outputKeyTemplate": { "string": "/products/{{slug}}.html" },
   "outputTypeTemplate": { "string": "page/product" },
-  "outputFormat": { "dev.streamx.blueprints.data.RenderingContext.OutputFormat": "PAGE" }
+  "outputFormat": "PAGE"
 }
