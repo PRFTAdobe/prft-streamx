@@ -22,6 +22,7 @@ spec:
         paths:
           - /chatbot.html
           - /api/chat
+          - /api/proxy-page
       priority: 10
       upstreams:
         - name: lumaxragdemo-upstream
