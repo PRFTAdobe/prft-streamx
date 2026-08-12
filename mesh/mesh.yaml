@@ -423,6 +423,8 @@ networking:
             - name: ingestion/rest-ingestion
               port: 8080
     streamx:
+      hostnames:
+        - "lumax-test.staging.streamx.site"
       rules:
         - matches:
             - path:
