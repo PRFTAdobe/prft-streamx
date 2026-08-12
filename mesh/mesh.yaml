@@ -280,6 +280,8 @@ descriptors:
 networking:
   httpRoutes:
     magento:
+      hostnames:
+        - "lumax-test.staging.streamx.site"
       rules:
         - matches:
             - path:
@@ -294,6 +296,8 @@ networking:
               kind: Backend
               name: magento-backend
     ai:
+      hostnames:
+        - "lumax-test.staging.streamx.site"
       rules:
         - matches:
             - path:
@@ -344,6 +348,8 @@ networking:
               kind: Backend
               name: ai-backend
     eds:
+      hostnames:
+        - "lumax-test.staging.streamx.site"
       rules:
         - matches:
             - path:
@@ -358,6 +364,8 @@ networking:
               kind: Backend
               name: eds-backend
     aem:
+      hostnames:
+        - "lumax-test.staging.streamx.site"
       rules:
         - matches:
             - path:
