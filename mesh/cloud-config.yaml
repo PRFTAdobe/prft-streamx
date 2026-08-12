@@ -1,0 +1,13 @@
+---
+domains: []
+global:
+  properties: {}
+clusters:
+  eu-west-gra-edge:
+    enabled: true
+    overlays:
+      properties: {}
+  eu-west-gra-processing:
+    enabled: true
+    overlays:
+      properties: {}
