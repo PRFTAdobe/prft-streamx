@@ -1,7 +1,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd "${SCRIPT_DIR}/../" || exit
 
-#streamx stream data data/catalog/products.stream
-#streamx stream data data/catalog/categories.stream
+#streamx publish stream data/catalog/categories.stream -b 100
+#streamx publish stream data/catalog/products.stream -b 100
 
 popd || exit

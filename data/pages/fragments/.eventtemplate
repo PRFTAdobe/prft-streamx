@@ -5,6 +5,6 @@
   "type": "com.streamx.blueprints.fragment.published.v1",
   "datacontenttype": "application/json",
   "subject": "${relativePath:1}",
-  "time": "2026-04-16T00:00:00.000000Z",
+  "time": "${currentTime}",
   "data": { "content": "file://${payloadPath}", "type": "fragment/page-structure" }
 }

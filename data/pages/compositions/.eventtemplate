@@ -5,6 +5,6 @@
   "type": "com.streamx.blueprints.composition.published.v1",
   "datacontenttype": "application/json",
   "subject": "${relativePath}",
-  "time": "2026-04-16T00:00:00.000000Z",
+  "time": "${currentTime}",
   "data": { "content": "file://${payloadPath}", "layoutKey": "contentPage.html" }
 }

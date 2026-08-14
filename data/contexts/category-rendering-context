@@ -1,8 +1,8 @@
 {
-  "rendererKey": { "string": "templates/pcp.html" },
-  "dataKeyMatchPattern": { "string": "category:.*" },
+  "rendererKey": "templates/pcp.html",
+  "dataKeyMatchPattern": "category:.*",
   "dataTypeMatchPattern": null,
-  "outputKeyTemplate": { "string": "/categories/{{slug}}.html" },
-  "outputTypeTemplate": { "string": "page/category" },
-  "outputFormat": { "dev.streamx.blueprints.data.RenderingContext.OutputFormat": "PAGE" }
+  "outputKeyTemplate": "/categories/{{slug}}.html",
+  "outputTypeTemplate": "page/category",
+  "outputFormat": "PAGE"
 }

@@ -1,8 +1,8 @@
 {
-  "rendererKey": { "string": "templates/pdp.twig" },
-  "dataKeyMatchPattern": { "string": "product:.*" },
+  "rendererKey": "templates/pdp.twig",
+  "dataKeyMatchPattern": "product:.*",
   "dataTypeMatchPattern": null,
-  "outputKeyTemplate": { "string": "/products/{{slug}}.html" },
-  "outputTypeTemplate": { "string": "page/product" },
+  "outputKeyTemplate": "/products/{{slug}}.html",
+  "outputTypeTemplate": "page/product",
   "outputFormat": "PAGE"
 }
