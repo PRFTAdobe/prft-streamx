@@ -1,9 +1,9 @@
 // eslint-disable-next-line func-names,no-unused-expressions
-import { addProductToCart } from './productUtilities.js';
+import { addProductToCart, addProductToWatchlist } from './productUtilities.js';
 import { addIncreaseDecreaseQuantityAction } from './productUtilities.js';
 import { productMutations } from "https://lumax.streamx.com/scripts/auth/commerce/productMutation.js";
 import { userSession } from "https://lumax.streamx.com/scripts/auth/user-session-utils.js";
-import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
+import { updateVariantStatusEvent } from "https://lumax.streamx.com/scripts/analytics/analytics-functions.js"
 
 !(function () {
   const formatter = new Intl.NumberFormat('en-US', {
@@ -63,7 +63,7 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
     firstLoad = false;
 
-    if (isProductVariantInStock) {
+    if (isProductVariantInStock === true) {
       quantityEle.classList.contains('hidden') ? quantityEle.classList.remove('hidden') : '';
       addToCartEle.classList.contains('hidden') ? addToCartEle.classList.remove('hidden') : '';
       outOfStockEle.classList.contains('hidden') ? '' : outOfStockEle.classList.add('hidden');
@@ -76,8 +76,10 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
       addToCartEle.classList.contains('hidden') ? '' : addToCartEle.classList.add('hidden');
       outOfStockEle.classList.contains('hidden') ? outOfStockEle.classList.remove('hidden') : '';
 
-      if (activeUser && notifyMeEle.classList.contains('hidden')) {
-        notifyMeEle.classList.remove('hidden');
+      if (activeUser && isProductVariantInStock === false) {
+        notifyMeEle.classList.remove('hidden')
+      } else {
+        notifyMeEle.classList.add('hidden')
       }
     }
   }
@@ -190,6 +192,15 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
 
         if (stockStatusResponse.length) {
           updateStockStatusOnUI(isVariantInStock(stockStatusResponse, newSku));
+
+          const variant = stockStatusResponse.find(v => v.product.sku === newSku)
+          const notifyMeButton = document.querySelector('.notifyWhenInStock')
+          
+          if (variant && notifyMeButton) {
+            notifyMeButton.dataset.selections = JSON.stringify(variant.selections)
+          } else if (notifyMeButton) {
+            notifyMeButton.dataset.selections = '[]'
+          }
         }
       });
     });
@@ -250,13 +261,33 @@ import { updateVariantStatusEvent, addToWishlistEvent } from "https://lumax.stre
     addToCartButton?.addEventListener('click', handleAddToCartClick);
   };
 
-  const addToWishList = () => {
-    const addToWishListButton = document.querySelector('.notifyWhenInStock');
-    addToWishListButton?.addEventListener('click', addToWishlistEvent);
+  const addToWatchlist = async () => {
+
+    const notifyMeButton = document.querySelector('.notifyWhenInStock')
+    const quantitySpan = document.querySelector('.quantity')
+
+    const handleWatchlistClick = async (event) => {
+
+        const skuSelected = document.body.dataset.baseSku
+        const quantity = quantitySpan ? parseInt(quantitySpan.innerText) : 1
+
+        let selectedOptions = []
+        try {
+          selectedOptions = notifyMeButton.dataset.selections 
+            ? JSON.parse(notifyMeButton.dataset.selections) 
+            : []
+        } catch (e) {
+          selectedOptions = []
+        }
+
+        addProductToWatchlist(skuSelected, quantity, selectedOptions, event)
+    }
+
+    notifyMeButton?.addEventListener('click', handleWatchlistClick)
   }
 
   init();
   addToCart();
   addIncreaseDecreaseQuantityAction();
-  addToWishList();
+  addToWatchlist();
 })();

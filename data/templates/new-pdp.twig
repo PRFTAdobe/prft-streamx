@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{ name }}</title>
+  <title>Test - {{ name }}</title>
   {{ '{{#include src="/fragments/headContent.html"}}' }}
 </head>
 
@@ -20,7 +20,7 @@
       data-base-sku="{{ sku }}"
       data-product-details='{"sku":"{{ sku }}","name": "{{ name }}","rating":"3","description":"{{ productDescription }}","category":"{{ categoryName }}","brand":"LumaX","salesOrg":"Perficient","isFeatured":"{{ isFeatured }}","productPrice":"{{ price.value }}"}'
       data-product-category="{{ categoryName }}" data-product-featured="{{ isFeatured }}">
-<div class="min-h-screen bg-gray-50 flex flex-col">
+<div class="min-h-screen bg-gray-50 flex flex-col test-class">
   <div class="nav header hidden">{{ '{{#include src="/content/psg-demo-ue/nav.html"}}' }}</div>
   <div class="min-h-screen bg-gray-50 flex flex-col">
     <section class="container bg-gray-50 mx-auto px-4 py-12">
@@ -241,7 +241,7 @@
         <div class="max-w-6xl mx-auto">
           {% set lowercasesku = sku|lower %}
           {% autoescape false %}
-            {{ '{{#include src="/content/experience-fragments/lumax/products/product-' + lowercasesku + '/master.nocloudconfigs.html"}}' }}
+            {{ '{{#include src="/content/experience-fragments/lumax/products/product-' + lowercasesku + '/master.html"}}' }}
           {% endautoescape %}
         </div>
       </div>
